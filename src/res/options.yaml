@@ -1,0 +1,43 @@
+---
+title: Concepts in Parallel Programming
+subtitle: Subtitle
+subject: Master Thesis
+author:
+- Martin Braun (1249080)
+date: 16.05.2018
+abstract:
+  Some Abstract here
+university: University of Bayreuth
+department: AI5 -- Visual Computing
+city: Bayreuth
+logo: src/img/ai5logo.pdf
+first-reviser: Dr. Oleg Lobachev
+second-reviser: Prof. Dr. Thomas Rauber
+
+language: english
+papersize: a4
+documentclass: scrreprt
+classoption:
+- paper=A4
+- twoside=true
+- openright
+- parskip=full
+- chapterprefix=true
+- headings=normal
+- bibliography=totoc
+- listof=totoc
+- titlepage=on
+- captions=tableabove
+- draft=false
+
+toc-depth: 2  # table of contents sub section depth
+lof: true     # list of figures
+lot: true     # list of tables
+
+fignos-cleveref: on
+tblgnos-cleveref: on
+eqnos-cleveref: on
+
+bibliography: src/res/references.bib
+csl: src/res/citeproc-styles/computer-speech-and-language.csl
+...

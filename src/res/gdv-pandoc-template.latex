@@ -1,0 +1,194 @@
+\documentclass[$if(fontsize)$$fontsize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}%
+
+% **************************************************
+% Debug LaTeX Information
+% **************************************************
+%\listfiles
+
+% **************************************************
+% Information and Commands for Reuse
+% **************************************************
+\newcommand{\thesisTitle}{$title$}
+\newcommand{\thesisSubtitle}{$subtitle$}
+\newcommand{\thesisName}{$for(author)$$author$$sep$ \and$endfor$}
+\newcommand{\thesisSubject}{$subject$}
+\newcommand{\thesisDate}{$date$}
+\newcommand{\thesisUniversity}{\protect{$university$}}
+\newcommand{\thesisUniversityDepartment}{$department$}
+\newcommand{\thesisUniversityCity}{$city$}
+
+% **************************************************
+% Load and Configure Packages
+% **************************************************
+\usepackage[utf8]{inputenc}		% defines file's character encoding
+\usepackage[$language$]{babel}     % babel system, adjust the language of the content
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage[
+    activate={true,nocompatibility},
+    final,
+    tracking=true,
+    kerning=true,
+    spacing=true,
+    factor=1100,
+    stretch=10,
+    shrink=10
+]{microtype}
+\usepackage[					% clean thesis style
+	figuresep=colon,%
+	sansserif=false,%
+	hangfigurecaption=false,%
+	hangsection=true,%
+	hangsubsection=true,%
+	colorize=bw,%
+	colortheme=bluemagenta,%
+	bibsys=bibtex,%
+	bibfile=bib-refs,%
+	bibstyle=alphabetic,%
+]{cleanthesis}
+
+\renewcommand{\cfttoctitlefont}{\thesischapterfont}
+\renewcommand{\cftlottitlefont}{\thesischapterfont}
+\renewcommand{\cftloftitlefont}{\thesischapterfont}
+\renewcommand{\cftchapfont}{\rmfamily\bfseries}
+\renewcommand{\cftsecfont}{\rmfamily}
+\renewcommand{\cftsubsecfont}{\rmfamily}
+\renewcommand{\cfttabfont}{\rmfamily}
+\renewcommand{\cftfigfont}{\rmfamily}
+
+\providecommand{\tightlist}{%
+    \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\hypersetup{					% setup the hyperref-package options
+	pdftitle={\thesisTitle},	% 	- title (PDF meta)
+	pdfsubject={\thesisSubject},% 	- subject (PDF meta)
+	pdfauthor={\thesisName},	% 	- author (PDF meta)
+	plainpages=false,			% 	-
+	colorlinks=false,			% 	- colorize links?
+	pdfborder={0 0 0},			% 	-
+	breaklinks=true,			% 	- allow line break inside links
+	bookmarksnumbered=true,		%
+	bookmarksopen=true			%
+}
+
+% **************************************************
+% Document CONTENT
+% **************************************************
+\begin{document}
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+% --------------------------
+% rename document parts
+% --------------------------
+%\renewcaptionname{english}{\figurename}{Fig.}
+%\renewcaptionname{english}{\tablename}{Tab.}
+
+% --------------------------
+% Front matter
+% --------------------------
+\pagenumbering{roman}			% roman page numbing (invisible for empty page style)
+\pagestyle{empty}				% no header or footers
+
+\begin{titlepage}
+\pdfbookmark[0]{Cover}{Cover}
+\flushright
+\hfill
+\vfill
+{\huge\thesisTitle \par}
+{\LARGE\thesisSubtitle \par}
+\rule[5pt]{\textwidth}{.4pt} \par
+{\Large\thesisName} \par
+{First supervisor: \Large $first-reviser$} \par
+{Second supervisor: \Large $second-reviser$} \par
+
+\vfill
+\vspace*{7cm}
+%
+\begin{minipage}{2cm}
+\includegraphics[height=1cm]{$logo$}
+\end{minipage}
+%
+\begin{minipage}{5cm}
+\vspace{16pt}
+\thesisUniversityDepartment \\
+\thesisUniversity \\
+\end{minipage}
+\hfill
+\begin{minipage}{5cm}
+\vspace*{18pt}
+\begin{flushright}
+\textit{\large\thesisDate}
+\end{flushright}
+\end{minipage}
+%
+\end{titlepage}
+\cleardoublepage
+
+$if(abstract)$
+\pagestyle{plain}
+\begin{abstract}
+$abstract$
+\end{abstract}
+\cleardoublepage
+$endif$
+
+$if(toc)$
+{
+$if(colorlinks)$
+\hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$$endif$}
+$endif$
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+}
+$endif$
+
+\cleardoublepage
+%
+
+% --------------------------
+% Body matter
+% --------------------------
+\pagenumbering{arabic}			% arabic page numbering
+\setcounter{page}{1}			% set page counter
+\pagestyle{maincontentstyle} 	% fancy header and footer
+
+$body$
+
+\cleardoublepage
+
+% --------------------------
+% Back matter
+% --------------------------
+
+$if(lof)$
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\cleardoublepage
+$endif$
+
+$if(lot)$
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+\cleardoublepage
+$endif$
+
+
+\pagestyle{empty}
+$declaration$
+\clearpage
+\newpage
+\mbox{}
+
+% **************************************************
+% End of Document CONTENT
+% **************************************************
+$for(include-after)$
+$include-after$
+$endfor$
+
+\end{document}
