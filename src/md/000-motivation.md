@@ -8,10 +8,9 @@
 
 #### Vierte Überschrift ####
 
+`torus` is awesome
 
-
-~~~~ {#mycode .haskell}
-\begin{code}
+~~~~ {#mycode .haskell caption="This is my awesome description for |torus|" options=htb}
 torus :: (Future fut a conf, Future fut b conf,
       ArrowLoop arr, ArrowChoice arr,
       ArrowLoopParallel arr (c, fut a, fut b) (d, fut a, fut b) conf,
@@ -33,5 +32,4 @@ ptorus conf f =
 	arr (\ ~(c, a, b) -> (c, get conf a, get conf b)) >>>
 	f >>>
 	arr (\ ~(d, a, b) -> (d, put conf a, put conf b))
-\end{code}
 ~~~~

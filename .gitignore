@@ -5,3 +5,5 @@ texput.log
 *.aux
 *.fdb_latexmk
 *.log
+
+tex2pdf.*

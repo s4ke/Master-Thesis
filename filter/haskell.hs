@@ -15,6 +15,8 @@ import qualified Data.ByteString.Lazy.Char8 as L8
 import Control.Concurrent.STM (atomically)
 import Control.Exception (throwIO)
 
+import Data.Map
+
 import Control.DeepSeq
 
 import System.IO.Unsafe
@@ -27,25 +29,47 @@ import Data.String.Utils
 import System.Posix.Escape
 
 transformHaskell :: Block -> Block
-transformHaskell (Text.Pandoc.CodeBlock attr code) = Text.Pandoc.RawBlock (Format "tex") $ (prettyHaskell $ code)
+transformHaskell x@(Text.Pandoc.CodeBlock attr code) =
+    if isHaskell attr
+    then (Text.Pandoc.RawBlock (Format "tex") $ prettyHaskellFig attr code)
+    else x
 transformHaskell x = walk transformInline x
 
 transformInline :: Inline -> Inline
-transformInline (Text.Pandoc.Code attr code) = Text.Pandoc.RawInline (Format "tex") $ prettyHaskell code
+transformInline (Text.Pandoc.Code attr code) = Text.Pandoc.RawInline (Format "tex") $ prettyHaskellInline code
 transformInline x = x
 
 {-
  HACKY AF, but seems to work
 -}
 
+prettyHaskellFig :: Attr -> String -> String
+prettyHaskellFig (ident, classes, kvs) input =
+    "\\begin{figure}[" ++ options kvs ++ "]" ++
+    (prettyHaskell $ "\n\\begin{code}\n" ++ input ++ "\n\\end{code}\n") ++
+    caption kvs ++
+    "\\end{figure}"
+
+prettyHaskellInline :: String -> String
+prettyHaskellInline input = prettyHaskell $ "|" ++ input ++ "|"
+
+isHaskell :: Attr -> Bool
+isHaskell (ident, classes, kvs) = "haskell" `elem` classes
+
+options :: [(String, String)] -> String
+options kvs = (prettyHaskell $ findWithDefault "" "options" (fromList kvs))
+
+caption :: [(String, String)] -> String
+caption kvs = "\\caption{" ++ (prettyHaskell $ findWithDefault "." "caption" (fromList kvs)) ++ "}"
+
 {-# NOINLINE prettyHaskell #-}
 prettyHaskell :: String -> String
 prettyHaskell input = unsafePerformIO $ do
-    writeFile "escapeInput.tmp" input
+    writeFile "escapeInput.tmp" (input)
     let config = proc "bash" ["filter/escape.sh"]
     (out, err) <- readProcess_ config
     return $ L8.unpack out
 
 main :: IO ()
 main = do
-   toJSONFilter transformHaskell
+   toJSONFilter (transformHaskell . traceShowId)
