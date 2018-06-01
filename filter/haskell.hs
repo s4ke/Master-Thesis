@@ -37,6 +37,8 @@ transformInline x = x
 
 {-
  HACKY AF, but seems to work
+
+ TODO: we require a variant without a figure environment!
 -}
 prettyHaskellFig :: Attr -> String -> String
 prettyHaskellFig (ident, classes, kvs) input =
@@ -59,7 +61,10 @@ caption :: [(String, String)] -> String
 caption kvs = "\\caption{" ++ (prettyHaskell $ findWithDefault "." "caption" (fromList kvs)) ++ "}"
 
 label :: String -> String
-label ident = if ((length ident) > 0) then "\\label{" ++ ident ++ "}" else ""
+label ident =
+    if ((length ident) > 0)
+    then "\\label{" ++ ident ++ "}"
+    else ""
 
 {-# NOINLINE prettyHaskell #-}
 prettyHaskell :: String -> String

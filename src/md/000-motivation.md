@@ -40,7 +40,9 @@ ptorus conf f =
 
 ## Zweite.1
 
-@mycode is seen. 
+\ref{mycode} is seen. 
+
+@Freund1995 says 
 
 
 ~~~~ {.haskell 
