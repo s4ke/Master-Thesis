@@ -7,26 +7,22 @@ import Text.Pandoc.JSON
 
 import Data.Text (Text)
 
-import System.IO (hPutStr, hClose, hFlush)
 import System.Process.Typed
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Lazy as L
 import qualified Data.ByteString.Lazy.Char8 as L8
+
 import Control.Concurrent.STM (atomically)
 import Control.Exception (throwIO)
 
 import Data.Map
 
-import Control.DeepSeq
-
-import System.IO.Unsafe
 import System.IO
+import System.IO.Unsafe
 
 import Debug.Trace
 
 import Data.String.Utils
-
-import System.Posix.Escape
 
 transformHaskell :: Block -> Block
 transformHaskell x@(Text.Pandoc.CodeBlock attr code) =
@@ -42,12 +38,12 @@ transformInline x = x
 {-
  HACKY AF, but seems to work
 -}
-
 prettyHaskellFig :: Attr -> String -> String
 prettyHaskellFig (ident, classes, kvs) input =
     "\\begin{figure}[" ++ options kvs ++ "]" ++
     (prettyHaskell $ "\n\\begin{code}\n" ++ input ++ "\n\\end{code}\n") ++
     caption kvs ++
+    label ident ++
     "\\end{figure}"
 
 prettyHaskellInline :: String -> String
@@ -62,6 +58,9 @@ options kvs = (prettyHaskell $ findWithDefault "" "options" (fromList kvs))
 caption :: [(String, String)] -> String
 caption kvs = "\\caption{" ++ (prettyHaskell $ findWithDefault "." "caption" (fromList kvs)) ++ "}"
 
+label :: String -> String
+label ident = if ((length ident) > 0) then "\\label{" ++ ident ++ "}" else ""
+
 {-# NOINLINE prettyHaskell #-}
 prettyHaskell :: String -> String
 prettyHaskell input = unsafePerformIO $ do
@@ -72,4 +71,4 @@ prettyHaskell input = unsafePerformIO $ do
 
 main :: IO ()
 main = do
-   toJSONFilter (transformHaskell . traceShowId)
+   toJSONFilter $ transformHaskell -- . traceShowId
