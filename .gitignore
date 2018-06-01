@@ -1,3 +1,7 @@
 venv/*
 texput.log
 .idea/*
+*.tmp
+*.aux
+*.fdb_latexmk
+*.log

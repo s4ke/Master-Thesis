@@ -1,4 +1,37 @@
 
 # Motivation #
 
-Lorem ipsum dolor. Test.
+
+## Zweite Überschrift ##
+
+### Dritte Überschrift ###
+
+#### Vierte Überschrift ####
+
+
+
+~~~~ {#mycode .haskell}
+\begin{code}
+torus :: (Future fut a conf, Future fut b conf,
+      ArrowLoop arr, ArrowChoice arr,
+      ArrowLoopParallel arr (c, fut a, fut b) (d, fut a, fut b) conf,
+      ArrowLoopParallel arr [d] [d] conf) =>
+      conf -> arr (c, a, b) (d, a, b) -> arr [[c]] [[d]]
+torus conf f =
+    loop (second ((mapArr rightRotate >>> lazy) *** (arr rightRotate >>> lazy)) >>>
+        arr (uncurry3 (zipWith3 lazyzip3)) >>>
+        arr length &&& (shuffle >>> loopParEvalN conf (repeat (ptorus conf f))) >>>
+        arr (uncurry unshuffle) >>>
+        arr (map unzip3) >>> arr unzip3 >>> threetotwo) >>>
+    postLoopParEvalN conf (repeat (arr id))
+
+ptorus :: (Arrow arr, Future fut a conf, Future fut b conf) =>
+          conf ->
+          arr (c, a, b) (d, a, b) ->
+          arr (c, fut a, fut b) (d, fut a, fut b)
+ptorus conf f =
+	arr (\ ~(c, a, b) -> (c, get conf a, get conf b)) >>>
+	f >>>
+	arr (\ ~(d, a, b) -> (d, put conf a, put conf b))
+\end{code}
+~~~~
