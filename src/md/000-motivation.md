@@ -1,74 +1,81 @@
+# Introduction
+\label{sec:introduction}
 
-# Motivation #
+Parallel functional languages have a long history of being used for 
+experimenting with novel parallel programming paradigms.
+Haskell, which we focus on in this paper, has  several mature implementations.
+We regard here in-depth Glasgow parallel Haskell or short GpH
+(its Multicore SMP implementation, in particular), the
+`Par` Monad, and Eden, a distributed memory parallel Haskell. These
+languages represent orthogonal approaches. Some use a Monad, even if
+only for the internal representation. Some introduce additional
+language constructs. Section \ref{sec:parallelHaskells} gives a short
+overview over these languages.
 
+A key novelty in this paper is to use Arrows to represent parallel computations.
+They seem a natural fit as they can be thought of as a more general function arrow
+(`->`) and serve as general interface to computations while not being as
+restrictive as Monads [@HughesArrows]. Section \ref{sec:arrows} gives a
+short introduction to Arrows.
 
-## Zweite Überschrift ##
+We provide an Arrows-based type class and implementations for
+the three above mentioned parallel Haskells.
+Instead of introducing a new low-level parallel backend to implement our
+Arrows-based interface, we define a shallow-embedded DSL for Arrows. This DSL
+is defined as a common interface with varying implementations in
+the existing parallel Haskells.
+Thus, we not only define a parallel programming interface in a
+novel manner -- we tame the zoo of parallel Haskells. We provide a
+common, very low-penalty programming interface that allows to switch
+the parallel implementations at will.
+The induced penalty is in the single-digit percent range,
+with means typically under 2\% overhead in measurements over the
+varying cores configuration (Section~\ref{sec:benchmarks}).
+Further implementations, based on HdpH or a Frege implementation
+(on the Java Virtual Machine), are viable, too.
 
-### Dritte Überschrift ###
+## Contributions
 
-#### Vierte Überschrift ####
+We propose an Arrow-based encoding for parallelism based on 
+a new Arrow combinator `parEvalN :: [arr a b] -> arr [a] [b]`.
+A parallel Arrow is still an Arrow, hence the resulting parallel
+Arrow can still be used in the same way as a potential sequential version.
+In this paper we evaluate the expressive power of such a formalism
+in the context of parallel programming.
 
-`torus` is awesome.
+* We introduce a parallel evaluation formalism using Arrows.
+One big advantage of this specific approach is that we do not
+have to introduce any new types, facilitating composability
+(Section~\ref{sec:parallel-arrows}).
+* We show that PArrow programs can readily exploit multiple parallel
+language implementations. We demonstrate the use of GpH,
+a `Par` Monad, and Eden. We do not re-implement all the parallel internals,
+as this functionality is hosted in the `ArrowParallel` type class,
+which abstracts all parallel implementation logic.
+The implementations can easily be swapped, so we are not bound to any specific one.
 
-~~~~ {#mycode 
-    .haskell
-    caption="This is my awesome description for |torus|"
-    options=htb
-    }
-torus :: (Future fut a conf, Future fut b conf,
-      ArrowLoop arr, ArrowChoice arr,
-      ArrowLoopParallel arr (c, fut a, fut b) (d, fut a, fut b) conf,
-      ArrowLoopParallel arr [d] [d] conf) =>
-      conf -> arr (c, a, b) (d, a, b) -> arr [[c]] [[d]]
-torus conf f =
-    loop (second ((mapArr rightRotate >>> lazy) *** (arr rightRotate >>> lazy)) >>>
-        arr (uncurry3 (zipWith3 lazyzip3)) >>>
-        arr length &&& (shuffle >>> loopParEvalN conf (repeat (ptorus conf f))) >>>
-        arr (uncurry unshuffle) >>>
-        arr (map unzip3) >>> arr unzip3 >>> threetotwo) >>>
-    postLoopParEvalN conf (repeat (arr id))
+This has many practical advantages.
+For example, during development we can run the program in a
+simple GHC-compiled variant using GpH and afterwards deploy it on a
+cluster by converting it into an Eden program, by just replacing the
+`ArrowParallel` instance and compiling with Eden's GHC variant
+(Section~\ref{sec:parallel-arrows}).
 
-ptorus :: (Arrow arr, Future fut a conf, Future fut b conf) =>
-          conf ->
-          arr (c, a, b) (d, a, b) ->
-          arr (c, fut a, fut b) (d, fut a, fut b)
-ptorus conf f =
-	arr (\ ~(c, a, b) -> (c, get conf a, get conf b)) >>>
-	f >>>
-	arr (\ ~(d, a, b) -> (d, put conf a, put conf b))
-~~~~
+* We extend the PArrows formalism with `Future`s to enable direct
+communication of data between nodes in a distributed memory setting
+similar to Eden's Remote Data [@Dieterle2010]. 
+Direct communication is useful in a distributed memory setting because
+it allows for inter-node communication without blocking the master-node. (Section~\ref{sec:futures})
+* We demonstrate the expressiveness of PArrows by using them to define
+common algorithmic skeletons (Section~\ref{sec:skeletons}),
+and by using these skeletons to implement four benchmarks
+(Section~\ref{sec:benchmarks}).
+* We practically demonstrate that Arrow parallelism has a low performance
+overhead compared with existing approaches, e.g. the mean over all
+cores of relative mean overhead was less than $3.5\%$ and less than $0.8\%$
+for all benchmarks with GpH and Eden, respectively. As for |Par| Monad,
+the mean of mean overheads was in favour of PArrows in all benchmarks
+(Section~\ref{sec:benchmarks}).
 
-## Zweite.1
-
-\ref{mycode} is seen. 
-
-@Freund1995 says 
-
-
-~~~~ {.haskell 
-    caption="This is my awesome description for |torus|"
-    options=htb
-    }
-torus :: (Future fut a conf, Future fut b conf,
-      ArrowLoop arr, ArrowChoice arr,
-      ArrowLoopParallel arr (c, fut a, fut b) (d, fut a, fut b) conf,
-      ArrowLoopParallel arr [d] [d] conf) =>
-      conf -> arr (c, a, b) (d, a, b) -> arr [[c]] [[d]]
-torus conf f =
-    loop (second ((mapArr rightRotate >>> lazy) *** (arr rightRotate >>> lazy)) >>>
-        arr (uncurry3 (zipWith3 lazyzip3)) >>>
-        arr length &&& (shuffle >>> loopParEvalN conf (repeat (ptorus conf f))) >>>
-        arr (uncurry unshuffle) >>>
-        arr (map unzip3) >>> arr unzip3 >>> threetotwo) >>>
-    postLoopParEvalN conf (repeat (arr id))
-
-ptorus :: (Arrow arr, Future fut a conf, Future fut b conf) =>
-          conf ->
-          arr (c, a, b) (d, a, b) ->
-          arr (c, fut a, fut b) (d, fut a, fut b)
-ptorus conf f =
-	arr (\ ~(c, a, b) -> (c, get conf a, get conf b)) >>>
-	f >>>
-	arr (\ ~(d, a, b) -> (d, put conf a, put conf b))
-~~~~
+PArrows are open source and are available from \url{https://github.com/s4ke/Parrows}.
 
