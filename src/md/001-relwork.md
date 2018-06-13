@@ -16,7 +16,7 @@ A good survey of parallel Haskells can be found in [@marlow2013parallel].
 
 Our PArrow implementation uses three task parallel languages as backends:
 the GpH [@Trinder1996, @Trinder1998a] parallel Haskell dialect
-and its multicore version [@Marlow2009], the |Par| Monad
+and its multicore version [@Marlow2009], the `Par` Monad
 [@par-monad, @Foltzer:2012:MPC:2398856.2364562], and Eden [@eden, @Loogen2012].
 These languages are under active development, for example a combined shared
 and distributed memory implementation of GpH is available
@@ -37,30 +37,70 @@ communication-centred extension of `Par` Monad.
 
 ## Algorithmic skeletons
 
-Algorithmic skeletons were introduced by \citet{Cole1989}.
-Early publications on this topic include \cite{DANELUTTO1992205,darlington1993parallel,botorog1996efficient,Lengauer1997,Gorlatch1998}. \citet{SkeletonBook} consolidated early reports on high-level programming approaches.
-Types of algorithmic skeletons include |map|-, |fold|-, and |scan|-based parallel programming patterns, special applications such as divide-and-conquer or topological skeletons.
+Algorithmic skeletons were introduced by [@Cole1989].
+Early publications on this topic include [@DANELUTTO1992205, @darlington1993parallel, @botorog1996efficient, @Lengauer1997, @Gorlatch1998]. 
+[@SkeletonBook] consolidated early reports on high-level programming approaches.
+Types of algorithmic skeletons include `map`-, `fold`-, and `scan`-based parallel
+programming patterns, special applications such as divide-and-conquer or
+topological skeletons.
 
-The |farm| skeleton \citep{Hey1990185,Eden:PPDP01,Kuchen05} is a statically task-balanced parallel |map|. When tasks' durations cannot be foreseen, a dynamic load balancing (|workpool|) brings a lot of improvement \citep{Rudolph:1991:SLB:113379.113401,doi:10.1142/S0129626403001380,Hippold2006,PADL08HMWS,Marlow2009}. For special tasks |workpool| skeletons can be extended with dynamic task creation \cite{WPEuropar06,Dinan:2009:SWS:1654059.1654113,brown2010ever}. Efficient load-balancing schemes for |workpool|s are subject of research \cite{Blumofe:1999:SMC:324133.324234,Acar:2000:DLW:341800.341801,vanNieuwpoort:2001:ELB:568014.379563,Chase:2005:DCW:1073970.1073974,4625841,Michael:2009:IWS:1594835.1504186}.
-%
-The |fold| (or |reduce|) skeleton was implemented in various skeleton libraries \cite{Kuchen2002,5361825,BUONO20102095,Dastgeer:2011:ASM:1984693.1984697}, as also its inverse, |scan| \cite{Bischof2002,harris2007parallel}.
-%
-Google |map|--|reduce| \cite{Dean:2008:MSD:1327452.1327492,Dean:2010:MFD:1629175.1629198} is more special than just a composition of the two skeletons \cite{LAMMEL20081,Berthold2009-mr}.
+The `farm` skeleton [@Hey1990185, @Eden:PPDP01, @Kuchen05] is a statically 
+task-balanced parallel `map`. When tasks' durations cannot be foreseen,
+a dynamic load balancing (`workpool`) brings a lot of improvement
+[@Rudolph:1991:SLB:113379.113401, @doi:10.1142/S0129626403001380, @Hippold2006, @PADL08HMWS,Marlow2009].
+For special tasks `workpool` skeletons can be extended with dynamic task
+creation [@WPEuropar06, @Dinan:2009:SWS:1654059.1654113, @brown2010ever].
+Efficient load-balancing schemes for `workpool`s are subject of research
+[@Blumofe:1999:SMC:324133.324234, @Acar:2000:DLW:341800.341801, @vanNieuwpoort:2001:ELB:568014.379563, @Chase:2005:DCW:1073970.1073974, @4625841, @Michael:2009:IWS:1594835.1504186].
 
-The effort is ongoing, including topological skeletons \cite{Eden:PARCO05}, special-purpose skeletons for computer algebra \cite{Berthold2009-fft,lobachev-phd,Lobachev2012,janjic2013space}, iteration skeletons \cite{Dieterle2013}. The idea of \citet{scscp} is to use a parallel Haskell to orchestrate further software systems to run in parallel. \citet{dieterle_horstmeyer_loogen_berthold_2016} compare the composition of skeletons to stable process networks.
+The `fold` (or `reduce`) skeleton was implemented in various skeleton libraries
+[@Kuchen2002, @5361825, @BUONO20102095, @Dastgeer:2011:ASM:1984693.1984697],
+as also its inverse, `scan` [@Bischof2002, @harris2007parallel].
+Google `map`--`reduce` [@Dean:2008:MSD:1327452.1327492, @Dean:2010:MFD:1629175.1629198]
+is more special than just a composition of the two skeletons [@LAMMEL20081, @Berthold2009-mr].
 
-\paragraph{Arrows.}
-Arrows were introduced by \citet{HughesArrows} as a less restrictive alternative to Monads, in essence they are a generalised function arrow~|->|. \citet{Hughes2005} presents a tutorial on Arrows. \citet{jacobs_heunen_hasuo_2009,LINDLEY201197,ATKEY201119} develop theoretical background of Arrows. \citet{Paterson:2001:NNA:507669.507664} introduced a new notation for Arrows. Arrows have applications in information flow research \cite{1648705,LI20101974,Russo:2008:LLI:1411286.1411289}, invertible programming \cite{Alimarine:2005:BAA:1088348.1088357}, and quantum computer simulation \cite{vizzotto_altenkirch_sabry_2006}. But probably most prominent application of Arrows is Arrow-based functional reactive programming, AFRP \cite{Nilsson:2002:FRP:581690.581695,Hudak2003,Czaplicki:2013:AFR:2499370.2462161}.
-\citet{Liu:2009:CCA:1631687.1596559} formally define a more special kind of Arrows that capsule the computation more than regular Arrows do and thus enable optimisations. Their approach would allow parallel composition, as their special Arrows would not interfere with each other in concurrent execution. In contrast, we capture a whole parallel computation as a single entity: our main instantiation function |parEvalN| makes a single (parallel) Arrow out of list of Arrows. \citet{Huang2007} utilise Arrows for parallelism, but strikingly different from our approach. They use Arrows to orchestrate several tasks in robotics. We, however, propose a general interface for parallel programming, while remaining completely in Haskell.
+The effort is ongoing, including topological skeletons [@Eden:PARCO05],
+special-purpose skeletons for computer algebra
+[@Berthold2009-fft, @lobachev-phd, @Lobachev2012, @janjic2013space],
+iteration skeletons [@Dieterle2013].
+The idea of [@scscp] is to use a parallel Haskell to orchestrate further
+software systems to run in parallel. [@dieterle_horstmeyer_loogen_berthold_2016]
+compare the composition of skeletons to stable process networks.
 
-\paragraph{Arrows in other languages.}
-Although this work is centred on Haskell implementation of Arrows, it is applicable to any functional programming language where parallel evaluation and Arrows can be defined. Basic definitions of PArrows are possible in the Frege language\footnote{GitHub project page at \url{https://github.com/Frege/frege}} (which is basically Haskell on the JVM). However, they are beyond the scope of this work, as are similar experiments with the Eta language\footnote{Eta project page at \url{http://eta-lang.org}}, 
+## Arrows
+
+Arrows were introduced by [@HughesArrows] as a less restrictive alternative to Monads,
+in essence they are a generalised function arrow `->`. [@Hughes2005] presents a
+tutorial on Arrows. [@jacobs_heunen_hasuo_2009, @LINDLEY201197,ATKEY201119] develop
+theoretical background of Arrows. [@Paterson:2001:NNA:507669.507664] introduced a
+new notation for Arrows. Arrows have applications in information flow research
+[@1648705, @LI20101974, @Russo:2008:LLI:1411286.1411289],
+invertible programming [@Alimarine:2005:BAA:1088348.1088357],
+and quantum computer simulation [@vizzotto_altenkirch_sabry_2006].
+But probably most prominent application of Arrows is Arrow-based functional
+reactive programming, AFRP [@Nilsson:2002:FRP:581690.581695, @Hudak2003, @Czaplicki:2013:AFR:2499370.2462161].
+[@Liu:2009:CCA:1631687.1596559] formally define a more special kind of
+Arrows that capsule the computation more than regular Arrows do and thus
+enable optimisations. Their approach would allow parallel composition,
+as their special Arrows would not interfere with each other in concurrent execution.
+In contrast, we capture a whole parallel computation as a single entity: our main
+instantiation function `parEvalN` makes a single (parallel) Arrow out of list of Arrows.
+[@Huang2007] utilise Arrows for parallelism, but strikingly different from our approach.
+They use Arrows to orchestrate several tasks in robotics.
+We, however, propose a general interface for parallel programming,
+while remaining completely in Haskell.
+
+### Arrows in other languages
+Although this work is centred on Haskell implementation of Arrows,
+it is applicable to any functional programming language where parallel
+evaluation and Arrows can be defined. Basic definitions of PArrows are
+possible in the Frege language^[GitHub project page at \url{https://github.com/Frege/frege}]
+(which is basically Haskell on the JVM).
+However, they are beyond the scope of this work,
+as are similar experiments with the Eta language^[Eta project page at \url{http://eta-lang.org}], 
 a new approach to Haskell on the JVM.
 
-\citet{achten2004arrows,achten2007arrow} use an Arrow implementation in Clean for better handling of typical GUI tasks. \citet{Dagand:2009:ORD:1481861.1481870} used Arrows in OCaml in the implementation of a distributed system.
-
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "main"
-%%% End:
+[@achten2004arrows, @achten2007arrow] use an Arrow implementation in Clean
+for better handling of typical GUI tasks.
+[@Dagand:2009:ORD:1481861.1481870] used Arrows in OCaml in the implementation
+of a distributed system.

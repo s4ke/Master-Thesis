@@ -27,7 +27,7 @@ import Data.String.Utils
 transformHaskell :: Block -> Block
 transformHaskell x@(Text.Pandoc.CodeBlock attr code) =
     if isHaskell attr
-    then (Text.Pandoc.RawBlock (Format "tex") $ prettyHaskellFig attr code)
+    then (Text.Pandoc.RawBlock (Format "tex") $ prettyHaskellCodeBlock attr code)
     else x
 transformHaskell x = walk transformInline x
 
@@ -42,17 +42,27 @@ transformInline x = x
 -}
 prettyHaskellFig :: Attr -> String -> String
 prettyHaskellFig (ident, classes, kvs) input =
-    "\\begin{figure}[" ++ options kvs ++ "]" ++
+    "\\begin{figure}[" ++ options kvs ++ "]\n" ++
+    "\\centering" ++
     (prettyHaskell $ "\n\\begin{code}\n" ++ input ++ "\n\\end{code}\n") ++
     caption kvs ++
     label ident ++
     "\\end{figure}"
+
+prettyHaskellCodeBlock :: Attr -> String -> String
+prettyHaskellCodeBlock attr@(ident, classes, kvs) input =
+    if isFigure attr
+    then prettyHaskellFig attr input
+    else (prettyHaskell $ "\n\\begin{code}\n" ++ input ++ "\n\\end{code}\n")
 
 prettyHaskellInline :: String -> String
 prettyHaskellInline input = prettyHaskell $ "|" ++ input ++ "|"
 
 isHaskell :: Attr -> Bool
 isHaskell (ident, classes, kvs) = "haskell" `elem` classes
+
+isFigure :: Attr -> Bool
+isFigure (ident, classes, kvs) = "figure" `elem` classes
 
 options :: [(String, String)] -> String
 options kvs = (prettyHaskell $ findWithDefault "" "options" (fromList kvs))
