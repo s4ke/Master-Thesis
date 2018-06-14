@@ -90,3 +90,52 @@ This results in `Par [b]`. We execute this process with `runPar` to finally get 
 While we used `spawn` in the definition above, a head-strict variant
 can easily be defined by replacing `spawn` with `spawn_ :: Par a -> Par (IVar a)`.
 Fig. \ref{fig:parEvalNParMonadImg} shows a graphical representation.
+
+![`parEvalN` (`Par` Monad).](src/img/parEvalNParMonadImg.pdf){#fig:parEvalNParMonadImg}
+
+### Eden
+
+Eden [@eden, @Loogen2012] is a parallel Haskell for distributed memory
+and comes with MPI and PVM as
+distributed backends.^[The projects homepage can be found at \url{http://www.mathematik.uni-marburg.de/~eden/}. The Hackage page is at \url{https://hackage.haskell.org/package/edenmodules-1.2.0.0/}.]
+It is targeted towards clusters, but also functions well in a shared-memory
+setting with a further simple backend. However, in contrast to many other
+parallel Haskells, in Eden each process has its own heap. This seems to
+be a waste of memory, but with distributed programming paradigm and
+individual GC per process, Eden yields good performance results on multicores,
+as well [@arcs-dc, @aswad2009low].
+
+While Eden comes with a Monad `PA` for parallel evaluation, it also ships
+with a completely functional interface that includes
+a `spawnF :: (Trans a, Trans b) => [a -> b] -> [a] -> [b]`
+function that allows us to define `parEvalN` directly:
+
+~~~~ {.haskell}
+parEvalN :: (Trans a, Trans b) => [a -> b] -> [a] -> [b]
+parEvalN = spawnF 
+~~~~
+
+#### Eden TraceViewer
+
+\label{sec:edentv}
+
+To comprehend the efficiency and the lack thereof in a parallel program,
+an inspection of its execution is extremely helpful. While some large-scale
+solutions exist [@Geimer2010], the parallel Haskell community mainly utilises
+the tools Threadscope [@Wheeler2009] and Eden TraceViewer
+^[See \url{http://hackage.haskell.org/package/edentv} on Hackage for
+the last available version of Eden TraceViewer.] [@Berthold2007a].
+In the next sections we will present some \emph{trace visualisations},
+the post-mortem process diagrams of Eden processes and their activity.
+
+The trace visualisations are colour-coded.
+In such a visualisation (Fig. \ref{fig:withoutFutures}),
+the `x` axis shows the time, the `y` axis enumerates the machines and processes.
+The visualisation shows a running process in green, a blocked process is red.
+If the process is \enquote{runnable}, i.e. it may run, but does not,
+it is yellow. The typical reason for this is GC.
+An inactive machine, where no processes are started yet,
+or all are already terminated, shows as a blue bar.
+A communication from one process to another is represented with a black arrow.
+A stream of communications, e.g. a transmitted list is shows as a dark shading
+between sender and receiver processes.
