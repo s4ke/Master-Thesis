@@ -1,5 +1,7 @@
 ## Arrows
+
 \label{sec:arrows}
+
 Arrows were introduced by [@HughesArrows] as a general interface for computation
 and a less restrictive generalisation of Monads.
 [@HughesArrows] motivates the broader interface of Arrows with the example
@@ -10,9 +12,8 @@ information `s` and result `a` is shown to not be able to use the static
 `s` without applying the monadic function `a -> m b`. With Arrows this is possible.].
 
 An Arrow `arr a b` represents a computation that converts an input `a` to an output
-`b`. This is defined in the `Arrow` type class shown in Fig.~\ref{fig:ArrowDefinition}.
-%
-To lift an ordinary function to an Arrow, `arr` is used, analogous to the monadic `return`. Similarly, the composition operator `>>>` is analogous to the monadic composition `>>=` and combines two Arrows `arr a b` and `arr b c` by \enquote{wiring} the outputs of the first to the inputs to the second to get a new Arrow `arr a c`. Lastly, the `first` operator takes the input Arrow `arr a b` and converts it into an Arrow on pairs `arr (a, c) (b, c)` that leaves the second argument untouched. It allows us to to save input across Arrows. Figure~\ref{fig:arrows-viz} shows a graphical representation of these basic Arrow combinators.
+`b`. This is defined in the `Arrow` type class shown in Fig. \ref{fig:ArrowDefinition}.
+To lift an ordinary function to an Arrow, `arr` is used, analogous to the monadic `return`. Similarly, the composition operator `>>>` is analogous to the monadic composition `>>=` and combines two Arrows `arr a b` and `arr b c` by \enquote{wiring} the outputs of the first to the inputs to the second to get a new Arrow `arr a c`. Lastly, the `first` operator takes the input Arrow `arr a b` and converts it into an Arrow on pairs `arr (a, c) (b, c)` that leaves the second argument untouched. It allows us to to save input across Arrows. Fig. \ref{fig:arrows-viz} shows a graphical representation of these basic Arrow combinators.
 The most prominent instances of this interface are regular functions `(->)`
 and the Kleisli type (Fig. \ref{fig:ArrowDefinition}), which wraps monadic functions,
 e.g. `a -> m b`.
@@ -47,7 +48,7 @@ instance Monad m => Arrow (Kleisli m) where
 ![Visual depiction of syntactic sugar for Arrows.](src/img/syntacticSugarArrows.pdf){#fig:syntacticSugarArrows}
 
 Hughes also defined some syntactic sugar (Fig.\ref{fig:syntacticSugarArrows}): `second`, `***` and `&&&`. 
-`second` is the mirrored version of `first` (Appendix~\ref{utilfns}).
+`second` is the mirrored version of `first` (Appendix \ref{utilfns}).
 The `***` function combines `first` and `second` to handle two inputs in one arrow, and is defined as follows:
 
 ~~~~ {.haskell}

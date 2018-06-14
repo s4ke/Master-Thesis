@@ -1,0 +1,92 @@
+## Short introduction to parallel Haskells
+
+\label{sec:parallelHaskells}
+\label{sec:parEvalNIntro}
+
+In its purest form, parallel computation (on functions) can be looked at
+as the execution of some functions `a -> b` in parallel or 
+`parEvalN :: [a -> b] -> [a] -> [b]`, as also Fig. \ref{fig:parEvalN} 
+symbolically shows.
+
+![Schematic illustration of `parEvalN`. A list of inputs is transformed by different functions in parallel.](src/img/parEvalN.pdf){#fig:parEvalN}
+
+In this section, we will implement this non-Arrow version which
+will later be adapted for usage in our Arrow-based parallel Haskell.
+
+There exist several parallel Haskells already.
+Among the most important are probably GpH [based on `par` and `pseq` \enquote{hints}, @Trinder1996, @Trinder1998a],
+the `Par` Monad [a monad for deterministic parallelism, @par-monad, @Foltzer:2012:MPC:2398856.2364562],
+Eden [a parallel Haskell for distributed memory, @eden, @Loogen2012],
+HdpH [a Template Haskell-based parallel Haskell for distributed memory, @Maier:2014:HDS:2775050.2633363, @stewart_maier_trinder_2016]
+and LVish [a `Par` extension with focus on communication @Kuper:2014:TPE:2666356.2594312].
+
+As the goal of this paper is not to re-implement yet another parallel runtime,
+but to represent parallelism with Arrows, we base our efforts on existing work
+which we wrap as backends behind a common interface.
+For this paper we chose GpH for its simplicity, the `Par` Monad to represent a
+monadic DSL, and Eden as a distributed parallel Haskell.
+
+LVish and HdpH were not chosen as the former does not differ from the original
+`Par` Monad with regard to how we would have used it in this paper,
+while the latter (at least in its current form) does not comply with
+our representation of parallelism due to its heavy reliance on Template Haskell.
+
+We will now go into some detail on GpH, the `Par` Monad and Eden, and also
+give their respective implementations of the non-Arrow version of `parEvalN`.
+
+### Glasgow parallel Haskell -- GpH
+
+\label{sec:GpHIntro}
+
+GpH [@Marlow2009, @Trinder1998a] is one of the simplest ways to do parallel
+processing found in standard GHC.^[The Multicore implementation of GpH is available on Hackage under \url{https://hackage.haskell.org/package/parallel-3.2.1.0}, compiler support is integrated in the stock GHC.]
+Besides some basic primitives (`par` and `pseq`), it ships with parallel
+evaluation strategies for several types which can be applied with
+`using :: a -> Strategy a -> a`, which is exactly what is required for an
+implementation of `parEvalN`.
+
+~~~~ {.haskell}
+parEvalN :: (NFData b) => [a -> b] -> [a] -> [b]
+parEvalN fs as = let bs = zipWith ($) fs as 
+                 in bs `using` parList rdeepseq
+~~~~
+
+In the above definition of `parEvalN` we just apply the list of functions `[a -> b]`
+to the list of inputs `[a]` by zipping them with the application operator `$`.
+We then evaluate this lazy list `[b]` according to a `Strategy [b]` with the
+`using :: a -> Strategy a -> a` operator.
+We construct this strategy with `parList :: Strategy a -> Strategy [a]` and
+`rdeepseq :: NFData a => Strategy a` where the latter is a strategy
+which evaluates to normal form. Other strategies like e.g. evaluation
+to weak head normal form are available as well.
+It also allows for custom `Strategy` implementations to be used.
+Fig. \ref{fig:parEvalNMulticoreImg} shows a visual representation of this code.
+
+![`parEvalN` (GpH).](src/img/parEvalNMulticoreImg.pdf){#fig:parEvalNMulticoreImg}
+
+### `Par` Monad
+
+The `Par` Monad^[The `Par` Monad can be found in the `monad-par` package on Hackage
+under \url{https://hackage.haskell.org/package/monad-par-0.3.4.8/}.]
+introduced by [@par-monad], is a Monad designed for composition of
+parallel programs. Let:
+
+~~~~ {.haskell}
+parEvalN :: (NFData b) => [a -> b] -> [a] -> [b]
+parEvalN fs as = runPar $ 
+	(sequenceA (map (return . spawn) (zipWith ($) fs as))) >>= mapM get
+~~~~
+
+The `Par` Monad version of our parallel evaluation function `parEvalN` is
+defined by zipping the list of `[a -> b]` with the list of inputs `[a]` with the
+application operator `$` just like with GpH.
+Then, we map over this not yet evaluated lazy list of results `[b]` with
+`spawn :: NFData a => Par a -> Par (IVar a)` to transform them to a list
+of not yet evaluated forked away computations `[Par (IVar b)]`,
+which we convert to `Par [IVar b]` with `sequenceA`.
+We wait for the computations to finish by mapping over the `IVar b`
+values inside the `Par` Monad with `get`.
+This results in `Par [b]`. We execute this process with `runPar` to finally get `[b]`.
+While we used `spawn` in the definition above, a head-strict variant
+can easily be defined by replacing `spawn` with `spawn_ :: Par a -> Par (IVar a)`.
+Fig. \ref{fig:parEvalNParMonadImg} shows a graphical representation.
