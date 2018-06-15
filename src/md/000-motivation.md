@@ -78,4 +78,3 @@ the mean of mean overheads was in favour of PArrows in all benchmarks
 (Section~\ref{sec:benchmarks}).
 
 PArrows are open source and are available from \url{https://github.com/s4ke/Parrows}.
-

@@ -12,7 +12,7 @@ software transactional memory
 The Haskell--GPU bridge Accelerate
 [@Chakravarty:2011:AHA:1926354.1926358, @CMCK14, @McDonell:2015:TRC:2887747.2804313]
 is completely orthogonal to our approach.
-A good survey of parallel Haskells can be found in [@marlow2013parallel].
+A good survey of parallel Haskells can be found in @marlow2013parallel.
 
 Our PArrow implementation uses three task parallel languages as backends:
 the GpH [@Trinder1996, @Trinder1998a] parallel Haskell dialect
@@ -29,17 +29,15 @@ The definitions of new Eden skeletons is a specific focus
 [@doi:10.1142/S0129626403001380, @Eden:PARCO05, @Berthold2009-mr, @Berthold2009-fft, @dieterle2010skeleton, @delaEncina2011, @Dieterle2013, @janjic2013space]
 
 Other task parallel Haskells related to Eden, GpH, and the `Par`
-Monad include the following.  
-HdpH [@Maier:2014:HDS:2775050.2633363, @stewart_maier_trinder_2016] is an extension
-of `Par` Monad to
-heterogeneous clusters. LVish [@Kuper:2014:TPE:2666356.2594312] is a
-communication-centred extension of `Par` Monad.
+Monad include the following. HdpH [@Maier:2014:HDS:2775050.2633363, @stewart_maier_trinder_2016] is an extension
+of `Par` Monad to heterogeneous clusters. LVish [@Kuper:2014:TPE:2666356.2594312] is a
+communication-centred extension of the `Par` Monad.
 
 ## Algorithmic skeletons
 
-Algorithmic skeletons were introduced by [@Cole1989].
+Algorithmic skeletons were introduced by @Cole1989.
 Early publications on this topic include [@DANELUTTO1992205, @darlington1993parallel, @botorog1996efficient, @Lengauer1997, @Gorlatch1998]. 
-[@SkeletonBook] consolidated early reports on high-level programming approaches.
+@SkeletonBook consolidated early reports on high-level programming approaches.
 Types of algorithmic skeletons include `map`-, `fold`-, and `scan`-based parallel
 programming patterns, special applications such as divide-and-conquer or
 topological skeletons.
@@ -63,15 +61,15 @@ The effort is ongoing, including topological skeletons [@Eden:PARCO05],
 special-purpose skeletons for computer algebra
 [@Berthold2009-fft, @lobachev-phd, @Lobachev2012, @janjic2013space],
 iteration skeletons [@Dieterle2013].
-The idea of [@scscp] is to use a parallel Haskell to orchestrate further
-software systems to run in parallel. [@dieterle_horstmeyer_loogen_berthold_2016]
+The idea of @scscp is to use a parallel Haskell to orchestrate further
+software systems to run in parallel. @dieterle_horstmeyer_loogen_berthold_2016 
 compare the composition of skeletons to stable process networks.
 
 ## Arrows
 
-Arrows were introduced by [@HughesArrows] as a less restrictive alternative to Monads,
-in essence they are a generalised function arrow `->`. [@Hughes2005] presents a
-tutorial on Arrows. [@jacobs_heunen_hasuo_2009, @LINDLEY201197,ATKEY201119] develop
+Arrows were introduced by @HughesArrows as a less restrictive alternative to Monads,
+in essence they are a generalised function arrow `->`. @Hughes2005 presents a
+tutorial on Arrows. @jacobs_heunen_hasuo_2009, @LINDLEY201197, @ATKEY201119 develop
 theoretical background of Arrows. [@Paterson:2001:NNA:507669.507664] introduced a
 new notation for Arrows. Arrows have applications in information flow research
 [@1648705, @LI20101974, @Russo:2008:LLI:1411286.1411289],
@@ -85,7 +83,7 @@ enable optimisations. Their approach would allow parallel composition,
 as their special Arrows would not interfere with each other in concurrent execution.
 In contrast, we capture a whole parallel computation as a single entity: our main
 instantiation function `parEvalN` makes a single (parallel) Arrow out of list of Arrows.
-[@Huang2007] utilise Arrows for parallelism, but strikingly different from our approach.
+@Huang2007 utilise Arrows for parallelism, but strikingly different from our approach.
 They use Arrows to orchestrate several tasks in robotics.
 We, however, propose a general interface for parallel programming,
 while remaining completely in Haskell.

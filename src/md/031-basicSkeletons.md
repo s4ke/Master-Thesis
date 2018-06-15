@@ -1,0 +1,54 @@
+## Extending the interface
+
+\label{sec:extending-interface}
+
+With the `ArrowParallel` type class in place and implemented, we
+can now define other parallel interface functions. These are basic
+algorithmic skeletons that are used to define more sophisticated skeletons.
+
+### Lazy `parEvalN`
+
+![`parEvalNLazy` depiction.](src/img/parEvalNLazy.pdf){#fig:parEvalNLazyImg}
+
+The function `parEvalN` fully traverses the list of passed Arrows as
+well as their inputs. Sometimes this might not be feasible, as
+it will not work on infinite lists of functions like e.g. `map (arr . (+)) [1..]`
+or just because we need the Arrows evaluated in chunks. `parEvalNLazy`
+(Figs. \ref{fig:parEvalNLazyImg}, \ref{fig:parEvalNLazy}) fixes this.
+It works by first chunking the input from `[a]` to `[[a]]` with the given
+`chunkSize` in `arr (chunksOf chunkSize)`.
+These chunks are then fed into a list `[arr [a] [b]]` of chunk-wise parallel
+Arrows with the help of our lazy and sequential `evalN`. The resulting `[[b]]`
+is lastly converted into `[b]` with `arr concat`.
+
+~~~~ {#fig:parEvalNLazy
+    .haskell
+    .figure
+    caption="Definition of |parEvalNLazy|."
+    options=t
+    }
+parEvalNLazy :: (ArrowParallel arr a b conf, ArrowChoice arr, ArrowApply arr) =>
+	conf -> ChunkSize -> [arr a b] -> (arr [a] [b])
+parEvalNLazy conf chunkSize fs =
+	arr (chunksOf chunkSize) >>>
+    evalN fchunks >>>
+    arr concat
+    where
+      fchunks = map (parEvalN conf) (chunksOf chunkSize fs)
+~~~~
+
+### Heterogeneous tasks
+
+![`parEval2` depiction.](src/img/parEval2Img.pdf){#fig:parEval2Img}
+
+We have only talked about the parallelization of Arrows of the
+same set of input and output types until now. But sometimes we
+want to parallelize heterogeneous types as well.
+We can implement such a `parEval2` combinator
+(Figs. \ref{fig:parEval2Img}, \ref{fig:parEval2}) which combines two Arrows
+`arr a b` and `arr c d` into a new parallel Arrow `arr (a, c) (b, d)`
+quite easily with the help of the `ArrowChoice` type class.
+Here, the general idea is to use the `+++` combinator which combines
+two Arrows `arr a b` and `arr c d` and transforms them into
+`arr (Either a c) (Either b d)` to get a common Arrow type that we can
+then feed into `parEvalN`.

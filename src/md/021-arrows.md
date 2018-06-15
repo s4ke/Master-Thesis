@@ -2,9 +2,9 @@
 
 \label{sec:arrows}
 
-Arrows were introduced by [@HughesArrows] as a general interface for computation
+Arrows were introduced by @HughesArrows as a general interface for computation
 and a less restrictive generalisation of Monads.
-[@HughesArrows] motivates the broader interface of Arrows with the example
+@HughesArrows motivates the broader interface of Arrows with the example
 of a parser with added static meta-information that can not satisfy the
 monadic bind operator `(>>=) :: m a -> (a -> m b) -> m b` (with `m` being a Monad)
 ^[In the example a parser of the type `Parser s a` with static meta
@@ -74,5 +74,5 @@ As we can rewrite the monadic bind operation `(>>=)` with only the Kleisli type
 into `m a -> Kleisli m a b -> m b`, but not with a general Arrow `arr a b`,
 we can intuitively get an idea of why Arrows must be a generalisation of Monads.
 While this also means that a general Arrow can not express everything a Monad can,
-[@HughesArrows] shows in his parser example that this trade-off is worth it
+@HughesArrows shows in his parser example that this trade-off is worth it
 in some cases.

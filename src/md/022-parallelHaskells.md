@@ -14,11 +14,11 @@ In this section, we will implement this non-Arrow version which
 will later be adapted for usage in our Arrow-based parallel Haskell.
 
 There exist several parallel Haskells already.
-Among the most important are probably GpH [based on `par` and `pseq` \enquote{hints}, @Trinder1996, @Trinder1998a],
-the `Par` Monad [a monad for deterministic parallelism, @par-monad, @Foltzer:2012:MPC:2398856.2364562],
-Eden [a parallel Haskell for distributed memory, @eden, @Loogen2012],
-HdpH [a Template Haskell-based parallel Haskell for distributed memory, @Maier:2014:HDS:2775050.2633363, @stewart_maier_trinder_2016]
-and LVish [a `Par` extension with focus on communication @Kuper:2014:TPE:2666356.2594312].
+Among the most important are probably GpH (based on `par` and `pseq` \enquote{hints}, @Trinder1996, @Trinder1998a),
+the `Par` Monad (a Monad for deterministic parallelism, @par-monad, @Foltzer:2012:MPC:2398856.2364562),
+Eden (a parallel Haskell for distributed memory, @eden, @Loogen2012),
+HdpH (a Template Haskell-based parallel Haskell for distributed memory, @Maier:2014:HDS:2775050.2633363, @stewart_maier_trinder_2016)
+and LVish (a `Par` extension with focus on communication, @Kuper:2014:TPE:2666356.2594312).
 
 As the goal of this paper is not to re-implement yet another parallel runtime,
 but to represent parallelism with Arrows, we base our efforts on existing work
