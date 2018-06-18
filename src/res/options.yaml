@@ -45,5 +45,5 @@ tblgnos-cleveref: on
 eqnos-cleveref: on
 
 bibliography: src/res/references.bib
-csl: src/res/citeproc-styles/computer-speech-and-language.csl
+csl: src/res/citeproc-styles/advances-in-radio-science.csl
 ...
