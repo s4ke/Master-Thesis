@@ -57,7 +57,6 @@ also be found in Section \ref{app:omitted}.
 In our communication example we can use this `Future` concept for direct
 communication between nodes as shown in Fig. \ref{fig:someCombinatorParallel}.
 
-
 ~~~~ {#fig:someCombinatorParallel
     .haskell
     .figure

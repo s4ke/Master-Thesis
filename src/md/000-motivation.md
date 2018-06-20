@@ -1,7 +1,7 @@
 # Introduction
 \label{sec:introduction}
 
-Parallel functional languages have a long history of being used for 
+Functional languages have a long history of being used for 
 experimenting with novel parallel programming paradigms.
 Haskell, which we focus on in this paper, has  several mature implementations.
 We regard here in-depth Glasgow parallel Haskell or short GpH
