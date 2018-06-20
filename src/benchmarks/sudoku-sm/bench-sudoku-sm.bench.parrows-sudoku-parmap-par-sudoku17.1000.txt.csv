@@ -1,0 +1,5 @@
+"","name","time","nCores","speedup","stddev"
+"2","bench/./parrows-sudoku-parmap-par sudoku17.1000.txt",3.4885685108862132,2,1.887412711034705,4.235621400616017e-3
+"3","bench/./parrows-sudoku-parmap-par sudoku17.1000.txt",1.930621460313116,4,3.4104917437798354,6.902168295652256e-3
+"4","bench/./parrows-sudoku-parmap-par sudoku17.1000.txt",1.1167251804275786,8,5.896140488424366,7.0987795985597455e-3
+"5","bench/./parrows-sudoku-parmap-par sudoku17.1000.txt",0.7499954733843746,16,8.779211054501319,1.611224415196458e-2

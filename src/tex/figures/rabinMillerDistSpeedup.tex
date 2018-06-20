@@ -1,0 +1,45 @@
+\documentclass{standalone}[pstricks,border=12pt]
+
+\usepackage{graphicx}
+\usepackage{pgfplots, pgfplotstable}
+
+\usepackage{tikz}
+
+\begin{document}
+
+    \newcommand{\benchmarkDir}{src/benchmarks}
+
+    \newcommand{\speedupplot}[8]{
+    \begin{tikzpicture}
+    \begin{axis}[title={#1},
+    title style={align=center},
+    scale only axis, width=#7,
+    xlabel=Threads,
+    %xtick=data,
+    %ytick=data,
+    xtick distance=#4,
+    ytick distance=#4,
+    ylabel=Speedup,
+    ylabel near ticks,
+    grid=major,
+    legend entries={linear, #2},
+    legend style={at={(0.01,0.99)},anchor=north west},
+    max space between ticks=50pt,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    ymin=-1,
+    xmin=-1,
+    ymax=#8,
+    xmax=#6]
+    \addplot [domain=0:#3, no markers,dotted,thick]{x};
+    #5
+    \end{axis}
+    \end{tikzpicture}
+    }
+
+    \centering
+    \speedupplot{Speedup of distributed Rabin--Miller test \enquote{44497 256}}{PArrows Eden}{256}{32}{
+    \addplot+ [very thick] table [scatter, x="nCores", y="speedup", col sep=comma, mark=none,
+    smooth]{\benchmarkDir/distributed-rm/bench-distributed.bench.skelrm-parrows-44497-256.csv};
+    }{272}{0.6\textwidth}{272}
+\end{document}
