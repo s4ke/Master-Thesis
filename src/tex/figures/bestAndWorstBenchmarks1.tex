@@ -1,0 +1,34 @@
+\documentclass{standalone}[pstricks,border=12pt]
+
+\usepackage{graphicx}
+\usepackage{csvsimple}
+\usepackage{multirow}
+\usepackage{siunitx}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\newcommand*{\thead}[1]{%
+\multicolumn{1}{c}{\bfseries\begin{tabular}{@{}c@{}}#1\end{tabular}}}
+
+\begin{document}
+\centering
+\begingroup\catcode`"=9
+\sisetup{round-mode=places, round-precision=3}
+\begin{tabular}{C{4cm} C{2cm} C{1.7cm} C{2.3cm} C{1.7cm}}
+	\thead{Benchmark} & \thead{Base}             & \thead{Mean of \\ mean \\overheads} & \thead{Maximum \\ normalised \\ stdDev} & \thead{Runtime for \\ 16 cores (s)} \\ \hline \\
+	\multirow{3}{*}{Sudoku 1000}
+	\csvreader[head to column names]{src/benchmarks/sudoku-sm/bestAndWorstSudoku-1000.csv}{}{& \vs & \meanOverhead & \maxStdDevForOverhead & \runtimeMaxCores \\}
+	\\ \hline \\
+	\multirow{1}{*}{Gentleman 512}
+	\csvreader[head to column names]{src/benchmarks/torus-sm/bestAndWorstTorusSM-512.csv}{}{& \vs & \meanOverhead & \maxStdDevForOverhead & \runtimeMaxCores \\}
+	\\ \hline \\
+	\multirow{3}{*}{Rabin--Miller 11213 32}
+	\csvreader[head to column names]{src/benchmarks/sm-rm/bestAndWorstRMSM-11213-32.csv}{}{& \vs & \meanOverhead & \maxStdDevForOverhead & \runtimeMaxCores \\}
+	\\ \hline \\
+	\multirow{3}{*}{Rabin--Miller 11213 64}
+	\csvreader[head to column names]{src/benchmarks/sm-rm/bestAndWorstRMSM-11213-64.csv}{}{& \vs & \meanOverhead & \maxStdDevForOverhead & \runtimeMaxCores \\}
+\end{tabular}
+\endgroup
+\end{document}

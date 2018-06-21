@@ -221,3 +221,26 @@ Similar to the shared memory setting, PArrows only imply a very low penalty with
 distributed memory that lies in lower single-percent digits at most.
 
 ## Discussion
+
+| ![](src/img/bestAndWorstBenchmarks1.pdf) |
+|------------------------------------------|
+
+Table: Overhead in the shared memory benchmarks. Bold marks values in favour of PArrows. {#tbl:meanOverheadSharedMemory}
+
+| ![](src/img/bestAndWorstBenchmarks2.pdf) |
+|------------------------------------------|
+
+Table: Overhead in the distributed memory benchmarks. Bold marks values in favour of PArrows. {#tbl:meanOverHeadDistributedMemory}
+
+PArrows performed in our benchmarks with little to no overhead.
+Tables \ref{tab:meanOverheadSharedMemory} and \ref{tab:meanOverHeadDistributedMemory}
+clarify this once more: The PArrows-enabled versions trade blows with their vanilla
+counterparts when comparing the means over all cores of the mean overheads.
+If we combine these findings with the usability of our DSL,
+the minor overhead induced by PArrows is outweighed by their convenience and
+usefulness to the user.
+
+PArrows are an extendable formalism, they can be easily ported to further
+parallel Haskells while still maintaining interchangeability.
+It is straightforward to provide further implementations of algorithmic skeletons
+in PArrows.
