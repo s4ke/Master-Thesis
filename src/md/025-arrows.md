@@ -1,4 +1,4 @@
-## Arrows
+### Arrows
 
 \label{sec:arrows}
 

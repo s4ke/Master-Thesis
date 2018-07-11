@@ -307,6 +307,7 @@ $endif$
 \usepackage{ifxetex,ifluatex}
 \usepackage{longtable}
 \usepackage{booktabs}
+\usepackage{listings}
 \usepackage[
     activate={true,nocompatibility},
     final,

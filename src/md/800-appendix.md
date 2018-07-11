@@ -179,7 +179,7 @@ parMap :: (ArrowParallel arr a b conf) => conf -> (arr a b) -> (arr [a] [b])
 parMap conf f = parEvalN conf (repeat f)
 ~~~~
 
-![`parMapStream` depiction.](src/img/parMapStream.pdf){#fig:parMapStream}
+![`parMapStream` depiction.](src/img/parMapStream.pdf){#fig:parMapStreamImg}
 
 ~~~~ {#fig:parMapStream
     .haskell

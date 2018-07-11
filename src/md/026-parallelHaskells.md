@@ -3,6 +3,22 @@
 \label{sec:parallelHaskells}
 \label{sec:parEvalNIntro}
 
+In \ref{sec:fuproHaskell}, we cited @Hughes:1990:WFP:119830.119832 saying that in functional
+programming, the order of evaluation is irrelevant. In parallel programs this is not the case,
+as at least some kind of structure of evaluation is required to have actual speedup in programs.
+In the following we will take a look at how parallelism can be achieved in Haskell programs in general.
+Now, one might think that we would want side effects (parallel evaluation is a side-effect)
+and require the need to think about order of evaluation in a pure functional program seems a bit odd.
+The fact of the matter is that functional programs
+only aim to avoid *unnecessary* side-effects and in the case of parallelism it
+is obvious that some amount of side-effects are required.
+Also, parallel Haskells generally aim to encapsulate all the necessary and
+complicated code in a way such that the room for code-breaking errors is almost impossible.
+If some parallel evaluation code is written in a sub-optimal way, only the performance 
+is affected, but not the result, which will always be tractable no matter the order of evaluation.
+^[Some exceptions using unsafe and non-deterministic operations exist, though. These situations 
+can however only be achieved if the programmer actively chooses to use these kinds of operations.]
+
 In its purest form, parallel computation (on functions) can be looked at
 as the execution of some functions `a -> b` in parallel or 
 `parEvalN :: [a -> b] -> [a] -> [b]`, as also Fig. \ref{fig:parEvalN} 

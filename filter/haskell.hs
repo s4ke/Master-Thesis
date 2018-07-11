@@ -28,7 +28,9 @@ transformHaskell :: Block -> Block
 transformHaskell x@(Text.Pandoc.CodeBlock attr code) =
     if isHaskell attr
     then (Text.Pandoc.RawBlock (Format "tex") $ prettyHaskellCodeBlock attr code)
-    else x
+    else if isC attr
+         then (Text.Pandoc.RawBlock (Format "tex") $ prettyCFig attr code)
+         else x
 transformHaskell x = walk transformInline x
 
 transformInline :: Inline -> Inline
@@ -49,6 +51,18 @@ prettyHaskellFig (ident, classes, kvs) input =
     label ident ++
     "\\end{figure}"
 
+prettyCFig :: Attr -> String -> String
+prettyCFig (ident, classes, kvs) input =
+    "\\begin{figure}[" ++ options kvs ++ "]\n" ++
+    "\\lstset{language=C}\n" ++
+    "\\centering\n" ++
+    "\\begin{lstlisting}" ++
+    "\n" ++ input ++ "\n" ++
+    "\\end{lstlisting}\n" ++
+    caption kvs ++
+    label ident ++
+    "\\end{figure}"
+
 prettyHaskellCodeBlock :: Attr -> String -> String
 prettyHaskellCodeBlock attr@(ident, classes, kvs) input =
     if isFigure attr
@@ -60,6 +74,9 @@ prettyHaskellInline input = prettyHaskell $ "|" ++ input ++ "|"
 
 isHaskell :: Attr -> Bool
 isHaskell (ident, classes, kvs) = "haskell" `elem` classes
+
+isC :: Attr -> Bool
+isC (ident, classes, kvs) = "c" `elem` classes
 
 isFigure :: Attr -> Bool
 isFigure (ident, classes, kvs) = "figure" `elem` classes
@@ -83,6 +100,7 @@ prettyHaskell input = unsafePerformIO $ do
     let config = proc "bash" ["filter/escape.sh"]
     (out, err) <- readProcess_ config
     return $ L8.unpack out
+
 
 main :: IO ()
 main = do

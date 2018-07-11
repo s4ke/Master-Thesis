@@ -47,7 +47,7 @@ farm conf numCores f =
 	shuffle
 ~~~~
 
-![`farmChunk` depiction.](src/img/farmChunkImg.pdf){#fig:farmChunk}
+![`farmChunk` depiction.](src/img/farmChunkImg.pdf){#fig:farmChunkImg}
 
 ### Statically load-balancing parallel `map`
 
