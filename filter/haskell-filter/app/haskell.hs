@@ -5,20 +5,7 @@ import Text.Pandoc.Walk (walk)
 
 import Text.Pandoc.JSON
 
-import Data.Text (Text)
-
-import System.Process.Typed
-import qualified Data.ByteString as B
-import qualified Data.ByteString.Lazy as L
-import qualified Data.ByteString.Lazy.Char8 as L8
-
-import Control.Concurrent.STM (atomically)
-import Control.Exception (throwIO)
-
 import Data.Map
-
-import System.IO
-import System.IO.Unsafe
 
 import Debug.Trace
 

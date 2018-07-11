@@ -1,0 +1,37 @@
+name:                pandoc-haskell-filter
+version:             0.1.0.0
+github:              "github.com/s4ke/haskell-filter"
+license:             BSD3
+author:              "Martin Braun"
+maintainer:          "martinbraun123@aol.com"
+copyright:           "2018 Martin Braun"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/s4ke/haskell-filter#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+executables:
+  haskell-filter:
+    main:                haskell.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - MissingH == 1.4.0.1
+    - pandoc == 2.1.1
+    - pandoc-types == 1.17.3.1
+    - containers <0.5.8.1 || >0.5.8.1 && <0.5.9.1 || >0.5.9.1

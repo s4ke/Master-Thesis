@@ -11,7 +11,7 @@ FOR %%f IN (%mddir%/*.md) DO (
 )
 ECHO Building from !mdfiles!
 
-pandoc -f markdown+tex_math_dollars src/res/options.yaml !mdfiles! -o %pandoccompiled% --template src/res/gdv-pandoc-template.latex --table-of-contents --filter pandoc-eqnos --filter pandoc-fignos --filter pandoc-tablenos --filter pandoc-citeproc --filter filter/haskell
+pandoc -f markdown+tex_math_dollars src/res/options.yaml !mdfiles! -o %pandoccompiled% --template src/res/gdv-pandoc-template.latex --table-of-contents --filter pandoc-eqnos --filter pandoc-fignos --filter pandoc-tablenos --filter pandoc-citeproc --filter haskell-filter
 
 REM welcome to the bad bad world of hacky shell scripts
 sed -i 's/@/@@/g' %pandoccompiled%
@@ -21,5 +21,5 @@ sed -i -e 1,266d %postlhs2TeX%
 
 latexmk -pdf -jobname=%outjobname% %postlhs2TeX%
 
-"C:\Program Files\SumatraPDF\SumatraPDF.exe" "%outfile%"
 ECHO Build complete, opening file.
+"C:\Program Files\SumatraPDF\SumatraPDF.exe" "%outfile%"
