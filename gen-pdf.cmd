@@ -1,6 +1,5 @@
 @ECHO OFF
 SETLOCAL ENABLEDELAYEDEXPANSION
-SET mdout=out/md/out.md
 SET postlhs2TeX=out/tex/postlhs2TeX.tex
 SET pandoccompiled=out/tex/pandoccompiled.tex
 SET outfile=out/pdf/out.pdf
@@ -11,10 +10,6 @@ FOR %%f IN (%mddir%/*.md) DO (
     SET mdfiles=!mdfiles! %mddir%\%%~f
 )
 ECHO Building from !mdfiles!
-
-REM filter all haskell code into the correct format so it can
-REM get handled by lhs2TeX
-pandoc -f markdown !mdfiles! -o %mdout% --filter filter/haskell
 
 pandoc -f markdown+tex_math_dollars src/res/options.yaml !mdfiles! -o %pandoccompiled% --template src/res/gdv-pandoc-template.latex --table-of-contents --filter pandoc-eqnos --filter pandoc-fignos --filter pandoc-tablenos --filter pandoc-citeproc --filter filter/haskell
 
