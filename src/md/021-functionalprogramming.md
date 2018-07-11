@@ -484,6 +484,7 @@ automatically binds to the type of `someFunc :: [Int] -> [Int] -> [Int]`.
 
 #### Type safety & inference
 
+Das sollte weiter oben hin wahrscheinlich
 This type of type inference.
 allows Haskell to be generic in terms of function definitions without losing type-safety.
 

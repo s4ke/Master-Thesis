@@ -263,7 +263,7 @@ evaluate in parallel.
 This, however, is more complicated than in the `ring` case as we have one more
 dimension of inputs that needs to be transformed. We first have to `shuffle` all
 the inputs to then pass them into `loopParEvalN conf (repeat (ptorus conf f))` to
-get an output of  `[(d, fut a, fut b)]|`. We then unshuffle this list back to
+get an output of  `[(d, fut a, fut b)]`. We then unshuffle this list back to
 its original ordering by feeding it into `arr (uncurry unshuffle)` which
 takes the input length we saved one step earlier as additional input to get a
 result matrix `[[[(d, fut a, fut b)]]`. Finally, we unpack this matrix

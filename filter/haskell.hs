@@ -94,12 +94,15 @@ label ident =
     else ""
 
 {-# NOINLINE prettyHaskell #-}
+{-
 prettyHaskell :: String -> String
 prettyHaskell input = unsafePerformIO $ do
     writeFile "escapeInput.tmp" (input)
     let config = proc "bash" ["filter/escape.sh"]
     (out, err) <- readProcess_ config
     return $ L8.unpack out
+-}
+prettyHaskell = id
 
 
 main :: IO ()
