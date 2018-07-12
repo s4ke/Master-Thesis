@@ -1,6 +1,6 @@
 ## Functional Programming
 
-\label{sec:fuprohaskell}
+\label{sec:fuproHaskell}
 
 ### Why Functional Programming?
 
@@ -48,21 +48,21 @@ Functions are not the
 
 ### A Short introduction to Haskell
 
-In the following section, however, we will give a short introduction to functional programming
+In the following section, we will give a short introduction to functional programming
 with Haskell. While this will give a good idea of how programming in Haskell works,
 this is not aimed to be a complete tutorial on Haskell, but merely a quick
 overview over the most relevant features of the language used in this thesis.
+The following is loosely based on the book \enquote{Learn you a haskell for great good!}
+[@learnyouahaskell].
 
-We star by describing the basic difference between functional and imperative 
-programming, 
 
 Hier eine Überleitung in Richtung, dass erst mal jetzt erklärt wird, was basic Haskell 
 so ausmacht 
 
 - Functional vs Imperative (Was vs. Wie? Stateful computation, Absteiger nach Java Land)
-- Basic Functions (x) / Lambdas
+- Basic Functions (x) / Lambdas (x)
 - Typesafety
-- Lambdas
+- Lambdas (x)
 - Typklassen (vs Interfaces, Traits?) (x)
 - Lazy Evaluation
 - Monaden (wegen stateful)
@@ -80,7 +80,7 @@ C code to functional Haskell using the example of the Fibonacci sequence.
 Since functional programs do not contain any
 assignment statements, the state of a given variable can not be mutated. 
 This however means that in pure^[Pure code is code without side-effects. Assignments are side-effects]
-functional programming we can not express
+functional code we can not express
 classic loops like in Fig. \ref{fig:fibonacciCIterative}.
 ^[It is however possible to introduce monadic DSLs in Haskell that mimic C style behaviour, see \url{https://hackage.haskell.org/package/ImperativeHaskell-2.0.0.1}.]  
 
@@ -235,6 +235,10 @@ While this is possible, it is generally encouraged to always specify the
 type of top-level functions for better readability, but sometimes this is useful
 for some nested helper functions.
 
+#### Type safety and inference
+
+Haskell is a statically typed language.
+
 #### Function composition, higher-order functions, and function application
 
 Functions in Haskell can be handled similar to other datatypes. This way,
@@ -297,9 +301,97 @@ TODO: ^4 function = square . square
 
 TODO: Function application ($)
 
+#### Conditional Computation
+
+Haskell has different styles of dealing with conditional evaluation. We will
+now show the three the most common variants to express conditional statements.
+
+The most obvious one in terms of functionality is the `if ... then ... else`
+construct:
+
+~~~~{.haskell
+    }
+myFunc :: Int -> Int
+myFunc x = if x < 10 then x * 2 else x * 4
+~~~~
+
+While having the same well-known semantics of any `if ... then ... else` like
+they could be found in imperative languages like e.g. C, in Haskell, being a functional
+language, the `else` is non-optional as expressions are required to be total
+^[total in terms of computation, unsuccessful calculations can still be expressed
+with constructs like `Maybe a`.].
+
+An alternative to this are guards, which make expressions easier to read
+if many alternatives are involved in a function:
+
+~~~~{.haskell
+    }
+myFunc :: Int -> Int
+myFunc x 
+    | x < 10 = x * 2
+    | x < 12 = x * 3
+    | x < 14 = x
+    | x > 18 && x < 20 = 42
+    | otherwise = x * 4
+~~~~
+
+Yet another technique for conditional computation is using pattern matching. For conditional
+statements we can use it by writing definitions of the function for specific values, like
+
+~~~~{.haskell
+    }
+myFunc :: Int -> Int
+myFunc 5 = 10
+myFunc x ATSIGN {10} = x * 10
+myFunc x = x * 2
+~~~~
+
+, where the first matching definition is chosen during computation.
+Alternatively, we can do pattern matching with the help of `case` expressions:
+
+~~~~{.haskell
+    }
+myFunc :: Int -> Int
+myFunc x = case x of
+    5 -> 10
+    x ATSIGN {10} = x * 10
+    x = x * 2
+~~~~
+
+These can be used just like ordinary expressions.
+
+We can not, however, express boolean statements in this way. This is because
+pattern matching is done on the structure of the value that is being pattern matched.
+Later in this section we will see what other powerful things we can do with
+this technique.
+
+#### `where`, `let`
+
+While Haskell does not have variables, it still allows the programmer to
+name sub-expressions so that either the code becomes more clear or that it
+can be reused more easily. Here, two different variants are available: `where` 
+and `let`.
+
+With the help of `where` we can write code like the following:
+
+~~~~{.haskell
+    }
+whereReuse :: Double -> Double -> String
+whereReuse a b
+    | divided > 10 = "a is more than 10 times b"
+    | divided == 10 = "a is 10 times b"
+    | otherwise = "a is less than 10 times b"
+    where divided = a / b
+~~~~
+
+`where` is just syntactic sugar, though, and can not used in expressions like
+`f (a * 2 where a = 3)`. This is possible with `let` where we can write
+`f (let a = 3 in a * 2)` or `let a = 3 in f (a * 2)`. `let` can, however, not
+be used in conjunction with guards.
+
 #### Typeclasses
 
-The example function `f` from above seems a bit restrictive as it only allows for the usage
+The example function `multiply` from above seems a bit restrictive as it only allows for the usage
 of `Int`s. `Int`s are obviously not the only type which can be multiplied.
 
 With the help of a typeclass `Multiplicable a` we can encapsulate the contract
@@ -319,7 +411,9 @@ instance Multiplicable Int where
     multiply x y = x * y
 ~~~~
 
-We can then rewrite `f` as
+If we want to write a generic function `f` with the help of
+`multiply`, we require a `Multiplicable` instance for every type that
+we want to multiply inside the function:
 
 ~~~~{.haskell
     }
@@ -362,6 +456,25 @@ Laziness even allows us to express infinite streams, which can be helpful in som
 ones :: [Int]
 ones = 1 : ones
 ~~~~
+
+Another good example where Laziness simplifies things is when branching is involved:
+
+~~~~{.haskell
+    }
+calculateStuff :: [Int] -> Int
+calculateStuff = if <someCondition>
+                 then doStuff list1 list2
+                 else doSomeOtherStuff list1
+                    where
+                        list1 = ...
+                        list2 = ...
+~~~~
+
+Here, `list2` is not required in both branches of the `if` statement, which means it is only
+evaluated when required. While such a behaviour is obviously possible in non-lazy languages
+the elegance of the above definition is apparent.
+We can define as many variables in the same clear way without having
+unnecessary computations or code dealing with conditional computation.
 
 Usually laziness is beneficial to programs, but sometimes we require more control about
 when something is evaluated. This can be done for example with
@@ -447,6 +560,80 @@ tool if we were to write a wrapper for a type while not wanting
 to inherit all instances of typeclasses, but are also often used when declaring
 more complicated types.
 
+#### Pattern Matching
+
+While we have seen pattern matching as an alternative to 
+`if ... then ... else` and guard statements, it is can do even more things.
+
+For example, if we have a datatype `MyType a` type defined as
+
+~~~~{.haskell
+    }
+data MyType a = SomeConstructor a | SomeOtherConstructor a
+~~~~
+
+and we want to write a function `unwrap :: MyType a -> a` to unwrap the `a` value,
+we use pattern matching like this:
+
+~~~~{.haskell
+    }
+unwrap :: MyType a -> a
+unwrap (SomeConstructor x) = x
+unwrap (SomeOtherConstructor x) = x
+~~~~
+
+This type of unwrapping can also be done with the help of `case` statements
+so that we do not require a new function definition:
+
+~~~~{.haskell
+    }
+someFunc :: MyType a -> a
+someFunc t = case t of
+    (SomeConstructor a) -> ...
+    (SomeOtherConstructor a) -> ...
+~~~~
+
+In Haskell programs we can also write unwrapping code with the help of the
+`let` notation for single constructor types like
+`let (x, y) = vec2d in sqrt (x * x + y * y)`. Predictably, we can do this
+with `where` as well with constructs like `where (x, y) = vec2d`.
+
+Sometimes we only care about some part of the value. For example, in a definition
+of `maybeHead :: [a] -> Maybe a`, which should return the first element of the list
+or `Nothing` if it is an empty list, we can write this with the help of wildcards (`_`) as:
+
+~~~~{.haskell
+    }
+maybeHead :: Maybe a -> a
+maybeHead (x : _) = x
+maybeHead [] = Nothing
+~~~~
+
+We could even write 
+
+~~~~{.haskell
+    }
+maybeHead :: Maybe a -> a
+maybeHead (x : _) = x
+maybeHead _ = Nothing
+~~~~
+
+as the second equation will only ever match when the list is empty.^[A single element list
+has two forms in Haskell, `a:[]` and `[a]` of which the latter is just syntactic sugar of the former.]
+Furthermore, in Haskell, functions `isJust :: Maybe a -> Bool` when they
+only care about the structure of the type, can be written with only with wildcards:
+
+~~~~{.haskell
+    }
+isJust :: Maybe a -> Bool
+isJust (Just _) = True
+isJust _ = False
+~~~~
+
+Additionally, if we want to preserver laziness and we are 100% sure that a match will
+work (e.g. if we have called `isJust`), we can use irrefutable patterns like
+`~(Just a) = someMaybe`.
+
 #### Lambdas & Partial application
 
 As Functions are just another type that can be passed into higher-order functions
@@ -482,7 +669,9 @@ where we this means that `someFunc` is defined as `zipWith :: (a -> b -> c) -> [
 the passed lambda to get a function with type `[a] -> [b] -> [c]` which the compiler then
 automatically binds to the type of `someFunc :: [Int] -> [Int] -> [Int]`. 
 
-#### Type safety & inference
+#### WEG DAMIT
+
+
 
 Das sollte weiter oben hin wahrscheinlich
 This type of type inference.

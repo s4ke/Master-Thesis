@@ -22,4 +22,4 @@ sed -i -e 1,266d %postlhs2TeX%
 latexmk -pdf -jobname=%outjobname% %postlhs2TeX%
 
 ECHO Build complete, opening file.
-"C:\Program Files\SumatraPDF\SumatraPDF.exe" "%outfile%"
+start "C:\Program Files\SumatraPDF\SumatraPDF.exe" "%outfile%"

@@ -19,4 +19,6 @@
 %format |+++| = "\mathbin{\mid\!\!+\!\!+\!\!+\!\!\mid}"
 %format +++ = "\mathbin{+\!\!+\!\!+}"
 
+%format ATSIGN = "@"
+
 %include polycode.fmt
