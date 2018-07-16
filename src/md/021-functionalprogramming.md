@@ -44,8 +44,6 @@ To argue that there is merit in functional programming besides having fewer erro
 functional programming matters - composability. He does this by showing how higher
 order functions help in expressing programs in a modular way.
 
-Functions are not the 
-
 ### A Short introduction to Haskell
 
 In the following section, we will give a short introduction to functional programming
@@ -55,25 +53,9 @@ overview over the most relevant features of the language used in this thesis.
 The following is loosely based on the book \enquote{Learn you a haskell for great good!}
 [@learnyouahaskell].
 
-
-Hier eine Überleitung in Richtung, dass erst mal jetzt erklärt wird, was basic Haskell 
-so ausmacht 
-
-- Functional vs Imperative (Was vs. Wie? Stateful computation, Absteiger nach Java Land)
-- Basic Functions (x) / Lambdas (x)
-- Typesafety
-- Lambdas (x)
-- Typklassen (vs Interfaces, Traits?) (x)
-- Lazy Evaluation
-- Monaden (wegen stateful)
-- Arrows
-
-
-https://docs.microsoft.com/en-us/dotnet/visual-basic/programming-guide/concepts/linq/functional-programming-vs-imperative-programming
-
 #### Functional Programming vs Imperative Programming
 
-In order to see ease the introduction to functional programming,
+In order to ease the introduction to functional programming,
 we will give a short introduction
 to functional programming in Haskell in this section
 by comparing the general style of imperative
