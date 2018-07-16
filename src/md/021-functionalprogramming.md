@@ -73,16 +73,19 @@ https://docs.microsoft.com/en-us/dotnet/visual-basic/programming-guide/concepts/
 
 #### Functional Programming vs Imperative Programming
 
-In this section we will give a short introduction
-to functional programming in Haskell by comparing the general style of imperative
+In order to see ease the introduction to functional programming,
+we will give a short introduction
+to functional programming in Haskell in this section
+by comparing the general style of imperative
 C code to functional Haskell using the example of the Fibonacci sequence.
 
-Since functional programs do not contain any
-assignment statements, the state of a given variable can not be mutated. 
-This however means that in pure^[Pure code is code without side-effects. Assignments are side-effects]
-functional code we can not express
-classic loops like in Fig. \ref{fig:fibonacciCIterative}.
-^[It is however possible to introduce monadic DSLs in Haskell that mimic C style behaviour, see \url{https://hackage.haskell.org/package/ImperativeHaskell-2.0.0.1}.]  
+For starters, take a look at the iterative implementation of the Fibonacci
+sequence in Fig. \ref{fig:fibonacciCIterative}. It contains
+assignments and a loop, but since in pure^[Pure code is code without side-effects. Assignments are side-effects] functional programming we
+do not use assignment statements, we can not express the Fibonacci sequence in an
+iterative way with loops^[It is however possible to introduce monadic DSLs in Haskell that mimic C style behaviour, see \url{https://hackage.haskell.org/package/ImperativeHaskell-2.0.0.1}.].
+In fact, loops can only compute anything
+meaningful if assignment statements are part of the programming language.  
 
 ~~~~ {#fig:fibonacciCIterative
     .c
@@ -104,8 +107,10 @@ int fib( int n ) {
 ~~~~
 
 If we translate this Fibonacci example into a recursive definition
-(Fig. \ref{fig:fibonacciCRecursive}), we get pure functional C code,
+(Fig. \ref{fig:fibonacciCRecursive}), however, we get pure functional C code
+without any assignment statements, 
 that resembles the Haskell variant in Fig. \ref{fig:fibonacciHaskell}.
+Also note how the flow of the programming without requiring any modifiable state.
 
 ~~~~ {#fig:fibonacciCRecursive
     .c
@@ -123,11 +128,10 @@ int fib( int n ) {
 }
 ~~~~
 
-In fact, in functional languages like Haskell we only express computations by 
+In functional languages like Haskell we only express computations in this matter by 
 composition of functions (recursion is also in essence a composition of a function with itself).
-The fact that pure functional languages do not have assignment statements, function
-application is the only way to compute anything and since we can not change
-the state of any associated variables, we generally also do not have to worry
+Because of this and since we can not change the state of any associated variables,
+we generally also do not have to worry
 about the order of execution in functional programs.
 In general, we can say that in functional programming we primarily focus on what
 information is required and by which transformations to compute it 
@@ -179,7 +183,8 @@ fib n
 
 #### Functions
 
-The basic building blocks of a Haskell program are functions:
+As already mentioned above, the basic building blocks of a
+Haskell program are functions. They are defined as follows:
 
 ~~~~{.haskell
     }
@@ -187,7 +192,10 @@ f :: Int -> Int -> Int
 f x y = multiply x y
 ~~~~
 
-where `multiply` would be defined as
+Here, we declared a function `f` which takes two arguments
+of type `Int` and returns yet another `Int`. In the definition
+we say that `f` is basically the function `multiply`,
+which we define as:
 
 ~~~~{.haskell
     }
@@ -215,7 +223,10 @@ g = zipWith f
 
 where zipWith would be of type `(Int -> Int -> Int) -> [Int] -> [Int] -> [Int]`.
 
-Now, it does not make sense to be so restrictive in terms of which type to allow in
+#### Type inference
+
+Taking the example function `g` from the previous section,
+it does not make sense to be so restrictive in terms of which type to allow in
 such a function since all it does is apply some function to zip two lists. Thankfully,
 in Haskell we can define functions in a completely generic way such that
 we can write the actual type of zipWith as `(a -> b -> c) -> [a] -> [b] -> [c]` as in
@@ -223,7 +234,7 @@ it can zip a list containing some `a`s with a list containing a list of `b`s wit
 `a -> b -> c` to get a list of `c`s. If we use this function in the context of
 our function `g` it is then specialized into the `Int` form.
 
-The fact of the matter is that we can even define `g` without writing down the type
+Furthermore we can even define `g` without writing down the type
 definition and let the compiler determine the actual type of `g`.
 
 ~~~~{.haskell
@@ -235,14 +246,11 @@ While this is possible, it is generally encouraged to always specify the
 type of top-level functions for better readability, but sometimes this is useful
 for some nested helper functions.
 
-#### Type safety and inference
-
-Haskell is a statically typed language.
-
 #### Function composition, higher-order functions, and function application
 
-Functions in Haskell can be handled similar to other datatypes. This way,
-we can for example define a function that computes a number to the power of four as
+As we have seen, in Haskell, functions can be handled similar to other data types.
+This way, we can for example define a function that computes a number to the power
+of four as
 
 ~~~~{.haskell
     }
@@ -252,7 +260,7 @@ toThePowerOfFour = toThePowerOfTwo . toThePowerOfTwo
 
 with `.` being the functional composition operator with type
 `(.) :: (a -> b) -> (b -> c) -> (a -> b -> c)`
-and where square is defined simply as `toThePowerOfTwo x = multiply x x`.
+and where `toThePowerOfTwo` is defined simply as `toThePowerOfTwo x = multiply x x`.
 If we were to implement some function `toThePowerOfEight` as
 
 ~~~~{.haskell
@@ -261,37 +269,24 @@ toThePowerOfEight :: Int -> Int
 toThePowerOfEight = toThePowerOfFour . toThePowerOfFour
 ~~~~
 
-we start to see a pattern. We could introduce a `squareF` function
-which would take the function we would want to compose with itself that could
-look like
+we start to see a pattern. We can introduce a `selfCompose :: (a -> a) -> (a -> a)` function
+which takes the function we want to compose with itself:
 
 ~~~~{.haskell
     }
-squareF :: (Int -> Int) -> (Int -> Int)
-squareF f = f . f
+selfCompose :: (a -> a) -> (a -> a)
+selfCompose f = f . f
 ~~~~
 
-With this higher-order function we could then define `toThePowerOfFour` as
-
-~~~~{.haskell
-    }
-toThePowerOfTwo :: Int -> Int
-toThePowerOfTwo = squareF toThePowerOfTwo
-~~~~
+With this higher-order function we can then define `toThePowerOfFour` as
 
 ~~~~{.haskell
     }
 toThePowerOfFour :: Int -> Int
-toThePowerOfFour = squareF toThePowerOfTwo
+toThePowerOfFour = selfCompose toThePowerOfTwo
 ~~~~
 
-and `toThePowerOfEight` would become
-
-~~~~{.haskell
-    }
-toThePowerOfEight :: Int -> Int
-toThePowerOfEight = squareF toThePowerOfFour
-~~~~
+whereas `toThePowerOf`
 
 With such 
 
@@ -389,13 +384,24 @@ whereReuse a b
 `f (let a = 3 in a * 2)` or `let a = 3 in f (a * 2)`. `let` can, however, not
 be used in conjunction with guards.
 
-#### Typeclasses
+#### Type safety
+
+Haskell is a statically typed functional language. This means that during compilation
+all types are checked for compatibility and type declarations are not just treated as optional
+\enquote{hints} to the type-checker. Pairing this with the pure aspect of the language
+means that Haskell programs seem to be correct more often if the program compiles
+than in imperative languages. The compiler essentially helps the programmer
+to write *semantically correct* instead of just syntactically correct code.
+It should be noted that this does not mean that testing
+can be omitted. It is still extremely important, but becomes less cumbersome
+because state is mostly a non-issue.
+
+#### Type classes
 
 The example function `multiply` from above seems a bit restrictive as it only allows for the usage
-of `Int`s. `Int`s are obviously not the only type which can be multiplied.
-
-With the help of a typeclass `Multiplicable a` we can encapsulate the contract
-of `multiply` on some type `a` as
+of `Int`s. `Int`s are obviously not the only type which can be multiplied. Haskell
+has a way to express this fact: type classes. We can express the type class 
+`Multiplicable a` that encapsulates the contract of `multiply` on some type `a` as
 
 ~~~~{.haskell
     }
@@ -403,7 +409,9 @@ class Multiplicable a where
     multiply :: a -> a -> a
 ~~~~
 
-where we can then define the `Multiplicable Int` instance as
+With this class in place, we can then introduces instances - implementations of the
+contract - for specific types. For example the instance for `Int`,
+`Multiplicable Int` can be defined as
 
 ~~~~{.haskell
     }
@@ -411,25 +419,26 @@ instance Multiplicable Int where
     multiply x y = x * y
 ~~~~
 
-If we want to write a generic function `f` with the help of
-`multiply`, we require a `Multiplicable` instance for every type that
-we want to multiply inside the function:
+Now if we want to use this new contract on a generic function `f`,
+we require a `Multiplicable` instance for every type that
+we want to use `multiply` on inside the function:
 
 ~~~~{.haskell
     }
 f :: Multiplicable a => a -> a -> a
-f = multiply
+f x y = multiply (multiply x y) x
 ~~~~
 
-While this example might seem a bit odd, because we are just delegating `f`
-to `multiply`, it shows how we can encapsulate contracts on functions 
-("multiplication" is a contract) without losing generality with the
-help of type-classes.
+Such a function `f` does work with the contract of
+`Multiplicable` instead of requiring some specific type.
+This way we can reuse many definitions in Haskell
+even though it is a statically typed language. 
 
 In Haskell we can also write
-typeclasses with more than one type parameter. This allows for 
+type classes with more than one type parameter. This allows for 
 encapsulation of contracts of arbitrary complexity. Furthermore 
-typeclasses can itself have constraints placed on what types are allowed:
+type classes can itself have constraints placed on what types are allowed.
+Both can be seen here:
 
 ~~~~{.haskell
     }
@@ -439,7 +448,8 @@ class (SomeClass a, SomeOtherClass b) => MyClass a b c where
 
 #### Lazy Evaluation
 
-Haskell is a lazy language. This means that values are only evaluated when required.
+One thing that is not obvious when looking at the definitions from this chapter
+is that Haskell is a lazy language. This means that values are only evaluated when required.
 This has one major benefit: We get a Producer/Consumer pattern behaviour for
 free. For example if we have the lazy function `producer :: Int -> [Int]` producing some list
 of integers and some consumer consuming `consumer :: [Int] -> Int` this list. Then,
@@ -470,14 +480,18 @@ calculateStuff = if <someCondition>
                         list2 = ...
 ~~~~
 
-Here, `list2` is not required in both branches of the `if` statement, which means it is only
-evaluated when required. While such a behaviour is obviously possible in non-lazy languages
+Here, `list2` is not required in both branches of the `if` statement.
+Thanks to laziness it is therefore only evaluated upon a successful if-check.
+While such a behaviour is obviously possible in non-lazy languages
 the elegance of the above definition is apparent.
 We can define as many variables in the same clear way without having
-unnecessary computations or code dealing with conditional computation.
+unnecessary computations or code dealing with conditional computation
+like nested `where`s.
 
 Usually laziness is beneficial to programs, but sometimes we require more control about
 when something is evaluated. This can be done for example with
+
+
 
 #### Custom types
 
