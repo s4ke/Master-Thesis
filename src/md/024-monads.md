@@ -1,5 +1,7 @@
 ### Monads
 
+\label{sec:monads}
+
 Functional programmers try to avoid mutable state at all cost, but programs
 that do not only just compute some function usually involve some sort of it.
 So, doesn't this make Haskell useless being be a
@@ -45,7 +47,7 @@ also be seen in its default implementation above.
 
 Given this definition of a Monad, we can now take a look at
 the well known example for a Monad - the `State` Monad
-It is defined as [@learnyouahaskell] as
+It is defined as [@learnyouahaskell]
 
 ~~~~ {.haskell
     }
@@ -77,7 +79,7 @@ put :: s -> State s ()
 put newState = State { runState = \s -> ((), newState) }
 ~~~~
 
-The second one is `get :: State s s` that returns the current state, but
+The second one is `get :: State s s` which returns the current state, but
 does not change it:
 
 ~~~~ {.haskell
@@ -86,16 +88,7 @@ get :: State s s
 get = State { runState = \s -> (s, s) }
 ~~~~
 
-As an alternative to `put` we can also define a combinator that allows
-us to modify the current internal state directly:
-
-~~~~ {.haskell
-    }
-modify :: (s -> s) -> State s ()
-modify f = get >>= \x -> put (f x)
-~~~~
-
-With these two operations, we can easily write stateful programs like this one
+With these operations, we can easily write stateful programs like this one
 ^[inspired and adapted from
 \url{https://gist.github.com/sdiehl/8d991a718f7a9c80f54b}]:
 
@@ -133,7 +126,7 @@ back on the stack to finally `peek` the actual value which
 then is the result of the computation.
 To make writing such code easier, Haskell has syntactic sugar called `do` notation.
 With it we can write the above method `computeStateful` in a way that resembles
-imperative-style code (but with side-effects clearly encapsulated) as
+imperative-style code (but with side-effects clearly encapsulated) as:
 
 ~~~~ {.haskell}
 computeStateful :: State Stack Int
@@ -146,7 +139,7 @@ computeStateful = do
     peek 
 ~~~~
 
-Here we can also see the direct relationship between `(>>)` and simple new lines and
+In this example, we can also see the direct relationship between `(>>)` and simple new lines and
 the `(>>=)` operator and the special `<-` operator in do notation which facilitates the 
 binding to a variable.^[`(>>=)` is also often called `bind` in languages which do not support
 operator overloading.]

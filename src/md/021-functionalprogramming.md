@@ -211,7 +211,7 @@ f :: Int -> Int -> Int
 f = multiply
 ~~~~
 
-We can do so because in Haskell functions can be treated just like any other data-type.
+We can do so because in Haskell functions can be treated just like any other type.
 For example, if we wanted to have another function `g` which applied `f` on two lists of
 integers, we can write
 
@@ -248,7 +248,7 @@ for some nested helper functions.
 
 #### Function composition, higher-order functions, and function application
 
-As we have seen, in Haskell, functions can be handled similar to other data types.
+As we have seen, in Haskell, functions can be handled similar to data types.
 This way, we can for example define a function that computes a number to the power
 of four as
 
@@ -259,42 +259,78 @@ toThePowerOfFour = toThePowerOfTwo . toThePowerOfTwo
 ~~~~
 
 with `.` being the functional composition operator with type
-`(.) :: (a -> b) -> (b -> c) -> (a -> b -> c)`
+`(.) :: (b -> c) -> (a -> b) -> (a -> c)`
+^[note the order of the arguments, `g . f` means to first apply `f` and then `g` and not
+the other way around]
 and where `toThePowerOfTwo` is defined simply as `toThePowerOfTwo x = multiply x x`.
-If we were to implement some function `toThePowerOfEight` as
+
+Another aspect of functions being similar to data types is that, in functional programming,
+we frequently use higher order functions to express calculations. We have seen this
+earlier with the use of `zipWith`. Other often used higher-order functions include
+mapping (`map :: (a -> b) -> [a] -> [b]`, i.e. convert a list of `a`s into a list
+of `b`s with the given function `a -> b`) and folding
+(e.g. `foldLeft :: (b -> a -> b) -> b -> [a] -> b`, i.e. reduce the list with
+the given function `b -> a -> b` into a singular value given a starting value of type `b`).
+These are often used in some sort of composition like
 
 ~~~~{.haskell
     }
-toThePowerOfEight :: Int -> Int
-toThePowerOfEight = toThePowerOfFour . toThePowerOfFour
+euclidDistance :: [Int] -> [Int] -> Int
+euclidDistance = sqrt . foldLeft (+) 0 . map (toThePowerOfTwo) . zipWith (-)
 ~~~~
 
-we start to see a pattern. We can introduce a `selfCompose :: (a -> a) -> (a -> a)` function
-which takes the function we want to compose with itself:
+. Note that while this could have easily been written shorter as something along
+the lines of `sqrt . foldLeft (+) 0 . zipWith (\a b -> (a + b) * 2)` it is easy to see
+that the above declaration is easier to understand because of the simple steps the
+computation takes. We first zip the list of inputs with element-wise subtraction and 
+then square this difference, sum these results up and finally take the square root.
+This is something we see a lot in Haskell code, complex computations can be expressed
+with the help of higher-order functions instead of having to write it
+manually which would obviously include. This is not only much shorter,
+but also easier to understand for other programmers which have to read-up on the
+implementation for some reason.
+
+Something which is also quite useful in Haskell is the function application operator
+`($) :: (a -> b) -> a -> b` which allows for the application of a
+function `a -> b` to a given argument `a`. It is simply defined as:
 
 ~~~~{.haskell
     }
-selfCompose :: (a -> a) -> (a -> a)
-selfCompose f = f . f
+($) :: (a -> b) -> a -> b
+f $ x = f x
 ~~~~
 
-With this higher-order function we can then define `toThePowerOfFour` as
+While the usecase for such an operator might not be immediately clear, it will,
+if we take a look at the following function `listApp :: [a -> b] -> [a] -> [b]`
+where we take a list of functions `[a -> b]` and apply them one-by-one with their respective
+input values from the input list `[a]` to generate a list of results `b`:
 
 ~~~~{.haskell
     }
-toThePowerOfFour :: Int -> Int
-toThePowerOfFour = selfCompose toThePowerOfTwo
+listApp :: [a -> b] -> [a] -> [b]
+listApp = zipWith ($)
 ~~~~
 
-whereas `toThePowerOf`
+Here, if we had not used the `($)` operator, we would have to write
+`zipWith (\f a -> f a)` which obviously seems a bit redundant.
 
-With such 
+Something the `($)` operator is also used quite often is to write shorter code.
+For example, code snippets like
 
-TODO: square function... square x = multiply x x
+~~~~{.haskell
+    }
+someFunc = f1 (f2 param1 (f3 param2 (f4 param3))
+~~~~
 
-TODO: ^4 function = square . square
+can also be written without the braces as
 
-TODO: Function application ($)
+~~~~{.haskell
+    }
+someFunc = f1 $ f2 param1 $ f3 param2 $ f4 param3
+~~~~
+
+which is sometimes preferred to the brace-style, but is semantically
+identical.
 
 #### Conditional Computation
 
@@ -381,7 +417,7 @@ whereReuse a b
 
 `where` is just syntactic sugar, though, and can not used in expressions like
 `f (a * 2 where a = 3)`. This is possible with `let` where we can write
-`f (let a = 3 in a * 2)` or `let a = 3 in f (a * 2)`. `let` can, however, not
+`f (let a = 3 in a * 2)` or `let a = 3 in f (a * 2)`. `let` can in contrast, however, not
 be used in conjunction with guards.
 
 #### Type safety
@@ -491,8 +527,6 @@ like nested `where`s.
 Usually laziness is beneficial to programs, but sometimes we require more control about
 when something is evaluated. This can be done for example with
 
-
-
 #### Custom types
 
 As in any good programming language, in Haskell programmers obviously do not have
@@ -577,8 +611,7 @@ more complicated types.
 #### Pattern Matching
 
 While we have seen pattern matching as an alternative to 
-`if ... then ... else` and guard statements, it is can do even more things.
-
+`if ... then ... else` and guard statements, it can do more things.
 For example, if we have a datatype `MyType a` type defined as
 
 ~~~~{.haskell
@@ -644,11 +677,11 @@ isJust (Just _) = True
 isJust _ = False
 ~~~~
 
-Additionally, if we want to preserver laziness and we are 100% sure that a match will
+Additionally, if we want to preserve laziness and we are 100% sure that a match will
 work (e.g. if we have called `isJust`), we can use irrefutable patterns like
 `~(Just a) = someMaybe`.
 
-#### Lambdas & Partial application
+#### Lambdas and Partial application
 
 As Functions are just another type that can be passed into higher-order functions
 it makes sense to have a short-hand to write anonymous functions - lambdas.
@@ -681,20 +714,4 @@ someFunc = zipWith (\(a, b) -> a + b)
 
 where we this means that `someFunc` is defined as `zipWith :: (a -> b -> c) -> [a] -> [b] -> [c])` partially applied with
 the passed lambda to get a function with type `[a] -> [b] -> [c]` which the compiler then
-automatically binds to the type of `someFunc :: [Int] -> [Int] -> [Int]`. 
-
-#### WEG DAMIT
-
-
-
-Das sollte weiter oben hin wahrscheinlich
-This type of type inference.
-allows Haskell to be generic in terms of function definitions without losing type-safety.
-
-
-If we 
-
-We define 
-
-Jetzt, Beispiel: Higher-Order Functions, Erklären warum es direkt einfacher ist, das
-in Haskell zu machen, als in C oder anderen Sprachen.
+automatically binds to the type of `someFunc :: [Int] -> [Int] -> [Int]`.

@@ -100,7 +100,7 @@ pipeSimple conf fs =
 
 However, using this definition directly will make the master node a
 potential bottleneck in distributed environments as described in
-Section \ref{futures}. Therefore, we introduce a more sophisticated version
+Section \ref{sec:futures}. Therefore, we introduce a more sophisticated version
 that internally uses Futures and obtain the final definition of `pipe` in
 Fig. \ref{fig:pipe}.
 
@@ -304,7 +304,7 @@ ptorus conf f =
 ~~~~
 
 As an example of using this skeleton, @Eden:SkeletonBookChapter02 showed the
-matrix multiplication using the Gentleman algorithm (\citeyear{Gentleman1978}).
+matrix multiplication using the Gentleman algorithm [@Gentleman1978].
 An adapted version can be found in Fig. \ref{fig:torusMatMult}.
 
 ~~~~ {#fig:torusMatMult

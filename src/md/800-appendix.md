@@ -360,7 +360,7 @@ namely `parstar` and `parand`. For basic Arrows, we have the `***` combinator
 computations at once. This can easily be translated into a parallel version
 `parstar` with the use of `parEval2`, but for this we require a backend which
 has an implementation that does not require any configuration
-(hence the `()` as the `conf` parameter% in Fig. \ref{fig:par***}):
+(hence the `()` as the `conf` parameter:
 
 ~~~~ {.haskell}
 (|***|) :: (ArrowChoice arr, ArrowParallel arr (Either a c) (Either b d) ())) =>

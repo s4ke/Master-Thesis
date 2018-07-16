@@ -1,7 +1,6 @@
 ## Futures
 
 \label{sec:futures}
-\label{futures}
 
 ~~~~ {#fig:someCombinator
     .haskell
@@ -41,6 +40,27 @@ All communication goes through the master node.
 Each bar represents one process. Black lines represent communication.
 Colours: blue $\hat{=}$ idle, green $\hat{=}$ running, red  $\hat{=}$ blocked,
 yellow $\hat{=}$ suspended.](src/img/withoutFutures.pdf){#fig:withoutFutures}
+
+This is only a problem in distributed memory (in the scope of this paper) and we
+should allow nodes to communicate directly with each other. Eden already provides
+\enquote{remote data} that enable this [@AlGo03a,@Dieterle2010].
+But as we want code using our DSL to be implementation agnostic, we have to
+wrap this concept. We do this with the `Future` type class
+(Fig. \ref{fig:future}). We require a `conf` parameter here as well, but only
+so that Haskells type system allows us to have multiple Future implementations
+imported at once without breaking any dependencies similar to what we did with
+the `ArrowParallel` type class earlier.
+
+~~~~ {#fig:future
+    .haskell
+    .figure
+    caption="The |Future| type class."
+    options=h
+    }
+class Future fut a conf | a conf -> fut where
+    put :: (Arrow arr) => conf -> arr a (fut a)
+    get :: (Arrow arr) => conf -> arr (fut a) a
+~~~~
 
 Since `RD` is only a type synonym for a communication type that Eden uses
 internally, we have to use some wrapper classes to fit that definition, though,

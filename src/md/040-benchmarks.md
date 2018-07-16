@@ -233,7 +233,7 @@ Table: Overhead in the shared memory benchmarks. Bold marks values in favour of 
 Table: Overhead in the distributed memory benchmarks. Bold marks values in favour of PArrows. {#tbl:meanOverHeadDistributedMemory}
 
 PArrows performed in our benchmarks with little to no overhead.
-Tables \ref{tab:meanOverheadSharedMemory} and \ref{tab:meanOverHeadDistributedMemory}
+Tables \ref{tbl:meanOverheadSharedMemory} and \ref{tbl:meanOverHeadDistributedMemory}
 clarify this once more: The PArrows-enabled versions trade blows with their vanilla
 counterparts when comparing the means over all cores of the mean overheads.
 If we combine these findings with the usability of our DSL,
