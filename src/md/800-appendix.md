@@ -199,7 +199,7 @@ versions of Eden's `lazy` and `rightRotate` utility functions.
 Fig. \ref{fig:lazyzip3etc} contains Eden's definition of `lazyzip3` together
 with the utility functions `uncurry3` and `threetotwo`.
 The full definition of `farmChunk` is in Fig. \ref{fig:farmChunk}.
-Eden definition of |ring| skeleton is in Fig. \ref{fig:ringEden}. It
+Eden definition of `ring` skeleton is in Fig. \ref{fig:ringEden}. It
 follows @Loogen2012.
 
 ~~~~ {#fig:edenshuffleetc
