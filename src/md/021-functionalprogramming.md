@@ -355,7 +355,7 @@ statements we can use it by writing definitions of the function for specific val
     }
 myFunc :: Int -> Int
 myFunc 5 = 10
-myFunc x ATSIGN {10} = x * 10
+myFunc x ATSIGN 10 = x * 10
 myFunc x = x * 2
 ~~~~
 
@@ -367,7 +367,7 @@ Alternatively, we can do pattern matching with the help of `case` expressions:
 myFunc :: Int -> Int
 myFunc x = case x of
     5 -> 10
-    x ATSIGN {10} = x * 10
+    x ATSIGN 10 = x * 10
     x = x * 2
 ~~~~
 
@@ -467,7 +467,11 @@ class (SomeClass a, SomeOtherClass b) => MyClass a b c where
 #### Lazy Evaluation
 
 One thing that is not obvious when looking at the definitions from this chapter
-is that Haskell is a lazy language. This means that values are only evaluated when required.
+is that Haskell is a lazy language^[Haskell is actually defined as a non-strict language,
+meaning that only as much as required is evaluated, not when it is done. Laziness is just a way to
+ achieve non-strictness. The same could be achieved with an eager, but non-strict evaluation mechanism.
+ But as Haskell's main compilers all implement non-strictness via lazy evaluation, it is okay
+ to call Haskell a lazy language here. See \url{https://wiki.haskell.org/Lazy_vs._non-strict}]. This means that values are only evaluated when required.
 This has one major benefit: We get a Producer/Consumer pattern behaviour for
 free. For example if we have the lazy function `producer :: Int -> [Int]` producing some list
 of integers and some consumer consuming `consumer :: [Int] -> Int` this list. Then,
@@ -476,13 +480,24 @@ the elements of the result-list as they are consumed.
 This also means that, if `consumer` only requires the first few elements of the list to compute
 the result, `consumer` does not produce unneeded results.
 
-Laziness even allows us to express infinite streams, which can be helpful in some cases
-. As an example, an infinite list of ones is defined as
+Laziness even allows us to express infinite streams, which can be helpful in some cases.
+As an example, an infinite list of ones is defined as
 
 ~~~~{.haskell
     }
 ones :: [Int]
 ones = 1 : ones
+~~~~
+
+or, if we require a list of some value at least $n$ times so that it can be consumed
+with some list of length $n$, we can just use an infinite list instead of computing
+the actual required amount (which would take $n$ steps for a linked list).
+The helper function for this is called `repeat` and can be written as
+
+~~~~{.haskell
+    }
+repeat :: a -> [a]
+repeat a = a : (repeat a)
 ~~~~
 
 Another good example where Laziness simplifies things is when branching is involved:
@@ -506,8 +521,101 @@ We can define as many variables in the same clear way without having
 unnecessary computations or code dealing with conditional computation
 like nested `where`s.
 
-Usually laziness is beneficial to programs, but sometimes we require more control about
-when something is evaluated. This can be done for example with
+Usually laziness is beneficial to programs and programmers as it
+allows for easy composition and better structure in code,
+but sometimes we require more control about
+when something is evaluated. Haskell has several ways to control when and how
+values are evaluated. The basic primitive to force values is `seq :: a -> b -> b`, which
+is by nature part of the compiler and can not be expressed in Haskell directly.
+It's semantics however, are as follows: We tell the compiler that the first
+argument (of type `a`) is to be evaluated before the second argument.
+For example, in an expression like
+
+~~~~[.haskell}
+myFun :: Int -> (Int, Int)
+myFun x = let y = f x in y `seq` g y
+    where
+        f = ...
+        g = ...
+~~~~
+
+we can then hint to the compiler that we want `y = f x` evaluated before
+returning the (still non-evaluated) result of `g y`. This trick is usually used
+if during profiling a big chunk of non-evaluated values are noticed to
+aggregate before or in the process of evaluation of `f x`.
+As this is a common pattern seen in Haskell programs, there exists the
+strict function application operator `($!) :: (a -> b) -> a -> b`
+to encapsulate it. It is straightforwardly defined as:
+
+~~~~{.haskell}
+($!) :: (a -> b) -> a -> b
+f $! x = x `seq` f x
+~~~~
+
+With it we can then write our example function as
+
+~~~~[.haskell}
+myFun :: Int -> (Int, Int)
+myFun x = g $! f x
+    where
+        f = ...
+        g = ...
+~~~~
+
+These two operations do not *completely* evaluate values, however as
+they only force to weak-head-normal-form (WHNF) meaning that evaluation
+is only forced until the outermost constructor in contrast to normal-form (NF) which stands
+for full evaluation. This means that if we were
+to evaluate some calculation `f (g (h (i x)))` embedded in some lazy tuple `(y, z)` to WHNF,
+`y` and `z` would not be touched as the evaluation stops at the tuple constructor (for more
+about constructors see the next section, \enquote{Custom types}). All the computations
+to get to that constructor however, are forced to be evaluated. Therefore, if we want
+to make the insides of a tuple strict, we would have to write something along the lines of
+
+~~~~[.haskell
+let tup ATSIGN (y, z) = f (g (h (i x))) in y `seq` z `seq` tup
+~~~~
+
+instead of just
+
+~~~~[.haskell
+let tup = f (g (h (i x))) in y `seq` y
+~~~~
+
+But as `seq` and `$!` both only evaluate to WHNF, `y` and `z` might still not be completely
+evaluated, since they could be of some more complex type than just `Int` or any other primitive.
+This is the reason why in the Haskell eco system, there exists the
+library `deepseq`^[see \url{.haskell.org/package/deepseq-1.4.3.0/docs/Control-DeepSeq.html}]
+which comes with the typeclass `NFData` defined as
+
+~~~~{.haskell}
+class NFData a where
+    rnf :: a -> ()
+~~~~
+
+Instances of this typeclass
+for some type `a` are required to provide an appropriate implementation
+of `rnf` for *full* evaluation to normal-form, where `rnf` stands for
+\enquote{reduce-to-normal-form}. With this we can then implement the
+NF equivalent to `seq`, `deepseq`, as
+
+~~~~{.haskell}
+deepseq :: NFData a => a -> b -> b
+deepseq a = rnf a `seq` a
+~~~~
+
+A deep analogue to `$!!` is then easily definable as well as
+
+~~~~{.haskell}
+($!) :: NFData a => (a -> b) -> a -> b
+f $! x = x `deepseq` f x
+~~~~
+
+When dealing with WHNF and NF, note that all computations annotated with some
+forcing construct, be it `seq` or `deepseq`, laziness does go away entirely.
+All forced values, even the ones forced to NF, can still be considered somewhat
+lazy as they are only forced when they are requested. This is in practice,
+however, usually a desired property in Haskell programs.
 
 #### Custom types
 

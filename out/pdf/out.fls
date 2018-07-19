@@ -473,6 +473,16 @@ OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr10.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr7.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi10.tfm
@@ -639,6 +649,26 @@ INPUT ./src/img/torus_matrix_parrows_trace.pdf
 INPUT ./src/img/torus_matrix_parrows_trace.pdf
 INPUT src/img/torus_matrix_parrows_trace.pdf
 INPUT ./src/img/torus_matrix_parrows_trace.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
 INPUT src/img/rabinMillerDistSpeedup.pdf
 INPUT ./src/img/rabinMillerDistSpeedup.pdf
 INPUT ./src/img/rabinMillerDistSpeedup.pdf

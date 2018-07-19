@@ -1,4 +1,4 @@
-## Experimental Cloud Haskell Backend code
+## Experimental Cloud Haskell backend code
 
 Finally, we include the Template Haskell based code
 generator to make the experimental Cloud Haskell backend easier
@@ -74,7 +74,8 @@ and `[Maybe Grid]` (`MaybeGridList`). We can then use these to generate the code
 required to to evaluate these types in the Cloud Haskell backend with. In the
 `main` program we have two cases: a) the program is started in master mode and starts
 the computation, b) the program is started in slave mode and waits for computation
-requests. In order to launch this program and have speedup as well, we have
+requests.
+In order to launch this program and have speedup as well, we have
 to start slave nodes for each cpu core with commands like
 \enquote{<executable> slave 127.0.0.1 8000} where the last parameter determines the
 port the slave will listen to and wait for requests on. Similarly a single master node can be started with

@@ -36,27 +36,33 @@
 \BOOKMARK [2][]{section*.62}{5.2.2 Ring skeleton}{section*.57}% 36
 \BOOKMARK [2][]{section*.65}{5.2.3 Torus skeleton}{section*.57}% 37
 \BOOKMARK [0][]{chapter.6}{6 Experiment: Cloud Haskell Backend}{}% 38
-\BOOKMARK [0][]{chapter.7}{7 Performance results and discussion}{}% 39
-\BOOKMARK [1][]{section*.73}{7.1 Measurement platform}{chapter.7}% 40
-\BOOKMARK [2][]{section*.74}{7.1.1 Hardware and software}{section*.73}% 41
-\BOOKMARK [2][]{section*.75}{7.1.2 Benchmarks}{section*.73}% 42
-\BOOKMARK [2][]{section*.76}{7.1.3 What parallel Haskells run where}{section*.73}% 43
-\BOOKMARK [1][]{section*.77}{7.2 Benchmark results}{chapter.7}% 44
-\BOOKMARK [2][]{section*.78}{7.2.1 Defining overhead}{section*.77}% 45
-\BOOKMARK [2][]{section*.79}{7.2.2 Shared memory}{section*.77}% 46
-\BOOKMARK [2][]{section*.80}{7.2.3 Distributed memory}{section*.77}% 47
-\BOOKMARK [1][]{section*.82}{7.3 Discussion}{chapter.7}% 48
-\BOOKMARK [0][]{chapter.8}{8 Discussion}{}% 49
-\BOOKMARK [0][]{chapter.9}{9 Conclusion}{}% 50
-\BOOKMARK [1][]{section*.85}{9.1 Future work}{chapter.9}% 51
-\BOOKMARK [0][]{chapter.10}{10 Appendix}{}% 52
-\BOOKMARK [1][]{section*.87}{10.1 Utility Arrows}{chapter.10}% 53
-\BOOKMARK [1][]{section*.91}{10.2 Profunctor Arrows}{chapter.10}% 54
-\BOOKMARK [1][]{section*.93}{10.3 Additional function definitions}{chapter.10}% 55
-\BOOKMARK [1][]{section*.107}{10.4 Syntactic sugar}{chapter.10}% 56
-\BOOKMARK [1][]{section*.108}{10.5 Experimental Cloud Haskell Backend code}{chapter.10}% 57
-\BOOKMARK [1][]{section*.111}{10.6 Shared Memory Benchmarks}{chapter.10}% 58
-\BOOKMARK [1][]{section*.126}{10.7 Distributed Memory Benchmarks}{chapter.10}% 59
-\BOOKMARK [0][]{section*.134}{References}{}% 60
-\BOOKMARK [0][]{section*.134}{List of Figures}{}% 61
-\BOOKMARK [0][]{section*.134}{List of Tables}{}% 62
+\BOOKMARK [1][]{section*.72}{6.1 The Cloud Haskell API}{chapter.6}% 39
+\BOOKMARK [1][]{section*.73}{6.2 Program harness}{chapter.6}% 40
+\BOOKMARK [1][]{section*.74}{6.3 Serializing arbitrary data}{chapter.6}% 41
+\BOOKMARK [1][]{section*.75}{6.4 Parallel Evaluation with Cloud Haskell}{chapter.6}% 42
+\BOOKMARK [1][]{section*.76}{6.5 s}{chapter.6}% 43
+\BOOKMARK [1][]{section*.77}{6.6 Circular skeletons and issues with Laziness}{chapter.6}% 44
+\BOOKMARK [0][]{chapter.7}{7 Performance results and discussion}{}% 45
+\BOOKMARK [1][]{section*.79}{7.1 Measurement platform}{chapter.7}% 46
+\BOOKMARK [2][]{section*.80}{7.1.1 Hardware and software}{section*.79}% 47
+\BOOKMARK [2][]{section*.81}{7.1.2 Benchmarks}{section*.79}% 48
+\BOOKMARK [2][]{section*.82}{7.1.3 What parallel Haskells run where}{section*.79}% 49
+\BOOKMARK [1][]{section*.83}{7.2 Benchmark results}{chapter.7}% 50
+\BOOKMARK [2][]{section*.84}{7.2.1 Defining overhead}{section*.83}% 51
+\BOOKMARK [2][]{section*.85}{7.2.2 Shared memory}{section*.83}% 52
+\BOOKMARK [2][]{section*.86}{7.2.3 Distributed memory}{section*.83}% 53
+\BOOKMARK [1][]{section*.88}{7.3 Discussion}{chapter.7}% 54
+\BOOKMARK [0][]{chapter.8}{8 Discussion}{}% 55
+\BOOKMARK [0][]{chapter.9}{9 Conclusion}{}% 56
+\BOOKMARK [1][]{section*.91}{9.1 Future work}{chapter.9}% 57
+\BOOKMARK [0][]{chapter.10}{10 Appendix}{}% 58
+\BOOKMARK [1][]{section*.93}{10.1 Utility Arrows}{chapter.10}% 59
+\BOOKMARK [1][]{section*.97}{10.2 Profunctor Arrows}{chapter.10}% 60
+\BOOKMARK [1][]{section*.99}{10.3 Additional function definitions}{chapter.10}% 61
+\BOOKMARK [1][]{section*.113}{10.4 Syntactic sugar}{chapter.10}% 62
+\BOOKMARK [1][]{section*.114}{10.5 Experimental Cloud Haskell backend code}{chapter.10}% 63
+\BOOKMARK [1][]{section*.117}{10.6 Plots for the shared memory benchmarks}{chapter.10}% 64
+\BOOKMARK [1][]{section*.132}{10.7 Plots for the distributed memory benchmarks}{chapter.10}% 65
+\BOOKMARK [0][]{section*.140}{References}{}% 66
+\BOOKMARK [0][]{section*.140}{List of Figures}{}% 67
+\BOOKMARK [0][]{section*.140}{List of Tables}{}% 68
