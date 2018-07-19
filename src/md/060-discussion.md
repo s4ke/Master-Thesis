@@ -1,0 +1,3 @@
+# Discussion
+
+In this thesis we have seen that...

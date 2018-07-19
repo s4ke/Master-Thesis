@@ -1,0 +1,9 @@
+\documentclass{standalone}[pstricks,border=12pt]
+
+\input{src/tex/base/supp-plotbase.tex}
+
+\begin{document}
+
+\meanOverheadPlot{Mean Overhead for distributed \\ \torustest 4096}{0.04}{32}{272}{\benchmarkDir/distributed-torus/4096-diff.csv}
+
+\end{document}

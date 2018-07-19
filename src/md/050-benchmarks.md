@@ -31,7 +31,7 @@ hyper-threaded 32 cores do not behave in the same manner as real 16 cores
 ability in most of the cases.
 
 Apart from Eden, all benchmarks and libraries were compiled with
-Stack's^[footnote{see \url{https://www.haskellstack.org/}]
+Stack's^[see \url{https://www.haskellstack.org/}]
 lts-7.1 GHC compiler which is equivalent to a standard GHC 8.0.1 with
 the base package in version 4.9.0.0. Stack itself was used in version 1.3.2.
 For GpH in its Multicore variant we used the parallel package in version

@@ -15,7 +15,7 @@ second f = arr swap >>> first f >>> arr swap
 	where swap (x, y) = (y, x)
 ~~~~
 
-Next, we give the definition of |evalN| which also helps us to define `map`, and
+Next, we give the definition of `evalN` which also helps us to define `map`, and
 `zipWith` on Arrows. The `evalN` combinator in Fig. \ref{fig:evalN} converts a
 list of Arrows `[arr a b]` into an Arrow `arr [a] [b]`.
 
@@ -23,7 +23,7 @@ list of Arrows `[arr a b]` into an Arrow `arr [a] [b]`.
     .haskell
     .figure
     caption="The definition of |evalN|."
-    options=t
+    options=h
     }
 evalN :: (ArrowChoice arr) => [arr a b] -> arr [a] [b]
 evalN (f:fs) = arr listcase >>>
@@ -41,7 +41,7 @@ but the definition was then unified with `evalN`.
     .haskell
     .figure
     caption="The definition of |map| over Arrows."
-    options=t
+    options=h
     }
 mapArr :: ArrowChoice arr => arr a b -> arr [a] [b]
 mapArr = evalN . repeat
@@ -55,7 +55,7 @@ Finally, with the help of `mapArr` (Fig. \ref{fig:mapArr}), we can define
     .haskell
     .figure
     caption="|zipWith| over Arrows."
-    options=t
+    options=h
     }
 zipWithArr :: ArrowChoice arr => arr (a, b) c -> arr ([a], [b]) [c]
 zipWithArr f = (arr (\(as, bs) -> zipWith (,) as bs)) >>> mapArr f
@@ -85,7 +85,7 @@ part of the `Arrow` type class like presented in this paper.^[For additional inf
     .haskell
     .figure
     caption="Profunctors as Arrows."
-    options=t
+    options=h
     }
 instance (Category p, Strong p) => Arrow p where
   arr f = dimap id f id
@@ -111,7 +111,7 @@ Figure \ref{fig:RDFuture}.
     .haskell
     .figure
     caption="|RD|-based |RemoteData| version of |Future| for the Eden backend."
-    options=t
+    options=h
     }
 data RemoteData a = RD { rd :: RD a }
 
@@ -141,7 +141,7 @@ the corresponding `Future` instances.
     .haskell
     .figure
     caption="|BasicFuture| type and its |Future| instance for the |Par| Monad and GpH."
-    options=t
+    options=h
     }
 data BasicFuture a = BF a
 
@@ -173,7 +173,7 @@ lazy counterpart.
     .haskell
     .figure
     caption="|parMap| definition."
-    options=t
+    options=h
     }
 parMap :: (ArrowParallel arr a b conf) => conf -> (arr a b) -> (arr [a] [b])
 parMap conf f = parEvalN conf (repeat f)
@@ -185,7 +185,7 @@ parMap conf f = parEvalN conf (repeat f)
     .haskell
     .figure
     caption="|parMapStream| definition."
-    options=t
+    options=h
     }
 parMapStream :: (ArrowParallel arr a b conf, ArrowChoice arr, ArrowApply arr) =>
 	conf -> ChunkSize -> arr a b -> arr [a] [b]
@@ -288,7 +288,7 @@ lazy :: [a] -> [a]
 lazy ~(x:xs) = x : lazy xs
 ~~~~
 
-The `parEval2` skeleton is defined in Figure~\ref{fig:parEval2}. 
+The `parEval2` skeleton is defined in Fig. \ref{fig:parEval2}. 
 We start by transforming the `(a, c)` input into a two-element list
 `[Either a c]` by first tagging the two inputs with `Left` and `Right` and wrapping
 the right element in a singleton list with `return` so that we can combine them
@@ -353,7 +353,7 @@ matAdd = chunksOf (dimX x) $ zipWith (+) (concat x) (concat y)
 
 \label{syntacticSugar}
 
-Finally, we also give the definitions for some syntactic sugar for PArrows,
+Next, we also give the definitions for some syntactic sugar for PArrows,
 namely `parstar` and `parand`. For basic Arrows, we have the `***` combinator
 (Fig. \ref{fig:syntacticSugarArrows}) which allows us to combine two Arrows
 `arr a b` and `arr c d` into an Arrow `arr (a, c) (b, d)` which does both

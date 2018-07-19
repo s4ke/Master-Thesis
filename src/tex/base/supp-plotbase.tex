@@ -1,0 +1,71 @@
+\usepackage{graphicx}
+\usepackage{pgfplots, pgfplotstable}
+\usepackage{xspace}
+
+\usepackage{tikz}
+
+\newcommand{\benchmarkDir}{src/benchmarks}
+\newcommand{\plotwidthDist}{0.6\textwidth}
+\newcommand{\plotwidthSMP}{\plotwidthDist}
+
+\newcommand{\rmtest}{Rabin--Miller test\xspace}
+\newcommand{\sudokutest}{Sudoku\xspace}
+\newcommand{\jacobitest}{Jacobi sum test\xspace}
+\newcommand{\torustest}{Gentleman\xspace}
+
+\newcommand{\meanOverheadPlot}[5]{
+\begin{tikzpicture}
+\begin{axis}[%title={#1},
+%title style={align=center},
+scale only axis, width=\plotwidthDist,
+xlabel=Threads,
+%xtick=data,
+ytick distance=#2 / 4,
+xtick distance=#3,
+minor tick num=9,
+ylabel=Overhead,
+ylabel near ticks,
+grid=both,
+legend entries={Mean Overhead},
+legend style={at={(0.99,0.99)},anchor=north east},
+max space between ticks=50pt,
+grid style={line width=.1pt, draw=gray!10},
+major grid style={line width=.2pt,draw=gray!50},
+ymin=-#2,
+ymax=#2,
+xmin=-1,
+xmax=#4]
+\addplot+[mark=*,very thick,error bars/.cd,
+    y dir=both,y explicit] table [x="nCores", y="overhead", y error="stdDevForOverhead", col sep=comma, mark=dots,
+smooth]{#5};
+\end{axis}
+\end{tikzpicture}
+}
+
+\newcommand{\speedupplot}[8]{
+\begin{tikzpicture}
+\begin{axis}[%title={#1},
+%title style={align=center},
+scale only axis, width=#7,
+xlabel=Threads,
+%xtick=data,
+%ytick=data,
+xtick distance=#4,
+ytick distance=#4,
+ylabel=Speedup,
+ylabel near ticks,
+grid=major,
+legend entries={linear, #2},
+legend style={at={(0.01,0.99)},anchor=north west},
+max space between ticks=50pt,
+grid style={line width=.1pt, draw=gray!10},
+major grid style={line width=.2pt,draw=gray!50},
+ymin=-1,
+xmin=-1,
+ymax=#8,
+xmax=#6]
+\addplot [domain=0:#3, no markers,dotted,thick]{x};
+#5
+\end{axis}
+\end{tikzpicture}
+}

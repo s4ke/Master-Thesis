@@ -1,18 +1,12 @@
-# Skeletons
+## Basic `map`-based skeletons
 
 \label{sec:skeletons}
+\label{sec:map-skeletons}
 
 Now we have developed Parallel Arrows far enough to define some useful
 algorithmic skeletons that abstract typical parallel computations.
-While there are many possible skeletons to implement,
-we demonstrate the expressive power of PArrows here using
-four `map`-based and three toplogical skeletons.
-
-## `map`-based skeletons
-
-\label{sec:map-skeletons}
-
-The essential differences between the mapping skeletons presented
+We start here with some basic `map`-based skeletons.
+The essential differences between these skeletons presented
 here are in terms of order of evaluation and work distribution but
 still provide the same semantics as a sequential `map`.
 

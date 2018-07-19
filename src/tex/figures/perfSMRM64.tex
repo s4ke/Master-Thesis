@@ -1,0 +1,16 @@
+\documentclass{standalone}[pstricks,border=12pt]
+
+\input{src/tex/base/supp-plotbase.tex}
+
+\begin{document}
+
+\speedupplot{Speedup of \rmtest \enquote{11213 64}}{Eden CP, GpH, \ensuremath{\Conid{Par}} Monad}{16}{4}{
+\addplot+ [very thick] table [scatter, x="nCores", y="speedup", col sep=comma, mark=none,
+smooth]{\benchmarkDir/sm-rm/bench-sm-rm.bench.skelrm-parr-eden-cp-11213-64.csv};
+\addplot+ [very thick] table [scatter, x="nCores", y="speedup", col sep=comma, mark=none,
+smooth]{\benchmarkDir/sm-rm/bench-sm-rm.bench.skelrm-parr-mult-11213-64.csv};
+\addplot+ [very thick] table [scatter, x="nCores", y="speedup", col sep=comma, mark=none,
+smooth]{\benchmarkDir/sm-rm/bench-sm-rm.bench.skelrm-parr-par-11213-64.csv};
+}{17}{\plotwidthSMP}{17}
+
+\end{document}

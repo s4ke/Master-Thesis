@@ -1,0 +1,864 @@
+PWD C:/Users/Martin/Documents/GitHub/Master-Thesis
+INPUT C:/Users/Martin/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt
+INPUT out/tex/postlhs2TeX.tex
+OUTPUT out/pdf/out.log
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/koma-script/scrreprt.cls
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/koma-script/scrreprt.cls
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/koma-script/scrkbase.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/koma-script/scrkbase.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/koma-script/scrbase.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/koma-script/scrbase.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/keyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/keyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/koma-script/scrlfile.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/koma-script/scrlfile.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/koma-script/tocbasic.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/koma-script/tocbasic.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/koma-script/scrsize11pt.clo
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/koma-script/scrsize11pt.clo
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/koma-script/typearea.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/koma-script/typearea.sty
+INPUT src/res/format.tex
+INPUT src/res/format.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amstext.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amstext.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsgen.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsgen.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/amssymb.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/amssymb.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/amsfonts.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/amsfonts.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/stmaryrd/stmaryrd.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/stmaryrd/stmaryrd.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polytable/polytable.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polytable/polytable.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lazylist/lazylist.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lazylist/lazylist.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/array.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/array.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/calc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/calc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/placeins/placeins.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/placeins/placeins.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/inputenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/inputenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/utf8.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/utf8.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/t1enc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/t1enc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ot1enc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ot1enc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/omsenc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/omsenc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/babel/babel.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/babel/babel.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/arabi/bblopts.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/arabi/bblopts.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/babel-english/english.ldf
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/babel-english/english.ldf
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/babel/babel.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsmath.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsmath.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsbsy.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsbsy.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsopn.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsopn.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/ifxetex/ifxetex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/ifxetex/ifxetex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/longtable.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/longtable.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/booktabs/booktabs.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/booktabs/booktabs.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/listings.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/listings.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstmisc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstmisc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/listings.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/listings.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/microtype/microtype.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/microtype/microtype.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/microtype/microtype-pdftex.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/microtype/microtype-pdftex.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/microtype/microtype.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/microtype/microtype.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/microtype/microtype.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/cleanthesis/cleanthesis.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/cleanthesis/cleanthesis.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/xkeyval/xkeyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/xkeyval/xkeyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/xkeyval/xkeyval.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/xkeyval/xkvutils.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/xcolor/xcolor.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/xcolor/xcolor.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics-cfg/color.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics-cfg/color.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics-def/pdftex.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics-def/pdftex.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/infwarerr.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/infwarerr.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ltxcmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ltxcmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/dvipsnam.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/dvipsnam.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/fontenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/fontenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/t1enc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/t1enc.def
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/jknappen/ec/ecrm1095.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/lmodern.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/lmodern.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/charter.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/charter.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/fixltx2e.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/fixltx2e.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/setspace/setspace.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/setspace/setspace.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphicx.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphicx.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphics.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphics.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/trig.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/trig.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics-cfg/graphics.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics-cfg/graphics.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fancyhdr/fancyhdr.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fancyhdr/fancyhdr.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/enumitem/enumitem.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/enumitem/enumitem.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/blindtext/blindtext.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/blindtext/blindtext.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/xspace.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/xspace.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/textcomp.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/textcomp.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ts1enc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ts1enc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ts1enc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ts1enc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/hyperref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/hyperref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/hobsub-hyperref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/hobsub-hyperref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/hobsub-hyperref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/hobsub-generic.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/hobsub-generic.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/auxhook.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/auxhook.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/kvoptions.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/kvoptions.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/pd1enc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/pd1enc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/00miktex/hyperref.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/00miktex/hyperref.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/url/url.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/url/url.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/hpdftex.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/hpdftex.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/rerunfilecheck.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/rerunfilecheck.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/caption/caption.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/caption/caption.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/caption/caption3.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/caption/caption3.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/caption/ltcaption.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/caption/ltcaption.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/geometry/geometry.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/geometry/geometry.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/geometry/geometry.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/geometry/geometry.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/csquotes/csquotes.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/csquotes/csquotes.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/etoolbox/etoolbox.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/etoolbox/etoolbox.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/csquotes/csquotes.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/csquotes/csquotes.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/csquotes/csquotes.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/csquotes/csquotes.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/biblatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/biblatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/logreq/logreq.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/logreq/logreq.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/logreq/logreq.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/logreq/logreq.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ifthen.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ifthen.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/xstring/xstring.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/xstring/xstring.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/xstring/xstring.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/blx-dm.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/blx-dm.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/blx-compat.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/blx-compat.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/blx-bibtex.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/blx-bibtex.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/biblatex.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/biblatex.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/blx-natbib.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/blx-natbib.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/bbx/alphabetic.bbx
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/bbx/alphabetic.bbx
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/bbx/standard.bbx
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/bbx/standard.bbx
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/cbx/alphabetic.cbx
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/cbx/alphabetic.cbx
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/biblatex.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/biblatex.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/lbx/ngerman.lbx
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/titlesec/titlesec.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/titlesec/titlesec.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tocloft/tocloft.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tocloft/tocloft.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/lbx/english.lbx
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/lbx/english.lbx
+INPUT out/pdf/out.aux
+INPUT out/pdf/out.aux
+OUTPUT out/pdf/out.aux
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ts1cmr.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ts1cmr.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/t1bch.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/t1bch.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/microtype/mt-bch.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/microtype/mt-bch.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/context/base/supp-pdf.mkii
+INPUT C:/Program Files/MiKTeX 2.9/tex/context/base/supp-pdf.mkii
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/epstopdf-base.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/epstopdf-base.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/grfext.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/grfext.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/nameref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/hyperref/nameref.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/gettitlestring.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/gettitlestring.sty
+INPUT out/pdf/out.out
+INPUT out/pdf/out.out
+INPUT out/pdf/out.out
+INPUT out/pdf/out.out
+OUTPUT out/pdf/out.pdf
+INPUT ./out/pdf/out.out
+INPUT ./out/pdf/out.out
+OUTPUT out/pdf/out.out
+OUTPUT out/pdf/out-blx.bib
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8t.tfm
+INPUT src/img/ai5logo.pdf
+INPUT ./src/img/ai5logo.pdf
+INPUT ./src/img/ai5logo.pdf
+INPUT ./src/img/ai5logo.pdf
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/ot1lmr.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/ot1lmr.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/microtype/mt-cmr.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/microtype/mt-cmr.cfg
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omllmm.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omllmm.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omslmsy.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omslmsy.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omxlmex.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omxlmex.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmex10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/umsa.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/umsa.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/microtype/mt-msa.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/microtype/mt-msa.cfg
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/umsb.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/umsb.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/microtype/mt-msb.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/microtype/mt-msb.cfg
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/stmaryrd/ustmry.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/stmaryrd/ustmry.fd
+INPUT C:/Users/Martin/AppData/Local/MiKTeX/2.9/fonts/tfm/public/stmaryrd/stmary10.tfm
+INPUT C:/Users/Martin/AppData/Local/MiKTeX/2.9/fonts/tfm/public/stmaryrd/stmary8.tfm
+INPUT C:/Users/Martin/AppData/Local/MiKTeX/2.9/fonts/tfm/public/stmaryrd/stmary6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchri8t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchri8t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchr8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8r.tfm
+INPUT C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchr8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8r.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchr8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8r.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchr8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8r.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchri8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchri8r.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/t1phv.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/t1phv.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr8t.tfm
+INPUT out/pdf/out.toc
+INPUT out/pdf/out.toc
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchb8t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmri10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmri8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmri7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tex-gyre/t1qhv.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tex-gyre/t1qhv.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvb.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvr8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr8r.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchb8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchb8r.tfm
+OUTPUT out/pdf/out.toc
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr8t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/ts1bch.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/ts1bch.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8c.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvr8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr8r.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/t1lmtt.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/t1lmtt.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmtt10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvb.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchr8c.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr9.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr5.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi9.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi5.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy9.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy5.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmri9.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmri7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam5.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+INPUT C:/Users/Martin/AppData/Local/MiKTeX/2.9/fonts/tfm/public/stmaryrd/stmary9.tfm
+INPUT C:/Users/Martin/AppData/Local/MiKTeX/2.9/fonts/tfm/public/stmaryrd/stmary5.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmtt9.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchr8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8r.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchr8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8r.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchr8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8r.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/t1lmss.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/t1lmss.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmss10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmssbx10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstmisc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstmisc.sty
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchb8t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmssbx10.tfm
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchr8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8r.tfm
+OUTPUT out/pdf/out.ptb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmbx10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmbx8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmbx6.tfm
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmbx9.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmbx5.tfm
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmtt8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmtt8.tfm
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchri8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchri8r.tfm
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmbx10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmbx7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmri10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmri7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT C:/Users/Martin/AppData/Local/MiKTeX/2.9/fonts/tfm/public/stmaryrd/stmary10.tfm
+INPUT C:/Users/Martin/AppData/Local/MiKTeX/2.9/fonts/tfm/public/stmaryrd/stmary7.tfm
+INPUT src/img/arrows-viz.pdf
+INPUT ./src/img/arrows-viz.pdf
+INPUT ./src/img/arrows-viz.pdf
+INPUT ./src/img/arrows-viz.pdf
+INPUT src/img/syntacticSugarArrows.pdf
+INPUT ./src/img/syntacticSugarArrows.pdf
+INPUT ./src/img/syntacticSugarArrows.pdf
+INPUT ./src/img/syntacticSugarArrows.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT src/img/parEvalN.pdf
+INPUT ./src/img/parEvalN.pdf
+INPUT ./src/img/parEvalN.pdf
+INPUT ./src/img/parEvalN.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT src/img/parEvalNMulticoreImg.pdf
+INPUT ./src/img/parEvalNMulticoreImg.pdf
+INPUT ./src/img/parEvalNMulticoreImg.pdf
+INPUT ./src/img/parEvalNMulticoreImg.pdf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmbx12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmri12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Users/Martin/AppData/Local/MiKTeX/2.9/fonts/tfm/public/stmaryrd/stmary10.tfm
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT src/img/parEvalNParMonadImg.pdf
+INPUT ./src/img/parEvalNParMonadImg.pdf
+INPUT ./src/img/parEvalNParMonadImg.pdf
+INPUT ./src/img/parEvalNParMonadImg.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr17.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmbx12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmbx12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmri12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmri12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Users/Martin/AppData/Local/MiKTeX/2.9/fonts/tfm/public/stmaryrd/stmary10.tfm
+INPUT C:/Users/Martin/AppData/Local/MiKTeX/2.9/fonts/tfm/public/stmaryrd/stmary10.tfm
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT src/img/parEvalNLazy.pdf
+INPUT ./src/img/parEvalNLazy.pdf
+INPUT ./src/img/parEvalNLazy.pdf
+INPUT ./src/img/parEvalNLazy.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT src/img/parEval2Img.pdf
+INPUT ./src/img/parEval2Img.pdf
+INPUT ./src/img/parEval2Img.pdf
+INPUT ./src/img/parEval2Img.pdf
+INPUT src/img/farmImg.pdf
+INPUT ./src/img/farmImg.pdf
+INPUT ./src/img/farmImg.pdf
+INPUT ./src/img/farmImg.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT src/img/farmChunkImg.pdf
+INPUT ./src/img/farmChunkImg.pdf
+INPUT ./src/img/farmChunkImg.pdf
+INPUT ./src/img/farmChunkImg.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT src/img/withoutFutures.pdf
+INPUT ./src/img/withoutFutures.pdf
+INPUT ./src/img/withoutFutures.pdf
+INPUT ./src/img/withoutFutures.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT src/img/withFutures.pdf
+INPUT ./src/img/withFutures.pdf
+INPUT ./src/img/withFutures.pdf
+INPUT ./src/img/withFutures.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT src/img/ringImg.pdf
+INPUT ./src/img/ringImg.pdf
+INPUT ./src/img/ringImg.pdf
+INPUT ./src/img/ringImg.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT src/img/ringImg.pdf
+INPUT ./src/img/ringImg.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8t.tfm
+INPUT src/img/torus_matrix_parrows_trace.pdf
+INPUT ./src/img/torus_matrix_parrows_trace.pdf
+INPUT ./src/img/torus_matrix_parrows_trace.pdf
+INPUT ./src/img/torus_matrix_parrows_trace.pdf
+INPUT src/img/torus_matrix_parrows_trace.pdf
+INPUT ./src/img/torus_matrix_parrows_trace.pdf
+INPUT src/img/rabinMillerDistSpeedup.pdf
+INPUT ./src/img/rabinMillerDistSpeedup.pdf
+INPUT ./src/img/rabinMillerDistSpeedup.pdf
+INPUT ./src/img/rabinMillerDistSpeedup.pdf
+INPUT src/img/bestAndWorstBenchmarks1.pdf
+INPUT ./src/img/bestAndWorstBenchmarks1.pdf
+INPUT ./src/img/bestAndWorstBenchmarks1.pdf
+INPUT ./src/img/bestAndWorstBenchmarks1.pdf
+INPUT src/img/bestAndWorstBenchmarks1.pdf
+INPUT ./src/img/bestAndWorstBenchmarks1.pdf
+INPUT src/img/bestAndWorstBenchmarks2.pdf
+INPUT ./src/img/bestAndWorstBenchmarks2.pdf
+INPUT ./src/img/bestAndWorstBenchmarks2.pdf
+INPUT ./src/img/bestAndWorstBenchmarks2.pdf
+INPUT src/img/bestAndWorstBenchmarks2.pdf
+INPUT ./src/img/bestAndWorstBenchmarks2.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT src/img/parMap.pdf
+INPUT ./src/img/parMap.pdf
+INPUT ./src/img/parMap.pdf
+INPUT ./src/img/parMap.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT src/img/parMapStream.pdf
+INPUT ./src/img/parMapStream.pdf
+INPUT ./src/img/parMapStream.pdf
+INPUT ./src/img/parMapStream.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT src/img/perfSMRM32.pdf
+INPUT ./src/img/perfSMRM32.pdf
+INPUT ./src/img/perfSMRM32.pdf
+INPUT ./src/img/perfSMRM32.pdf
+INPUT src/img/perfSMRM64.pdf
+INPUT ./src/img/perfSMRM64.pdf
+INPUT ./src/img/perfSMRM64.pdf
+INPUT ./src/img/perfSMRM64.pdf
+INPUT src/img/overSMRM32Eden.pdf
+INPUT ./src/img/overSMRM32Eden.pdf
+INPUT ./src/img/overSMRM32Eden.pdf
+INPUT ./src/img/overSMRM32Eden.pdf
+INPUT src/img/overSMRM32GpH.pdf
+INPUT ./src/img/overSMRM32GpH.pdf
+INPUT ./src/img/overSMRM32GpH.pdf
+INPUT ./src/img/overSMRM32GpH.pdf
+INPUT src/img/overSMRM32Par.pdf
+INPUT ./src/img/overSMRM32Par.pdf
+INPUT ./src/img/overSMRM32Par.pdf
+INPUT ./src/img/overSMRM32Par.pdf
+INPUT src/img/overSMRM64Eden.pdf
+INPUT ./src/img/overSMRM64Eden.pdf
+INPUT ./src/img/overSMRM64Eden.pdf
+INPUT ./src/img/overSMRM64Eden.pdf
+INPUT src/img/overSMRM64GpH.pdf
+INPUT ./src/img/overSMRM64GpH.pdf
+INPUT ./src/img/overSMRM64GpH.pdf
+INPUT ./src/img/overSMRM64GpH.pdf
+INPUT src/img/overSMRM64Par.pdf
+INPUT ./src/img/overSMRM64Par.pdf
+INPUT ./src/img/overSMRM64Par.pdf
+INPUT ./src/img/overSMRM64Par.pdf
+INPUT src/img/perfSMSudoku.pdf
+INPUT ./src/img/perfSMSudoku.pdf
+INPUT ./src/img/perfSMSudoku.pdf
+INPUT ./src/img/perfSMSudoku.pdf
+INPUT src/img/overSMSudokuEden.pdf
+INPUT ./src/img/overSMSudokuEden.pdf
+INPUT ./src/img/overSMSudokuEden.pdf
+INPUT ./src/img/overSMSudokuEden.pdf
+INPUT src/img/overSMSudokuGpH.pdf
+INPUT ./src/img/overSMSudokuGpH.pdf
+INPUT ./src/img/overSMSudokuGpH.pdf
+INPUT ./src/img/overSMSudokuGpH.pdf
+INPUT src/img/overSMSudokuPar.pdf
+INPUT ./src/img/overSMSudokuPar.pdf
+INPUT ./src/img/overSMSudokuPar.pdf
+INPUT ./src/img/overSMSudokuPar.pdf
+INPUT src/img/perfSMTorus.pdf
+INPUT ./src/img/perfSMTorus.pdf
+INPUT ./src/img/perfSMTorus.pdf
+INPUT ./src/img/perfSMTorus.pdf
+INPUT src/img/overSMTorusEden.pdf
+INPUT ./src/img/overSMTorusEden.pdf
+INPUT ./src/img/overSMTorusEden.pdf
+INPUT ./src/img/overSMTorusEden.pdf
+INPUT src/img/perfDistRM256.pdf
+INPUT ./src/img/perfDistRM256.pdf
+INPUT ./src/img/perfDistRM256.pdf
+INPUT ./src/img/perfDistRM256.pdf
+INPUT src/img/overDistRM256Eden.pdf
+INPUT ./src/img/overDistRM256Eden.pdf
+INPUT ./src/img/overDistRM256Eden.pdf
+INPUT ./src/img/overDistRM256Eden.pdf
+INPUT src/img/perfDistJacobi.pdf
+INPUT ./src/img/perfDistJacobi.pdf
+INPUT ./src/img/perfDistJacobi.pdf
+INPUT ./src/img/perfDistJacobi.pdf
+INPUT src/img/overDistJacobiEden.pdf
+INPUT ./src/img/overDistJacobiEden.pdf
+INPUT ./src/img/overDistJacobiEden.pdf
+INPUT ./src/img/overDistJacobiEden.pdf
+INPUT src/img/perfDistTorus.pdf
+INPUT ./src/img/perfDistTorus.pdf
+INPUT ./src/img/perfDistTorus.pdf
+INPUT ./src/img/perfDistTorus.pdf
+INPUT src/img/overDistTorusEden.pdf
+INPUT ./src/img/overDistTorusEden.pdf
+INPUT ./src/img/overDistTorusEden.pdf
+INPUT ./src/img/overDistTorusEden.pdf
+INPUT out/pdf/out.lof
+INPUT out/pdf/out.lof
+OUTPUT out/pdf/out.lof
+INPUT out/pdf/out.lot
+INPUT out/pdf/out.lot
+OUTPUT out/pdf/out.lot
+INPUT out/pdf/out.aux
+INPUT ./out/pdf/out.out
+INPUT ./out/pdf/out.out
+INPUT out/pdf/out.run.xml
+OUTPUT out/pdf/out.run.xml
+INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc
+INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc
+INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc
+INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc
+INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/tex-gyre/q-ec.enc
+INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchb8a.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchb8a.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchr8a.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchr8a.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchri8a.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchri8a.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/tex-gyre/qhvb.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/tex-gyre/qhvb.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/tex-gyre/qhvr.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/tex-gyre/qhvr.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb

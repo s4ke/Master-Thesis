@@ -261,8 +261,8 @@ euclidDistance :: [Int] -> [Int] -> Int
 euclidDistance = sqrt . foldLeft (+) 0 . map (toThePowerOfTwo) . zipWith (-)
 ~~~~
 
-. Note that while this could have easily been written shorter as something along
-the lines of `sqrt . foldLeft (+) 0 . zipWith (\a b -> (a + b) * 2)` it is easy to see
+Note that while this could have easily been written shorter as something along
+the lines of `sqrt (foldLeft (+) 0 (zipWith (\a b -> toThePowerOfTwo (a + b))))` it is easy to see
 that the above declaration is easier to understand because of the simple steps the
 computation takes. We first zip the list of inputs with element-wise subtraction and 
 then square this difference, sum these results up and finally take the square root.

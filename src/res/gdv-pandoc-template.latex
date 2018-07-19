@@ -26,6 +26,14 @@ $endif$
 % **************************************************
 % Load and Configure Packages
 % **************************************************
+\usepackage[section]{placeins}
+\makeatletter
+\AtBeginDocument{%
+  \expandafter\renewcommand\expandafter\subsection\expandafter{%
+    \expandafter\@fb@secFB\subsection
+  }%
+}
+\makeatother
 \usepackage[utf8]{inputenc}		% defines file's character encoding
 \usepackage[$language$]{babel}     % babel system, adjust the language of the content
 \usepackage{amssymb,amsmath}
@@ -193,7 +201,6 @@ $if(lot)$
 \listoftables
 \cleardoublepage
 $endif$
-
 
 \pagestyle{empty}
 $declaration$

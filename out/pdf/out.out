@@ -1,0 +1,62 @@
+\BOOKMARK [0][]{Cover.0}{Cover}{}% 1
+\BOOKMARK [0][]{chapter.1}{1 Introduction}{}% 2
+\BOOKMARK [1][]{section*.2}{1.1 Contributions}{chapter.1}% 3
+\BOOKMARK [0][]{chapter.2}{2 Related Work}{}% 4
+\BOOKMARK [1][]{section*.4}{2.1 Parallel Haskells}{chapter.2}% 5
+\BOOKMARK [1][]{section*.5}{2.2 Algorithmic skeletons}{chapter.2}% 6
+\BOOKMARK [1][]{section*.6}{2.3 Arrows}{chapter.2}% 7
+\BOOKMARK [2][]{section*.7}{2.3.1 Arrows in other languages}{section*.6}% 8
+\BOOKMARK [0][]{chapter.3}{3 Background}{}% 9
+\BOOKMARK [1][]{section*.9}{3.1 Functional Programming}{chapter.3}% 10
+\BOOKMARK [2][]{section*.10}{3.1.1 Why Functional Programming?}{section*.9}% 11
+\BOOKMARK [2][]{section*.11}{3.1.2 A Short introduction to Haskell}{section*.9}% 12
+\BOOKMARK [2][]{section*.16}{3.1.3 Monads}{section*.9}% 13
+\BOOKMARK [2][]{section*.17}{3.1.4 Arrows}{section*.9}% 14
+\BOOKMARK [1][]{section*.21}{3.2 Short introduction to parallel Haskells}{chapter.3}% 15
+\BOOKMARK [2][]{section*.23}{3.2.1 Glasgow parallel Haskell \205 GpH}{section*.21}% 16
+\BOOKMARK [2][]{section*.25}{3.2.2 \040Monad}{section*.21}% 17
+\BOOKMARK [2][]{section*.27}{3.2.3 Eden}{section*.21}% 18
+\BOOKMARK [0][]{chapter.4}{4 Parallel Arrows}{}% 19
+\BOOKMARK [1][]{section*.29}{4.1 The type class}{chapter.4}% 20
+\BOOKMARK [1][]{section*.30}{4.2 \040instances}{chapter.4}% 21
+\BOOKMARK [2][]{section*.31}{4.2.1 Glasgow parallel Haskell}{section*.30}% 22
+\BOOKMARK [2][]{section*.33}{4.2.2 \040Monad}{section*.30}% 23
+\BOOKMARK [2][]{section*.35}{4.2.3 Eden}{section*.30}% 24
+\BOOKMARK [2][]{section*.37}{4.2.4 Default configuration instances}{section*.30}% 25
+\BOOKMARK [1][]{section*.38}{4.3 Extending the interface}{chapter.4}% 26
+\BOOKMARK [2][]{section*.39}{4.3.1 Lazy }{section*.38}% 27
+\BOOKMARK [2][]{section*.42}{4.3.2 Heterogeneous tasks}{section*.38}% 28
+\BOOKMARK [1][]{section*.44}{4.4 Basic -based skeletons}{chapter.4}% 29
+\BOOKMARK [2][]{section*.45}{4.4.1 Parallel and laziness}{section*.44}% 30
+\BOOKMARK [2][]{section*.49}{4.4.2 Statically load-balancing parallel }{section*.44}% 31
+\BOOKMARK [0][]{chapter.5}{5 Further development of Parallel Arrows}{}% 32
+\BOOKMARK [1][]{section*.51}{5.1 Futures}{chapter.5}% 33
+\BOOKMARK [1][]{section*.57}{5.2 Advanced topological skeletons}{chapter.5}% 34
+\BOOKMARK [2][]{section*.58}{5.2.1 Parallel pipe}{section*.57}% 35
+\BOOKMARK [2][]{section*.62}{5.2.2 Ring skeleton}{section*.57}% 36
+\BOOKMARK [2][]{section*.65}{5.2.3 Torus skeleton}{section*.57}% 37
+\BOOKMARK [0][]{chapter.6}{6 Experiment: Cloud Haskell Backend}{}% 38
+\BOOKMARK [0][]{chapter.7}{7 Performance results and discussion}{}% 39
+\BOOKMARK [1][]{section*.73}{7.1 Measurement platform}{chapter.7}% 40
+\BOOKMARK [2][]{section*.74}{7.1.1 Hardware and software}{section*.73}% 41
+\BOOKMARK [2][]{section*.75}{7.1.2 Benchmarks}{section*.73}% 42
+\BOOKMARK [2][]{section*.76}{7.1.3 What parallel Haskells run where}{section*.73}% 43
+\BOOKMARK [1][]{section*.77}{7.2 Benchmark results}{chapter.7}% 44
+\BOOKMARK [2][]{section*.78}{7.2.1 Defining overhead}{section*.77}% 45
+\BOOKMARK [2][]{section*.79}{7.2.2 Shared memory}{section*.77}% 46
+\BOOKMARK [2][]{section*.80}{7.2.3 Distributed memory}{section*.77}% 47
+\BOOKMARK [1][]{section*.82}{7.3 Discussion}{chapter.7}% 48
+\BOOKMARK [0][]{chapter.8}{8 Discussion}{}% 49
+\BOOKMARK [0][]{chapter.9}{9 Conclusion}{}% 50
+\BOOKMARK [1][]{section*.85}{9.1 Future work}{chapter.9}% 51
+\BOOKMARK [0][]{chapter.10}{10 Appendix}{}% 52
+\BOOKMARK [1][]{section*.87}{10.1 Utility Arrows}{chapter.10}% 53
+\BOOKMARK [1][]{section*.91}{10.2 Profunctor Arrows}{chapter.10}% 54
+\BOOKMARK [1][]{section*.93}{10.3 Additional function definitions}{chapter.10}% 55
+\BOOKMARK [1][]{section*.107}{10.4 Syntactic sugar}{chapter.10}% 56
+\BOOKMARK [1][]{section*.108}{10.5 Experimental Cloud Haskell Backend code}{chapter.10}% 57
+\BOOKMARK [1][]{section*.111}{10.6 Shared Memory Benchmarks}{chapter.10}% 58
+\BOOKMARK [1][]{section*.126}{10.7 Distributed Memory Benchmarks}{chapter.10}% 59
+\BOOKMARK [0][]{section*.134}{References}{}% 60
+\BOOKMARK [0][]{section*.134}{List of Figures}{}% 61
+\BOOKMARK [0][]{section*.134}{List of Tables}{}% 62

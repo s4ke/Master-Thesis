@@ -1,4 +1,4 @@
-## Topological skeletons
+## Advanced topological skeletons
 
 \label{sec:topology-skeletons}
 
@@ -242,9 +242,13 @@ Similar to the `ring`, we start by rotating the input
 (Fig. \ref{fig:edenlazyrightrotate}), but this time not only in one direction,
 but in two. This means that the intermediary input from the neighbour nodes has to
 be stored in a tuple `([[fut a]], [[fut b]])` in the second argument
-(`loop` only allows for two arguments) of our looped Arrow
-`arr ([[c]], ([[fut a]], [[fut b]])) ([[d]], ([[fut a]], [[fut b]]))` and our
-rotation Arrow becomes
+(`loop` only allows for two arguments) of our looped Arrow of type
+
+~~~~{.haskell}
+arr ([[c]], ([[fut a]], [[fut b]])) ([[d]], ([[fut a]], [[fut b]])) 
+~~~~
+
+and our rotation Arrow becomes
 
 ~~~~ {.haskell}
 second ((mapArr rightRotate >>> lazy) *** (arr rightRotate >>> lazy))

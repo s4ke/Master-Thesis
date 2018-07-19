@@ -1,0 +1,12 @@
+\documentclass{standalone}[pstricks,border=12pt]
+
+\input{src/tex/base/supp-plotbase.tex}
+
+\begin{document}
+
+\speedupplot{Speedup of distributed \rmtest \enquote{44497 256}}{PArrows Eden}{256}{32}{
+\addplot+ [very thick] table [scatter, x="nCores", y="speedup", col sep=comma, mark=none,
+smooth]{\benchmarkDir/distributed-rm/bench-distributed.bench.skelrm-parrows-44497-256.csv};
+}{272}{\plotwidthDist}{272}
+
+\end{document}

@@ -1,0 +1,9 @@
+\documentclass{standalone}[pstricks,border=12pt]
+
+\input{src/tex/base/supp-plotbase.tex}
+
+\begin{document}
+
+\meanOverheadPlot{Mean Overhead for shared-memory \\ \sudokutest 1000 vs Eden CP}{0.05}{4}{18}{\benchmarkDir/sudoku-sm/eden-cp-1000-diff.csv}
+
+\end{document}

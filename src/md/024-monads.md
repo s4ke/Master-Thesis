@@ -51,12 +51,16 @@ It is defined as [@learnyouahaskell]
 
 ~~~~ {.haskell
     }
-newtype State s a = State { runState :: s -> (a,s) }  
+newtype State s a = State { runState :: s -> (a, s) }  
 ~~~~
 
-where a `State s a` encapsulates a stateful computation on some state type
-`s` yielding some value of type `a`. The instance for the Monad typeclass can then be defined
-as
+where a `State s a` encapsulates a stateful computation
+on some state type `s` yielding some value of type `a`. For easier understanding
+it is often useful to think of `State s a` just as a usability wrapper around a
+function `s -> (a, s)` that returns some `a` if we pass it some state `s`. The State 
+monad therefore only contains the \enquote{blueprint} of the computation that can
+only be run if we start it by passing a state.
+The instance for the Monad typeclass can then be defined as
 
 ~~~~ {.haskell
     }
@@ -70,8 +74,19 @@ instance Monad (State s) where
 where we declare the Monad deliberately on top of `State s` meaning that `State` itself
 is not a monad, but it is a monad together with some state representation `s` ^[We can't have
 declared `State` a monad anyways since the Monad is a typeclass with just one type parameter].
-Additionally, we have helper operations to use this construct with. The first is
-`put :: s -> State s ()` which overwrites the current state returning a unit `()` as result:
+Note how the operations are defined here: `return` encapsulates the given value `x :: a`
+inside the internal function and therefore is equal to the identity `id :: a -> a` function on tuples
+with one parameter already applied.^[With the help of `curry :: ((a, b) -> c) -> a -> b -> c`,
+we could have therefore also written `return x = State { runState = (curry id) x }`]
+In the composition operator `>>=`, the monadic computation 
+`State h :: State s a` is composed with the function `f :: a -> State s b` into
+a new monadic computation of type `State s b`. The internal function of the state
+is essentially taken out of the first argument and composed with the second
+argument inside the returned Monad.
+
+Additionally, we have helper operations to use
+this construct with. The first is `put :: s -> State s ()` which overwrites the
+current state returning a unit `()` as result:
 
 ~~~~ {.haskell
     }
@@ -120,8 +135,8 @@ main :: IO ()
 main = print (evalState computeStateful empty)      
 ~~~~
 
-Here, `computeStateful` first pushes some values on top of a stack (the actual state
-inside of the `State` monad) and then `pop`s these values and `push`es their sum
+Here, `computeStateful` first pushes some values on top of a stack represented by a list
+`[Int]` (the actual state inside of the `State` monad) and then `pop`s these values and `push`es their sum
 back on the stack to finally `peek` the actual value which
 then is the result of the computation.
 To make writing such code easier, Haskell has syntactic sugar called `do` notation.

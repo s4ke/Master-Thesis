@@ -1,0 +1,9 @@
+\documentclass{standalone}[pstricks,border=12pt]
+
+\input{src/tex/base/supp-plotbase.tex}
+
+\begin{document}
+
+\meanOverheadPlot{Mean Overhead for shared-memory \\ \sudokutest 1000 vs Par Monad}{0.05}{4}{18}{\benchmarkDir/sudoku-sm/par-1000-diff.csv}
+
+\end{document}
