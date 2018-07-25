@@ -161,6 +161,7 @@ operator overloading.]
 
 Other often used Monads in the Haskell eco-system include the `Writer` monad, which is
 useful for e.g. logging or the `IO` monad, which is
-used to encapsulate I/O computations as well as compiler internal operations.
+used to encapsulate I/O computations as well as low level internal operations
+such as modifiable variables `IORef` or `MVar` among others.
 Furthermore, as one of many other applications,
 Monads are used in some parallel Haskells as we will see later in this thesis.

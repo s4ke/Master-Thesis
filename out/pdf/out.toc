@@ -102,70 +102,74 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {6}Experiment: Cloud Haskell Backend}{53}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}The Cloud Haskell API}{53}{section*.72}
+\contentsline {section}{\numberline {6.1}Node discovery and program harness}{54}{section*.72}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Program harness}{54}{section*.73}
+\contentsline {subsection}{\numberline {6.1.1}The \ensuremath {\mathit {State}} data-structure}{54}{section*.73}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}Serializing arbitrary data}{56}{section*.74}
+\contentsline {subsection}{\numberline {6.1.2}Starting Slave nodes}{55}{section*.74}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.4}Parallel Evaluation with Cloud Haskell}{56}{section*.75}
+\contentsline {subsection}{\numberline {6.1.3}Starting Master nodes}{56}{section*.75}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.5}\ensuremath {\mathit {Future}}s}{57}{section*.76}
+\contentsline {subsection}{\numberline {6.1.4}Startup harness}{58}{section*.76}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.6}Circular skeletons and issues with Laziness}{58}{section*.77}
+\contentsline {section}{\numberline {6.2}Parallel Evaluation with Cloud Haskell}{59}{section*.77}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Performance results and discussion}{59}{chapter.7}
+\contentsline {section}{\numberline {6.3}\ensuremath {\mathit {Future}}s}{60}{section*.78}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Measurement platform}{59}{section*.79}
+\contentsline {section}{\numberline {6.4}Circular skeletons and issues with Laziness}{60}{section*.79}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1.1}Hardware and software}{59}{section*.80}
+\contentsline {chapter}{\numberline {7}Performance results and discussion}{61}{chapter.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1.2}Benchmarks}{60}{section*.81}
+\contentsline {section}{\numberline {7.1}Measurement platform}{61}{section*.81}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1.3}What parallel Haskells run where}{61}{section*.82}
+\contentsline {subsection}{\numberline {7.1.1}Hardware and software}{61}{section*.82}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Benchmark results}{61}{section*.83}
+\contentsline {subsection}{\numberline {7.1.2}Benchmarks}{62}{section*.83}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2.1}Defining overhead}{61}{section*.84}
+\contentsline {subsection}{\numberline {7.1.3}What parallel Haskells run where}{63}{section*.84}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2.2}Shared memory}{62}{section*.85}
+\contentsline {section}{\numberline {7.2}Benchmark results}{63}{section*.85}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Speedup}{62}{section*.85}
+\contentsline {subsection}{\numberline {7.2.1}Defining overhead}{63}{section*.86}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Overhead}{62}{section*.85}
+\contentsline {subsection}{\numberline {7.2.2}Shared memory}{64}{section*.87}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2.3}Distributed memory}{63}{section*.86}
+\contentsline {subsubsection}{Speedup}{64}{section*.87}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Speedup}{63}{section*.86}
+\contentsline {subsubsection}{Overhead}{64}{section*.87}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Overhead}{63}{figure.caption.87}
+\contentsline {subsection}{\numberline {7.2.3}Distributed memory}{65}{section*.88}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}Discussion}{65}{section*.88}
+\contentsline {subsubsection}{Speedup}{65}{section*.88}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {8}Discussion}{67}{chapter.8}
+\contentsline {subsubsection}{Overhead}{65}{figure.caption.89}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {9}Conclusion}{69}{chapter.9}
+\contentsline {section}{\numberline {7.3}Discussion}{67}{section*.90}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9.1}Future work}{69}{section*.91}
+\contentsline {chapter}{\numberline {8}Discussion}{69}{chapter.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {10}Appendix}{71}{chapter.10}
+\contentsline {chapter}{\numberline {9}Conclusion}{71}{chapter.9}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10.1}Utility Arrows}{71}{section*.93}
+\contentsline {section}{\numberline {9.1}Future work}{71}{section*.93}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10.2}Profunctor Arrows}{72}{section*.97}
+\contentsline {chapter}{\numberline {10}Appendix}{73}{chapter.10}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10.3}Additional function definitions}{72}{section*.99}
+\contentsline {section}{\numberline {10.1}Utility Arrows}{73}{section*.95}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10.4}Syntactic sugar}{77}{section*.113}
+\contentsline {section}{\numberline {10.2}Profunctor Arrows}{74}{section*.99}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10.5}Experimental Cloud Haskell backend code}{77}{section*.114}
+\contentsline {section}{\numberline {10.3}Additional function definitions}{74}{section*.101}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10.6}Plots for the shared memory benchmarks}{81}{section*.117}
+\contentsline {section}{\numberline {10.4}Syntactic sugar}{79}{section*.115}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10.7}Plots for the distributed memory benchmarks}{89}{section*.132}
+\contentsline {section}{\numberline {10.5}Experimental Cloud Haskell backend code}{79}{section*.116}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{References}{93}{section*.140}
+\contentsline {section}{\numberline {10.6}Plots for the shared memory benchmarks}{83}{section*.119}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Figures}{103}{section*.140}
+\contentsline {section}{\numberline {10.7}Plots for the distributed memory benchmarks}{91}{section*.134}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Tables}{107}{section*.140}
+\contentsline {chapter}{References}{95}{section*.142}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{List of Figures}{105}{section*.142}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{List of Tables}{109}{section*.142}

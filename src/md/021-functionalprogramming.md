@@ -585,7 +585,7 @@ let tup = f (g (h (i x))) in y `seq` y
 But as `seq` and `$!` both only evaluate to WHNF, `y` and `z` might still not be completely
 evaluated, since they could be of some more complex type than just `Int` or any other primitive.
 This is the reason why in the Haskell eco system, there exists the
-library `deepseq`^[see \url{.haskell.org/package/deepseq-1.4.3.0/docs/Control-DeepSeq.html}]
+library `deepseq`^[see \url{haskell.org/package/deepseq-1.4.3.0/docs/Control-DeepSeq.html}.]
 which comes with the typeclass `NFData` defined as
 
 ~~~~{.haskell}
@@ -611,7 +611,7 @@ A deep analogue to `$!!` is then easily definable as well as
 f $! x = x `deepseq` f x
 ~~~~
 
-When dealing with WHNF and NF, note that all computations annotated with some
+When dealing with WHNF and NF, note that in all computations annotated with some
 forcing construct, be it `seq` or `deepseq`, laziness does go away entirely.
 All forced values, even the ones forced to NF, can still be considered somewhat
 lazy as they are only forced when they are requested. This is in practice,
@@ -619,7 +619,7 @@ however, usually a desired property in Haskell programs.
 
 #### Custom types
 
-As in any good programming language, in Haskell programmers obviously do not have
+As in any mature programming language, in Haskell programmers obviously do not have
 to represent everything with only some base-set of types. Types are usually defined
 in three different ways. For starters, we can give types aliases with the `type` keyword like
 
