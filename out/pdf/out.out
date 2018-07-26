@@ -40,31 +40,33 @@
 \BOOKMARK [2][]{section*.73}{6.1.1 The data-structure}{section*.72}% 40
 \BOOKMARK [2][]{section*.74}{6.1.2 Starting Slave nodes}{section*.72}% 41
 \BOOKMARK [2][]{section*.75}{6.1.3 Starting Master nodes}{section*.72}% 42
-\BOOKMARK [2][]{section*.76}{6.1.4 Startup harness}{section*.72}% 43
+\BOOKMARK [2][]{section*.76}{6.1.4 Startup harness and }{section*.72}% 43
 \BOOKMARK [1][]{section*.77}{6.2 Parallel Evaluation with Cloud Haskell}{chapter.6}% 44
-\BOOKMARK [1][]{section*.78}{6.3 s}{chapter.6}% 45
-\BOOKMARK [1][]{section*.79}{6.4 Circular skeletons and issues with Laziness}{chapter.6}% 46
-\BOOKMARK [0][]{chapter.7}{7 Performance results and discussion}{}% 47
-\BOOKMARK [1][]{section*.81}{7.1 Measurement platform}{chapter.7}% 48
-\BOOKMARK [2][]{section*.82}{7.1.1 Hardware and software}{section*.81}% 49
-\BOOKMARK [2][]{section*.83}{7.1.2 Benchmarks}{section*.81}% 50
-\BOOKMARK [2][]{section*.84}{7.1.3 What parallel Haskells run where}{section*.81}% 51
-\BOOKMARK [1][]{section*.85}{7.2 Benchmark results}{chapter.7}% 52
-\BOOKMARK [2][]{section*.86}{7.2.1 Defining overhead}{section*.85}% 53
-\BOOKMARK [2][]{section*.87}{7.2.2 Shared memory}{section*.85}% 54
-\BOOKMARK [2][]{section*.88}{7.2.3 Distributed memory}{section*.85}% 55
-\BOOKMARK [1][]{section*.90}{7.3 Discussion}{chapter.7}% 56
-\BOOKMARK [0][]{chapter.8}{8 Discussion}{}% 57
-\BOOKMARK [0][]{chapter.9}{9 Conclusion}{}% 58
-\BOOKMARK [1][]{section*.93}{9.1 Future work}{chapter.9}% 59
-\BOOKMARK [0][]{chapter.10}{10 Appendix}{}% 60
-\BOOKMARK [1][]{section*.95}{10.1 Utility Arrows}{chapter.10}% 61
-\BOOKMARK [1][]{section*.99}{10.2 Profunctor Arrows}{chapter.10}% 62
-\BOOKMARK [1][]{section*.101}{10.3 Additional function definitions}{chapter.10}% 63
-\BOOKMARK [1][]{section*.115}{10.4 Syntactic sugar}{chapter.10}% 64
-\BOOKMARK [1][]{section*.116}{10.5 Experimental Cloud Haskell backend code}{chapter.10}% 65
-\BOOKMARK [1][]{section*.119}{10.6 Plots for the shared memory benchmarks}{chapter.10}% 66
-\BOOKMARK [1][]{section*.134}{10.7 Plots for the distributed memory benchmarks}{chapter.10}% 67
-\BOOKMARK [0][]{section*.142}{References}{}% 68
-\BOOKMARK [0][]{section*.142}{List of Figures}{}% 69
-\BOOKMARK [0][]{section*.142}{List of Tables}{}% 70
+\BOOKMARK [2][]{section*.78}{6.2.1 Communication between nodes}{section*.77}% 45
+\BOOKMARK [2][]{section*.79}{6.2.2 Evaluation on slave nodes}{section*.77}% 46
+\BOOKMARK [2][]{section*.80}{6.2.3 Parallel Evaluation on Slave nodes}{section*.77}% 47
+\BOOKMARK [1][]{section*.81}{6.3 Circular skeletons and issues with Laziness}{chapter.6}% 48
+\BOOKMARK [0][]{chapter.7}{7 Performance results and discussion}{}% 49
+\BOOKMARK [1][]{section*.83}{7.1 Measurement platform}{chapter.7}% 50
+\BOOKMARK [2][]{section*.84}{7.1.1 Hardware and software}{section*.83}% 51
+\BOOKMARK [2][]{section*.85}{7.1.2 Benchmarks}{section*.83}% 52
+\BOOKMARK [2][]{section*.86}{7.1.3 What parallel Haskells run where}{section*.83}% 53
+\BOOKMARK [1][]{section*.87}{7.2 Benchmark results}{chapter.7}% 54
+\BOOKMARK [2][]{section*.88}{7.2.1 Defining overhead}{section*.87}% 55
+\BOOKMARK [2][]{section*.89}{7.2.2 Shared memory}{section*.87}% 56
+\BOOKMARK [2][]{section*.90}{7.2.3 Distributed memory}{section*.87}% 57
+\BOOKMARK [1][]{section*.92}{7.3 Discussion}{chapter.7}% 58
+\BOOKMARK [0][]{chapter.8}{8 Discussion}{}% 59
+\BOOKMARK [0][]{chapter.9}{9 Conclusion}{}% 60
+\BOOKMARK [1][]{section*.95}{9.1 Future work}{chapter.9}% 61
+\BOOKMARK [0][]{chapter.10}{10 Appendix}{}% 62
+\BOOKMARK [1][]{section*.97}{10.1 Utility Arrows}{chapter.10}% 63
+\BOOKMARK [1][]{section*.101}{10.2 Profunctor Arrows}{chapter.10}% 64
+\BOOKMARK [1][]{section*.103}{10.3 Additional function definitions}{chapter.10}% 65
+\BOOKMARK [1][]{section*.117}{10.4 Syntactic sugar}{chapter.10}% 66
+\BOOKMARK [1][]{section*.118}{10.5 Experimental Cloud Haskell backend code}{chapter.10}% 67
+\BOOKMARK [1][]{section*.121}{10.6 Plots for the shared memory benchmarks}{chapter.10}% 68
+\BOOKMARK [1][]{section*.136}{10.7 Plots for the distributed memory benchmarks}{chapter.10}% 69
+\BOOKMARK [0][]{section*.144}{References}{}% 70
+\BOOKMARK [0][]{section*.144}{List of Figures}{}% 71
+\BOOKMARK [0][]{section*.144}{List of Tables}{}% 72

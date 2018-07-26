@@ -217,7 +217,7 @@ waitForStartup conf = readMVar (started conf)
 
 because of the blocking behaviour of empty `MVar`s.
 
-### Startup harness
+### Startup harness and `RemoteTable`
 
 If we put all this logic together we can then easily write a startup harness:
 
@@ -268,27 +268,174 @@ okay for basic applications where the user usually knows which
 functions/values need to be serialized statically at compile time,
 but not in our use case as we want to be able
 to send arbitrary functions/`Arrow`s to remote nodes to be evaluated.
-In Section \ref{sec:parEvalCloudHaskell} we will see how to resolve this problem.
+In Section \ref{sec:parEvalCloudHaskell} we will see how we will resolve this problem.
 
 ## Parallel Evaluation with Cloud Haskell
 
 \label{sec:parEvalCloudHaskell}
+
+As already mentioned earlier, in Cloud Haskell we can not send arbitrary
+functions or Arrows to the slave nodes. Thankfully, there is an alternative:
+The serialization mechanism, that Eden uses internally
+has been made available separately in a package called \enquote{packman}
+^[see \url{https://hackage.haskell.org/package/packman}].
+This mechanism allows values to be serialized
+in the exact evaluation state they are currently in.
+
+We can use this to our advantage. Instead of sending inputs and functions
+to the slave nodes and sending the result back (which does not work with the current Cloud Haskell
+API), we can instead apply the function, serialize this unevaluated thunk,
+send it to the evaluating slave, and send the fully evaluated value back.
+
+### Communication between nodes
+
+#### Serialized data type 
+
+The packman package comes with a serialization function
+`trySerializeWith :: a -> Int -> IO (Serialized a)` (the second parameter is the buffer size)
+and a deserialization function `deserialize :: Serialized a -> IO a`. Here,
+`Serialized a` is the type containing the serialized value of `a`.
+
+We can then define a wrapper type `Thunk a` around `Serialized a` as
 
 ~~~~{.haskell}
 -- Wrapper for the packman type Serialized
 newtype Thunk a = Thunk { fromThunk :: Serialized a } deriving (Typeable)
 
 toThunk a = Thunk { fromThunk = a }
+~~~~
 
+Additionally, we require a `Binary` for our wrapper as well.
+
+~~~~{.haskell}
 instance (Typeable a) => Binary (Thunk a) where
   put = Data.Binary.put . fromThunk
   get = do
     (ser :: Serialized a) <- Data.Binary.get
-    return $ Thunk { fromThunk = ser }
+return $ Thunk { fromThunk = ser }
 ~~~~
 
+This instance is required so that we can send values of type `Thunk a`
+to Cloud Haskell nodes.
+
+#### Sending and Receiving data
+
+\label{sec:sendRecCloud}
+
+In order to send and receive data between nodes, Cloud Haskell uses typed channels.
+A typed channel consists of a `SendPort a` and a `ReceivePort a`.
+We can create a new typed cannel with the help of
+`newChan :: Serializable a => Process (SendPort a, ReceivePort a)`:
+
 ~~~~{.haskell}
--- forces a single value
+myProc :: Process ()
+myProc = do
+    (sendPort, receivePort) <- newChan
+    
+    -- do stuff
+~~~~
+
+Data can be sent with the help of `sendChan :: Serializable a => SendPort a -> a -> Process ()`:
+
+~~~~{.haskell}
+sendTen :: SendPort Int -> Process ()
+sendTen sendPort = sendChan sendPort 10
+~~~~
+
+Values are received in a blocking manner with `receiveChan :: Serializable a => ReceivePort a -> Process a`:
+
+~~~~{.haskell}
+receiveVal :: ReceivePort Int -> Process Int
+receiveVal receivePort = receivechan receivePort
+~~~~
+
+Note that only `SendPort a` is serializable here.
+So in order to have a two way communication where process A
+sends some input to process B and awaits its result like we require
+in our use case,
+we have to first receive a `SendPort a` in A via some 
+`ReceivePort (SendPort a))` of some channel
+`(SendPort (SendPort a), ReceivePort (SendPort a))`.
+This `SendPort a` is sent by B and belongs to the channel `(SendPort a, ReceivePort a)`
+where B expects its input to come through the `ReceivePort a`.
+Additionally, we also require a channel `(SendPort b, ReceivePort b)` on which
+B sends its result through the `SendPort b` and A awaits its result
+on the `ReceivePort b`. This idea is executed in the following code example.
+Process A looks like
+
+~~~~{.haskell}
+procA :: ReceivePort (SendPort a) -> ReceivePort b -> Process ()
+procA aSenderReceiver bReceiver = do
+    aSender <- receiveChan aSenderReceiver
+    
+    let someA = ...
+    sendChan aSender someA
+    
+    someB <- receiveChan bReceiver
+    ...
+    
+    return ()
+~~~~
+
+while process B is schematically defined as
+
+~~~~{.haskell}    
+procB :: SendPort (SendPort a) -> SendPort b -> Process ()
+procB aSenderSender bSender = do
+    (aSender, aReceiver) <- newChan
+    
+    sendChan aSenderSender aSender
+    
+    someA <- receiveChan aReceiver
+    
+    let someB = useAToMakeB someA
+    
+    sendChan bSender someB
+~~~~
+
+### Evaluation on slave nodes
+
+Having discussed the communication scheme and serialization mechanism we want to use,
+we can now go into detail how the evaluation on slave nodes works.
+
+#### Master node
+
+The following function `forceSingle :: NodeId -> MVar a -> a -> Process ()`
+is used to evaluate a single value `a`. It returns a monadic action
+ `Process ()` that evaluates a value of type `a` on the node with the given
+ `NodeId` and stores the evaluated result in the given `MVar a`.
+It starts by creating the necessary communication channels 
+on the master side (the A side from Section \ref{sec:sendRecCloud}).
+It then spawns the actual evaluation task (process B from Section \ref{sec:sendRecCloud})
+
+~~~~{.haskell}
+evalTask :: (SendPort (SendPort (Thunk a)), SendPort a) -> Process ()
+~~~~
+
+with the necessary `SendPort`s for input communication (`SendPort (SendPort (Thunk a))`)
+and result communication (`SendPort a`^[here the type is `a` instead of
+some potentially other `b` because we only evaluate some `a`]) on the given
+node via
+ 
+~~~~{.haskell}
+spawn node (evalTask (inputSenderSender, outputSender))
+~~~~
+
+where `spawn` is of type
+
+~~~~{.haskell}
+spawn :: NodeId -> Closure (Process ()) -> Process ProcessId
+~~~~
+
+Then, like process A in Section \ref{sec:sendRecCloud},
+`forceSingle` waits for the input `SendPort a` of the evaluation task with `receiveChan inputSenderReceiver`.
+It then sends the serialized version of the `a` to be evaluated, `serialized <- liftIO $ trySerialize a`
+over that `SendPort` with `sendChan inputSender $ toThunk serialized` to the evaluating
+slave node. Then, it awaits the
+result of the evaluation with `forcedA <- receiveChan outputReceiver`
+to finally put it inside the passed `MVar a` with `liftIO $ putMVar out forcedA`.
+
+~~~~{.haskell}
 forceSingle :: (Evaluatable a) => NodeId -> MVar a -> a -> Process ()
 forceSingle node out a = do
   -- create the Channel that we use to send the 
@@ -305,10 +452,10 @@ forceSingle node out a = do
   -- wait for the slave to send the input sender
   inputSender <- receiveChan inputSenderReceiver
 
-  thunkA <- liftIO $ trySerialize a
+  serialized <- liftIO $ trySerialize a
 
   -- send the input to the slave
-  sendChan inputSender $ toThunk thunkA
+  sendChan inputSender $ toThunk serialized
 
   -- wait for the result from the slave
   forcedA <- receiveChan outputReceiver
@@ -317,8 +464,59 @@ forceSingle node out a = do
   liftIO $ putMVar out forcedA
 ~~~~
 
+#### Slave node
+
+In the definition of `forceSingle` we use a function
+
 ~~~~{.haskell}
--- base evaluation task for easy instance declaration
+evalTask :: (SendPort (SendPort (Thunk a)), SendPort a) -> Closure (Process ())
+~~~~
+
+As indicated by the `Evaluatable a` in the type signature,
+this function is hosted on a `Evaluatable a` type class:
+
+~~~~{.haskell}
+class (Binary a, Typeable a, NFData a) => Evaluatable a where
+    evalTask :: (SendPort (SendPort (Thunk a)), SendPort a) -> Closure (Process ())
+~~~~
+
+This is an abstraction required because of the way Cloud Haskell does serialization.
+We can not write a single definition `evalTask` and expect it to work even though
+it would be a valid definition. This is because for Cloud Haskell to be able to create
+the required serialization code, at least in our tests, we require a
+fixed type like for example for `Int`s:
+`evalTaskInt :: (SendPort (SendPort (Thunk Int)), SendPort Int) -> Closure (Process ())`
+If we then make this function remotable with `$(remotable [`'`evalTaskInt])`, we can write
+a valid Cloud Haskell compatible instance `Evaluatable Int` simply as
+
+~~~~{.haskell}
+instance Evaluatable Int where
+    evalTask = evalTaskInt
+~~~~
+
+These instances and evaluation tasks can however easily be generated with the Template Haskell code generator 
+in Fig. \ref{fig:evalGen} from the Appendix via calls to the following three
+Template Haskell functions:
+
+~~~~{.haskell}
+$(mkEvalTasks [''Int])
+$(mkRemotables [''Int])
+$(mkEvaluatables [''Int])
+~~~~ 
+
+This is possible because `evalTaskInt` just like any other function on types that
+have instances for `Binary a`, `Typeable a`, and `NFData a` can be just delegated to
+`evalTaskBase`, which we behaves as follows: Starting off, it creates the channel that
+it wants to receive its input from with `(sendMaster, rec) <- newChan`. Then it
+sends the `SendPort (Thunk a)` of this channel back to the master process via 
+`sendChan inputPipe sendMaster` to then receive its actual input on the
+`ReceivePort (Thunk a)` end with
+`thunkA <- receiveChan rec`. It then deserializes this thunk with
+`a <- liftIO $ deserialize $ fromThunk thunkA` and sends
+the fully evaluated result back with `sendChan output (seq (rnf a) a)`.
+Its complete definition is
+
+~~~~{.haskell}
 evalTaskBase :: (Binary a, Typeable a, NFData a) => 
   (SendPort (SendPort (Thunk a)), SendPort a) -> Process ()
 evalTaskBase (inputPipe, output) = do
@@ -335,21 +533,62 @@ evalTaskBase (inputPipe, output) = do
   a <- liftIO $ deserialize $ fromThunk thunkA
 
   -- force the input and send it back to master
-  sendChan output (rnf a `seq` a)
+  sendChan output (seq (rnf a) a)
 ~~~~
 
+### Parallel Evaluation on Slave nodes
+
+Since we have discussed how to evaluate a value on slave nodes via
+`forceSingle :: (Evaluatable a) => NodeId -> MVar a -> a -> Process ()`, we can
+now use this to build up the internal API we require in order to fit the
+`ArrowParallel` type class. For this we start by defining an abstraction of a
+computation as
+
 ~~~~{.haskell}
--- evaluates a single value inside the Par monad
-evalSingle :: Evaluatable a => Conf -> NodeId -> a -> Par a
+data Computation a = Comp {
+  computation :: IO (),
+  result :: IO a
+}
+~~~~
+
+where `computation :: IO ()` is the `IO ()` action that is required to be evaluated
+so that we can get a result from `result :: IO a`.
+
+Next is the definition of
+`evalSingle :: Evaluatable => Conf -> NodeId -> a -> IO (Computation a)`.
+Its resulting `IO` action starts by creating an empty `MVar a` with
+`mvar <- newEmptyMVar`. Then it creates an `IO` action that forks
+away the evaluation process of `forceSingle` 
+on the single passed value `a` by means of `forkProcess :: LocalNode -> Process () -> IO ProcessId`
+on the the master node with `forkProcess (localNode conf) $ forceSingle node mvar a`.
+The action concludes by returning a `Computation a` encapsulating
+the evaluation `IO ()` action and the result communication action
+`takeMVar mvar :: IO a`:
+
+~~~~{.haskell}
+evalSingle :: Evaluatable a => Conf -> NodeId -> a -> IO (Computation a)
 evalSingle conf node a = do
   mvar <- newEmptyMVar
   let computation = forkProcess (localNode conf) $ forceSingle node mvar a
   return $ Comp { computation = computation >> return (), result = takeMVar mvar }
 ~~~~
 
+With this we can then easily define a function
+`evalParallel :: Evaluatable a => Conf -> [a] -> IO (Computation [a])`
+that builds an `IO` action containing a parallel `Computation [a]`
+from an input list `[a]`. This IO action starts by retrieving the current list of
+workers with `workers <- readMVar $ workers conf`. It then continues
+by shuffling this list of workers with `shuffledWorkers <- randomShuffle workers`
+^[`randomShuffle :: [a] -> IO [a]` from \url{https://wiki.haskell.org/Random_shuffle}]
+to ensure at least some level of equal work distribution between multiple calls
+to `evalParallel`. It then assigns the input values `a` to their 
+corresponding workers to finally build the list of parallel computations `[Computation a]`
+with `comps <- sequence $ map (uncurry $ evalSingle conf) workAssignment`. 
+It concludes by turning this list `[Computation a]` into a computation of a list
+`Computation [a]` with `return $ sequenceComp comps`.
+
 ~~~~{.haskell}
--- evaluates multiple values inside the Par monad
-evalParallel :: Evaluatable a => Conf -> [a] -> Par [a]
+evalParallel :: Evaluatable a => Conf -> [a] -> IO (Computation [a])
 evalParallel conf as = do
   workers <- readMVar $ workers conf
 
@@ -366,11 +605,13 @@ evalParallel conf as = do
   return $ sequenceComp comps
 ~~~~
 
-~~~~{.haskell}
-class (Binary a, Typeable a, NFData a) => Evaluatable a where
-  evalTask :: (SendPort (SendPort (Thunk a)), SendPort a) -> Closure (Process ())
-~~~~
+Here, the definition of `sequenceComp :: [Computation a] -> Computation [a]` is
 
-## `Future`s
+~~~~{.haskell}
+sequenceComp :: [Computation a] -> Computation [a]
+sequenceComp comps = Comp { computation = newComp, result = newRes } 
+  where newComp = sequence_ $ map computation comps
+        newRes = sequence $ map result comps
+~~~~
 
 ## Circular skeletons and issues with Laziness

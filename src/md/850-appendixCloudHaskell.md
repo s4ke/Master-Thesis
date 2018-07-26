@@ -1,5 +1,7 @@
 ## Experimental Cloud Haskell backend code
 
+\label{sec:appendixCloudHaskell}
+
 Finally, we include the Template Haskell based code
 generator to make the experimental Cloud Haskell backend easier
 to use and a version of the main Sudoku benchmark program as an example.
