@@ -52,3 +52,31 @@ Here, the general idea is to use the `+++` combinator which combines
 two Arrows `arr a b` and `arr c d` and transforms them into
 `arr (Either a c) (Either b d)` to get a common Arrow type that we can
 then feed into `parEvalN`.
+ 
+We can implement this idea as follows:
+Starting off, we transform the `(a, c)` input into a two-element list
+`[Either a c]` by first tagging the two inputs with `Left` and `Right` and wrapping
+the right element in a singleton list with `return` so that we can combine them
+with `arr (uncurry (:))`. Next, we feed this list into a parallel Arrow running
+on two instances of `f +++ g` as described in the paper. After the calculation
+is finished, we convert the resulting `[Either b d]` into `([b], [d])` with
+`arr partitionEithers`. The two lists in this tuple contain only one element
+each by construction, so we can finally just convert the tuple to `(b, d)` in
+the last step.
+
+~~~~ {#fig:parEval2
+    .haskell
+    .figure
+    caption="|parEval2| definition."
+    options=t
+    }
+parEval2 :: (ArrowChoice arr,
+	ArrowParallel arr (Either a c) (Either b d) conf) =>
+	conf -> arr a b -> arr c d -> arr (a, c) (b, d)
+parEval2 conf f g =
+	arr Left *** (arr Right >>> arr return) >>>
+	arr (uncurry (:)) >>>
+	parEvalN conf (replicate 2 (f +++ g)) >>>
+	arr partitionEithers >>>
+	arr head *** arr head
+~~~~

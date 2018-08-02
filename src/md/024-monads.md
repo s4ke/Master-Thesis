@@ -10,7 +10,7 @@ No. Functional Programs generally just avoid *unnecessary* mutable state at all 
 The fact of the matter is that in functional programming, we can represent
 mutable state as well, but we do so in a meaningful and controlled manner.
 
-While in most computations, we could represent state,
+While in most computations, we could represent state
 by passing it into every function that can possibly change it
 and returning it alongside of the actual returned value like
 
@@ -45,8 +45,8 @@ define the order of two monadic computations `m a` and `m b` so that
 `m a` is computed before `m b` while discarding the result of the first one as can
 also be seen in its default implementation above.
 
-Given this definition of a Monad, we can now take a look at
-the well known example for a Monad - the `State` Monad
+Given this definition of a Monad, we can now take a look at how we would implement
+a `State` Monad.
 It is defined as [@learnyouahaskell]
 
 ~~~~ {.haskell
@@ -57,10 +57,11 @@ newtype State s a = State { runState :: s -> (a, s) }
 where a `State s a` encapsulates a stateful computation
 on some state type `s` yielding some value of type `a`. For easier understanding
 it is often useful to think of `State s a` just as a usability wrapper around a
-function `s -> (a, s)` that returns some `a` if we pass it some state `s`. The State 
+function `s -> (a, s)` that returns some `a` and the final state `s`
+if we pass it some starting state `s`. The State 
 monad therefore only contains the \enquote{blueprint} of the computation that can
 only be run if we start it by passing a state.
-The instance for the Monad typeclass can then be defined as
+The instance for the Monad type class can then be defined as
 
 ~~~~ {.haskell
     }
@@ -72,8 +73,8 @@ instance Monad (State s) where
 ~~~~
 
 where we declare the Monad deliberately on top of `State s` meaning that `State` itself
-is not a monad, but it is a monad together with some state representation `s` ^[We can't have
-declared `State` a monad anyways since the Monad is a typeclass with just one type parameter].
+is not a monad, but it is a monad together with some state representation `s` ^[We can't
+declare `State` a monad anyways since the Monad is a type class with just one type parameter].
 Note how the operations are defined here: `return` encapsulates the given value `x :: a`
 inside the internal function and therefore is equal to the identity `id :: a -> a` function on tuples
 with one parameter already applied.^[With the help of `curry :: ((a, b) -> c) -> a -> b -> c`,

@@ -1,0 +1,22 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: main.aux
+The style file: unsrtnat.bst
+A level-1 auxiliary file: functionalprogramming.aux
+A level-1 auxiliary file: arrows.aux
+A level-1 auxiliary file: parallelHaskells.aux
+A level-1 auxiliary file: parrows.aux
+A level-1 auxiliary file: parrowsImpl.aux
+A level-1 auxiliary file: syntacticSugar.aux
+A level-1 auxiliary file: skeletons.aux
+A level-1 auxiliary file: futures.aux
+A level-1 auxiliary file: topologySkeletons.aux
+A level-1 auxiliary file: profit.aux
+A level-1 auxiliary file: lastpage.aux
+Already encountered file functionalprogramming.aux
+---line 60 of file main.aux
+ : \@input{functionalprogramming.aux
+ :                                  }
+I'm skipping whatever remains of this command
+A level-1 auxiliary file: additionalStuff.aux
+I found no \citation commands---while reading file main.aux
+I found no \bibdata command---while reading file main.aux
+(There were 3 error messages)

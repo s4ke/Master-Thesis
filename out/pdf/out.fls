@@ -368,10 +368,10 @@ INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstmisc.sty
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8t.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchb8t.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmssbx10.tfm
-OUTPUT out/pdf/out.ptb
-INPUT out/pdf/out.ptb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchr8t.vf
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8r.tfm
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmbx10.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmbx8.tfm
@@ -410,15 +410,17 @@ INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmtt8.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmtt8.tfm
 INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
-INPUT out/pdf/out.ptb
-OUTPUT out/pdf/out.ptb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmtt8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmtt8.tfm
 INPUT out/pdf/out.ptb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchri8t.vf
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchri8r.tfm
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
@@ -583,12 +585,28 @@ INPUT src/img/parEval2Img.pdf
 INPUT ./src/img/parEval2Img.pdf
 INPUT ./src/img/parEval2Img.pdf
 INPUT ./src/img/parEval2Img.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+INPUT src/img/parMap.pdf
+INPUT ./src/img/parMap.pdf
+INPUT ./src/img/parMap.pdf
+INPUT ./src/img/parMap.pdf
+INPUT src/img/parMapStream.pdf
+INPUT ./src/img/parMapStream.pdf
+INPUT ./src/img/parMapStream.pdf
+INPUT ./src/img/parMapStream.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
 INPUT src/img/farmImg.pdf
 INPUT ./src/img/farmImg.pdf
 INPUT ./src/img/farmImg.pdf
 INPUT ./src/img/farmImg.pdf
-OUTPUT out/pdf/out.ptb
-INPUT out/pdf/out.ptb
 INPUT src/img/farmChunkImg.pdf
 INPUT ./src/img/farmChunkImg.pdf
 INPUT ./src/img/farmChunkImg.pdf
@@ -599,6 +617,10 @@ INPUT src/img/withoutFutures.pdf
 INPUT ./src/img/withoutFutures.pdf
 INPUT ./src/img/withoutFutures.pdf
 INPUT ./src/img/withoutFutures.pdf
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
@@ -705,6 +727,12 @@ OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
 INPUT src/img/rabinMillerDistSpeedup.pdf
 INPUT ./src/img/rabinMillerDistSpeedup.pdf
 INPUT ./src/img/rabinMillerDistSpeedup.pdf
@@ -727,26 +755,6 @@ OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
-OUTPUT out/pdf/out.ptb
-INPUT out/pdf/out.ptb
-OUTPUT out/pdf/out.ptb
-INPUT out/pdf/out.ptb
-OUTPUT out/pdf/out.ptb
-INPUT out/pdf/out.ptb
-OUTPUT out/pdf/out.ptb
-INPUT out/pdf/out.ptb
-OUTPUT out/pdf/out.ptb
-INPUT out/pdf/out.ptb
-INPUT src/img/parMap.pdf
-INPUT ./src/img/parMap.pdf
-INPUT ./src/img/parMap.pdf
-INPUT ./src/img/parMap.pdf
-OUTPUT out/pdf/out.ptb
-INPUT out/pdf/out.ptb
-INPUT src/img/parMapStream.pdf
-INPUT ./src/img/parMapStream.pdf
-INPUT ./src/img/parMapStream.pdf
-INPUT ./src/img/parMapStream.pdf
 OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb

@@ -14,7 +14,7 @@ A parallel computation (on functions) can be seen as execution of some functions
 (Section \ref{sec:parEvalNIntro}).
 Translating this into Arrow terms gives us a new operator `parEvalN` that lifts
 a list of Arrows `[arr a b]` to a parallel Arrow `arr [a] [b]`.
-This combinator is similar to `evalN` from Appendix \ref{utilfns}, but does
+This combinator is similar to the evaluation combinator `evalN` from Appendix \ref{utilfns}, but does
 parallel instead of serial evaluation.
 
 ~~~~ {.haskell}
@@ -71,7 +71,7 @@ in future versions of our DSL.
     .haskell
     .figure
     caption="GpH |ArrowParallel| instance."
-    options=t
+    options=h
     }
 data Conf a = Conf (Strategy a)
 
@@ -109,7 +109,7 @@ Finally, we execute the computation `Par [b]` by composing with
     .haskell
     .figure
     caption="|Par| Monad |ArrowParallel| instance."
-    options=t
+    options=h
     }
 instance (ArrowChoice arr) => ArrowParallel arr a b (Conf b) where
     parEvalN (Conf strat) fs =
@@ -142,7 +142,7 @@ have a configurable `spawnF` variant.
     .haskell
     .figure
     caption="Eden |ArrowParallel| instance."
-    options=t
+    options=h
     }
 instance (Trans a, Trans b) => ArrowParallel (->) a b Conf where
     parEvalN _ = spawnF
@@ -161,7 +161,7 @@ While the configurability in the instances of the `ArrowParallel`
 instances above is nice, users probably would like to have proper
 default configurations for many parallel programs as well.
 These can also easily be defined as we can see by the example
-of the default implementation of `ArrowParallel` for the GpH:
+of the default implementation of `ArrowParallel` for GpH:
 
 ~~~~ {.haskell}
 instance (NFData b, ArrowChoice arr, ArrowParallel arr a b (Conf b)) =>
@@ -183,5 +183,5 @@ which should not be a problem, though.
 Up until now we discussed Arrow operations more in detail,
 but in the following sections we focus more on the data-flow
 between the Arrows, now that we have seen that Arrows are capable
-of expressing parallelism. We do explain new concepts with more details
+of expressing parallelism. We do explain new concepts in greater detail
 if required for better understanding, though.

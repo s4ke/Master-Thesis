@@ -22,12 +22,10 @@ can however only be achieved if the programmer actively chooses to use these kin
 In its purest form, parallel computation (on functions) can be looked at
 as the execution of some functions `a -> b` in parallel or 
 `parEvalN :: [a -> b] -> [a] -> [b]`, as also Fig. \ref{fig:parEvalN} 
-symbolically shows.
+symbolically shows. In this section, we will implement this non-Arrow version which
+will later be adapted for usage in our Arrow-based parallel Haskell.
 
 ![Schematic illustration of `parEvalN`. A list of inputs is transformed by different functions in parallel.](src/img/parEvalN.pdf){#fig:parEvalN}
-
-In this section, we will implement this non-Arrow version which
-will later be adapted for usage in our Arrow-based parallel Haskell.
 
 There exist several parallel Haskells already.
 Among the most important are probably GpH (based on `par` and `pseq` \enquote{hints}, @Trinder1996, @Trinder1998a),
@@ -36,14 +34,14 @@ Eden (a parallel Haskell for distributed memory, @eden, @Loogen2012),
 HdpH (a Template Haskell-based parallel Haskell for distributed memory, @Maier:2014:HDS:2775050.2633363, @stewart_maier_trinder_2016)
 and LVish (a `Par` extension with focus on communication, @Kuper:2014:TPE:2666356.2594312).
 
-As the goal of this paper is not to re-implement yet another parallel runtime,
+As the goal of this thesis is not to re-implement yet another parallel runtime,
 but to represent parallelism with Arrows, we base our efforts on existing work
 which we wrap as backends behind a common interface.
-For this paper we chose GpH for its simplicity, the `Par` Monad to represent a
+For this thesis we chose GpH for its simplicity, the `Par` Monad to represent a
 monadic DSL, and Eden as a distributed parallel Haskell.
 
 LVish and HdpH were not chosen as the former does not differ from the original
-`Par` Monad with regard to how we would have used it in this paper,
+`Par` Monad with regard to how we would have used it in this thesis,
 while the latter (at least in its current form) does not comply with
 our representation of parallelism due to its heavy reliance on Template Haskell.
 
@@ -102,7 +100,8 @@ of not yet evaluated forked away computations `[Par (IVar b)]`,
 which we convert to `Par [IVar b]` with `sequenceA`.
 We wait for the computations to finish by mapping over the `IVar b`
 values inside the `Par` Monad with `get`.
-This results in `Par [b]`. We execute this process with `runPar` to finally get `[b]`.
+This results in `Par [b]`. We execute this process with `runPar` to finally get the fully
+evaluated list of results`[b]`.
 While we used `spawn` in the definition above, a head-strict variant
 can easily be defined by replacing `spawn` with `spawn_ :: Par a -> Par (IVar a)`.
 Fig. \ref{fig:parEvalNParMonadImg} shows a graphical representation.

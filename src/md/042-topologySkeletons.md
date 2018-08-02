@@ -14,7 +14,7 @@ can express more sophisticated skeletons with parallel Arrows as well.
 
 If we were to use the original definition of `parEvalN`, however, these skeletons
 would produce an infinite loop with the GpH and `Par` Monad which during runtime
-would result in the program crash.
+would result in the program crashing.
 This materialises with the usage of `loop` of the `ArrowLoop` type class and we
 think that this is due to difference of how evaluation is done in these
 backends when compared to Eden.
@@ -23,6 +23,7 @@ we only provide a workaround for these types of skeletons as such they
 probably are not of much importance outside of a distributed memory environment.
 However our workaround enables users of the DSL to test their code within a
 shared memory setting.
+
 The idea of the fix is to provide a `ArrowLoopParallel` type class that has two
 functions -- `loopParEvalN` and `postLoopParEvalN`, where the first is to be
 used inside an `loop` construct while the latter will be used right outside of
@@ -340,7 +341,7 @@ If we compare the trace from a call using our Arrow definition of the
 `torus` (Fig. \ref{fig:torus_parrows_trace}) with the Eden version
 (Fig. \ref{fig:torus_eden_trace}) we can see that the behaviour of the Arrow version
 and execution times are comparable. We discuss further benchmarks on larger
-clusters in more detail in the next section.
+clusters in more detail in Section \ref{sec:benchmarks}.
 
 ![Matrix multiplication with `torus` (PArrows).](src/img/torus_matrix_parrows_trace.pdf){#fig:torus_parrows_trace}
 

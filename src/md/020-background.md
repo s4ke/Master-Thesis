@@ -2,7 +2,10 @@
 
 \label{sec:background}
 
-This section gives a short overview of Arrows
-(Section \ref{sec:arrows}) and of GpH, the `Par` Monad, and
-Eden, the three parallel Haskells which we base our DSL on
-(Section \ref{sec:parallelHaskells}).
+Before we delve into our novel approach for parallel programming using
+Arrows, we give a short overview of all our main concepts and technologies.
+We start by giving an introduction to functional programming (Section \ref{sec:fuproHaskell})
+including a short tutorial on Monads (Section \ref{sec:monads}) before explaining the concept of Arrows
+(Section \ref{sec:arrows}). Finally we give a short introduction to the main parallel
+Haskells used as backends for our DSL in this thesis (Section \ref{sec:parallelHaskells}) - GpH, the `Par` Monad, and
+Eden.

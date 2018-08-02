@@ -104,95 +104,8 @@ instance (Category p, Strong p, Choice p) => ArrowChoice p where
 
 We have omitted some function definitions in the main text for
 brevity, and redeem this here.
-We begin with warping Eden's build-in `RemoteData` to `Future` in
-Figure \ref{fig:RDFuture}.
 
-~~~~ {#fig:RDFuture
-    .haskell
-    .figure
-    caption="|RD|-based |RemoteData| version of |Future| for the Eden backend."
-    options=h
-    }
-data RemoteData a = RD { rd :: RD a }
-
-put' :: (Arrow arr) => arr a (BasicFuture a)
-put' = arr BF
-
-get' :: (Arrow arr) => arr (BasicFuture a) a
-get' = arr (\(~(BF a)) -> a)
-
-instance NFData (RemoteData a) where
-    rnf = rnf . rd
-instance Trans (RemoteData a)
-
-instance (Trans a) => Future RemoteData a Conf where
-    put _ = put'
-    get _ = get'
-
-instance (Trans a) => Future RemoteData a () where
-    put _ = put'
-    get _ = get'
-~~~~
-
-Next, we have the definition of `BasicFuture` in Fig. \ref{fig:BasicFuture} and
-the corresponding `Future` instances.
-
-~~~~ {#fig:BasicFuture
-    .haskell
-    .figure
-    caption="|BasicFuture| type and its |Future| instance for the |Par| Monad and GpH."
-    options=h
-    }
-data BasicFuture a = BF a
-
-put' :: (Arrow arr) => arr a (BasicFuture a)
-put' = arr BF
-
-get' :: (Arrow arr) => arr (BasicFuture a) a
-get' = arr (\(~(BF a)) -> a)
-
-instance NFData a => NFData (BasicFuture a) where
-    rnf (BF a) = rnf a
-
-instance Future BasicFuture a (Conf a) where
-    put _ = put'
-    get _ = get'
-
-instance Future BasicFuture a () where
-    put _ = put'
-    get _ = get'
-~~~~
-
-Figures \ref{fig:parMapImg}--\ref{fig:parMapStream} show the definitions and a
-visualisations of two parallel `map` variants, defined using `parEvalN` and its
-lazy counterpart.
-
-![`parMap` depiction.](src/img/parMap.pdf){#fig:parMapImg}
-
-~~~~ {#fig:parMap
-    .haskell
-    .figure
-    caption="|parMap| definition."
-    options=h
-    }
-parMap :: (ArrowParallel arr a b conf) => conf -> (arr a b) -> (arr [a] [b])
-parMap conf f = parEvalN conf (repeat f)
-~~~~
-
-![`parMapStream` depiction.](src/img/parMapStream.pdf){#fig:parMapStreamImg}
-
-~~~~ {#fig:parMapStream
-    .haskell
-    .figure
-    caption="|parMapStream| definition."
-    options=h
-    }
-parMapStream :: (ArrowParallel arr a b conf, ArrowChoice arr, ArrowApply arr) =>
-	conf -> ChunkSize -> arr a b -> arr [a] [b]
-parMapStream conf chunkSize f = parEvalNLazy conf chunkSize (repeat f)
-~~~~
-
-Arrow versions of Eden's `shuffle`, `unshuffle` and the definition of
+We begin with Arrow versions of Eden's `shuffle`, `unshuffle` and the definition of
 `takeEach` are in Fig. \ref{fig:edenshuffleetc}. Similarly,
 Fig. \ref{fig:edenlazyrightrotate} contains the definition of Arrow
 versions of Eden's `lazy` and `rightRotate` utility functions.
@@ -250,21 +163,6 @@ threetotwo :: (Arrow arr) => arr (a, b, c) (a, (b, c))
 threetotwo = arr $ \ ~(a, b, c) -> (a, (b, c))
 ~~~~
 
-~~~~ {#fig:farmChunk
-    .haskell
-    .figure
-    caption="|farmChunk| definition."
-    options=t
-    }
-farmChunk :: (ArrowParallel arr a b conf, ArrowParallel arr [a] [b] conf, 
-             ArrowChoice arr, ArrowApply arr) =>
-	conf -> ChunkSize -> NumCores -> arr a b -> arr [a] [b]
-farmChunk conf chunkSize numCores f =
-	unshuffle numCores >>>
-	parEvalNLazy conf chunkSize (repeat (mapArr f)) >>>
-	shuffle
-~~~~
-
 ~~~~ {#fig:ringEden
     .haskell
     .figure
@@ -286,34 +184,6 @@ rightRotate xs =  last xs : init xs
 
 lazy :: [a] -> [a]
 lazy ~(x:xs) = x : lazy xs
-~~~~
-
-The `parEval2` skeleton is defined in Fig. \ref{fig:parEval2}. 
-We start by transforming the `(a, c)` input into a two-element list
-`[Either a c]` by first tagging the two inputs with `Left` and `Right` and wrapping
-the right element in a singleton list with `return` so that we can combine them
-with `arr (uncurry (:))`. Next, we feed this list into a parallel Arrow running
-on two instances of `f +++ g` as described in the paper. After the calculation
-is finished, we convert the resulting `[Either b d]` into `([b], [d])` with
-`arr partitionEithers`. The two lists in this tuple contain only one element
-each by construction, so we can finally just convert the tuple to `(b, d)` in
-the last step.
-
-~~~~ {#fig:parEval2
-    .haskell
-    .figure
-    caption="|parEval2| definition."
-    options=t
-    }
-parEval2 :: (ArrowChoice arr,
-	ArrowParallel arr (Either a c) (Either b d) conf) =>
-	conf -> arr a b -> arr c d -> arr (a, c) (b, d)
-parEval2 conf f g =
-	arr Left *** (arr Right >>> arr return) >>>
-	arr (uncurry (:)) >>>
-	parEvalN conf (replicate 2 (f +++ g)) >>>
-	arr partitionEithers >>>
-	arr head *** arr head
 ~~~~
 
 Furthermore, Fig. \ref{fig:torus_example_rest} contains the omitted definitions

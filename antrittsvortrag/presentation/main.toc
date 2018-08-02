@@ -1,0 +1,7 @@
+\beamer@sectionintoc {1}{What has happened until now?}{3}{0}{1}
+\beamer@sectionintoc {2}{What is part of the MA thesis?}{11}{0}{2}
+\beamer@subsectionintoc {2}{1}{Improvements}{12}{0}{2}
+\beamer@subsectionintoc {2}{2}{Futures}{13}{0}{2}
+\beamer@subsectionintoc {2}{3}{Topology Skeletons}{15}{0}{2}
+\beamer@subsectionintoc {2}{4}{Benchmarks}{18}{0}{2}
+\beamer@subsectionintoc {2}{5}{Experiment: Cloud Haskell backend}{19}{0}{2}

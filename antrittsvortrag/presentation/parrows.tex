@@ -1,0 +1,40 @@
+%\subsection{Generalization to Arrows}
+
+\begin{frame}[fragile]{The ArrowParallel typeclass}
+\begin{lstlisting}[frame=htrbl]
+class Arrow arr => ArrowParallel arr a b conf where
+	parEvalN :: conf -> [arr a b] -> arr [a] [b]
+\end{lstlisting}
+~\\
+Implementation for several backends:
+\\
+\begin{itemize}
+\item GpH
+\item Par Monad
+\item Eden
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{More things from the MA project}
+More things done in the MA project:
+\\
+\begin{minipage}{0.49\textwidth}
+~\\
+\begin{itemize}
+\item Syntactic Sugar ~\\~\\~\\
+\item Basic mapping skeletons ~\\~\\~\\
+\item first benchmarks
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.49\textwidth}
+\begin{lstlisting}[frame=htrbl]
+(|***|) ::
+	arr a b -> arr c d ->
+	arr (a, c) (b, d)
+\end{lstlisting}
+\begin{lstlisting}[frame=htrbl]
+parMap ::
+	conf -> arr a b -> arr [a] [b]
+\end{lstlisting}
+\end{minipage}
+\end{frame}

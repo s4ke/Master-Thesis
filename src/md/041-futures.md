@@ -2,12 +2,9 @@
 
 \label{sec:futures}
 
-~~~~ {#fig:someCombinator
-    .haskell
-    .figure
-    caption="The outline combinator."
-    options=t
-    }
+Consider the following outline parallel Arrow combinator:
+
+~~~~ {.haskell}
 someCombinator :: (ArrowChoice arr,
 	ArrowParallel arr a b (),
 	ArrowParallel arr b c ()) =>
@@ -18,7 +15,6 @@ someCombinator fs1 fs2 =
 	parEvalN () fs2
 ~~~~
 
-Consider the outline parallel Arrow combinator in Fig. \ref{fig:someCombinator}.
 In a distributed environment this first evaluates all `[arr a b]` in parallel,
 sends the results back to the master node, rotates the input once
 (in the example we require `ArrowChoice` for this) and then evaluates the
@@ -41,48 +37,85 @@ Each bar represents one process. Black lines represent communication.
 Colours: blue $\hat{=}$ idle, green $\hat{=}$ running, red  $\hat{=}$ blocked,
 yellow $\hat{=}$ suspended.](src/img/withoutFutures.pdf){#fig:withoutFutures}
 
-This is only a problem in distributed memory (in the scope of this paper) and we
+This is only a problem in distributed memory (in the scope of this thesis) and we
 should allow nodes to communicate directly with each other. Eden already provides
 \enquote{remote data} that enable this [@AlGo03a,@Dieterle2010].
 But as we want code using our DSL to be implementation agnostic, we have to
 wrap this concept. We do this with the `Future` type class
-(Fig. \ref{fig:future}). We require a `conf` parameter here as well, but only
+(Fig. \ref{fig:future}). A `conf` parameter is required here as well, but only
 so that Haskells type system allows us to have multiple Future implementations
 imported at once without breaking any dependencies similar to what we did with
-the `ArrowParallel` type class earlier.
+the `ArrowParallel` type class earlier:
 
-~~~~ {#fig:future
-    .haskell
-    .figure
-    caption="The |Future| type class."
-    options=h
-    }
+~~~~ {.haskell}
 class Future fut a conf | a conf -> fut where
     put :: (Arrow arr) => conf -> arr a (fut a)
     get :: (Arrow arr) => conf -> arr (fut a) a
 ~~~~
 
+Note that we can also define default utility instances `Future fut a ()`
+for each backend similar to how `ArrowParallel arr a b ()` was defined
+in Section \ref{sec:parallel-arrows} as we will shortly see in the implementations
+for the backends.
+
 Since `RD` is only a type synonym for a communication type that Eden uses
 internally, we have to use some wrapper classes to fit that definition, though,
-as Fig. \ref{fig:RDFuture} shows. Technical details are in Appendix,
-in Section \ref{app:omitted}.
+as the following code showcases:
 
-For GpH and `Par` Monad, we can simply use `BasicFuture`s (Fig. \ref{fig:BasicFuture}),
+~~~~ {.haskell}
+data RemoteData a = RD { rd :: RD a }
+
+put' :: (Arrow arr) => arr a (BasicFuture a)
+put' = arr BF
+
+get' :: (Arrow arr) => arr (BasicFuture a) a
+get' = arr (\(~(BF a)) -> a)
+
+instance NFData (RemoteData a) where
+    rnf = rnf . rd
+instance Trans (RemoteData a)
+
+instance (Trans a) => Future RemoteData a Conf where
+    put _ = put'
+    get _ = get'
+
+instance (Trans a) => Future RemoteData a () where
+    put _ = put'
+    get _ = get'
+~~~~
+
+For GpH and `Par` Monad, we can simply use `BasicFuture`s,
 which are just simple wrappers around the actual data with boiler-plate logic
 so that the type class is satisfied. This is because the concept of a `Future`
 does not change anything for shared-memory execution as there are no
 communication problems to fix. Nevertheless, we require a common interface
-so the parallel Arrows are portable across backends. The implementation can
-also be found in Section \ref{app:omitted}.
-In our communication example we can use this `Future` concept for direct
-communication between nodes as shown in Fig. \ref{fig:someCombinatorParallel}.
+so the parallel Arrows are portable across backends. The implementation is
 
-~~~~ {#fig:someCombinatorParallel
-    .haskell
-    .figure
-    caption="The outline combinator in parallel."
-    options=t
-    }
+~~~~ {.haskell}
+data BasicFuture a = BF a
+
+put' :: (Arrow arr) => arr a (BasicFuture a)
+put' = arr BF
+
+get' :: (Arrow arr) => arr (BasicFuture a) a
+get' = arr (\(~(BF a)) -> a)
+
+instance NFData a => NFData (BasicFuture a) where
+    rnf (BF a) = rnf a
+
+instance Future BasicFuture a (Conf a) where
+    put _ = put'
+    get _ = get'
+
+instance Future BasicFuture a () where
+    put _ = put'
+    get _ = get'
+~~~~
+
+Now, we can use this `Future` concept in our communication example for direct
+communication between nodes:
+
+~~~~ {.haskell}
 someCombinator :: (ArrowChoice arr,
 	ArrowParallel arr a (fut b) (), 
 	ArrowParallel arr (fut b) c (),
@@ -97,16 +130,12 @@ someCombinator fs1 fs2 =
 In a distributed environment, this gives us a communication scheme with
 messages going through the master node only if it is needed -- similar to what
 is shown in the trace visualisation in Fig. \ref{fig:withFutures}.
-One especially elegant aspect of the definition in Fig. \ref{fig:future} is that
+One especially elegant aspect of the definition of our Future type class is that
 we can specify the type of `Future` to be used per backend with full
 interoperability between code using different backends, without even
 requiring to know about the actual type used for communication.
 We only specify that there has to be a compatible Future and do not care
-about any specifics as can be seen in Fig. \ref{fig:someCombinatorParallel}.
-With the PArrows DSL we can also define default instances `Future fut a ()`
-for each backend similar to how `ArrowParallel arr a b ()` was defined
-in Section \ref{sec:parallel-arrows}.
-Details can be found in Section \ref{app:omitted}.
+about any specifics as can be seen in the future version of `someCombinator`.
 
 ![Communication between 4 Eden processes with Futures.
 Other than in Fig. \ref{fig:withoutFutures}, processes communicate directly

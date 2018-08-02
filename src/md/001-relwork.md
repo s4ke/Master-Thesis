@@ -29,14 +29,14 @@ The definitions of new Eden skeletons is a specific focus
 [@doi:10.1142/S0129626403001380, @Eden:PARCO05, @Berthold2009-mr, @Berthold2009-fft, @dieterle2010skeleton, @delaEncina2011, @Dieterle2013, @janjic2013space]
 
 Other task parallel Haskells related to Eden, GpH, and the `Par`
-Monad include the following. HdpH [@Maier:2014:HDS:2775050.2633363, @stewart_maier_trinder_2016] is an extension
+Monad include: HdpH [@Maier:2014:HDS:2775050.2633363, @stewart_maier_trinder_2016] is an extension
 of `Par` Monad to heterogeneous clusters. LVish [@Kuper:2014:TPE:2666356.2594312] is a
 communication-centred extension of the `Par` Monad.
 
 ## Algorithmic skeletons
 
 Algorithmic skeletons were introduced by @Cole1989.
-Early publications on this topic include [@DANELUTTO1992205, @darlington1993parallel, @botorog1996efficient, @Lengauer1997, @Gorlatch1998]. 
+Early publications on this topic include @DANELUTTO1992205, @darlington1993parallel, @botorog1996efficient, @Lengauer1997, @Gorlatch1998. 
 @SkeletonBook consolidated early reports on high-level programming approaches.
 Types of algorithmic skeletons include `map`-, `fold`-, and `scan`-based parallel
 programming patterns, special applications such as divide-and-conquer or
@@ -89,7 +89,7 @@ We, however, propose a general interface for parallel programming,
 while remaining completely in Haskell.
 
 ### Arrows in other languages
-Although this work is centred on Haskell implementation of Arrows,
+Although this work is centered on Haskell implementation of Arrows,
 it is applicable to any functional programming language where parallel
 evaluation and Arrows can be defined. Basic definitions of PArrows are
 possible in the Frege language^[GitHub project page at \url{https://github.com/Frege/frege}]

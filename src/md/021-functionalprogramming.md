@@ -2,7 +2,17 @@
 
 \label{sec:fuproHaskell}
 
+This section covers the basics of functional programming. We start
+by citing @Hughes:1990:WFP:119830.119832 why functional programming matters
+including a characterisation of the concept in general (Section \ref{sec:whyfupro}).
+Then, we give a short introduction to functional programming with Haskell
+(Section \ref{sec:shortIntroHaskell}) and also explain the concept of Monads
+(Section \ref{sec:monads}) which some parallel Haskells use. Finally, we
+introduce Arrows and explain their type class in Haskell (Section \ref{sec:arrows}).
+
 ### Why Functional Programming?
+
+\label{sec:whyfupro}
 
 @Hughes:1990:WFP:119830.119832 describes the fundamental idea of 
 functional programming like this:
@@ -40,11 +50,15 @@ statements, or particularly referentially transparent. There is no yardstick of
 program quality here, and therefore no ideal to aim at.
 
 To argue that there is merit in functional programming besides having fewer error-prone features
-@Hughes:1990:WFP:119830.119832 goes also goes into detail about one of the actual aspects why 
+@Hughes:1990:WFP:119830.119832 also goes into detail about one of the actual aspects why 
 functional programming matters - composability. He does this by showing how higher
-order functions help in expressing programs in a modular way.
+order functions help in expressing programs in a modular way. The focus on composability
+can be seen in all the definitions of Haskell functions in the following sections of 
+this thesis.
 
 ### A Short introduction to Haskell
+
+\label{sec:shortIntroHaskell}
 
 In the following section, we will give a short introduction to functional programming
 with Haskell. While this will give a good idea of how programming in Haskell works,
@@ -53,7 +67,7 @@ overview over the most relevant features of the language used in this thesis.
 The following is loosely based on the book \enquote{Learn you a haskell for great good!}
 [@learnyouahaskell].
 
-#### Functional Programming vs Imperative Programming
+#### From Imperative Programming to Functional Programming
 
 In order to ease the introduction to functional programming,
 we will give a short introduction
@@ -61,13 +75,10 @@ to functional programming in Haskell in this section
 by comparing the general style of imperative
 C code to functional Haskell using the example of the Fibonacci sequence.
 
-For starters, take a look at the iterative implementation of the Fibonacci
+To start off, we take a look at the iterative implementation of the Fibonacci
 sequence in Fig. \ref{fig:fibonacciCIterative}. It contains
-assignments and a loop, but since in pure^[Pure code is code without side-effects. Assignments are side-effects] functional programming we
-do not use assignment statements, we can not express the Fibonacci sequence in an
-iterative way with loops^[It is however possible to introduce monadic DSLs in Haskell that mimic C style behaviour, see \url{https://hackage.haskell.org/package/ImperativeHaskell-2.0.0.1}.].
-In fact, loops can only compute anything
-meaningful if assignment statements are part of the programming language.  
+assignments and a loop, which in pure^[Pure code is code without side-effects. Assignments are side-effects.] functional programming we
+we can not use^[It is however possible to introduce monadic DSLs in Haskell that mimic C style behaviour, see \url{https://hackage.haskell.org/package/ImperativeHaskell-2.0.0.1}.]. 
 
 ~~~~ {#fig:fibonacciCIterative
     .c
@@ -92,7 +103,7 @@ If we translate this Fibonacci example into a recursive definition
 (Fig. \ref{fig:fibonacciCRecursive}), however, we get pure functional C code
 without any assignment statements, 
 that resembles the Haskell variant in Fig. \ref{fig:fibonacciHaskell}.
-Also note how the flow of the programming without requiring any modifiable state.
+Note the flow of the programming without requiring any modifiable state.
 
 ~~~~ {#fig:fibonacciCRecursive
     .c
@@ -111,10 +122,11 @@ int fib( int n ) {
 ~~~~
 
 In functional languages like Haskell we only express computations in this matter by 
-composition of functions (recursion is also in essence a composition of a function with itself).
+composition of functions (recursion in essence is also just a composition of a function with itself).
 Because of this and since we can not change the state of any associated variables,
 we generally also do not have to worry
-about the order of execution in functional programs.
+about the order of execution in functional programs and let the compiler decide how
+to resolve the recursive formula.
 In general, we can say that in functional programming we primarily focus on what
 information is required and by which transformations to compute it 
 instead of how we perform them and how we track the changes in state
@@ -166,7 +178,7 @@ fib n
 #### Functions
 
 As already mentioned above, the basic building blocks of a
-Haskell program are functions. They are defined as follows:
+Haskell program are functions. We define them like this:
 
 ~~~~{.haskell
     }
@@ -176,8 +188,8 @@ f x y = multiply x y
 
 Here, we declared a function `f` which takes two arguments
 of type `Int` and returns yet another `Int`. In the definition
-we say that `f` is basically the function `multiply`,
-which we define as:
+we say that `f` is the function `multiply` applied to both its arguments
+`x` and `y`. We define `multiply` as:
 
 ~~~~{.haskell
     }
@@ -185,7 +197,8 @@ multiply :: Int -> Int -> Int
 multiply x y = x * y
 ~~~~
 
-Since `f` and `multiply` seem to be the same, we can even write this relationship directly:
+In Haskell, since `f` and `multiply` seem to be the same,
+we can even write this relationship directly:
 
 ~~~~{.haskell
     }
@@ -204,17 +217,19 @@ g = zipWith f
 ~~~~
 
 where zipWith would be of type `(Int -> Int -> Int) -> [Int] -> [Int] -> [Int]`.
+In Haskell it is common to express calculations in such a way using higher-order functions.
+We will see more of this later in this Section.
 
 #### Type inference
 
-Taking the example function `g` from the previous section,
+Taking the same example function `g` from above,
 it does not make sense to be so restrictive in terms of which type to allow in
 such a function since all it does is apply some function to zip two lists. Thankfully,
 in Haskell we can define functions in a completely generic way such that
 we can write the actual type of zipWith as `(a -> b -> c) -> [a] -> [b] -> [c]` as in
 it can zip a list containing some `a`s with a list containing a list of `b`s with a function
-`a -> b -> c` to get a list of `c`s. If we use this function in the context of
-our function `g` it is then specialized into the `Int` form.
+`a -> b -> c` to get a list of `c`s. Only because we use this function in the context of
+our function `g` it is specialized into the `Int` form.
 
 Furthermore we can even define `g` without writing down the type
 definition and let the compiler determine the actual type of `g`.
@@ -244,7 +259,12 @@ with `.` being the functional composition operator with type
 `(.) :: (b -> c) -> (a -> b) -> (a -> c)`
 ^[note the order of the arguments, `g . f` means to first apply `f` and then `g` and not
 the other way around]
-and where `toThePowerOfTwo` is defined simply as `toThePowerOfTwo x = multiply x x`.
+and where `toThePowerOfTwo` is defined simply as 
+
+~~~~{.haskell}
+toThePowerOfTwo :: Int -> Int
+toThePowerOfTwo x = multiply x x
+~~~~
 
 Another aspect of functions being similar to data types is that, in functional programming,
 we frequently use higher order functions to express calculations. We have seen this
@@ -262,13 +282,13 @@ euclidDistance = sqrt . foldLeft (+) 0 . map (toThePowerOfTwo) . zipWith (-)
 ~~~~
 
 Note that while this could have easily been written shorter as something along
-the lines of `sqrt (foldLeft (+) 0 (zipWith (\a b -> toThePowerOfTwo (a + b))))` it is easy to see
+the lines of `sqrt (foldLeft (+) 0 (zipWith (\a b -> toThePowerOfTwo (a - b))))` it is easy to see
 that the above declaration is easier to understand because of the simple steps the
 computation takes. We first zip the list of inputs with element-wise subtraction and 
 then square this difference, sum these results up and finally take the square root.
-This is something we see a lot in Haskell code, complex computations can be expressed
+This is something we see a lot in Haskell code: Complex computations can be expressed
 with the help of higher-order functions instead of having to write it
-manually which would obviously include. This is not only much shorter,
+manually. This is not only much shorter,
 but also easier to understand for other programmers which have to read-up on the
 implementation for some reason.
 
@@ -282,7 +302,7 @@ function `a -> b` to a given argument `a`. It is simply defined as:
 f $ x = f x
 ~~~~
 
-While the usecase for such an operator might not be immediately clear, it will,
+While the use-case for such an operator might not be immediately clear, it will,
 if we take a look at the following function `listApp :: [a -> b] -> [a] -> [b]`
 where we take a list of functions `[a -> b]` and apply them one-by-one with their respective
 input values from the input list `[a]` to generate a list of results `b`:
@@ -317,7 +337,7 @@ identical.
 #### Conditional Computation
 
 Haskell has different styles of dealing with conditional evaluation. We will
-now show the three the most common variants to express conditional statements.
+now show the most common variants to express conditional statements.
 
 The most obvious one in terms of functionality is the `if ... then ... else`
 construct:
@@ -418,7 +438,7 @@ because state is mostly a non-issue.
 
 The example function `multiply` from above seems a bit restrictive as it only allows for the usage
 of `Int`s. `Int`s are obviously not the only type which can be multiplied. Haskell
-has a way to express this fact: type classes. We can express the type class 
+has a way to express this fact: type classes. We can express a type class 
 `Multiplicable a` that encapsulates the contract of `multiply` on some type `a` as
 
 ~~~~{.haskell
@@ -427,7 +447,7 @@ class Multiplicable a where
     multiply :: a -> a -> a
 ~~~~
 
-With this class in place, we can then introduces instances - implementations of the
+With this class in place, we can then introduce instances - implementations of the
 contract - for specific types. For example the instance for `Int`,
 `Multiplicable Int` can be defined as
 
@@ -741,8 +761,8 @@ or `Nothing` if it is an empty list, we can write this with the help of wildcard
 
 ~~~~{.haskell
     }
-maybeHead :: Maybe a -> a
-maybeHead (x : _) = x
+maybeHead :: [a] -> Maybe a
+maybeHead (x : _) = Just x
 maybeHead [] = Nothing
 ~~~~
 
@@ -750,8 +770,8 @@ We could even write
 
 ~~~~{.haskell
     }
-maybeHead :: Maybe a -> a
-maybeHead (x : _) = x
+maybeHead :: [a] -> Maybe a
+maybeHead (x : _) = Just x
 maybeHead _ = Nothing
 ~~~~
 

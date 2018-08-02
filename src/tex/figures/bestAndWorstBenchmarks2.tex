@@ -17,13 +17,13 @@
 \begingroup\catcode`"=9
 \begin{tabular}{C{4cm} C{2cm} C{1.7cm} C{2.3cm} C{1.7cm}}
 	\thead{Benchmark} & \thead{Base}             & \thead{Mean of \\ mean \\overheads} & \thead{Maximum \\ normalised \\ stdDev} & \thead{Runtime for \\ 256 cores (s)} \\ \hline \\
-	\multirow{1}{*}{\torustest 4096}
+	\multirow{1}{*}{Gentleman 4096}
 	\csvreader[head to column names]{src/benchmarks/distributed-torus/bestAndWorstTorus-4096.csv}{}{& \vs & \meanOverhead & \maxStdDevForOverhead & \runtimeMaxCores \\}
 	\\ \hline \\
-  	\multirow{1}{*}{\rmtest 44497 256}
+  	\multirow{1}{*}{Rabin--Miller 44497 256}
 	\csvreader[head to column names]{src/benchmarks/distributed-rm/bestAndWorstRM-44497-256.csv}{}{& \vs & \meanOverhead & \maxStdDevForOverhead & \runtimeMaxCores \\}
 	\\ \hline \\
-	\multirow{1}{*}{\jacobitest 3217}
+	\multirow{1}{*}{Jacobi Test 3217}
 	\csvreader[head to column names]{src/benchmarks/distributed-jacobi/bestAndWorstJacobi-3217.csv}{}{& \vs & \meanOverhead & \maxStdDevForOverhead & \runtimeMaxCores \\}
 \end{tabular}
 \endgroup

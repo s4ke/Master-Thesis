@@ -23,10 +23,10 @@ write fully-featured Haskell based cloud solutions.
 
 While users can already write concurrent applications with the help of Cloud Haskell
 using some of its libraries or even with the bare communication API, it seems like
-a good idea to write parallel programs in a less involved way. In the following section we
+a good idea to write parallel programs requiring less involvement from the user. In the following section we
 will therefore explore the possibility of a Cloud Haskell based backend for the
-`ArrowParallel` interface given in this thesis after a short introduction to the
-API. For easier testing, we only work with a local-net Cloud Haskell
+`ArrowParallel` interface given in this thesis while explaining all the necessary
+parts of the API. For easier testing, we only work with a local-net Cloud Haskell
 backend in this thesis. The results, however, are transferable to other architectures as well.
 
 ## Node discovery and program harness
@@ -536,7 +536,7 @@ evalTaskBase (inputPipe, output) = do
   sendChan output (seq (rnf a) a)
 ~~~~
 
-### Parallel Evaluation on Slave nodes
+### Parallel Evaluation
 
 Since we have discussed how to evaluate a value on slave nodes via
 `forceSingle :: (Evaluatable a) => NodeId -> MVar a -> a -> Process ()`, we can
@@ -560,7 +560,12 @@ Its resulting `IO` action starts by creating an empty `MVar a` with
 `mvar <- newEmptyMVar`. Then it creates an `IO` action that forks
 away the evaluation process of `forceSingle` 
 on the single passed value `a` by means of `forkProcess :: LocalNode -> Process () -> IO ProcessId`
-on the the master node with `forkProcess (localNode conf) $ forceSingle node mvar a`.
+on the the master node with
+
+~~~~{.haskell}
+forkProcess (localNode conf) $ forceSingle node mvar a
+~~~~
+
 The action concludes by returning a `Computation a` encapsulating
 the evaluation `IO ()` action and the result communication action
 `takeMVar mvar :: IO a`:
@@ -614,4 +619,61 @@ sequenceComp comps = Comp { computation = newComp, result = newRes }
         newRes = sequence $ map result comps
 ~~~~
 
+In order to start the actual computation from a blueprint in `Computation a` 
+and get the result back as a pure value `a`, we have to use the function
+`runComputation :: IO (Computation a) -> a` defined as follows.
+Internally it uses an `IO a` action that 
+starts by unwrapping `Computation a` from the input `IO (Computation a)`
+with `comp <- x` to then launch the actual evaluation with `computation comp`.
+It then finally returns the result with `result comp`. Finally,
+in order to turn the `IO a` action into `a`, we have to use
+`unsafePerformIO :: IO a -> a` which is a useful function to `IO` actions
+to pure values and is generally avoided because it can introduce 
+severe bugs if not handled with absolute care.
+Here its use is necessary and absolutely okay, though, since all we 
+did inside the `IO` monad was only evaluation and if this were to fail,
+the computation would be wrong anyways. Also in order to force the
+compiler to not inline the result which is generally okay in pure functions but
+not in this case for obvious reasons, we protect the definition of `runComputation`
+with a `NOINLINE` pragma:
+
+~~~~{.haskell}
+{-# NOINLINE runComputation #-}
+runComputation :: IO (Computation a) -> a
+runComputation x = unsafePerformIO $ do
+  comp <- x
+  computation comp
+  result comp
+~~~~
+
+### `ArrowParallel` instance
+
+Finally, now that we have the parallel evaluation done, even though it
+is inside the `IO` monad, we can implement the `ArrowParallel` instance
+for the Cloud Haskell backend. Here, the additional conf paramater is obviously
+the `State/Conf` type we have discussed in detail in this Section.
+
+In the `ArrowParallel arr a b Conf` instance, the implementation of `parEvalN`
+behaves as follows: The resulting arrow starts off by forcing its input
+`[a]` into normal form. During testing this found necessary because
+a not fully evaluated value `a` can still have attached things like a file
+handle which may be not serializable. Then it goes on to feed this list `[a]`
+into the evaluation arrow obtained by applying `evalN :: [arr a b] -> arr [a] [b]`
+to the list of arrows to be parallelized `[arr a b]` with `evalN fs`. This results
+in a not yet evaluated list of results `[b]` which is then forked away with
+`arr (evalParallel conf) :: arr [a] (Computation [b])`. The resulting computation
+blueprint is then executed with `arr runComputation :: arr (Computation [b]) [b]`.
+
+~~~~{.haskell}
+instance (NFData a, Evaluatable b, ArrowChoice arr) =>
+   ArrowParallel arr a b Conf where
+    parEvalN conf fs = 
+        arr force >>>
+        evalN fs >>>
+        arr (evalParallel conf) >>>
+        arr runComputation
+~~~~
+
 ## Circular skeletons and issues with Laziness
+
+

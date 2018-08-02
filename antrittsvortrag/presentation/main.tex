@@ -1,0 +1,110 @@
+\documentclass{beamer}
+\usetheme{Darmstadt}
+
+\usepackage{tikz}
+
+\usepackage{filecontents}
+\usepackage{pgfplots, pgfplotstable}
+\usepgfplotslibrary{statistics}
+\usepackage{graphicx}
+\usepackage{appendixnumberbeamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{hyperref}
+
+\bibliographystyle{unsrtnat}
+\usepackage[sort&compress,square]{natbib}
+
+\usepackage{csquotes}
+
+% für Listings
+\usepackage{listings}
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt, keywordstyle=\color{black}\bfseries, stringstyle=\ttfamily,showstringspaces=false,basicstyle=\footnotesize,captionpos=b}
+\lstset{
+	frame=none,
+	xleftmargin=2pt,
+	stepnumber=1,
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\ttfamily\tiny\color[gray]{0.3},
+	belowcaptionskip=\bigskipamount,
+	captionpos=b,
+	escapeinside={*'}{'*},
+	language=haskell,
+	tabsize=2,
+	emphstyle={\bf},
+	commentstyle=\it,
+	stringstyle=\mdseries\rmfamily,
+	showspaces=false,
+	keywordstyle=\bfseries\rmfamily,
+	columns=flexible,
+	basicstyle=\small\sffamily,
+	showstringspaces=false,
+	morecomment=[l]\%,
+}
+
+\newcommand{\frbreak}{
+	\vfill
+	\framebreak
+}
+
+\renewcommand{\cite}[1]{\citep{#1}}
+
+\newcommand{\citHughes}{\citep{HughesArrows}}
+
+\newcommand{\code}[1]{\lstinline{#1}}
+
+\newcommand{\fixme}[1]{\colorbox{red}{#1}}
+
+\newcommand{\centeredHeadline}[1]{
+\begin{tikzpicture}[overlay, remember picture]
+\node[anchor=center] at (current page.center) {
+	#1
+};
+\end{tikzpicture}
+}
+
+\title{Concepts in Parallel Programming}
+\subtitle{Arrows for Parallel Computation}
+\author{Martin Braun}
+\date{July 30, 2018}
+
+\setcounter{tocdepth}{2}
+\AtBeginSection{\begin{frame} 
+\tableofcontents[currentsection]
+\end{frame}}
+\begin{document}
+	\begin{frame}[fragile]
+		\centering
+		\vspace{0.75cm}
+		{\huge\bfseries Concepts in\\Parallel Programming\par}
+		\vspace{0.5cm}
+		{\Large Arrows for Parallel Computation\par}
+		{\vspace{0.5cm}}
+		{\Large\itshape Martin Braun\par}
+		~\\
+		University of Bayreuth\\
+		martinbraun123@aol.com
+		\vspace{0.5cm}
+		
+		\vfill
+		
+		% Bottom of the page
+		{\large July 31, 2018\par}
+	\end{frame}
+	\begin{frame}
+		\tableofcontents
+	\end{frame}
+	\section{What has happened until now?}
+	\include{functionalprogramming}
+	\include{arrows}
+	\include{parrows}
+	\include{profit}
+	\section{What is part of the MA thesis?}
+	\include{improvements}
+	\include{futures}
+	\include{topologySkeletons}
+	\include{betterbenchmarks}
+	\include{cloudhaskell}
+\end{document}
