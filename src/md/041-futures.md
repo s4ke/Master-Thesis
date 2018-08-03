@@ -41,11 +41,7 @@ This is only a problem in distributed memory (in the scope of this thesis) and w
 should allow nodes to communicate directly with each other. Eden already provides
 \enquote{remote data} that enable this [@AlGo03a,@Dieterle2010].
 But as we want code using our DSL to be implementation agnostic, we have to
-wrap this concept. We do this with the `Future` type class
-(Fig. \ref{fig:future}). A `conf` parameter is required here as well, but only
-so that Haskells type system allows us to have multiple Future implementations
-imported at once without breaking any dependencies similar to what we did with
-the `ArrowParallel` type class earlier:
+wrap this concept. We do this with the `Future` type class:
 
 ~~~~ {.haskell}
 class Future fut a conf | a conf -> fut where
@@ -53,7 +49,11 @@ class Future fut a conf | a conf -> fut where
     get :: (Arrow arr) => conf -> arr (fut a) a
 ~~~~
 
-Note that we can also define default utility instances `Future fut a ()`
+A `conf` parameter is required here as well, but only
+so that Haskells type system allows us to have multiple Future implementations
+imported at once without breaking any dependencies similar to what we did with
+the `ArrowParallel` type class earlier. Note that we can also define default
+utility instances `Future fut a ()`
 for each backend similar to how `ArrowParallel arr a b ()` was defined
 in Section \ref{sec:parallel-arrows} as we will shortly see in the implementations
 for the backends.
@@ -89,7 +89,7 @@ which are just simple wrappers around the actual data with boiler-plate logic
 so that the type class is satisfied. This is because the concept of a `Future`
 does not change anything for shared-memory execution as there are no
 communication problems to fix. Nevertheless, we require a common interface
-so the parallel Arrows are portable across backends. The implementation is
+so the parallel Arrows are portable across backends. Here, the implementation is:
 
 ~~~~ {.haskell}
 data BasicFuture a = BF a

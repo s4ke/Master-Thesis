@@ -45,29 +45,31 @@
 \BOOKMARK [2][]{section*.81}{6.2.1 Communication between nodes}{section*.80}% 45
 \BOOKMARK [2][]{section*.82}{6.2.2 Evaluation on slave nodes}{section*.80}% 46
 \BOOKMARK [2][]{section*.83}{6.2.3 Parallel Evaluation}{section*.80}% 47
-\BOOKMARK [2][]{section*.84}{6.2.4 \040instance}{section*.80}% 48
-\BOOKMARK [1][]{section*.85}{6.3 Circular skeletons and issues with Laziness}{chapter.6}% 49
-\BOOKMARK [0][]{chapter.7}{7 Performance results and discussion}{}% 50
-\BOOKMARK [1][]{section*.87}{7.1 Measurement platform}{chapter.7}% 51
-\BOOKMARK [2][]{section*.88}{7.1.1 Hardware and software}{section*.87}% 52
-\BOOKMARK [2][]{section*.89}{7.1.2 Benchmarks}{section*.87}% 53
-\BOOKMARK [2][]{section*.90}{7.1.3 What parallel Haskells run where}{section*.87}% 54
-\BOOKMARK [1][]{section*.91}{7.2 Benchmark results}{chapter.7}% 55
-\BOOKMARK [2][]{section*.92}{7.2.1 Defining overhead}{section*.91}% 56
-\BOOKMARK [2][]{section*.93}{7.2.2 Shared memory}{section*.91}% 57
-\BOOKMARK [2][]{section*.94}{7.2.3 Distributed memory}{section*.91}% 58
-\BOOKMARK [1][]{section*.96}{7.3 Discussion}{chapter.7}% 59
-\BOOKMARK [0][]{chapter.8}{8 Discussion}{}% 60
-\BOOKMARK [0][]{chapter.9}{9 Conclusion}{}% 61
-\BOOKMARK [1][]{section*.99}{9.1 Future work}{chapter.9}% 62
-\BOOKMARK [0][]{chapter.10}{10 Appendix}{}% 63
-\BOOKMARK [1][]{section*.101}{10.1 Utility Arrows}{chapter.10}% 64
-\BOOKMARK [1][]{section*.105}{10.2 Profunctor Arrows}{chapter.10}% 65
-\BOOKMARK [1][]{section*.107}{10.3 Additional function definitions}{chapter.10}% 66
-\BOOKMARK [1][]{section*.113}{10.4 Syntactic sugar}{chapter.10}% 67
-\BOOKMARK [1][]{section*.114}{10.5 Experimental Cloud Haskell backend code}{chapter.10}% 68
-\BOOKMARK [1][]{section*.117}{10.6 Plots for the shared memory benchmarks}{chapter.10}% 69
-\BOOKMARK [1][]{section*.132}{10.7 Plots for the distributed memory benchmarks}{chapter.10}% 70
-\BOOKMARK [0][]{section*.140}{References}{}% 71
-\BOOKMARK [0][]{section*.140}{List of Figures}{}% 72
-\BOOKMARK [0][]{section*.140}{List of Tables}{}% 73
+\BOOKMARK [1][]{section*.84}{6.3 Implementing the PArrows API}{chapter.6}% 48
+\BOOKMARK [2][]{section*.85}{6.3.1 \040instance}{section*.84}% 49
+\BOOKMARK [2][]{section*.86}{6.3.2 Limits of the current implementation}{section*.84}% 50
+\BOOKMARK [2][]{section*.87}{6.3.3 Possible mitigation of the limits}{section*.84}% 51
+\BOOKMARK [0][]{chapter.7}{7 Performance results and discussion}{}% 52
+\BOOKMARK [1][]{section*.89}{7.1 Measurement platform}{chapter.7}% 53
+\BOOKMARK [2][]{section*.90}{7.1.1 Hardware and software}{section*.89}% 54
+\BOOKMARK [2][]{section*.91}{7.1.2 Benchmarks}{section*.89}% 55
+\BOOKMARK [2][]{section*.92}{7.1.3 What parallel Haskells run where}{section*.89}% 56
+\BOOKMARK [1][]{section*.93}{7.2 Benchmark results}{chapter.7}% 57
+\BOOKMARK [2][]{section*.94}{7.2.1 Defining overhead}{section*.93}% 58
+\BOOKMARK [2][]{section*.95}{7.2.2 Shared memory}{section*.93}% 59
+\BOOKMARK [2][]{section*.96}{7.2.3 Distributed memory}{section*.93}% 60
+\BOOKMARK [1][]{section*.98}{7.3 Discussion}{chapter.7}% 61
+\BOOKMARK [0][]{chapter.8}{8 Discussion}{}% 62
+\BOOKMARK [0][]{chapter.9}{9 Conclusion}{}% 63
+\BOOKMARK [1][]{section*.101}{9.1 Future work}{chapter.9}% 64
+\BOOKMARK [0][]{chapter.10}{10 Appendix}{}% 65
+\BOOKMARK [1][]{section*.103}{10.1 Utility Arrows}{chapter.10}% 66
+\BOOKMARK [1][]{section*.107}{10.2 Profunctor Arrows}{chapter.10}% 67
+\BOOKMARK [1][]{section*.109}{10.3 Additional function definitions}{chapter.10}% 68
+\BOOKMARK [1][]{section*.115}{10.4 Syntactic sugar}{chapter.10}% 69
+\BOOKMARK [1][]{section*.116}{10.5 Experimental Cloud Haskell backend code}{chapter.10}% 70
+\BOOKMARK [1][]{section*.119}{10.6 Plots for the shared memory benchmarks}{chapter.10}% 71
+\BOOKMARK [1][]{section*.134}{10.7 Plots for the distributed memory benchmarks}{chapter.10}% 72
+\BOOKMARK [0][]{section*.142}{References}{}% 73
+\BOOKMARK [0][]{section*.142}{List of Figures}{}% 74
+\BOOKMARK [0][]{section*.142}{List of Tables}{}% 75

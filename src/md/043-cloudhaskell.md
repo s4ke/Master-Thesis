@@ -23,13 +23,27 @@ write fully-featured Haskell based cloud solutions.
 
 While users can already write concurrent applications with the help of Cloud Haskell
 using some of its libraries or even with the bare communication API, it seems like
-a good idea to write parallel programs requiring less involvement from the user. In the following section we
-will therefore explore the possibility of a Cloud Haskell based backend for the
-`ArrowParallel` interface given in this thesis while explaining all the necessary
-parts of the API. For easier testing, we only work with a local-net Cloud Haskell
-backend in this thesis. The results, however, are transferable to other architectures as well.
+a good idea to write parallel programs requiring less involvement from the user.
+In the following section we will therefore explore the possibility of a Cloud Haskell
+based backend for the `ArrowParallel` interface given in this thesis while
+explaining all the necessary
+parts of the API. For easier testing and as this
+is only meant as a proof of concept, we only work with a local-net Cloud Haskell
+backend in this thesis. The results of this experiment, however, are transferable
+to other architectures as well when building upon the results presented.
+
+The following is structured as follows.
+We start by explaining how to discover nodes with a master-slave
+structure while also defining a program startup harness that
+can be used with this scheme in Section \ref{sec:nodeDiscAndHarness}.
+Then, we explain how parallel evaluation
+of arbitrary data is possible with Cloud Haskell in Section \ref{sec:parEvalCloudHaskell}
+and also discuss how we can implement the PArrows DSL with this
+knowledge in Section \ref{sec:CloudHaskellArrowParallel}.
 
 ## Node discovery and program harness
+
+\label{sec:nodeDiscAndHarness}
 
 In cloud services it is common that the architecture of the running network
 changes more often than in ordinary computing clusters where the participating
@@ -646,19 +660,31 @@ runComputation x = unsafePerformIO $ do
   result comp
 ~~~~
 
-### `ArrowParallel` instance
+## Implementing the PArrows API
 
-Finally, now that we have the parallel evaluation done, even though it
-is inside the `IO` monad, we can implement the `ArrowParallel` instance
-for the Cloud Haskell backend. Here, the additional conf paramater is obviously
-the `State/Conf` type we have discussed in detail in this Section.
+\label{sec:CloudHaskellArrowParallel}
 
-In the `ArrowParallel arr a b Conf` instance, the implementation of `parEvalN`
-behaves as follows: The resulting arrow starts off by forcing its input
-`[a]` into normal form. During testing this found necessary because
+Finally, now that we have explained how the parallel evaluation could
+be done in Cloud Haskell, we explain in this Section how to implement the PArrows
+API with the Cloud Haskell code provided in this experiment. We start this by
+explaining how to implement `ArrowParallel`. Then, we discuss the limits of
+the current code: Why we can not yet give a proper instance for `ArrowLoopParallel` or a proper
+`Future` implementation. We finally
+lay out a possible solution to this that could be implemented in the future.
+
+### `ArrowParallel` instance 
+
+We will now explain how to implement an experimental `ArrowParallel` type class 
+with Cloud Haskell. Obviously, as already mentioned earlier, here 
+the additional conf paramater is the `State/Conf` type we have discussed in detail earlier.
+
+We implement `parEvalN` of our `ArrowParallel arr a b Conf` instance
+as follows: We start off by forcing the input
+`[a]` into normal form with `arr force`. During testing this found necessary because
 a not fully evaluated value `a` can still have attached things like a file
-handle which may be not serializable. Then it goes on to feed this list `[a]`
-into the evaluation arrow obtained by applying `evalN :: [arr a b] -> arr [a] [b]`
+handle which may be not serializable. Then the parallel Arrow goes on to
+feed the now fully forced input list `[a]`
+into the evaluation Arrow obtained by applying `evalN :: [arr a b] -> arr [a] [b]`
 to the list of arrows to be parallelized `[arr a b]` with `evalN fs`. This results
 in a not yet evaluated list of results `[b]` which is then forked away with
 `arr (evalParallel conf) :: arr [a] (Computation [b])`. The resulting computation
@@ -674,6 +700,95 @@ instance (NFData a, Evaluatable b, ArrowChoice arr) =>
         arr runComputation
 ~~~~
 
-## Circular skeletons and issues with Laziness
+### Limits of the current implementation
 
+Similar to the GpH and `Par` Monad backends, the current code as explained earlier in this
+Section, the experimental Cloud Haskell backend suffers from the problem that
+it does not work in conjunction with the looping skeletons `pipe`/`ring`/`torus`
+described in this thesis. All testing programs would refuse to compute anything
+and hang indefinitely.
+While this is no big problem for the shared-memory backends where we could just 
+implement a workaround with the help of an `ArrowLoopParallel` instance
 
+~~~~ {.haskell}
+instance (ArrowChoice arr, ArrowParallel arr a b Conf) =>
+	ArrowLoopParallel arr a b Conf where
+    loopParEvalN _ = evalN
+    postLoopParEvalN = parEvalN
+~~~~
+
+a similar solution would not be feasible here because we are
+in a distributed-memory setting with Cloud Haskell.
+The skeletons would become meaningless as all benefits of
+using a sophisticated distributed skeleton would be lost.
+
+Since it wouldn't make sense to have a `Future` instance without
+proper support for skeletons that could make use of it, we also do 
+not give an implementation for a `CloudFuture` in this thesis.
+
+### Possible mitigation of the limits
+
+While investigating the problem with the looping skeletons, we noticed
+a difference in behaviour between Eden and all other backends including
+our experimental Cloud Haskell backend: Eden streams lists of data `[a]`
+instead of sending the complete list as one big serialized chunk. Another difference is
+that tuples of data `(a, b, ...)` are also sent in parallel on $n$ threads
+for a tuple of $n$ entries.
+When investigating the `torus` or `ring` skeletons we ported from Eden,
+we notice how these two specialities are important. For example, in the `ring` skeleton
+we build up the resulting Arrow so that it calculates the result in multiple
+rounds:
+
+~~~~{.haskell}
+ring conf f =
+    loop (second (rightRotate >>> lazy) >>>
+        -- convert the current input into a form we can process in this round
+        arr (uncurry zip) >>>
+        -- here, we evaluate the current round
+        loopParEvalN conf (repeat (second (get conf) >>> f >>> second (put conf))) >>>
+        -- put the current result back into the original input form
+        arr unzip) >>>
+    postLoopParEvalN conf (repeat (arr id))
+~~~~
+
+Here, anything other than the exact same behaviour as Eden will result in a dead-lock
+when using `loopParEvalN = parEvalN`.
+We therefore believe that it is crucial for a proper Cloud Haskell backend to have the same
+streaming behaviour as Eden does. While we are confident that this is definitely possible
+to achieve with Cloud Haskell as early experiments on this suggest, we have to date
+not been able to achieve proper streaming behaviour. We stopped developing this further
+as this would have bursted the scope of this thesis.
+
+The most promising idea to implement
+this is to use a more sophisticated mechanism to stream data back to the master node
+by using pipes along the lines of
+
+~~~~{.haskell}
+type PipeIn a = SendPort (SendPort (Maybe (SendPort (Maybe a))))
+type PipeOut a = ReceivePort (SendPort (Maybe (SendPort (Maybe a))))
+~~~~
+
+where `PipeIn a` would be the port where the evaluating process on the slave node
+would send its result through to the corresponding `PipeOut a` on the master node.
+Note that we here encode a \enquote{stream} of some `a` with `SendPort (Maybe a)`:
+For types with singular values, we just request one value. And on types like e.g.
+a list `[a]` we expect multiple singleton lists `Just [a]`,
+on the `SendPort` and the end of the input with `Nothing`.
+For other multi-valued types,
+this would work similar even if some hacks would be required.
+
+Then in order to communicate the result from the slave node, we would
+first send `SendPort (Maybe (SendPort (Maybe a)))` on which the slave-node
+would want to receive the stream of `SendPort (Maybe a)`. This stream
+of `SendPort`s is required instead of a singular `SendPort`
+because of types that have to be sent by multiple threads
+like e.g. tuples. Via these `SendPort (Maybe a)`s the slave can then finally
+communicate the stream of evaluated results back to the master node.
+A corresponding communication scheme doing the
+necessary opposite tasks would obviously be required on the master node.
+
+During testing, as already mentioned, we were not successful in making this idea work
+with the looping skeletons.^[It did however still work with non-looping skeletons.]
+We still believe that this path is worth exploring further in the future, though.
+For the sake of this thesis we however leave the experiment as it is presented in the
+earlier parts of this Section.

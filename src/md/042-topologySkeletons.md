@@ -9,7 +9,7 @@ more predefined skeletons^[Available on Hackage:
 \url{https://hackage.haskell.org/package/edenskel-2.1.0.0/docs/Control-Parallel-Eden-Topology.html}.],
 among them a `pipe`, a `ring`, and a `torus` implementation
 [@Eden:SkeletonBookChapter02]. These seem like reasonable candidates to be
-ported to our Arrow-based parallel Haskell. We aim to showcase that we
+ported to our Arrow-based parallel Haskell. While doing so, we aim to showcase that we
 can express more sophisticated skeletons with parallel Arrows as well.
 
 If we were to use the original definition of `parEvalN`, however, these skeletons
@@ -60,8 +60,8 @@ instance (ArrowChoice arr, ArrowParallel arr a b (Conf b)) =>
 
 \label{sec:pipe}
 
-The parallel `pipe` skeleton is semantically equivalent to folding
-over a list `[arr a a]` of Arrows with `>>>`, but does this in parallel,
+We start with the parallel `pipe` skeleton, which is semantically equivalent to folding
+over a list `[arr a a]` of Arrows with `>>>`, but in parallel,
 meaning that the Arrows do not have to reside on the same thread/machine.
 We implement this skeleton using the `ArrowLoop` type class which provides us with
 the `loop :: arr (a, b) (c, b) -> arr a c` combinator allowing us to express
@@ -178,9 +178,10 @@ Eden comes with a ring skeleton^[Available on Hackage:
 (Fig. \ref{fig:ringImg}) implementation that allows the computation of a
 function `[i] -> [o]` with a ring of nodes that communicate with each other.
 Its input is a node function `i -> r -> (o, r)` in which `r` serves as the
-intermediary output that gets send to the neighbour of each node.
-This data is sent over direct communication channels, the so called
-\enquote{remote data}. We depict it in Appendix, Fig. \ref{fig:ringEden}.
+intermediary output that is sent to the neighbour of each node.
+It uses the direct \enquote{remote data} communication channels that were already
+mentioned in Section \ref{sec:futures}. 
+We depict it in the Appendix, Fig. \ref{fig:ringEden}.
 
 We can rewrite this functionality easily with the use of `loop` as the
 definition of the node function, `arr (i, r) (o, r)`, after being transformed
@@ -221,7 +222,8 @@ ring :: (Future fut r conf,
 ring conf f =
     loop (second (rightRotate >>> lazy) >>>
         arr (uncurry zip) >>>
-        loopParEvalN conf (repeat (second (get conf) >>> f >>> second (put conf))) >>>
+        loopParEvalN conf 
+            (repeat (second (get conf) >>> f >>> second (put conf))) >>>
         arr unzip) >>>
     postLoopParEvalN conf (repeat (arr id))
 ~~~~
@@ -291,9 +293,11 @@ torus :: (Future fut a conf, Future fut b conf,
       ArrowLoopParallel arr [d] [d] conf) =>
       conf -> arr (c, a, b) (d, a, b) -> arr [[c]] [[d]]
 torus conf f =
-    loop (second ((mapArr rightRotate >>> lazy) *** (arr rightRotate >>> lazy)) >>>
+    loop (second ((mapArr rightRotate >>> lazy) 
+                    *** (arr rightRotate >>> lazy)) >>>
         arr (uncurry3 (zipWith3 lazyzip3)) >>>
-        arr length &&& (shuffle >>> loopParEvalN conf (repeat (ptorus conf f))) >>>
+        arr length &&& (shuffle >>> 
+                        loopParEvalN conf (repeat (ptorus conf f))) >>>
         arr (uncurry unshuffle) >>>
         arr (map unzip3) >>> arr unzip3 >>> threetotwo) >>>
     postLoopParEvalN conf (repeat (arr id))
@@ -325,11 +329,15 @@ prMM_torus numCores problemSizeVal m1 m2 =
 	combine $ torus () (mult torusSize) $ zipWith zip (split1 m1) (split2 m2)
     where   torusSize = (floor . sqrt) $ fromIntegral $ numCoreCalc numCores
             combine x = concat (map ((map (concat)) . transpose) x)
-            split1 x = staggerHorizontally (splitMatrix (problemSizeVal `div` torusSize) x)
-            split2 x = staggerVertically (splitMatrix (problemSizeVal `div` torusSize) x)
+            split1 x = staggerHorizontally
+                (splitMatrix (problemSizeVal `div` torusSize) x)
+            split2 x = staggerVertically
+                (splitMatrix (problemSizeVal `div` torusSize) x)
 
 -- Function performed by each worker
-mult :: Int -> ((Matrix,Matrix),[Matrix],[Matrix]) -> (Matrix,[Matrix],[Matrix])
+mult :: Int ->
+    ((Matrix,Matrix),[Matrix],[Matrix]) ->
+    (Matrix,[Matrix],[Matrix])
 mult size ((sm1,sm2),sm1s,sm2s) = (result,toRight,toBottom)
     where 	toRight = take (size-1) (sm1:sm1s)
             toBottom = take (size-1) (sm2:sm2s)
