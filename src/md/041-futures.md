@@ -55,7 +55,7 @@ imported at once without breaking any dependencies similar to what we did with
 the `ArrowParallel` type class earlier. Note that we can also define default
 utility instances `Future fut a ()`
 for each backend similar to how `ArrowParallel arr a b ()` was defined
-in Section \ref{sec:parallel-arrows} as we will shortly see in the implementations
+in Chapter \ref{sec:parallel-arrows} as we will shortly see in the implementations
 for the backends.
 
 Since `RD` is only a type synonym for a communication type that Eden uses

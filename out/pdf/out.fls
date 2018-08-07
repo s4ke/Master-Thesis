@@ -332,7 +332,10 @@ INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmtt10.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvb.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchr8c.vf
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/t1lmss.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/t1lmss.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmss10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8t.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8t.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr9.tfm
@@ -357,10 +360,7 @@ INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchr8t.vf
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8r.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchr8t.vf
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8r.tfm
-INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/t1lmss.fd
-INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/t1lmss.fd
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmss10.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmssbx10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstmisc.sty

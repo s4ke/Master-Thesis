@@ -9,13 +9,13 @@ We regard here in-depth Glasgow parallel Haskell or short GpH
 `Par` Monad, and Eden, a distributed memory parallel Haskell. These
 languages represent orthogonal approaches. Some use a Monad, even if
 only for the internal representation. Some introduce additional
-language constructs. Section \ref{sec:parallelHaskells} gives a short
+language constructs. Chapter \ref{sec:parallelHaskells} gives a short
 overview over these languages.
 
 A key novelty in this paper is to use Arrows to represent parallel computations.
 They seem a natural fit as they can be thought of as a more general function arrow
 (`->`) and serve as general interface to computations while not being as
-restrictive as Monads [@HughesArrows]. Section \ref{sec:arrows} gives a
+restrictive as Monads [@HughesArrows]. Chapter \ref{sec:arrows} gives a
 short introduction to Arrows.
 
 We provide an Arrows-based type class and implementations for
@@ -30,7 +30,7 @@ common, very low-penalty programming interface that allows to switch
 the parallel implementations at will.
 The induced penalty is in the single-digit percent range,
 with means typically under 2\% overhead in measurements over the
-varying cores configuration (Section \ref{sec:benchmarks}).
+varying cores configuration (Chapter \ref{sec:benchmarks}).
 Further implementations, based on HdpH or a Frege implementation
 (on the Java Virtual Machine), are viable, too.
 
@@ -46,7 +46,7 @@ in the context of parallel programming.
 * We introduce a parallel evaluation formalism using Arrows.
 One big advantage of this specific approach is that we do not
 have to introduce any new types, facilitating composability
-(Section \ref{sec:parallel-arrows}).
+(Chapter \ref{sec:parallel-arrows}).
 * We show that PArrow programs can readily exploit multiple parallel
 language implementations. We demonstrate the use of GpH,
 a `Par` Monad, and Eden. We do not re-implement all the parallel internals,
@@ -59,22 +59,22 @@ For example, during development we can run the program in a
 simple GHC-compiled variant using GpH and afterwards deploy it on a
 cluster by converting it into an Eden program, by just replacing the
 `ArrowParallel` instance and compiling with Eden's GHC variant
-(Section \ref{sec:parallel-arrows}).
+(Chapter \ref{sec:parallel-arrows}).
 
 * We extend the PArrows formalism with `Future`s to enable direct
 communication of data between nodes in a distributed memory setting
 similar to Eden's Remote Data [@Dieterle2010]. 
 Direct communication is useful in a distributed memory setting because
-it allows for inter-node communication without blocking the master-node. (Section \ref{sec:futures})
+it allows for inter-node communication without blocking the master-node. (Chapter \ref{sec:futures})
 * We demonstrate the expressiveness of PArrows by using them to define
-common algorithmic skeletons (Section \ref{sec:skeletons}),
+common algorithmic skeletons (Chapter \ref{sec:skeletons}),
 and by using these skeletons to implement four benchmarks
-(Section \ref{sec:benchmarks}).
+(Chapter \ref{sec:benchmarks}).
 * We practically demonstrate that Arrow parallelism has a low performance
 overhead compared with existing approaches, e.g. the mean over all
 cores of relative mean overhead was less than $3.5\%$ and less than $0.8\%$
 for all benchmarks with GpH and Eden, respectively. As for |Par| Monad,
 the mean of mean overheads was in favour of PArrows in all benchmarks
-(Section \ref{sec:benchmarks}).
+(Chapter \ref{sec:benchmarks}).
 
 PArrows are open source and are available from \url{https://github.com/s4ke/Parrows}.

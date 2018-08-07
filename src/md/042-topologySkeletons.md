@@ -101,7 +101,7 @@ pipeSimple conf fs =
 
 However, using this definition directly will make the master node a
 potential bottleneck in distributed environments as described in
-Section \ref{sec:futures}. Therefore, we introduce a more sophisticated version
+Chapter \ref{sec:futures}. Therefore, we introduce a more sophisticated version
 that internally uses Futures and obtain the final definition of `pipe` in
 Fig. \ref{fig:pipe}.
 
@@ -180,7 +180,7 @@ function `[i] -> [o]` with a ring of nodes that communicate with each other.
 Its input is a node function `i -> r -> (o, r)` in which `r` serves as the
 intermediary output that is sent to the neighbour of each node.
 It uses the direct \enquote{remote data} communication channels that were already
-mentioned in Section \ref{sec:futures}. 
+mentioned in Chapter \ref{sec:futures}. 
 We depict it in the Appendix, Fig. \ref{fig:ringEden}.
 
 We can rewrite this functionality easily with the use of `loop` as the
@@ -189,7 +189,7 @@ into an Arrow, already fits quite neatly into `loop`'s signature:
 `arr (a, b) (c, b) -> arr a c`. In each iteration we start by rotating the
 intermediary input from the nodes `[fut r]` with `second (rightRotate >>> lazy)`
 (Fig. \ref{fig:edenlazyrightrotate}). Similarly to the `pipe` from
-Section \ref{sec:pipe} (Fig. \ref{fig:pipeSimple}), we have to feed the 
+Chapter \ref{sec:pipe} (Fig. \ref{fig:pipeSimple}), we have to feed the 
 intermediary input into our `lazy` (Fig. \ref{fig:edenlazyrightrotate}) Arrow here,
 or the evaluation would fail to terminate. The reasoning is explained by
 @Loogen2012 as a demand problem.
@@ -234,7 +234,7 @@ ring conf f =
 
 ![`torus` skeleton depiction.](src/img/ringImg.pdf){#fig:ringTorusImg}
 
-If we take the concept of a `ring` from Section \ref{sec:ring} one dimension
+If we take the concept of a `ring` from Chapter \ref{sec:ring} one dimension
 further, we obtain a `torus` skeleton (Fig. \ref{fig:ringTorusImg}, \ref{fig:torus}).
 Every node sends and receives data from horizontal and vertical neighbours
 in each communication round. With our Parallel Arrows we re-implement the
@@ -349,7 +349,7 @@ If we compare the trace from a call using our Arrow definition of the
 `torus` (Fig. \ref{fig:torus_parrows_trace}) with the Eden version
 (Fig. \ref{fig:torus_eden_trace}) we can see that the behaviour of the Arrow version
 and execution times are comparable. We discuss further benchmarks on larger
-clusters in more detail in Section \ref{sec:benchmarks}.
+clusters in more detail in Chapter \ref{sec:benchmarks}.
 
 ![Matrix multiplication with `torus` (PArrows).](src/img/torus_matrix_parrows_trace.pdf){#fig:torus_parrows_trace}
 

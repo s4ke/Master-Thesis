@@ -1,5 +1,7 @@
 ## Plots for the shared memory benchmarks
 
+\label{sec:benchmarkSharedPlots}
+
 ![Parallel speedup of shared-memory Rabin--Miller test \enquote{11213 32}](src/img/perfSMRM32.pdf){#fig:perfSMRM32}
 
 ![Parallel speedup of shared-memory Rabin--Miller test \enquote{11213 64}](src/img/perfSMRM64.pdf){#fig:perfSMRM64}
@@ -29,6 +31,8 @@
 ![Mean overhead for shared-memory speedup of Gentleman \enquote{512} vs Eden CP](src/img/overSMTorusEden.pdf){#fig:overSMTorusEden}
 
 ## Plots for the distributed memory benchmarks
+
+\label{sec:benchmarkDistPlots}
 
 ![Parallel speedup of distributed-memory Rabin-–Miller test \enquote{44497 256}](src/img/perfDistRM256.pdf){#fig:perfDistRM256}
 

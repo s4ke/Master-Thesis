@@ -2,16 +2,21 @@
 
 \label{sec:benchmarks}
 
-The preceding sections have shown that PArrows are expressive.
-This section evaluates the performance overhead of this compositional abstraction
-in comparison to  GpH and the `Par` Monad on shared memory architectures and Eden on
-a distributed memory cluster.
-We describe our measurement platform, the benchmark results -- the shared-memory
+The preceding sections have shown what PArrows are and how expressive they are.
+In this Chapter we will now evaluate the performance overhead of our
+compositional abstraction
+in comparison to GpH and the `Par` Monad on shared memory architectures and Eden on
+a distributed memory cluster.^[We do not include the Cloud Haskell backend here,
+as it is still a work-in-progress.]
+We describe our measurement platform (Chapter \ref{sec:benchmarksMeasurementPlatform}),
+the benchmark results (Chapter \ref{sec:benchmarksBenchmarks}) -- the shared-memory
 variants (GpH, `Par` Monad and Eden CP) followed by Eden in a distributed-memory
 setting, and conclude that PArrows hold up in terms of performance when compared
-to the original parallel Haskells.
+to the original parallel Haskells (Chapter \ref{sec:benchmarksEvaluation}).
 
 ## Measurement platform
+
+\label{sec:benchmarksMeasurementPlatform}
 
 We start by explaining the hardware and software stack and outline the
 benchmark programs and motivation for choosing them. We also shortly address
@@ -54,6 +59,8 @@ and the whole grid with 256 real cores as a device to test our
 distributed memory software.
 
 ### Benchmarks
+
+\label{sec:benchmarksBenchmarks}
 
 We measure four benchmarks from different
 sources. Most of them are parallel mathematical computations, initially
@@ -115,7 +122,9 @@ PArrows-enabled and standard benchmark implementations. We continue comparing
 speedups and overheads for the shared memory implementations and then study
 OpenMPI variants of the Eden-enabled PArrows as a representative of a
 distributed memory backend. We plot all speedup curves and all overhead values
-in the supplementary materials.
+in the Appendix in \ref{sec:benchmarkSharedPlots} and
+and \ref{sec:benchmarkDistPlots}
+for the shared memory and distributed memory benchmarks, respectively.
 
 ### Defining overhead
 
@@ -221,6 +230,8 @@ Similar to the shared memory setting, PArrows only imply a very low penalty with
 distributed memory that lies in lower single-percent digits at most.
 
 ## Evaluation of results
+
+\label{sec:benchmarksEvaluation}
 
 | ![](src/img/bestAndWorstBenchmarks1.pdf) |
 |------------------------------------------|

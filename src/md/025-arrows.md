@@ -79,7 +79,7 @@ in some cases.
 
 In this thesis we will show that parallel computations can be expressed with this
 more general interface of Arrows without requiring Monads (we will see an example of
-monadic parallelism in Section \ref{sec:parallelHaskells}). We also do not restrict
+monadic parallelism in Chapter \ref{sec:parallelHaskells}). We also do not restrict
 the compatible Arrows to ones which have `ArrowApply` instances but instead
 only require instances for `ArrowChoice` (for if-then-else constructs)
 and `ArrowLoop` (for looping). Because of this, we have a truly more general

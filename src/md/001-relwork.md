@@ -88,7 +88,7 @@ They use Arrows to orchestrate several tasks in robotics.
 We, however, propose a general interface for parallel programming,
 while remaining completely in Haskell.
 
-### Arrows in other languages
+#### Arrows in other languages
 Although this work is centered on Haskell implementation of Arrows,
 it is applicable to any functional programming language where parallel
 evaluation and Arrows can be defined. Basic definitions of PArrows are

@@ -11,7 +11,7 @@ behind it before discussing some parallel Haskell implementations and basic exte
 
 A parallel computation (on functions) can be seen as execution of some functions
 `a -> b` in parallel, as our `parEvalN` prototype shows
-(Section \ref{sec:parEvalNIntro}).
+(Chapter \ref{sec:parEvalNIntro}).
 Translating this into Arrow terms gives us a new operator `parEvalN` that lifts
 a list of Arrows `[arr a b]` to a parallel Arrow `arr [a] [b]`.
 This combinator is similar to the evaluation combinator `evalN` from Appendix \ref{utilfns}, but does
@@ -59,7 +59,7 @@ the `Par` Monad and Eden.
 
 The GpH implementation of `ArrowParallel` is implemented in a straightforward
 manner in Fig. \ref{fig:ArrowParallelMulticore}, but a bit different compared
-to the variant from Section \ref{sec:GpHIntro}.
+to the variant from Chapter \ref{sec:GpHIntro}.
 We use `evalN :: [arr a b] -> arr [a] [b]`
 (definition in Appendix \ref{utilfns}, think `zipWith ($)` on Arrows) combined
 with `withStrategy :: Strategy a -> a -> a` from GpH, where `withStrategy` is

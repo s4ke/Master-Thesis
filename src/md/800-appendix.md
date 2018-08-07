@@ -6,8 +6,8 @@
 
 Following are definitions of some utility Arrows used in this paper that have been
 left out for brevity. We start with the `second` combinator from
-@HughesArrows, which is a mirrored version of `first`, which is for example
-used in the definition of `***`:
+@HughesArrows, which is a mirrored version of `first` used for example
+in the definition of `***`:
 
 ~~~~ {.haskell}
 second :: Arrow arr => arr a b -> arr (c, a) (c, b)
@@ -79,7 +79,7 @@ turned into Arrows. This works because Arrows are strong Monads in the bicategor
 `Prof` of Profunctors as shown by @Asada:2010:ASM:1863597.1863607.
 In Standard GHC `(>>>)` has the type
 `(>>>) :: Category cat => cat a b -> cat b c -> cat a c` and is therefore not
-part of the `Arrow` type class like presented in this paper.^[For additional information on the type classes used, see: \url{https://hackage.haskell.org/package/profunctors-5.2.1/docs/Data-Profunctor.html} and \url{https://hackage.haskell.org/package/base-4.9.1.0/docs/Control-Category.html}.]
+part of the `Arrow` type class like presented in this thesis.^[For additional information on the type classes used, see: \url{https://hackage.haskell.org/package/profunctors-5.2.1/docs/Data-Profunctor.html} and \url{https://hackage.haskell.org/package/base-4.9.1.0/docs/Control-Category.html}.]
 
 ~~~~ {#fig:profunctorArrow
     .haskell

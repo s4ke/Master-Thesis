@@ -4,11 +4,11 @@
 
 This section covers the basics of functional programming. We start
 by citing @Hughes:1990:WFP:119830.119832 why functional programming matters
-including a characterisation of the concept in general (Section \ref{sec:whyfupro}).
+including a characterisation of the concept in general (Chapter \ref{sec:whyfupro}).
 Then, we give a short introduction to functional programming with Haskell
-(Section \ref{sec:shortIntroHaskell}) and also explain the concept of Monads
-(Section \ref{sec:monads}) which some parallel Haskells use. Finally, we
-introduce Arrows and explain their type class in Haskell (Section \ref{sec:arrows}).
+(Chapter \ref{sec:shortIntroHaskell}) and also explain the concept of Monads
+(Chapter \ref{sec:monads}) which some parallel Haskells use. Finally, we
+introduce Arrows and explain their type class in Haskell (Chapter \ref{sec:arrows}).
 
 ### Why Functional Programming?
 
@@ -218,7 +218,7 @@ g = zipWith f
 
 where zipWith would be of type `(Int -> Int -> Int) -> [Int] -> [Int] -> [Int]`.
 In Haskell it is common to express calculations in such a way using higher-order functions.
-We will see more of this later in this Section.
+We will see more of this later in this Chapter.
 
 #### Type inference
 
