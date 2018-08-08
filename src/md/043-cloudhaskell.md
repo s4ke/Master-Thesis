@@ -25,7 +25,7 @@ of environments.
 While users can already write concurrent applications with the help of Cloud Haskell
 using some of its libraries or even with the bare communication API, it seems like
 a good idea to write parallel programs requiring less involvement from the user.
-In the following section we will therefore explore the possibility of a Cloud Haskell
+In the following Chapter we will therefore explore the possibility of a Cloud Haskell
 based backend for the `ArrowParallel` interface given in this thesis while
 explaining all the necessary
 parts of the API. For easier testing and as this
@@ -103,7 +103,7 @@ all Cloud Haskell internals for the master node and the buffer size for serializ
 discuss the system itself separately), respectively.
 
 Note that as we will use the `State` type as the `conf` parameter in the `ArrowParallel` instance,
-we use the type synonym `type Conf = State` in the following code sections.
+we use the type synonym `type Conf = State` in the following code Chapters.
 Furthermore, an initial config can be created with the function `initialConf :: Int -> LocalNode -> IO Conf`
 where the resulting config contains a `serializeBufferSize` as specified by the first
 parameter and the `LocalNode` specified by the second parameter. Additionally, 
@@ -706,8 +706,8 @@ severe bugs if not handled with utmost care.
 Here its use is necessary and absolutely fine, though, since we only
 do evaluation inside the `IO` monad evaluation and if this were to fail,
 the computation would be wrong anyways. Also in order to force the
-compiler to not inline the result - which is generally okay in pure functions but
-not in this case as we do not want to spawn the computation multiple times -
+compiler to not inline the result -- which is generally okay in pure functions but
+not in this case as we do not want to spawn the computation multiple times --
 we protect the definition of `runComputation`
 with a `NOINLINE` pragma:
 

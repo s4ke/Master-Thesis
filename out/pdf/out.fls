@@ -211,6 +211,19 @@ INPUT C:/Program Files/MiKTeX 2.9/tex/latex/titlesec/titlesec.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/titlesec/titlesec.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tocloft/tocloft.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tocloft/tocloft.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/l3packages/xparse/xparse.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/l3packages/xparse/xparse.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/l3kernel/expl3.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/l3kernel/expl3.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/l3kernel/expl3-code.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/l3kernel/expl3-code.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/UnicodeData.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/CaseFolding.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/SpecialCasing.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/l3kernel/l3pdfmode.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/l3kernel/l3pdfmode.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/footmisc/footmisc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/footmisc/footmisc.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/lbx/english.lbx
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/lbx/english.lbx
 INPUT out/pdf/out.aux
@@ -361,6 +374,12 @@ INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8r.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchr8t.vf
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchr8r.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchri8t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchbi8t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchbi8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchbi8r.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchri8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchri8r.tfm
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstmisc.sty
@@ -376,6 +395,8 @@ OUTPUT out/pdf/out.ptb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmbx10.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmbx8.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmbx6.tfm
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
@@ -415,8 +436,6 @@ OUTPUT out/pdf/out.ptb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmtt8.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmtt8.tfm
 INPUT out/pdf/out.ptb
-INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchri8t.vf
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchri8r.tfm
 OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
@@ -651,8 +670,10 @@ INPUT ./src/img/ringImg.pdf
 INPUT ./src/img/ringImg.pdf
 OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
-INPUT src/img/ringImg.pdf
-INPUT ./src/img/ringImg.pdf
+INPUT src/img/ringTorusImg.pdf
+INPUT ./src/img/ringTorusImg.pdf
+INPUT ./src/img/ringTorusImg.pdf
+INPUT ./src/img/ringTorusImg.pdf
 OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
@@ -880,10 +901,12 @@ INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc
 INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc
-INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/tex-gyre/q-ec.enc
 INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc
+INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/tex-gyre/q-ec.enc
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchb8a.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchb8a.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchbi8a.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchbi8a.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchr8a.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchr8a.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchri8a.pfb

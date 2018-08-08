@@ -54,7 +54,7 @@ prettyHaskellCodeBlock :: Attr -> String -> String
 prettyHaskellCodeBlock attr@(ident, classes, kvs) input =
     if isFigure attr
     then prettyHaskellFig attr input
-    else (prettyHaskell $ "\n\\begin{code}\n" ++ input ++ "\n\\end{code}\n")
+    else (prettyHaskell $ "\n\\begin{code}\n" ++ input ++ "\n\\end{code}\n" ++ "\\vspace{-2\\baselineskip}\n")
 
 prettyHaskellInline :: String -> String
 prettyHaskellInline input = prettyHaskell $ "|" ++ input ++ "|"

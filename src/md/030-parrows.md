@@ -23,7 +23,7 @@ parEvalN :: (Arrow arr) => [arr a b] -> arr [a] [b]
 
 With this definition of `parEvalN`, parallel execution is yet another Arrow
 combinator. But as the implementation may differ depending on the actual
-type of the Arrow `arr` - or even the input `a` and output `b` - and we
+type of the Arrow `arr` -- or even the input `a` and output `b` -- and we
 want this to be an interface for different backends, we introduce a new
 type class `ArrowParallel arr a b`:
 

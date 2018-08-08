@@ -6,7 +6,7 @@ The non-strict semantics of Haskell, and the fact that reduction
 encapsulates computations as closures, makes it relatively easy to
 define alternate parallelisations. A range of approaches have been explored,
 including data parallelism [@Chakravarty2007, @Keller:2010:RSP:1932681.1863582],
-GPU-based approaches [@Mainland:2010:NEC:2088456.1863533,obsidian-phd],
+GPU-based approaches [@Mainland:2010:NEC:2088456.1863533,@obsidian-phd],
 software transactional memory
 [@Harris:2005:CMT:1065944.1065952, @Perfumo:2008:LST:1366230.1366241].
 The Haskell--GPU bridge Accelerate

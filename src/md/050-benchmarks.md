@@ -2,7 +2,7 @@
 
 \label{sec:benchmarks}
 
-The preceding sections have shown what PArrows are and how expressive they are.
+The preceding Chapters have shown what PArrows are and how expressive they are.
 In this Chapter we will now evaluate the performance overhead of our
 compositional abstraction
 in comparison to GpH and the `Par` Monad on shared memory architectures and Eden on

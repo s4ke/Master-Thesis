@@ -232,7 +232,7 @@ ring conf f =
 
 \label{sec:torus}
 
-![`torus` skeleton depiction.](src/img/ringImg.pdf){#fig:ringTorusImg}
+![`torus` skeleton depiction.](src/img/ringTorusImg.pdf){#fig:ringTorusImg}
 
 If we take the concept of a `ring` from Chapter \ref{sec:ring} one dimension
 further, we obtain a `torus` skeleton (Fig. \ref{fig:ringTorusImg}, \ref{fig:torus}).

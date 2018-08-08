@@ -2,7 +2,7 @@
 
 \label{sec:fuproHaskell}
 
-This section covers the basics of functional programming. We start
+This Chapter covers the basics of functional programming. We start
 by citing @Hughes:1990:WFP:119830.119832 why functional programming matters
 including a characterisation of the concept in general (Chapter \ref{sec:whyfupro}).
 Then, we give a short introduction to functional programming with Haskell
@@ -53,14 +53,14 @@ To argue that there is merit in functional programming besides having fewer erro
 @Hughes:1990:WFP:119830.119832 also goes into detail about one of the actual aspects why 
 functional programming matters - composability. He does this by showing how higher
 order functions help in expressing programs in a modular way. The focus on composability
-can be seen in all the definitions of Haskell functions in the following sections of 
+can be seen in all the definitions of Haskell functions in the following Chapters of 
 this thesis.
 
 ### A Short introduction to Haskell
 
 \label{sec:shortIntroHaskell}
 
-In the following section, we will give a short introduction to functional programming
+In the following Chapter, we will give a short introduction to functional programming
 with Haskell. While this will give a good idea of how programming in Haskell works,
 this is not aimed to be a complete tutorial on Haskell, but merely a quick
 overview over the most relevant features of the language used in this thesis.
@@ -71,7 +71,7 @@ The following is loosely based on the book \enquote{Learn you a haskell for grea
 
 In order to ease the introduction to functional programming,
 we will give a short introduction
-to functional programming in Haskell in this section
+to functional programming in Haskell in this Chapter
 by comparing the general style of imperative
 C code to functional Haskell using the example of the Fibonacci sequence.
 
@@ -104,6 +104,9 @@ If we translate this Fibonacci example into a recursive definition
 without any assignment statements, 
 that resembles the Haskell variant in Fig. \ref{fig:fibonacciHaskell}.
 Note the flow of the programming without requiring any modifiable state.
+Furthermore, the Haskell implementation uses guards (e.g. `n <= 0 = 0`) which 
+are equivalent to the conditional statements in the C variant. They will be explained
+in more detail later in this Chapter.
 
 ~~~~ {#fig:fibonacciCRecursive
     .c
@@ -141,7 +144,7 @@ instead of how we perform them and how we track the changes in state
 fib :: Int -> Int
 fib n
 	| n <= 0 = 0
-	| n == 1 = 0
+	| n == 1 = 1
 	| otherwise = 
 		(fib (n - 2))
 			+ (fib (n - 1))
@@ -151,9 +154,20 @@ Haskell being a functional language does not mean, that we do not have
 the usual problem of a too small call-stack size encountered when programming with recursion.
 While Haskell programs can naturally handle much bigger call-stacks without overflowing, 
 at some point the limit will be reached and the program will crash.
-But since the class of tail-recursive programs
+But since the class of tail-recursive programs which all have the form
+
+~~~~{.haskell}
+f x = if <end>
+      then s x
+      else f (r x)
+
+-- s and r arbitrary, but not depending on f
+s = ...
+r = ...
+~~~~
+
 is equivalent to the class of all recursive programs (which is in turn equivalent to
-all imperative programs), this is no big problem: We can just translate our `fib` definition
+all imperative programs), this is no big problem. We can just translate our `fib` definition
 into a tail-recursive variant (Fig. \ref{fig:fibonacciHaskellTailRecursive})
 which Haskell's compiler is capable of automatically translating into looping
 machine code.
@@ -216,7 +230,7 @@ g :: [Int] -> [Int] -> [Int]
 g = zipWith f
 ~~~~
 
-where zipWith would be of type `(Int -> Int -> Int) -> [Int] -> [Int] -> [Int]`.
+where `zipWith` would be of type `(Int -> Int -> Int) -> [Int] -> [Int] -> [Int]`.
 In Haskell it is common to express calculations in such a way using higher-order functions.
 We will see more of this later in this Chapter.
 
@@ -379,7 +393,7 @@ myFunc x ATSIGN 10 = x * 10
 myFunc x = x * 2
 ~~~~
 
-, where the first matching definition is chosen during computation.
+where the first matching definition is chosen during computation.
 Alternatively, we can do pattern matching with the help of `case` expressions:
 
 ~~~~{.haskell
@@ -387,20 +401,21 @@ Alternatively, we can do pattern matching with the help of `case` expressions:
 myFunc :: Int -> Int
 myFunc x = case x of
     5 -> 10
-    x ATSIGN 10 = x * 10
-    x = x * 2
+    10 -> x * 10
+    _ -> x * 2
 ~~~~
 
 These can be used just like ordinary expressions.
 
 We can not, however, express boolean statements in this way. This is because
 pattern matching is done on the structure of the value that is being pattern matched.
-Later in this section we will see what other powerful things we can do with
+Later in this Chapter we will see what other powerful things we can do with
 this technique.
 
 #### `where`, `let`
 
-While Haskell does not have variables, it still allows the programmer to
+While Haskell does not have variables and only works on 
+values instead, it still allows the programmer to
 name sub-expressions so that either the code becomes more clear or that it
 can be reused more easily. Here, two different variants are available: `where` 
 and `let`.
@@ -447,8 +462,8 @@ class Multiplicable a where
     multiply :: a -> a -> a
 ~~~~
 
-With this class in place, we can then introduce instances - implementations of the
-contract - for specific types. For example the instance for `Int`,
+With this class in place, we can then introduce instances -- implementations of the
+contract -- for specific types. For example the instance for `Int`,
 `Multiplicable Int` can be defined as
 
 ~~~~{.haskell
@@ -484,6 +499,89 @@ class (SomeClass a, SomeOtherClass b) => MyClass a b c where
     ...
 ~~~~
 
+#### Custom types
+
+As in any mature programming language, in Haskell programmers obviously do not have
+to represent everything with only some base-set of types. Types are usually defined
+in three different ways. For starters, we can give types aliases with the `type` keyword like
+
+~~~~{.haskell
+    }
+-- Tuple of a and b
+type Tuple a b = (a, b)
+
+-- Tuple of ints
+type IntTuple = (Int, Int)
+~~~~
+
+which are treated just like original `(a, b)` or `Int, Int` would. This means, we
+can use such types loosely and pass e.b. a `Tuple Int Int` into a
+function `f :: (Int, Int) -> ...`. The same also holds for typeclasses.
+
+The second way to declare types, 
+`data` however declares new-types as in actual new types in the type system like
+
+~~~~{.haskell
+    }
+data Direction = 
+      North
+    | NorthEast
+    | East
+    | SouthEast
+    | South
+    | SouthWest
+    | West
+    | NorthWest
+~~~~
+
+where `North` - `NorthWest` are called constructors.
+
+`data` types are not limited to enum-style types though, they can also hold values, like
+the `Maybe a` type from Haskell. This type -- which *may* hold a value `a` internally -
+is usually used as a return type for functions which not always return an actual result.
+We can define it as follows:
+
+~~~~{.haskell
+    }
+-- unnamed field
+data Maybe a = Just a | Nothing
+~~~~
+
+where values are created by calling the constructors with the appropriate
+parameters (if any), i.e. when passed into a function: `f (Just 1)`.
+Furthermore, `data` constructors can have named fields defined like
+
+~~~~{.haskell
+    }
+-- named field
+data Maybe a =
+      Just { theThing :: a }
+    | Nothing
+~~~~
+
+where values are created by calling the constructor and passing the appropriate
+parameters to the properties, i.e. `f (Maybe { theThing = 1 })`
+The final way to define custom types is via `newtype`:
+
+~~~~{.haskell
+    }
+-- unnamed field
+newtype MyNewType a = Constructor a
+
+-- named field
+newtype MyOtherNewType a = Constructor { myOnlyThing :: a }
+~~~~
+ 
+Types declared this way are similar to `data` types, but can only contain a single constructor with just
+a single field. Also, unlike `data`, constructors declared with `newtype` are
+strict instead of lazy, meaning the compiler can optimize away the surrounding declaration. Everything
+else is handled exactly like with `data` types. The specifics of what
+laziness or strictness means will be explained in the next section of this Chapter.
+`newtype` types are also a useful
+tool if we were to write a wrapper for a type while not wanting
+to inherit all instances of typeclasses, but are also often used when declaring
+more complicated types.
+
 #### Lazy Evaluation
 
 One thing that is not obvious when looking at the definitions from this chapter
@@ -501,7 +599,8 @@ This also means that, if `consumer` only requires the first few elements of the 
 the result, `consumer` does not produce unneeded results.
 
 Laziness even allows us to express infinite streams, which can be helpful in some cases.
-As an example, an infinite list of ones is defined as
+As an example, an infinite list of ones is defined with the help of the list
+constructor `(:) :: a -> [a] -> [a]`, which prepends a value to a list, as
 
 ~~~~{.haskell
     }
@@ -545,7 +644,10 @@ Usually laziness is beneficial to programs and programmers as it
 allows for easy composition and better structure in code,
 but sometimes we require more control about
 when something is evaluated. Haskell has several ways to control when and how
-values are evaluated. The basic primitive to force values is `seq :: a -> b -> b`, which
+values are evaluated.
+
+The most basic primitive to force values to be *strict*
+instead of lazy is `seq :: a -> b -> b`, which
 is by nature part of the compiler and can not be expressed in Haskell directly.
 It's semantics however, are as follows: We tell the compiler that the first
 argument (of type `a`) is to be evaluated before the second argument.
@@ -582,23 +684,24 @@ myFun x = g $! f x
         g = ...
 ~~~~
 
-These two operations do not *completely* evaluate values, however as
-they only force to weak-head-normal-form (WHNF) meaning that evaluation
+Note that the strictness implied by these two operations does not equal
+*complete* evaluation, however.
+They only force to weak-head-normal-form (WHNF) meaning that evaluation
 is only forced until the outermost constructor in contrast to normal-form (NF) which stands
 for full evaluation. This means that if we were
 to evaluate some calculation `f (g (h (i x)))` embedded in some lazy tuple `(y, z)` to WHNF,
 `y` and `z` would not be touched as the evaluation stops at the tuple constructor (for more
-about constructors see the next section, \enquote{Custom types}). All the computations
+about constructors see the next Chapter, \enquote{Custom types}). All the computations
 to get to that constructor however, are forced to be evaluated. Therefore, if we want
 to make the insides of a tuple strict, we would have to write something along the lines of
 
-~~~~[.haskell
+~~~~[.haskell}
 let tup ATSIGN (y, z) = f (g (h (i x))) in y `seq` z `seq` tup
 ~~~~
 
 instead of just
 
-~~~~[.haskell
+~~~~[.haskell}
 let tup = f (g (h (i x))) in y `seq` y
 ~~~~
 
@@ -624,11 +727,11 @@ deepseq :: NFData a => a -> b -> b
 deepseq a = rnf a `seq` a
 ~~~~
 
-A deep analogue to `$!!` is then easily definable as well as
+A deep analogue to `$!` is then easily definable as well as
 
 ~~~~{.haskell}
-($!) :: NFData a => (a -> b) -> a -> b
-f $! x = x `deepseq` f x
+($!!) :: NFData a => (a -> b) -> a -> b
+f $!! x = x `deepseq` f x
 ~~~~
 
 When dealing with WHNF and NF, note that in all computations annotated with some
@@ -636,87 +739,6 @@ forcing construct, be it `seq` or `deepseq`, laziness does go away entirely.
 All forced values, even the ones forced to NF, can still be considered somewhat
 lazy as they are only forced when they are requested. This is in practice,
 however, usually a desired property in Haskell programs.
-
-#### Custom types
-
-As in any mature programming language, in Haskell programmers obviously do not have
-to represent everything with only some base-set of types. Types are usually defined
-in three different ways. For starters, we can give types aliases with the `type` keyword like
-
-~~~~{.haskell
-    }
--- Tuple of a and b
-type Tuple a b = (a, b)
-
--- Tuple of ints
-type IntTuple = (Int, Int)
-~~~~
-
-, which are treated just like original `(a, b)` or `Int, Int` would. This means, we
-can use such types loosely and pass e.b. a `Tuple Int Int` into a
-function `f :: (Int, Int) -> ...`. The same also holds for typeclasses.
-
-The second way to declare types, 
-`data` however declares new-types as in actual new types in the type system like
-
-~~~~{.haskell
-    }
-data Direction = 
-      North
-    | NorthEast
-    | East
-    | SouthEast
-    | South
-    | SouthWest
-    | West
-    | NorthWest
-~~~~
-
-, where `North` - `NorthWest` are called constructors.
-
-`data` types are not limited to enum-style types though, they can also hold values, like
-the `Maybe a` type from Haskell. This type - which *may* hold a value `a` internally -
-is usually used as a return type for functions which not always return an actual result.
-We can define it as follows:
-
-~~~~{.haskell
-    }
--- unnamed field
-data Maybe a = Just a | Nothing
-~~~~
-
-where values are created by calling the constructors with the appropriate
-parameters (if any), i.e. when passed into a function: `f (Just 1)`.
-Furthermore, `data` constructors can have named fields defined like
-
-~~~~{.haskell
-    }
--- named field
-data Maybe a =
-      Just { theThing :: a }
-    | Nothing
-~~~~
-
-where values are created by calling the constructor and passing the appropriate
-parameters to the properties, i.e. `f (Maybe { theThing = 1 })`
-The final way to define custom types is via `newtype`:
-
-~~~~{.haskell
-    }
--- unnamed field
-newtype MyNewType a = Constructor a
-
--- named field
-newtype MyOtherNewType a = Constructor { myOnlyThing :: a }
-~~~~
- 
-Types declared this way are similar to `data` types, but can only contain a single constructor with just
-a single field. Also, unlike `data`, constructors declared with `newtype` are
-strict, meaning the compiler can optimize away the surrounding declaration. Everything
-else is handled exactly like with `data` types. `newtype` types are also a useful
-tool if we were to write a wrapper for a type while not wanting
-to inherit all instances of typeclasses, but are also often used when declaring
-more complicated types.
 
 #### Pattern Matching
 
@@ -757,7 +779,7 @@ with `where` as well with constructs like `where (x, y) = vec2d`.
 
 Sometimes we only care about some part of the value. For example, in a definition
 of `maybeHead :: [a] -> Maybe a`, which should return the first element of the list
-or `Nothing` if it is an empty list, we can write this with the help of wildcards (`_`) as:
+or `Nothing` if it is an empty list `[]`, we can write this with the help of wildcards (`_`) as:
 
 ~~~~{.haskell
     }
@@ -794,7 +816,7 @@ work (e.g. if we have called `isJust`), we can use irrefutable patterns like
 #### Lambdas and Partial application
 
 As Functions are just another type that can be passed into higher-order functions
-it makes sense to have a short-hand to write anonymous functions - lambdas.
+it makes sense to have a short-hand to write anonymous functions -- lambdas.
 In Haskell they look like this:
 
 ~~~~{.haskell

@@ -26,41 +26,41 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{From Imperative Programming to Functional Programming}{9}{section*.10}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Functions}{11}{figure.caption.14}
+\contentsline {subsubsection}{Functions}{10}{figure.caption.14}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Type inference}{11}{figure.caption.14}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Function composition, higher-order functions, and function application}{12}{figure.caption.14}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Conditional Computation}{14}{figure.caption.14}
+\contentsline {subsubsection}{Conditional Computation}{13}{figure.caption.14}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\ensuremath {\mathbf {where}}, \ensuremath {\mathbf {let}}}{15}{figure.caption.14}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Type safety}{15}{figure.caption.14}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Type classes}{16}{figure.caption.14}
+\contentsline {subsubsection}{Type classes}{15}{figure.caption.14}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Lazy Evaluation}{17}{figure.caption.14}
+\contentsline {subsubsection}{Custom types}{16}{figure.caption.14}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Custom types}{20}{figure.caption.14}
+\contentsline {subsubsection}{Lazy Evaluation}{18}{figure.caption.14}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Pattern Matching}{21}{figure.caption.14}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Lambdas and Partial application}{23}{figure.caption.14}
+\contentsline {subsubsection}{Lambdas and Partial application}{22}{figure.caption.14}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1.3}Monads}{23}{section*.15}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1.4}Arrows}{26}{section*.16}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Short introduction to parallel Haskells}{29}{section*.20}
+\contentsline {section}{\numberline {3.2}Short introduction to parallel Haskells}{28}{section*.20}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.1}Glasgow parallel Haskell -- GpH}{31}{section*.22}
+\contentsline {subsection}{\numberline {3.2.1}Glasgow parallel Haskell -- GpH}{30}{section*.22}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.2}\ensuremath {\mathit {Par}} Monad}{32}{section*.24}
+\contentsline {subsection}{\numberline {3.2.2}\ensuremath {\mathit {Par}} Monad}{31}{section*.24}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.3}Eden}{33}{section*.26}
+\contentsline {subsection}{\numberline {3.2.3}Eden}{32}{section*.26}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Eden TraceViewer}{33}{section*.26}
+\contentsline {subsubsection}{Eden TraceViewer}{32}{section*.26}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Parallel Arrows}{35}{chapter.4}
 \defcounter {refsection}{0}\relax 
@@ -74,11 +74,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.2.3}Eden}{37}{section*.34}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.4}Default configuration instances}{38}{section*.36}
+\contentsline {subsection}{\numberline {4.2.4}Default configuration instances}{37}{section*.36}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.3}Extending the interface}{38}{section*.37}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.1}Lazy \ensuremath {\mathit {parEvalN}}}{39}{section*.38}
+\contentsline {subsection}{\numberline {4.3.1}Lazy \ensuremath {\mathit {parEvalN}}}{38}{section*.38}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.3.2}Heterogeneous tasks}{39}{section*.41}
 \defcounter {refsection}{0}\relax 
@@ -86,108 +86,108 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.4.1}Parallel \ensuremath {\mathit {map}} and laziness}{40}{section*.45}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4.2}Statically load-balancing parallel \ensuremath {\mathit {map}}}{42}{section*.50}
+\contentsline {subsection}{\numberline {4.4.2}Statically load-balancing parallel \ensuremath {\mathit {map}}}{41}{section*.50}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Further development of Parallel Arrows}{45}{chapter.5}
+\contentsline {chapter}{\numberline {5}Further development of Parallel Arrows}{43}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Futures}{45}{section*.56}
+\contentsline {section}{\numberline {5.1}Futures}{43}{section*.56}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Advanced topological skeletons}{48}{section*.59}
+\contentsline {section}{\numberline {5.2}Advanced topological skeletons}{46}{section*.59}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.1}Parallel pipe}{49}{section*.60}
+\contentsline {subsection}{\numberline {5.2.1}Parallel pipe}{47}{section*.60}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.2}Ring skeleton}{52}{section*.64}
+\contentsline {subsection}{\numberline {5.2.2}Ring skeleton}{49}{section*.64}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.3}Torus skeleton}{53}{section*.67}
+\contentsline {subsection}{\numberline {5.2.3}Torus skeleton}{50}{section*.67}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Experiment: Cloud Haskell Backend}{59}{chapter.6}
+\contentsline {chapter}{\numberline {6}Experiment: Cloud Haskell Backend}{55}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Node discovery and program harness}{60}{section*.74}
+\contentsline {section}{\numberline {6.1}Node discovery and program harness}{56}{section*.74}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.1}The \ensuremath {\mathit {State}} data-structure}{60}{section*.75}
+\contentsline {subsection}{\numberline {6.1.1}The \ensuremath {\mathit {State}} data-structure}{56}{section*.75}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.2}Starting Slave nodes}{62}{section*.76}
+\contentsline {subsection}{\numberline {6.1.2}Starting Slave nodes}{58}{section*.76}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.3}Starting Master nodes}{62}{section*.77}
+\contentsline {subsection}{\numberline {6.1.3}Starting Master nodes}{58}{section*.77}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.4}Startup harness}{64}{section*.78}
+\contentsline {subsection}{\numberline {6.1.4}Startup harness}{60}{section*.78}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Parallel Evaluation with Cloud Haskell}{65}{section*.79}
+\contentsline {section}{\numberline {6.2}Parallel Evaluation with Cloud Haskell}{61}{section*.79}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.1}Communication basics}{66}{section*.80}
+\contentsline {subsection}{\numberline {6.2.1}Communication basics}{61}{section*.80}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Sending and Receiving data}{66}{section*.80}
+\contentsline {subsubsection}{Sending and Receiving data}{62}{section*.80}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Serialized data type}{67}{section*.80}
+\contentsline {subsubsection}{Serialized data type}{63}{section*.80}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.2}Evaluation of values on slave nodes}{68}{section*.81}
+\contentsline {subsection}{\numberline {6.2.2}Evaluation of values on slave nodes}{63}{section*.81}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Master node}{68}{section*.81}
+\contentsline {subsubsection}{Master node}{64}{section*.81}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Slave node}{69}{section*.81}
+\contentsline {subsubsection}{Slave node}{65}{section*.81}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.3}Parallel Evaluation Scheme}{71}{section*.82}
+\contentsline {subsection}{\numberline {6.2.3}Parallel Evaluation Scheme}{66}{section*.82}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}Implementing the PArrows API}{73}{section*.83}
+\contentsline {section}{\numberline {6.3}Implementing the PArrows API}{68}{section*.83}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.1}\ensuremath {\mathit {ArrowParallel}} instance}{73}{section*.84}
+\contentsline {subsection}{\numberline {6.3.1}\ensuremath {\mathit {ArrowParallel}} instance}{68}{section*.84}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.2}Limits of the current implementation}{74}{section*.85}
+\contentsline {subsection}{\numberline {6.3.2}Limits of the current implementation}{69}{section*.85}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.3}Possible mitigation of the limits}{74}{section*.86}
+\contentsline {subsection}{\numberline {6.3.3}Possible mitigation of the limits}{69}{section*.86}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Performance results and discussion}{77}{chapter.7}
+\contentsline {chapter}{\numberline {7}Performance results and discussion}{73}{chapter.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Measurement platform}{77}{section*.88}
+\contentsline {section}{\numberline {7.1}Measurement platform}{73}{section*.88}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1.1}Hardware and software}{77}{section*.89}
+\contentsline {subsection}{\numberline {7.1.1}Hardware and software}{73}{section*.89}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1.2}Benchmarks}{78}{section*.90}
+\contentsline {subsection}{\numberline {7.1.2}Benchmarks}{74}{section*.90}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1.3}What parallel Haskells run where}{79}{section*.91}
+\contentsline {subsection}{\numberline {7.1.3}What parallel Haskells run where}{75}{section*.91}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Benchmark results}{79}{section*.92}
+\contentsline {section}{\numberline {7.2}Benchmark results}{75}{section*.92}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2.1}Defining overhead}{79}{section*.93}
+\contentsline {subsection}{\numberline {7.2.1}Defining overhead}{75}{section*.93}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2.2}Shared memory}{80}{section*.94}
+\contentsline {subsection}{\numberline {7.2.2}Shared memory}{76}{section*.94}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Speedup}{80}{section*.94}
+\contentsline {subsubsection}{Speedup}{76}{section*.94}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Overhead}{80}{section*.94}
+\contentsline {subsubsection}{Overhead}{76}{section*.94}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2.3}Distributed memory}{81}{section*.95}
+\contentsline {subsection}{\numberline {7.2.3}Distributed memory}{77}{section*.95}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Speedup}{81}{section*.95}
+\contentsline {subsubsection}{Speedup}{77}{section*.95}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Overhead}{81}{figure.caption.96}
+\contentsline {subsubsection}{Overhead}{77}{figure.caption.96}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}Evaluation of results}{82}{section*.97}
+\contentsline {section}{\numberline {7.3}Evaluation of results}{78}{section*.97}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {8}Discussion}{85}{chapter.8}
+\contentsline {chapter}{\numberline {8}Discussion}{81}{chapter.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {9}Conclusion}{87}{chapter.9}
+\contentsline {chapter}{\numberline {9}Conclusion}{83}{chapter.9}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9.1}Future work}{87}{section*.100}
+\contentsline {section}{\numberline {9.1}Future work}{83}{section*.100}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {10}Appendix}{89}{chapter.10}
+\contentsline {chapter}{\numberline {10}Appendix}{85}{chapter.10}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10.1}Utility Arrows}{89}{section*.102}
+\contentsline {section}{\numberline {10.1}Utility Arrows}{85}{section*.102}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10.2}Profunctor Arrows}{90}{section*.106}
+\contentsline {section}{\numberline {10.2}Profunctor Arrows}{86}{section*.106}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10.3}Additional function definitions}{90}{section*.108}
+\contentsline {section}{\numberline {10.3}Additional function definitions}{86}{section*.108}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10.4}Syntactic sugar}{93}{section*.114}
+\contentsline {section}{\numberline {10.4}Syntactic sugar}{89}{section*.114}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10.5}Experimental Cloud Haskell backend code}{93}{section*.115}
+\contentsline {section}{\numberline {10.5}Experimental Cloud Haskell backend code}{89}{section*.115}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10.6}Plots for the shared memory benchmarks}{97}{section*.118}
+\contentsline {section}{\numberline {10.6}Plots for the shared memory benchmarks}{93}{section*.118}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10.7}Plots for the distributed memory benchmarks}{105}{section*.133}
+\contentsline {section}{\numberline {10.7}Plots for the distributed memory benchmarks}{101}{section*.133}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{References}{109}{section*.141}
+\contentsline {chapter}{References}{105}{section*.141}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Figures}{119}{section*.141}
+\contentsline {chapter}{List of Figures}{115}{section*.141}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Tables}{123}{section*.141}
+\contentsline {chapter}{List of Tables}{119}{section*.141}

@@ -3,7 +3,7 @@
 \label{sec:parallelHaskells}
 \label{sec:parEvalNIntro}
 
-In \ref{sec:fuproHaskell}, we cited @Hughes:1990:WFP:119830.119832 saying that in functional
+In Chapter \ref{sec:fuproHaskell}, we cited @Hughes:1990:WFP:119830.119832 saying that in functional
 programming, the order of evaluation is irrelevant. In parallel programs this is not the case,
 as at least some kind of structure of evaluation is required to have actual speedup in programs.
 In the following we will take a look at how parallelism can be achieved in Haskell programs in general.
@@ -22,7 +22,7 @@ can however only be achieved if the programmer actively chooses to use these kin
 In its purest form, parallel computation (on functions) can be looked at
 as the execution of some functions `a -> b` in parallel or 
 `parEvalN :: [a -> b] -> [a] -> [b]`, as also Fig. \ref{fig:parEvalN} 
-symbolically shows. In this section, we will implement this non-Arrow version which
+symbolically shows. In this Chapter, we will implement this non-Arrow version which
 will later be adapted for usage in our Arrow-based parallel Haskell.
 
 ![Schematic illustration of `parEvalN`. A list of inputs is transformed by different functions in parallel.](src/img/parEvalN.pdf){#fig:parEvalN}
@@ -140,7 +140,7 @@ solutions exist [@Geimer2010], the parallel Haskell community mainly utilises
 the tools Threadscope [@Wheeler2009] and Eden TraceViewer
 ^[See \url{http://hackage.haskell.org/package/edentv} on Hackage for
 the last available version of Eden TraceViewer.] [@Berthold2007a].
-In the next sections we will present some \emph{trace visualisations},
+In the next Chapters we will present some \emph{trace visualisations},
 the post-mortem process diagrams of Eden processes and their activity.
 
 The trace visualisations are colour-coded.

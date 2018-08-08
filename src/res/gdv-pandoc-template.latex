@@ -98,6 +98,36 @@ $endif$
 	bookmarksopen=true			%
 }
 
+% BEGIN
+\usepackage{xparse}
+\let\oldquote\quote
+\let\endoldquote\endquote
+
+\RenewDocumentEnvironment{quote}{}{%
+    \oldquote
+    \itshape
+    \setlength{\rightmargin}{\leftmargin}
+    {\Large\textbf{``}}
+}
+{%
+	{\Large\textbf{''}}
+    \endoldquote
+}
+% END
+
+% BEGIN
+% fix for Figures below footnotes
+\usepackage[bottom]{footmisc}
+
+\makeatletter
+\renewcommand{\fps@figure}{tbp}
+\renewcommand{\fps@table}{tbp}
+\makeatother
+
+\toks0{\ifvoid\footins\else\suppressfloats[b]\fi}
+\output\expandafter{\the\toks0\the\output}
+% END
+
 % **************************************************
 % Document CONTENT
 % **************************************************
