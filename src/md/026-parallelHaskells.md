@@ -28,11 +28,11 @@ will later be adapted for usage in our Arrow-based parallel Haskell.
 ![Schematic illustration of `parEvalN`. A list of inputs is transformed by different functions in parallel.](src/img/parEvalN.pdf){#fig:parEvalN}
 
 There exist several parallel Haskells already.
-Among the most important are probably GpH (based on `par` and `pseq` \enquote{hints}, @Trinder1996, @Trinder1998a),
-the `Par` Monad (a Monad for deterministic parallelism, @par-monad, @Foltzer:2012:MPC:2398856.2364562),
-Eden (a parallel Haskell for distributed memory, @eden, @Loogen2012),
-HdpH (a Template Haskell-based parallel Haskell for distributed memory, @Maier:2014:HDS:2775050.2633363, @stewart_maier_trinder_2016)
-and LVish (a `Par` extension with focus on communication, @Kuper:2014:TPE:2666356.2594312).
+Among the most important are probably GpH [@Trinder1996; @Trinder1998a, based on `par` and `pseq` \enquote{hints}],
+the `Par` Monad [@par-monad; @Foltzer:2012:MPC:2398856.2364562, a Monad for deterministic parallelism],
+Eden [@eden; @Loogen2012, a parallel Haskell for distributed memory],
+HdpH [@Maier:2014:HDS:2775050.2633363; @stewart_maier_trinder_2016, a Template Haskell-based parallel Haskell for distributed memory]
+and LVish [@Kuper:2014:TPE:2666356.2594312, a `Par` extension with focus on communication].
 
 As the goal of this thesis is not to re-implement yet another parallel runtime,
 but to represent parallelism with Arrows, we base our efforts on existing work
@@ -52,7 +52,7 @@ give their respective implementations of the non-Arrow version of `parEvalN`.
 
 \label{sec:GpHIntro}
 
-GpH [@Marlow2009, @Trinder1998a] is one of the simplest ways to do parallel
+GpH [@Marlow2009; @Trinder1998a] is one of the simplest ways to do parallel
 processing found in standard GHC.^[The Multicore implementation of GpH is available on Hackage under \url{https://hackage.haskell.org/package/parallel-3.2.1.0}, compiler support is integrated in the stock GHC.]
 Besides some basic primitives (`par` and `pseq`), it ships with parallel
 evaluation strategies for several types which can be applied with
@@ -110,7 +110,7 @@ Fig. \ref{fig:parEvalNParMonadImg} shows a graphical representation.
 
 ### Eden
 
-Eden [@eden, @Loogen2012] is a parallel Haskell for distributed memory
+Eden [@eden; @Loogen2012] is a parallel Haskell for distributed memory
 and comes with MPI and PVM as
 distributed backends.^[The projects homepage can be found at \url{http://www.mathematik.uni-marburg.de/~eden/}. The Hackage page is at \url{https://hackage.haskell.org/package/edenmodules-1.2.0.0/}.]
 It is targeted towards clusters, but also functions well in a shared-memory
@@ -118,7 +118,7 @@ setting with a further simple backend. However, in contrast to many other
 parallel Haskells, in Eden each process has its own heap. This seems to
 be a waste of memory, but with distributed programming paradigm and
 individual GC per process, Eden yields good performance results on multicores,
-as well [@arcs-dc, @aswad2009low].
+as well [@arcs-dc; @aswad2009low].
 
 While Eden comes with a Monad `PA` for parallel evaluation, it also ships
 with a completely functional interface that includes

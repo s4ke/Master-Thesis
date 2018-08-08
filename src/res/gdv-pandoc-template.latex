@@ -41,6 +41,7 @@ $endif$
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{listings}
+
 \usepackage[
     activate={true,nocompatibility},
     final,
@@ -59,10 +60,9 @@ $endif$
 	hangsubsection=true,%
 	colorize=bw,%
 	colortheme=bluemagenta,%
-	bibsys=bibtex,%
-	bibfile=bib-refs,%
-	bibstyle=alphabetic,%
+	bibfile=$bibliography$,%
 ]{cleanthesis}
+
 
 \makeatletter
 \DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
@@ -213,6 +213,38 @@ $endif$
 \pagestyle{maincontentstyle} 	% fancy header and footer
 
 $body$
+
+\cleardoublepage
+
+% !TEX root = ../thesis-example.tex
+%
+%************************************************
+% Declaration
+%************************************************
+\pdfbookmark[0]{Declaration}{Declaration}
+\chapter*{Declaration of independence}
+\label{sec:declaration}
+\thispagestyle{empty}
+
+Hiermit versichere ich, {\thesisName}, dass ich die von mir vorgelegte Arbeit
+\emph{\thesisTitle} selbstständig verfasst und keine anderen als die angegebenen
+Quelle und Hilfsmittel verwendet habe.
+
+\smallskip
+
+\noindent\textit{\thesisUniversityCity, \thesisDate}
+
+\smallskip
+
+\begin{flushright}
+	\begin{minipage}{5cm}
+		\rule{\textwidth}{1pt}
+		\centering\thesisName
+	\end{minipage}
+\end{flushright}
+
+%*****************************************
+%*****************************************
 
 \cleardoublepage
 

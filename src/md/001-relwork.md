@@ -5,31 +5,31 @@
 The non-strict semantics of Haskell, and the fact that reduction
 encapsulates computations as closures, makes it relatively easy to
 define alternate parallelisations. A range of approaches have been explored,
-including data parallelism [@Chakravarty2007, @Keller:2010:RSP:1932681.1863582],
+including data parallelism [@Chakravarty2007; @Keller:2010:RSP:1932681.1863582],
 GPU-based approaches [@Mainland:2010:NEC:2088456.1863533,@obsidian-phd],
 software transactional memory
-[@Harris:2005:CMT:1065944.1065952, @Perfumo:2008:LST:1366230.1366241].
+[@Harris:2005:CMT:1065944.1065952; @Perfumo:2008:LST:1366230.1366241].
 The Haskell--GPU bridge Accelerate
-[@Chakravarty:2011:AHA:1926354.1926358, @CMCK14, @McDonell:2015:TRC:2887747.2804313]
+[@Chakravarty:2011:AHA:1926354.1926358; @CMCK14; @McDonell:2015:TRC:2887747.2804313]
 is completely orthogonal to our approach.
 A good survey of parallel Haskells can be found in @marlow2013parallel.
 
 Our PArrow implementation uses three task parallel languages as backends:
-the GpH [@Trinder1996, @Trinder1998a] parallel Haskell dialect
+the GpH [@Trinder1996; @Trinder1998a] parallel Haskell dialect
 and its multicore version [@Marlow2009], the `Par` Monad
-[@par-monad, @Foltzer:2012:MPC:2398856.2364562], and Eden [@eden, @Loogen2012].
+[@par-monad; @Foltzer:2012:MPC:2398856.2364562], and Eden [@eden; @Loogen2012].
 These languages are under active development, for example a combined shared
 and distributed memory implementation of GpH is available
-[@Aljabri:2013:DIG:2620678.2620682, @Aljabri2015].
+[@Aljabri:2013:DIG:2620678.2620682; @Aljabri2015].
 Research on Eden includes low-level implementation
-[@JostThesis, @berthold_loidl_hammond_2016], skeleton composition
+[@JostThesis; @berthold_loidl_hammond_2016], skeleton composition
 [@dieterle_horstmeyer_loogen_berthold_2016], communication [@Dieterle2010],
 and generation of process networks [@Horstmeyer2013].
 The definitions of new Eden skeletons is a specific focus
-[@doi:10.1142/S0129626403001380, @Eden:PARCO05, @Berthold2009-mr, @Berthold2009-fft, @dieterle2010skeleton, @delaEncina2011, @Dieterle2013, @janjic2013space]
+[@doi:10.1142/S0129626403001380; @Eden:PARCO05; @Berthold2009-mr; @Berthold2009-fft; @dieterle2010skeleton; @delaEncina2011; @Dieterle2013; @janjic2013space]
 
 Other task parallel Haskells related to Eden, GpH, and the `Par`
-Monad include: HdpH [@Maier:2014:HDS:2775050.2633363, @stewart_maier_trinder_2016] is an extension
+Monad include: HdpH [@Maier:2014:HDS:2775050.2633363; @stewart_maier_trinder_2016] is an extension
 of `Par` Monad to heterogeneous clusters. LVish [@Kuper:2014:TPE:2666356.2594312] is a
 communication-centred extension of the `Par` Monad.
 
@@ -42,24 +42,24 @@ Types of algorithmic skeletons include `map`-, `fold`-, and `scan`-based paralle
 programming patterns, special applications such as divide-and-conquer or
 topological skeletons.
 
-The `farm` skeleton [@Hey1990185, @Eden:PPDP01, @Kuchen05] is a statically 
+The `farm` skeleton [@Hey1990185; @Eden:PPDP01; @Kuchen05] is a statically 
 task-balanced parallel `map`. When tasks' durations cannot be foreseen,
 a dynamic load balancing (`workpool`) brings a lot of improvement
-[@Rudolph:1991:SLB:113379.113401, @doi:10.1142/S0129626403001380, @Hippold2006, @PADL08HMWS,Marlow2009].
+[@Rudolph:1991:SLB:113379.113401; @doi:10.1142/S0129626403001380; @Hippold2006; @PADL08HMWS,Marlow2009].
 For special tasks `workpool` skeletons can be extended with dynamic task
-creation [@WPEuropar06, @Dinan:2009:SWS:1654059.1654113, @brown2010ever].
+creation [@WPEuropar06; @Dinan:2009:SWS:1654059.1654113; @brown2010ever].
 Efficient load-balancing schemes for `workpool`s are subject of research
-[@Blumofe:1999:SMC:324133.324234, @Acar:2000:DLW:341800.341801, @vanNieuwpoort:2001:ELB:568014.379563, @Chase:2005:DCW:1073970.1073974, @4625841, @Michael:2009:IWS:1594835.1504186].
+[@Blumofe:1999:SMC:324133.324234; @Acar:2000:DLW:341800.341801; @vanNieuwpoort:2001:ELB:568014.379563; @Chase:2005:DCW:1073970.1073974; @4625841; @Michael:2009:IWS:1594835.1504186].
 
 The `fold` (or `reduce`) skeleton was implemented in various skeleton libraries
-[@Kuchen2002, @5361825, @BUONO20102095, @Dastgeer:2011:ASM:1984693.1984697],
-as also its inverse, `scan` [@Bischof2002, @harris2007parallel].
-Google `map`--`reduce` [@Dean:2008:MSD:1327452.1327492, @Dean:2010:MFD:1629175.1629198]
-is more special than just a composition of the two skeletons [@LAMMEL20081, @Berthold2009-mr].
+[@Kuchen2002; @5361825; @BUONO20102095; @Dastgeer:2011:ASM:1984693.1984697],
+as also its inverse, `scan` [@Bischof2002; @harris2007parallel].
+Google `map`--`reduce` [@Dean:2008:MSD:1327452.1327492; @Dean:2010:MFD:1629175.1629198]
+is more special than just a composition of the two skeletons [@LAMMEL20081; @Berthold2009-mr].
 
 The effort is ongoing, including topological skeletons [@Eden:PARCO05],
 special-purpose skeletons for computer algebra
-[@Berthold2009-fft, @lobachev-phd, @Lobachev2012, @janjic2013space],
+[@Berthold2009-fft; @lobachev-phd; @Lobachev2012; @janjic2013space],
 iteration skeletons [@Dieterle2013].
 The idea of @scscp is to use a parallel Haskell to orchestrate further
 software systems to run in parallel. @dieterle_horstmeyer_loogen_berthold_2016 
@@ -72,11 +72,11 @@ in essence they are a generalised function arrow `->`. @Hughes2005 presents a
 tutorial on Arrows. @jacobs_heunen_hasuo_2009, @LINDLEY201197, @ATKEY201119 develop
 theoretical background of Arrows. [@Paterson:2001:NNA:507669.507664] introduced a
 new notation for Arrows. Arrows have applications in information flow research
-[@1648705, @LI20101974, @Russo:2008:LLI:1411286.1411289],
+[@1648705; @LI20101974; @Russo:2008:LLI:1411286.1411289],
 invertible programming [@Alimarine:2005:BAA:1088348.1088357],
 and quantum computer simulation [@vizzotto_altenkirch_sabry_2006].
 But probably most prominent application of Arrows is Arrow-based functional
-reactive programming, AFRP [@Nilsson:2002:FRP:581690.581695, @Hudak2003, @Czaplicki:2013:AFR:2499370.2462161].
+reactive programming, AFRP [@Nilsson:2002:FRP:581690.581695; @Hudak2003; @Czaplicki:2013:AFR:2499370.2462161].
 [@Liu:2009:CCA:1631687.1596559] formally define a more special kind of
 Arrows that capsule the computation more than regular Arrows do and thus
 enable optimisations. Their approach would allow parallel composition,
@@ -98,7 +98,7 @@ However, they are beyond the scope of this work,
 as are similar experiments with the Eta language^[Eta project page at \url{http://eta-lang.org}], 
 a new approach to Haskell on the JVM.
 
-[@achten2004arrows, @achten2007arrow] use an Arrow implementation in Clean
+[@achten2004arrows; @achten2007arrow] use an Arrow implementation in Clean
 for better handling of typical GUI tasks.
 [@Dagand:2009:ORD:1481861.1481870] used Arrows in OCaml in the implementation
 of a distributed system.
