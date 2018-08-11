@@ -1,5 +1,7 @@
 # Experiment: Cloud Haskell Backend
 
+\label{sec:cloudHaskellExperiment}
+
 Cloud Computing has become more and more prevalent in recent years. Servers are
 replaced with virtual ones positioned all around the globe.
 These can easily be brought up when required and shut down
@@ -12,7 +14,7 @@ The Cloud Haskell Platform consists of a generic network transport API,
 libraries for sending static closures to remote nodes, a rich API for
 distributed programming and a set of platform libraries modelled after
 Erlang's Open Telecom Platform.
-
+>
 > Generic network transport backends have been developed for TCP and in-memory
 messaging, and several other implementations are available including a
 transport for Windows Azure.[...]

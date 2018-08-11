@@ -1,80 +1,68 @@
 # Introduction
 \label{sec:introduction}
 
-Functional languages have a long history of being used for 
-experimenting with novel parallel programming paradigms.
-Haskell, which we focus on in this paper, has  several mature implementations.
-We regard here in-depth Glasgow parallel Haskell or short GpH
+In recent years, functional programming has been on the rise as can be seen in the
+growing popularity of languages like Haskell, Scala, or Lisp.
+Even imperative languages have been seen adopting features
+stemming from functional Languages. So, even Java, which is
+generally not associated with adopting trends fast, has officially
+embraced at least some functional concepts such as Lambdas or the functional
+interfaces in the standard library. Other concepts like for example the
+the Streaming API rely heavily on these new-to-Java concepts.
+Languages like C++, C# or Python show an even greater influence of functional
+paradigms as they all improve support for a functional style of programming, even
+if they can never be considered pure functional languages by any means.
+
+This rise in popularity does not come from nowhere. The core benefit
+of functional programming, its modularizability allows programmers
+to write concise programs in a clear and structured way.
+
+Functional languages coming out of the environment
+of academics, historically also have a long history of being used for 
+experimenting with novel programming paradigms. Among them is
+the use of functional languages for parallel programming.
+
+In Haskell, which we focus on in this thesis, there already exist several
+ways to write parallel programs. In this thesis, we regard
+in-depth Glasgow parallel Haskell or short GpH
 (its Multicore SMP implementation, in particular), the
-`Par` Monad, and Eden, a distributed memory parallel Haskell. These
-languages represent orthogonal approaches. Some use a Monad, even if
+`Par` Monad, and Eden, a distributed memory parallel Haskell targeting
+clusters running MPI or PVM. These languages represent orthogonal approaches.
+Some use a Monad, even if
 only for the internal representation. Some introduce additional
-language constructs. Chapter \ref{sec:parallelHaskells} gives a short
-overview over these languages.
+language constructs.
 
-A key novelty in this paper is to use Arrows to represent parallel computations.
-They seem a natural fit as they can be thought of as a more general function arrow
+One approach that has not been explored in depth yet, however, is to represent
+parallel computations with Arrows. They seem a natural fit as they can be
+thought of as a more general function arrow
 (`->`) and serve as general interface to computations while not being as
-restrictive as Monads [@HughesArrows]. Chapter \ref{sec:arrows} gives a
-short introduction to Arrows.
+restrictive as Monads [@HughesArrows].
 
-We provide an Arrows-based type class and implementations for
-the three above mentioned parallel Haskells.
-Instead of introducing a new low-level parallel backend to implement our
-Arrows-based interface, we define a shallow-embedded DSL for Arrows. This DSL
-is defined as a common interface with varying implementations in
-the existing parallel Haskells.
-Thus, we not only define a parallel programming interface in a
-novel manner -- we tame the zoo of parallel Haskells. We provide a
-common, very low-penalty programming interface that allows to switch
-the parallel implementations at will.
-The induced penalty is in the single-digit percent range,
-with means typically under 2\% overhead in measurements over the
-varying cores configuration (Chapter \ref{sec:benchmarks}).
-Further implementations, based on HdpH or a Frege implementation
-(on the Java Virtual Machine), are viable, too.
+This is why in this thesis
+we will explain how a Arrow based parallel Haskell can be achieved.
+We do however not want to re-invent parallelism, though.
+We only provide a Arrow based
+type class which we use as an interface to wrap around the three above mentioned
+parallel Haskells instead of introducing yet another new low-level parallel backend.
 
-## Contributions
+With such a shallow-embedded DSL for Arrows we do not only aim to define a parallel programming
+interface in a novel manner -- we also aim to tame the zoo of parallel Haskells.
+Additionally, the aim is to provide a common, very low-penalty programming interface that allows
+to switch the parallel implementations at will.
 
-We propose an Arrow-based encoding for parallelism based on 
-a new Arrow combinator `parEvalN :: [arr a b] -> arr [a] [b]`.
-A parallel Arrow is still an Arrow, hence the resulting parallel
-Arrow can still be used in the same way as a potential sequential version.
-In this paper we evaluate the expressive power of such a formalism
-in the context of parallel programming.
+#### Structure
 
-* We introduce a parallel evaluation formalism using Arrows.
-One big advantage of this specific approach is that we do not
-have to introduce any new types, facilitating composability
-(Chapter \ref{sec:parallel-arrows}).
-* We show that PArrow programs can readily exploit multiple parallel
-language implementations. We demonstrate the use of GpH,
-a `Par` Monad, and Eden. We do not re-implement all the parallel internals,
-as this functionality is hosted in the `ArrowParallel` type class,
-which abstracts all parallel implementation logic.
-The implementations can easily be swapped, so we are not bound to any specific one.
+This thesis is structured as follows. In Chapter \ref{sec:related-work}, we discuss
+related work. Chapter \ref{sec:background} covers the background of this thesis
+including an introduction to functional programming, a monad tutorial to finally
+introduce the concepts of Arrows.
+In Chapter \ref{sec:parallel-arrows} we define the shallow-embedded DSL based on Arrows (PArrows)
+together with some first basic extensions and `map`-based skeletons.
+Chapter \ref{sec:further-development} develops the PArrows API further
+by introducing the concept of `Future`s and by giving the definitions of some topology
+skeletons. We experiment with a Cloud Haskell based backend in \ref{sec:cloudHaskellExperiment}.
+Chapter \ref{sec:benchmarks}, evaluates the performance of the PArrows DSL.
+Chapter \ref{sec:discussion} discusses our results and Chapter \ref{sec:conclusion} concludes.
 
-This has many practical advantages.
-For example, during development we can run the program in a
-simple GHC-compiled variant using GpH and afterwards deploy it on a
-cluster by converting it into an Eden program, by just replacing the
-`ArrowParallel` instance and compiling with Eden's GHC variant
-(Chapter \ref{sec:parallel-arrows}).
 
-* We extend the PArrows formalism with `Future`s to enable direct
-communication of data between nodes in a distributed memory setting
-similar to Eden's Remote Data [@Dieterle2010]. 
-Direct communication is useful in a distributed memory setting because
-it allows for inter-node communication without blocking the master-node. (Chapter \ref{sec:futures})
-* We demonstrate the expressiveness of PArrows by using them to define
-common algorithmic skeletons (Chapter \ref{sec:skeletons}),
-and by using these skeletons to implement four benchmarks
-(Chapter \ref{sec:benchmarks}).
-* We practically demonstrate that Arrow parallelism has a low performance
-overhead compared with existing approaches, e.g. the mean over all
-cores of relative mean overhead was less than $3.5\%$ and less than $0.8\%$
-for all benchmarks with GpH and Eden, respectively. As for |Par| Monad,
-the mean of mean overheads was in favour of PArrows in all benchmarks
-(Chapter \ref{sec:benchmarks}).
 
-PArrows are open source and are available from \url{https://github.com/s4ke/Parrows}.

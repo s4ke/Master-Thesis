@@ -2,6 +2,53 @@
 
 \label{sec:conclusion}
 
+## Contributions
+
+We propose an Arrow-based encoding for parallelism based on 
+a new Arrow combinator `parEvalN :: [arr a b] -> arr [a] [b]`.
+A parallel Arrow is still an Arrow, hence the resulting parallel
+Arrow can still be used in the same way as a potential sequential version.
+In this paper we evaluate the expressive power of such a formalism
+in the context of parallel programming.
+
+* We introduce a parallel evaluation formalism using Arrows.
+One big advantage of this specific approach is that we do not
+have to introduce any new types, facilitating composability
+(Chapter \ref{sec:parallel-arrows}).
+* We show that PArrow programs can readily exploit multiple parallel
+language implementations. We demonstrate the use of GpH,
+a `Par` Monad, and Eden. We do not re-implement all the parallel internals,
+as this functionality is hosted in the `ArrowParallel` type class,
+which abstracts all parallel implementation logic.
+The implementations can easily be swapped, so we are not bound to any specific one.
+
+This has many practical advantages.
+For example, during development we can run the program in a
+simple GHC-compiled variant using GpH and afterwards deploy it on a
+cluster by converting it into an Eden program, by just replacing the
+`ArrowParallel` instance and compiling with Eden's GHC variant
+(Chapter \ref{sec:parallel-arrows}).
+
+* We extend the PArrows formalism with `Future`s to enable direct
+communication of data between nodes in a distributed memory setting
+similar to Eden's Remote Data [@Dieterle2010]. 
+Direct communication is useful in a distributed memory setting because
+it allows for inter-node communication without blocking the master-node. (Chapter \ref{sec:futures})
+* We demonstrate the expressiveness of PArrows by using them to define
+common algorithmic skeletons (Chapter \ref{sec:skeletons}),
+and by using these skeletons to implement four benchmarks
+(Chapter \ref{sec:benchmarks}).
+* We practically demonstrate that Arrow parallelism has a low performance
+overhead compared with existing approaches, e.g. the mean over all
+cores of relative mean overhead was less than $3.5\%$ and less than $0.8\%$
+for all benchmarks with GpH and Eden, respectively. As for |Par| Monad,
+the mean of mean overheads was in favour of PArrows in all benchmarks
+(Chapter \ref{sec:benchmarks}).
+
+PArrows are open source and are available from \url{https://github.com/s4ke/Parrows}.
+
+## Conclusion
+
 Arrows are a generic concept that allows for powerful composition
 combinators. To our knowledge we are first to represent
 *parallel* computation with Arrows, and hence to show their usefulness for

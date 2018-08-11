@@ -24,12 +24,11 @@ program’s output as its result. Typically the main function is defined in term
 other functions, which in turn are defined in terms of still more functions, until
 at the bottom level the functions are language primitives.
 
-Functional programming is also often - wrongly - only defined by what it does not allow programmers 
-to do. @Hughes:1990:WFP:119830.119832 furthermore describes this aspect elegantly while 
-naming the usual advantages of functional programs:
+Basically, functional programs only contain logic described in terms of
+functions and their compositions. Additionally, functional programming is also often characterized
+as follows [@Hughes:1990:WFP:119830.119832]:
 
-> The special characteristics and advantages of functional programming are
-often summed up more or less as follows. Functional programs contain no
+> Functional programs contain no
 assignment statements, so variables, once given a value, never change. More
 generally, functional programs contain no side-effects at all. A function call
 can have no effect other than to compute its result. This eliminates a major
@@ -40,9 +39,13 @@ expressions can be evaluated at any time, one can freely replace variables by
 their values and vice versa — that is, programs are “referentially transparent”.
 This freedom helps make functional programs more tractable mathematically
 than their conventional counterparts. 
-> 
-> [...]
-> 
+
+While all these are all good arguments in favour of functional programming -- because
+of the elimination of programming bottlenecks -- these arguments only
+describe functional programming by means of what it can not do. 
+@Hughes:1990:WFP:119830.119832 describes his dissatisfaction with this
+argument as follows:
+
 > Even a functional programmer should be dissatisfied with these so-called
 advantages, because they give no help in exploiting the power of functional languages.
 One cannot write a program that is particularly lacking in assignment
@@ -50,17 +53,35 @@ statements, or particularly referentially transparent. There is no yardstick of
 program quality here, and therefore no ideal to aim at.
 
 To argue that there is merit in functional programming besides having fewer error-prone features
-@Hughes:1990:WFP:119830.119832 also goes into detail about one of the actual aspects why 
-functional programming matters - composability. He does this by showing how higher
-order functions help in expressing programs in a modular way. The focus on composability
-can be seen in all the definitions of Haskell functions in the following Chapters of 
-this thesis.
+@Hughes:1990:WFP:119830.119832 then goes into detail about one of the areas where functional
+programming shines and why it therefore matters -- modularity. He argues that
+modularity is only possible with good glue code. This is where he sees functional
+programming to be better suited because of two powerful tools:
+higher-order functions and laziness.
+
+Higher-order functions are functions that take other functions as arguments. They
+usually generalize a concept (e.g. mapping over a list, zipping two lists, etc.) and
+take the passed function(s) as their internal worker function. They provide the skeleton
+of the program. Laziness here means that values are only evaluated when required.
+This allows for programs to work in a producer/consumer pattern without having to
+write manual interweaving code. We will explain both concepts in greater details
+later in this Chapter.
+
+The focus on modularity through the level of composability functional languages
+have, can be seen in all the definitions of Haskell functions in the following Chapters of 
+this thesis. Also, the main functional concept this thesis uses, Arrows,
+are by nature a result of the desire to generalize modularity. We will show how
+to introduce modularity into parallel programs with their help.
 
 ### A Short introduction to Haskell
 
 \label{sec:shortIntroHaskell}
 
-In the following Chapter, we will give a short introduction to functional programming
+Even though this thesis is called \enquote{Concepts in Parallel Programming} and focuses
+on Arrows for parallel (functional) computation, we have to first define the basic building blocks
+of our programming language and show how to use them in regular programs before
+we can explore *parallel* programming.
+Therefore, in the following Chapter, we will give a short introduction to functional programming
 with Haskell. While this will give a good idea of how programming in Haskell works,
 this is not aimed to be a complete tutorial on Haskell, but merely a quick
 overview over the most relevant features of the language used in this thesis.
