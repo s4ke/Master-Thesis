@@ -1,12 +1,23 @@
 # Related Work
+
 \label{sec:related-work}
 
+In this Chapter we will discuss related work to this thesis. We start with
+related work on parallel Haskells in Chapter \ref{sec:relWorkParallelHaskells}. Next,
+we discuss work on algorithmic skeletons in Chapter \ref{sec:relWorkAlgorithmicSkels}.
+Then, we go over previous work in the field of Arrows in Chapter \ref{sec:relWorkArrows}.
+Finally, we explain how this thesis is related to previous work done on PArrows
+during the exploration of the subject.
+
 ## Parallel Haskells
+
+\label{sec:relWorkParallelHaskells}
+
 The non-strict semantics of Haskell, and the fact that reduction
 encapsulates computations as closures, makes it relatively easy to
 define alternate parallelisations. A range of approaches have been explored,
 including data parallelism [@Chakravarty2007; @Keller:2010:RSP:1932681.1863582],
-GPU-based approaches [@Mainland:2010:NEC:2088456.1863533,@obsidian-phd],
+GPU-based approaches [@Mainland:2010:NEC:2088456.1863533; @obsidian-phd],
 software transactional memory
 [@Harris:2005:CMT:1065944.1065952; @Perfumo:2008:LST:1366230.1366241].
 The Haskell--GPU bridge Accelerate
@@ -34,6 +45,8 @@ of `Par` Monad to heterogeneous clusters. LVish [@Kuper:2014:TPE:2666356.2594312
 communication-centred extension of the `Par` Monad.
 
 ## Algorithmic skeletons
+
+\label{sec:relWorkAlgorithmicSkels}
 
 Algorithmic skeletons were introduced by @Cole1989.
 Early publications on this topic include @DANELUTTO1992205, @darlington1993parallel, @botorog1996efficient, @Lengauer1997, @Gorlatch1998. 
@@ -66,6 +79,8 @@ software systems to run in parallel. @dieterle_horstmeyer_loogen_berthold_2016
 compare the composition of skeletons to stable process networks.
 
 ## Arrows
+
+\label{sec:relWorkArrows}
 
 Arrows were introduced by @HughesArrows as a less restrictive alternative to Monads,
 in essence they are a generalised function arrow `->`. @Hughes2005 presents a
@@ -102,3 +117,24 @@ a new approach to Haskell on the JVM.
 for better handling of typical GUI tasks.
 [@Dagand:2009:ORD:1481861.1481870] used Arrows in OCaml in the implementation
 of a distributed system.
+
+## Earlier work
+
+This thesis is based on the paper \enquote{Arrows for Parallel Computation} [@PArrowsPaper]
+written by me, Martin Braun, together with Oleg Lobachev and Phil Trinder. The original idea for this paper
+came up during a Masters Research Project done under the supervision of Oleg Lobachev.
+
+This thesis, while based on work originally done during the Master's research project, is,
+however dramatically different from the work presented there. In this thesis, the results
+are a lot more sophisticated and detailed and only Chapters \ref{sec:parallelHaskells} -- \ref{sec:map-skeletons}
+are somewhat based on work done during the original project.
+
+Similarities to the paper however, are not
+coincidental. Chapters \ref{sec:related-work}, \ref{sec:arrows} -- \ref{sec:further-development} as well as Chapter \ref{sec:benchmarks}
+were taken from the paper and embedded into the rest of the text. The introduction in Chapter
+\ref{sec:introduction} as well as the conclusion in \ref{sec:conclusion}
+are also inspired by the paper. But as I, Martin Braun, am the primary author of the paper,
+this still means that the following work was done independently as required by studying regulations.
+
+
+

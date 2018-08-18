@@ -2,22 +2,25 @@
 
 \label{sec:conclusion}
 
-## Contributions
+Arrows are a generic concept that allows for powerful composition
+combinators. To our knowledge we are first to represent
+*parallel* computation with Arrows, and hence to show their usefulness for
+composing parallel programs.
 
-We propose an Arrow-based encoding for parallelism based on 
+In this thesis, we proposed an Arrow-based encoding for parallelism based on 
 a new Arrow combinator `parEvalN :: [arr a b] -> arr [a] [b]`.
 A parallel Arrow is still an Arrow, hence the resulting parallel
 Arrow can still be used in the same way as a potential sequential version.
-In this paper we evaluate the expressive power of such a formalism
+We evaluated the expressive power of such a formalism
 in the context of parallel programming.
 
-* We introduce a parallel evaluation formalism using Arrows.
+We introduced a parallel evaluation formalism using Arrows.
 One big advantage of this specific approach is that we do not
 have to introduce any new types, facilitating composability
 (Chapter \ref{sec:parallel-arrows}).
-* We show that PArrow programs can readily exploit multiple parallel
-language implementations. We demonstrate the use of GpH,
-a `Par` Monad, and Eden. We do not re-implement all the parallel internals,
+These PArrow programs can readily exploit multiple parallel
+language implementations. We demonstrated the use of GpH,
+a `Par` Monad, and Eden. We did not re-implement all the parallel internals,
 as this functionality is hosted in the `ArrowParallel` type class,
 which abstracts all parallel implementation logic.
 The implementations can easily be swapped, so we are not bound to any specific one.
@@ -29,54 +32,38 @@ cluster by converting it into an Eden program, by just replacing the
 `ArrowParallel` instance and compiling with Eden's GHC variant
 (Chapter \ref{sec:parallel-arrows}).
 
-* We extend the PArrows formalism with `Future`s to enable direct
+Next, we extended the PArrows formalism with `Future`s to enable direct
 communication of data between nodes in a distributed memory setting
 similar to Eden's Remote Data [@Dieterle2010]. 
 Direct communication is useful in a distributed memory setting because
-it allows for inter-node communication without blocking the master-node. (Chapter \ref{sec:futures})
-* We demonstrate the expressiveness of PArrows by using them to define
-common algorithmic skeletons (Chapter \ref{sec:skeletons}),
+it allows for inter-node communication without blocking the master-node.
+(Chapter \ref{sec:futures})
+
+Subsequently, we demonstrated the expressiveness of PArrows by using them to define
+common algorithmic skeletons (Chapters \ref{sec:skeletons}, \ref{sec:topology-skeletons}),
 and by using these skeletons to implement four benchmarks
 (Chapter \ref{sec:benchmarks}).
-* We practically demonstrate that Arrow parallelism has a low performance
-overhead compared with existing approaches, e.g. the mean over all
-cores of relative mean overhead was less than $3.5\%$ and less than $0.8\%$
-for all benchmarks with GpH and Eden, respectively. As for |Par| Monad,
-the mean of mean overheads was in favour of PArrows in all benchmarks
+
+We also developed an experimental Cloud Haskell backend in Chapter
+\ref{sec:cloudHaskellExperiment} as a possible PArrows backend with support
+for the recent trends in cloud computing. This in an early proof of concept stage
+at the moment.
+
+Then, we practically demonstrated that Arrow parallelism has a low performance
+overhead compared with existing approaches, with only some negligible performance hits
 (Chapter \ref{sec:benchmarks}).
 
-PArrows are open source and are available from \url{https://github.com/s4ke/Parrows}.
-
-## Conclusion
-
-Arrows are a generic concept that allows for powerful composition
-combinators. To our knowledge we are first to represent
-*parallel* computation with Arrows, and hence to show their usefulness for
-composing parallel programs. We have shown that for a generic and extensible
-parallel Haskell, we do not have to restrict ourselves to a monadic interface.
-We argue that Arrows are better suited to parallelise
-pure functions than Monads, as the functions are already Arrows and can be used
-directly in our DSL.
-Arrows are a better fit to parallelise pure code than a monadic solution as
-regular functions are already Arrows and can be used with our DSL in a more natural
-way.
-We use a non-monadic interface (similar to Eden or GpH) and retain composability.
-The DSL allows for a direct parallelisation of monadic code via the Kleisli type
-and additionally allows to parallelise any Arrow type that has an instance for
-`ArrowChoice`. (Some skeletons require an additional `ArrowLoop` instance.)
-
-We have demonstrated the generality of the approach by exhibiting PArrow
-implementations for Eden, GpH, and the `Par` Monad. Hence, parallel programs can
-be ported between task parallel Haskell implementations with little or no effort.
-We are confident that it will be straightforward to add other task-parallel Haskells.
-Our measurements of four benchmarks on both shared and distributed memory
-platforms shows that the generality and portability of PArrows has very low
-performance overheads, i.e. never more than $8\% \; \pm 6.9\%$ and typically
-under $2\%$.
+Finally, we discussed in Chapter \ref{sec:discussion} how we accomplished in fulfilling the requirements
+we deemed important in the introduction, namely
+that we wanted a DSL that allows us to parallelize arbitrary Arrow types while
+taming the zoo of parallel Haskells and having a low performance penalty all while
+being general and allowing to switch implementations at will.
 
 ## Future work
 
 \label{sec:future-work}
+
+
 
 Our PArrows DSL can be expanded to other task parallel Haskells, and a
 specific target is HdpH [@Maier:2014:HDS:2775050.2633363].

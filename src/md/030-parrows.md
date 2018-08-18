@@ -4,10 +4,14 @@
 
 While Arrows are a general interface to computation, we introduce here specialised
 Arrows as a general interface to *parallel computations*.
-We present the `ArrowParallel` type class and explain the reasoning
-behind it before discussing some parallel Haskell implementations and basic extensions.
+We present the `ArrowParallel` type class
+and explain the reasoning behind it in Chapter \ref{sec:parallel-arrows-type-class}
+before discussing some parallel Haskell implementations and basic extensions in Chapter 
+\ref{sec:extending-interface}.
 
 ## The `ArrowParallel` type class
+
+\label{sec:parallel-arrows-type-class}
 
 A parallel computation (on functions) can be seen as execution of some functions
 `a -> b` in parallel, as our `parEvalN` prototype shows
@@ -24,8 +28,8 @@ parEvalN :: (Arrow arr) => [arr a b] -> arr [a] [b]
 With this definition of `parEvalN`, parallel execution is yet another Arrow
 combinator. But as the implementation may differ depending on the actual
 type of the Arrow `arr` -- or even the input `a` and output `b` -- and we
-want this to be an interface for different backends, we introduce a new
-type class `ArrowParallel arr a b`:
+want this to be an interface for different backends that we want to be able to 
+switch between, we introduce a new type class `ArrowParallel arr a b`:
 
 ~~~~ {.haskell}
 class Arrow arr => ArrowParallel arr a b where
@@ -45,8 +49,10 @@ class Arrow arr => ArrowParallel arr a b conf where
 ~~~~
 
 By restricting the implementations of our backends to a specific `conf` type,
-we also get interoperability between backends for free. We can parallelize one
-part of a program using one backend, and parallelize the next with another one.
+we also get interoperability between backends for free as it serves as a discriminator
+for which backend has to be used. We can therefore parallelize one
+part of a program using one backend, and parallelize the next with another one by
+just passing different configuration types that are required anyways.
 
 ## `ArrowParallel` instances
 
@@ -121,6 +127,8 @@ instance (ArrowChoice arr) => ArrowParallel arr a b (Conf b) where
 
 ### Eden
 
+\label{sec:parrows-Eden}
+
 For both the GpH Haskell and `Par` Monad implementations we could use
 general instances of `ArrowParallel` that just require the `ArrowChoice` type class.
 With Eden this is not the case as we can only spawn a list of functions, which
@@ -154,6 +162,19 @@ instance (ArrowParallel (->) a (m b) Conf,
       arr (parEvalN conf (map (\(Kleisli f) -> f) fs)) >>>
       Kleisli sequence
 ~~~~
+
+*Note that while writing this thesis, we found
+another solutions that could be feasible: We could write the
+instance `parEvalN` as*
+
+~~~~{.haskell}
+instance (Trans b, ArrowChoice arr) => ArrowParallel arr a b Conf where
+  parEvalN _ fs = evalN fs >>> arr (spawnF (repeat id))
+~~~~
+
+*We were however, not able to prove that this behaves exactly the same as
+the variant presented above as this would have required re-running the whole
+test-suite. First tests suggest correct behaviour, though.*
 
 ### Default configuration instances
 

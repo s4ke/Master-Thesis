@@ -6,6 +6,7 @@ SET outfile=out/pdf/out.pdf
 SET outjobname=out/pdf/out
 SET mddir=src/md
 SET mdfiles=
+
 FOR %%f IN (%mddir%/*.md) DO (
     SET mdfiles=!mdfiles! %mddir%\%%~f
 )

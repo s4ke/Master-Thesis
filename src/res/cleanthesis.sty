@@ -221,6 +221,8 @@
 % cleanthesis.sty uses BibLaTeX by default, we want natbib,
 % because it worked fine in the paper
 \usepackage[round,sectionbib]{natbib}
+\bibliographystyle{abbrvnat}
+\setcitestyle{authoryear,open={((},close={))}}
 \bibliography{$bibliography$}
 \renewcommand{\cite}[1]{\citep{#1}}
 \bibliography{\cthesis@bibfile}

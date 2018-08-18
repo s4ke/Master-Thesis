@@ -1,5 +1,14 @@
 # Appendix
 
+Following are additional Chapters with supplementary information for this thesis.
+In Chapter \ref{utilfns}, we define utility Arrows. Next, Chapter \ref{app:profunctorArrows}
+explains how specific Profunctors fit the Arrow type class. Chapter \ref{app:omitted}
+covers omitted function definitions. Then, Chapter \ref{syntacticSugar} explains syntactic
+sugar for PArrows. We give additional definitions for the experimental Cloud Haskell
+backend in Chapter \ref{sec:appendixCloudHaskell} and end with the plots
+for the shared memory backends and distributed memory backends in Chapters \ref{sec:benchmarkSharedPlots}
+and \ref{sec:benchmarkDistPlots}, respectively.
+
 ## Utility Arrows
 
 \label{utilfns}
@@ -16,7 +25,7 @@ second f = arr swap >>> first f >>> arr swap
 ~~~~
 
 Next, we give the definition of `evalN` which also helps us to define `map`, and
-`zipWith` on Arrows. The `evalN` combinator in Fig. \ref{fig:evalN} converts a
+`zipWith` on Arrows. It is defined in Fig. \ref{fig:evalN} and converts a
 list of Arrows `[arr a b]` into an Arrow `arr [a] [b]`.
 
 ~~~~ {#fig:evalN
@@ -48,7 +57,7 @@ mapArr = evalN . repeat
 ~~~~
 
 Finally, with the help of `mapArr` (Fig. \ref{fig:mapArr}), we can define
-`zipWithArr` (Fig. \ref{fig:zipWithArr}) that lifts any Arrow
+`zipWithArr` (Fig. \ref{fig:zipWithArr}) which lifts any Arrow
 `arr (a, b) c` to an Arrow `arr ([a], [b]) [c]`.
 
 ~~~~ {#fig:zipWithArr
@@ -61,8 +70,8 @@ zipWithArr :: ArrowChoice arr => arr (a, b) c -> arr ([a], [b]) [c]
 zipWithArr f = (arr (\(as, bs) -> zipWith (,) as bs)) >>> mapArr f
 ~~~~
 
-These combinators make use of the `ArrowChoice` type class which provides
-the `pipepipepipe` combinator. It takes two Arrows `arr a c` and `arr b c`
+These combinators make use of the `ArrowChoice` type class providing
+the `pipepipepipe` combinator. This combinator takes two Arrows `arr a c` and `arr b c`
 and combines them into a new Arrow `arr (Either a b) c` which pipes all
 `Left a`'s to the first Arrow and all `Right b`'s to the second Arrow:
 
@@ -74,8 +83,8 @@ and combines them into a new Arrow `arr (Either a b) c` which pipes all
 
 \label{app:profunctorArrows}
 
-In Fig. \ref{fig:profunctorArrow} we show how specific Profunctors can be
-turned into Arrows. This works because Arrows are strong Monads in the bicategory
+In Fig. \ref{fig:profunctorArrow} we show how specific Profunctors can it into the
+Arrow type class. This works because Arrows are strong Monads in the bicategory
 `Prof` of Profunctors as shown by @Asada:2010:ASM:1863597.1863607.
 In Standard GHC `(>>>)` has the type
 `(>>>) :: Category cat => cat a b -> cat b c -> cat a c` and is therefore not
@@ -106,7 +115,7 @@ We have omitted some function definitions in the main text for
 brevity, and redeem this here.
 
 We begin with Arrow versions of Eden's `shuffle`, `unshuffle` and the definition of
-`takeEach` are in Fig. \ref{fig:edenshuffleetc}. Similarly,
+`takeEach` can be found in Fig. \ref{fig:edenshuffleetc}. Similarly,
 Fig. \ref{fig:edenlazyrightrotate} contains the definition of Arrow
 versions of Eden's `lazy` and `rightRotate` utility functions.
 Fig. \ref{fig:lazyzip3etc} contains Eden's definition of `lazyzip3` together
@@ -187,10 +196,11 @@ lazy ~(x:xs) = x : lazy xs
 ~~~~
 
 Furthermore, Fig. \ref{fig:torus_example_rest} contains the omitted definitions
-of `prMM` (sequential matrix multiplication), `splitMatrix`
-(which splits the a matrix into chunks), `staggerHorizontally` and
+required for parallel matrix multiplication with the `torus` skeleton.
+They are: `prMM` (sequential matrix multiplication), `splitMatrix`
+(which splits a matrix into chunks), `staggerHorizontally` and
 `staggerVertically` (to pre-rotate the matrices), and lastly `matAdd`,
-that calculates $A + B$ for two matrices $A$ and $B$.
+which calculates $A + B$ for two matrices $A$ and $B$.
 
 ~~~~ {#fig:torus_example_rest
     .haskell
