@@ -113,9 +113,9 @@ However, they are beyond the scope of this work,
 as are similar experiments with the Eta language^[Eta project page at \url{http://eta-lang.org}], 
 a new approach to Haskell on the JVM.
 
-[@achten2004arrows; @achten2007arrow] use an Arrow implementation in Clean
-for better handling of typical GUI tasks.
-[@Dagand:2009:ORD:1481861.1481870] used Arrows in OCaml in the implementation
+Arrows have also been shown to be useful for better handling of typical
+ GUI tasks in Clean [@achten2004arrows; @achten2007arrow].
+@Dagand:2009:ORD:1481861.1481870 used Arrows in OCaml in the implementation
 of a distributed system.
 
 ## Earlier work

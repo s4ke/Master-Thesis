@@ -1,6 +1,6 @@
 # Appendix
 
-Following are additional Chapters with supplementary information for this thesis.
+Following are additional chapters with supplementary information for this thesis.
 In Chapter \ref{utilfns}, we define utility Arrows. Next, Chapter \ref{app:profunctorArrows}
 explains how specific Profunctors fit the Arrow type class. Chapter \ref{app:omitted}
 covers omitted function definitions. Then, Chapter \ref{syntacticSugar} explains syntactic

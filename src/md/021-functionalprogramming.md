@@ -642,8 +642,7 @@ repeat a = a : (repeat a)
 
 Another good example where Laziness simplifies things is when branching is involved:
 
-~~~~{.haskell
-    }
+~~~~{.haskell}
 calculateStuff :: [Int] -> Int
 calculateStuff = if <someCondition>
                  then doStuff list1 list2
@@ -674,7 +673,7 @@ It's semantics however, are as follows: We tell the compiler that the first
 argument (of type `a`) is to be evaluated before the second argument.
 For example, in an expression like
 
-~~~~[.haskell}
+~~~~{.haskell}
 myFun :: Int -> (Int, Int)
 myFun x = let y = f x in y `seq` g y
     where
@@ -697,7 +696,7 @@ f $! x = x `seq` f x
 
 With it we can then write our example function as
 
-~~~~[.haskell}
+~~~~{.haskell}
 myFun :: Int -> (Int, Int)
 myFun x = g $! f x
     where
@@ -712,17 +711,17 @@ is only forced until the outermost constructor in contrast to normal-form (NF) w
 for full evaluation. This means that if we were
 to evaluate some calculation `f (g (h (i x)))` embedded in some lazy tuple `(y, z)` to WHNF,
 `y` and `z` would not be touched as the evaluation stops at the tuple constructor (for more
-about constructors see the next Chapter, \enquote{Custom types}). All the computations
+about constructors see the chapter on custom types. All the computations
 to get to that constructor however, are forced to be evaluated. Therefore, if we want
 to make the insides of a tuple strict, we would have to write something along the lines of
 
-~~~~[.haskell}
+~~~~ {.haskell}
 let tup ATSIGN (y, z) = f (g (h (i x))) in y `seq` z `seq` tup
 ~~~~
 
 instead of just
 
-~~~~[.haskell}
+~~~~ {.haskell}
 let tup = f (g (h (i x))) in y `seq` y
 ~~~~
 

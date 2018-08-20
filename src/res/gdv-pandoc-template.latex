@@ -15,12 +15,15 @@ $endif$
 \input{src/res/format.tex}
 
 \newcommand{\thesisTitle}{$title$}
+\newcommand{\thesisTitleGerman}{$titleGerman$}
 \newcommand{\thesisSubtitle}{$subtitle$}
+\newcommand{\thesisSubtitleGerman}{$subtitleGerman$}
 \newcommand{\thesisName}{$for(author)$$author$$sep$ \and$endfor$}
 \newcommand{\thesisSubject}{$subject$}
 \newcommand{\thesisDate}{$date$}
 \newcommand{\thesisUniversity}{\protect{$university$}}
 \newcommand{\thesisUniversityDepartment}{$department$}
+\newcommand{\thesisUniversityDepartmentGerman}{$departmentGerman$}
 \newcommand{\thesisUniversityCity}{$city$}
 
 % **************************************************
@@ -41,6 +44,8 @@ $endif$
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{listings}
+
+\usepackage{textcomp}
 
 \usepackage[
     activate={true,nocompatibility},
@@ -192,6 +197,60 @@ $abstract$
 \cleardoublepage
 $endif$
 
+\begin{titlepage}
+\pdfbookmark[0]{CoverGerman}{CoverGerman}
+\flushright
+\hfill
+\vfill
+{\huge\thesisTitleGerman \par}
+% do this here, lazy.
+{\LARGE Arrows für Parallele Berechnungen \par}
+\rule[5pt]{\textwidth}{.4pt} \par
+{\Large\thesisName} \par
+{1. Beurteilender: \Large $first-reviser$} \par
+{2. Beurteilender: \Large $second-reviser$} \par
+
+\vfill
+\vspace*{7cm}
+%
+\begin{minipage}{2cm}
+\includegraphics[height=1cm]{$logo$}
+\end{minipage}
+%
+\begin{minipage}{7cm}
+\vspace{16pt}
+\thesisUniversityDepartmentGerman \\
+Universität Bayreuth \\
+\end{minipage}
+\hfill
+\begin{minipage}{3cm}
+\vspace*{18pt}
+\begin{flushright}
+\textit{\large\thesisDate}
+\end{flushright}
+\end{minipage}
+%
+\end{titlepage}
+\cleardoublepage
+
+\pagestyle{plain}
+\begin{abstract}
+Arrows sind eine allgemeine funktionale Schnittstelle für die Berechnung und eine Alternative zu Monaden zum Design von APIs.
+Im Gegensatz zu auf Monaden basierender Parallelität untersuchen wir die Verwendung von Arrows zur Spezifizierung von Parallelität
+Konkret definieren wir eine Arrow-basierte Sprache und implementieren sie mit mehreren parallelen Haskells.
+Da jede parallele Berechnung ein Arrow ist, können solche parallelen Arrows (PArrows) leicht zusammengesetzt und transformiert werden.
+Um komplexere Kommunikationsschemata zwischen Berechnungsknoten in verteilten Systemen zu ermöglichen, verwenden wir das Konzept der Futures,
+um die direkte Kommunikation zu abstrahieren.
+Um den aktuellen Trends im Cloud Computing Rechnung zu tragen, untersuchen wir auch die Möglichkeit einer Cloud-basierten Implementierung dieser
+neu geschaffenen DSL.
+Um zu zeigen, dass PArrows eine ähnliche Ausdruckskraft wie bestehende parallele Sprachen haben,
+implementieren wir mehrere algorithmische Skelette und vier Benchmarks.
+Die Benchmarks zeigen, dass unser Framework keinen nennenswerten Performance-Overhead verursacht.
+Wir kommen zu dem Schluss, dass Arrows ein beträchtliches Potenzial für das schreiben paralleler Programme und speziell auch solcher,
+welche auf mehreren unterschiedlichen parallelen Sprachimplementierungen ausgeführt werden können sollen.
+\end{abstract}
+\cleardoublepage
+
 $if(toc)$
 {
 $if(colorlinks)$
@@ -227,8 +286,9 @@ $body$
 \thispagestyle{empty}
 
 Hiermit versichere ich, {\thesisName}, dass ich die von mir vorgelegte Arbeit
-\emph{\thesisTitle} selbstständig verfasst und keine anderen als die angegebenen
-Quelle und Hilfsmittel verwendet habe.
+\emph{\thesisTitle} selbstständig verfasst, keine anderen als die angegebenen
+Quelle und Hilfsmittel verwendet und die  Arbeit  nicht  bereits  zur  Erlangung  eines
+akademischen  Grades  eingereicht habe.
 
 \smallskip
 

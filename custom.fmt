@@ -20,5 +20,6 @@
 %format +++ = "\mathbin{+\!\!+\!\!+}"
 
 %format ATSIGN = "@"
+%format '' = "\mathbin{\mathtt{\textquotesingle\textquotesingle}\!\!}"
 
 %include polycode.fmt

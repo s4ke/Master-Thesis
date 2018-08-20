@@ -1,20 +1,26 @@
 ---
 title: Concepts in Parallel Programming
+titleGerman: Konzepte in Paralleler Programmierung
 subtitle: Arrows for Parallel Computation
 subject: Master Thesis
 author:
 - Martin Braun (1249080)
-date: 16.05.2018
+date: 07.09.2018
 abstract:
-  Arrows are a general interface for computation and an alternative to Monads for API design. In contrast to Monad-based parallelism, we explore the use of Arrows for specifying generalised parallelism. Specifically, we define an Arrow-based language and implement it using multiple parallel Haskells.
+  Arrows are a general functional interface for computation and an alternative to Monads for API design. In contrast to Monad-based parallelism, we explore the use of Arrows for specifying generalised parallelism. Specifically, we define an Arrow-based language and implement it using multiple parallel Haskells.
 
-  As each parallel computation is an Arrow, such parallel Arrows (PArrows) can be readily composed and transformed as such.
+  As each parallel computation is an Arrow, such parallel Arrows (PArrows) can be readily composed and transformed.
   To allow for more sophisticated communication schemes between computation nodes in distributed systems, we utilise the concept of Futures to wrap direct communication.
 
+  Addressing the recent trends in cloud computing, we also explore the possibility for a cloud based implementation of this newly created DSL.
+
   To show that PArrows have similar expressive power as existing parallel languages, we implement several algorithmic skeletons and four benchmarks.
-  Benchmarks show that our framework does not induce any notable performance overhead. We conclude that Arrows have considerable potential for composing parallel programs and for producing programs that can execute on multiple parallel language implementations.
+  Benchmarks show that our framework does not induce any notable performance overhead. We conclude that Arrows have considerable
+  potential for composing parallel programs and more
+  specifically for programs that have to be executed with multiple different parallel language implementations.
 university: University of Bayreuth
 department: AI5 -- Visual Computing
+departmentGerman: AI5 - Graphische Datenverarbeitung
 city: Bayreuth
 logo: src/img/ai5logo.pdf
 first-reviser: Dr. Oleg Lobachev

@@ -1,8 +1,8 @@
-# Performance results and discussion
+# Experimental performance results
 
 \label{sec:benchmarks}
 
-The preceding Chapters have shown what PArrows are and how expressive they are.
+The preceding chapters have shown what PArrows are and how expressive they are.
 In this Chapter we will now evaluate the performance overhead of our
 compositional abstraction
 in comparison to GpH and the `Par` Monad on shared memory architectures and Eden on
@@ -117,19 +117,30 @@ is adapted better to multicore machines. We call this version of Eden
 
 We compare the PArrow performance with direct implementations of the
 benchmarks in Eden, GpH and the `Par` Monad.
-We start with the definition of mean overhead to compare both
+We start with the definition of speedup and mean overhead to compare both
 PArrows-enabled and standard benchmark implementations. We continue comparing
 speedups and overheads for the shared memory implementations and then study
 OpenMPI variants of the Eden-enabled PArrows as a representative of a
 distributed memory backend. We plot all speedup curves and all overhead values
-in the Appendix in \ref{sec:benchmarkSharedPlots} and
-and \ref{sec:benchmarkDistPlots}
+in the Appendix in \ref{sec:benchmarkSharedPlots} and \ref{sec:benchmarkDistPlots}
 for the shared memory and distributed memory benchmarks, respectively.
+
+### Defining speedup
+
+In the following, when we talk about speedup, we use the common definition
+
+$$
+S = \frac{T_1}{T_p}
+$$
+
+where $T_1$ denotes the sequential and $T_p$ the parallel
+runtime of the program. Note that here we do not use a separate sequential program, though,
+instead we simply use the same binary with only 1 computation thread enabled.
 
 ### Defining overhead
 
-We compare the mean overhead, i.e. the mean of relative wall-clock run time
-differences between the PArrow and direct benchmark implementations executed
+We compare the mean overhead, i.e. the difference of mean relative wall-clock run time
+between the PArrow and direct benchmark implementations executed
 multiple times with the same settings.
 The error margins of the time measurements, supplied by criterion
 package^[\url{https://hackage.haskell.org/package/criterion-1.1.1.0}],
