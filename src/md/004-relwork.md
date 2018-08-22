@@ -17,7 +17,7 @@ The non-strict semantics of Haskell, and the fact that reduction
 encapsulates computations as closures, makes it relatively easy to
 define alternate parallelisations. A range of approaches have been explored,
 including data parallelism [@Chakravarty2007; @Keller:2010:RSP:1932681.1863582],
-GPU-based approaches [@Mainland:2010:NEC:2088456.1863533; @obsidian-phd],
+GPU-based approaches [@Mainland:2010:NEC:2088456.1863533; @obsidian-phd] and
 software transactional memory
 [@Harris:2005:CMT:1065944.1065952; @Perfumo:2008:LST:1366230.1366241].
 The Haskell--GPU bridge Accelerate
@@ -37,7 +37,7 @@ Research on Eden includes low-level implementation
 [@dieterle_horstmeyer_loogen_berthold_2016], communication [@Dieterle2010],
 and generation of process networks [@Horstmeyer2013].
 The definitions of new Eden skeletons is a specific focus
-[@doi:10.1142/S0129626403001380; @Eden:PARCO05; @Berthold2009-mr; @Berthold2009-fft; @dieterle2010skeleton; @delaEncina2011; @Dieterle2013; @janjic2013space]
+[@doi:10.1142/S0129626403001380; @Eden:PARCO05; @Berthold2009-mr; @Berthold2009-fft; @dieterle2010skeleton; @delaEncina2011; @Dieterle2013; @janjic2013space].
 
 Other task parallel Haskells related to Eden, GpH, and the `Par`
 Monad include: HdpH [@Maier:2014:HDS:2775050.2633363; @stewart_maier_trinder_2016] is an extension
@@ -49,7 +49,8 @@ communication-centred extension of the `Par` Monad.
 \label{sec:relWorkAlgorithmicSkels}
 
 Algorithmic skeletons were introduced by @Cole1989.
-Early publications on this topic include @DANELUTTO1992205, @darlington1993parallel, @botorog1996efficient, @Lengauer1997, @Gorlatch1998. 
+Early publications on this topic include @DANELUTTO1992205, @darlington1993parallel, @botorog1996efficient, @Lengauer1997
+and @Gorlatch1998. 
 @SkeletonBook consolidated early reports on high-level programming approaches.
 Types of algorithmic skeletons include `map`-, `fold`-, and `scan`-based parallel
 programming patterns, special applications such as divide-and-conquer or
@@ -58,7 +59,7 @@ topological skeletons.
 The `farm` skeleton [@Hey1990185; @Eden:PPDP01; @Kuchen05] is a statically 
 task-balanced parallel `map`. When tasks' durations cannot be foreseen,
 a dynamic load balancing (`workpool`) brings a lot of improvement
-[@Rudolph:1991:SLB:113379.113401; @doi:10.1142/S0129626403001380; @Hippold2006; @PADL08HMWS,Marlow2009].
+[@Rudolph:1991:SLB:113379.113401; @doi:10.1142/S0129626403001380; @Hippold2006; @PADL08HMWS; Marlow2009].
 For special tasks `workpool` skeletons can be extended with dynamic task
 creation [@WPEuropar06; @Dinan:2009:SWS:1654059.1654113; @brown2010ever].
 Efficient load-balancing schemes for `workpool`s are subject of research
@@ -73,7 +74,7 @@ is more special than just a composition of the two skeletons [@LAMMEL20081; @Ber
 The effort is ongoing, including topological skeletons [@Eden:PARCO05],
 special-purpose skeletons for computer algebra
 [@Berthold2009-fft; @lobachev-phd; @Lobachev2012; @janjic2013space],
-iteration skeletons [@Dieterle2013].
+and iteration skeletons [@Dieterle2013].
 The idea of @scscp is to use a parallel Haskell to orchestrate further
 software systems to run in parallel. @dieterle_horstmeyer_loogen_berthold_2016 
 compare the composition of skeletons to stable process networks.
@@ -93,11 +94,11 @@ and quantum computer simulation [@vizzotto_altenkirch_sabry_2006].
 But probably most prominent application of Arrows is Arrow-based functional
 reactive programming, AFRP [@Nilsson:2002:FRP:581690.581695; @Hudak2003; @Czaplicki:2013:AFR:2499370.2462161].
 [@Liu:2009:CCA:1631687.1596559] formally define a more special kind of
-Arrows that capsule the computation more than regular Arrows do and thus
+Arrows that encapsulate the computation more than regular Arrows do and thus
 enable optimisations. Their approach would allow parallel composition,
 as their special Arrows would not interfere with each other in concurrent execution.
 In contrast, we capture a whole parallel computation as a single entity: our main
-instantiation function `parEvalN` makes a single (parallel) Arrow out of list of Arrows.
+instantiation function `parEvalN` creates a single (parallel) Arrow out of a list of Arrows.
 @Huang2007 utilise Arrows for parallelism, but strikingly different from our approach.
 They use Arrows to orchestrate several tasks in robotics.
 We, however, propose a general interface for parallel programming,

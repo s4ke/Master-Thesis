@@ -75,7 +75,7 @@ implemented in Eden. Table @tbl:benches summarises.
 
 Table: The benchmarks we use in this paper. {#tbl:benches}
 
-[^tblnote1]: actual code from: \url{http://community.haskell.org/\~simonmar/par-tutorial.pdf} and \url{https://github.com/simonmar/parconc-examples}}
+[^tblnote1]: actual code from: \url{http://community.haskell.org/\~simonmar/par-tutorial.pdf} and \url{https://github.com/simonmar/parconc-examples}
 
 Rabin--Miller test is a probabilistic primality test that iterates multiple
 (here: 32--256) \enquote{subtests}. Should a subtest fail, the input is
@@ -97,7 +97,7 @@ multiplication [@Gentleman1978]. We ported an Eden-based version
 A parallel Sudoku solver was used by @par-monad to compare `Par` Monad
 to GpH, we ported it to PArrows.
 
-### What parallel Haskells run where
+### Which parallel Haskells run where
 
 The `Par` monad and GpH -- in its multicore version [@Marlow2009] -- 
 can be executed on shared memory machines only.

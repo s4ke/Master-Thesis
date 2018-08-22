@@ -15,7 +15,7 @@ abstract:
   Addressing the recent trends in cloud computing, we also explore the possibility for a cloud based implementation of this newly created DSL.
 
   To show that PArrows have similar expressive power as existing parallel languages, we implement several algorithmic skeletons and four benchmarks.
-  Benchmarks show that our framework does not induce any notable performance overhead. We conclude that Arrows have considerable
+  The Benchmarks show that our framework does not induce any notable performance overhead. We conclude that Arrows have considerable
   potential for composing parallel programs and more
   specifically for programs that have to be executed with multiple different parallel language implementations.
 university: University of Bayreuth
