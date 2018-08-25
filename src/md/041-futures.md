@@ -41,7 +41,8 @@ This is only a problem in distributed memory (in the scope of this thesis) and w
 should allow nodes to communicate directly with each other. Eden already provides
 \enquote{remote data} that enable this [@AlGo03a; @Dieterle2010].
 But as we want code using our DSL to be agnostic in terms of which backend is used,
-we have to wrap this concept. We do this with the `Future` type class:
+we have to wrap this concept. We do this with the `Future` type class to abstract
+the idea of handles on data that can be passed between nodes:
 
 ~~~~ {.haskell}
 class Future fut a conf | a conf -> fut where
@@ -129,7 +130,10 @@ someCombinator fs1 fs2 =
 
 In a distributed environment, this gives us a communication scheme with
 messages going through the master node only if it is needed -- similar to what
-is shown in the trace visualisation in Fig. \ref{fig:withFutures}.
+is shown in the trace visualisation in Fig. \ref{fig:withFutures}. This is
+because only the handles to the data that are passed through the master
+node, while all communication of actual data can happen between the actual nodes.
+
 One especially elegant aspect of the definition of our Future type class is that
 we can specify the type of `Future` to be used per backend with full
 interoperability between code using different backends, without even
@@ -138,6 +142,6 @@ We only specify that there has to be a compatible Future and do not care
 about any specifics as can be seen in the future version of `someCombinator`.
 
 ![Communication between 4 Eden processes with Futures.
-Other than in Fig. \ref{fig:withoutFutures}, processes communicate directly
+Unlike in Fig. \ref{fig:withoutFutures}, processes communicate directly
 (one example message is highlighted) instead of always going through the
 master node (bottom bar).](src/img/withFutures.pdf){#fig:withFutures}

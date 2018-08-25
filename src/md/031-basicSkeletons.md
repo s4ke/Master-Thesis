@@ -27,7 +27,9 @@ is lastly converted into `[b]` with `arr concat`.
     caption="Definition of |parEvalNLazy|."
     options=t
     }
-parEvalNLazy :: (ArrowParallel arr a b conf, ArrowChoice arr, ArrowApply arr) =>
+type ChunkSize = Int
+
+parEvalNLazy :: (ArrowParallel arr a b conf, ArrowChoice arr) =>
 	conf -> ChunkSize -> [arr a b] -> (arr [a] [b])
 parEvalNLazy conf chunkSize fs =
 	arr (chunksOf chunkSize) >>>

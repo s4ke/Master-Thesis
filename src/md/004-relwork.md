@@ -15,14 +15,16 @@ during the exploration of the subject.
 
 The non-strict semantics of Haskell, and the fact that reduction
 encapsulates computations as closures, makes it relatively easy to
-define alternate parallelisations. A range of approaches have been explored,
+define alternate execution strategies. A range of approaches have been explored,
 including data parallelism [@Chakravarty2007; @Keller:2010:RSP:1932681.1863582],
 GPU-based approaches [@Mainland:2010:NEC:2088456.1863533; @obsidian-phd] and
 software transactional memory
 [@Harris:2005:CMT:1065944.1065952; @Perfumo:2008:LST:1366230.1366241].
 The Haskell--GPU bridge Accelerate
 [@Chakravarty:2011:AHA:1926354.1926358; @CMCK14; @McDonell:2015:TRC:2887747.2804313]
-is completely orthogonal to our approach.
+is completely orthogonal to our approach as it is by nature focused on
+parallel execution of singular functions on \enquote{Arrays} of data instead of
+parallel execution of multiple functions with their respective inputs. 
 A good survey of parallel Haskells can be found in @marlow2013parallel.
 
 Our PArrow implementation uses three task parallel languages as backends:
@@ -42,13 +44,13 @@ The definitions of new Eden skeletons is a specific focus
 Other task parallel Haskells related to Eden, GpH, and the `Par`
 Monad include: HdpH [@Maier:2014:HDS:2775050.2633363; @stewart_maier_trinder_2016] is an extension
 of `Par` Monad to heterogeneous clusters. LVish [@Kuper:2014:TPE:2666356.2594312] is a
-communication-centred extension of the `Par` Monad.
+communication-centred extension of the `Par` Monad and is based on monotonically growing data structures.
 
 ## Algorithmic skeletons
 
 \label{sec:relWorkAlgorithmicSkels}
 
-Algorithmic skeletons were introduced by @Cole1989.
+The idea of Algorithmic skeletons were introduced by @Cole1989.
 Early publications on this topic include @DANELUTTO1992205, @darlington1993parallel, @botorog1996efficient, @Lengauer1997
 and @Gorlatch1998. 
 @SkeletonBook consolidated early reports on high-level programming approaches.
@@ -78,6 +80,9 @@ and iteration skeletons [@Dieterle2013].
 The idea of @scscp is to use a parallel Haskell to orchestrate further
 software systems to run in parallel. @dieterle_horstmeyer_loogen_berthold_2016 
 compare the composition of skeletons to stable process networks.
+
+We implement some of these algorithmic skeletons
+in Chapters \ref{sec:extending-interface} as well as \ref{sec:topology-skeletons}.
 
 ## Arrows
 
@@ -109,7 +114,7 @@ Although this work is centered on Haskell implementation of Arrows,
 it is applicable to any functional programming language where parallel
 evaluation and Arrows can be defined. Basic definitions of PArrows are
 possible in the Frege language^[GitHub project page at \url{https://github.com/Frege/frege}]
--- which is basically Haskell that compiles to Java code to then be compiled natively on the Java Virtual Machine (JVM).
+-- a Haskell-like language that compiles to Java code to then be compiled natively on the Java Virtual Machine (JVM).
 However, they are beyond the scope of this work,
 as are similar experiments with the Eta language^[Eta project page at \url{http://eta-lang.org}], 
 a new approach to Haskell on the JVM that compiles directly to JVM bytecode.

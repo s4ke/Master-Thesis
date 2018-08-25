@@ -31,11 +31,14 @@ thought of as a more general function arrow
 restrictive as Monads [@HughesArrows].
 
 This is why in this thesis
-we will explain how an Arrow based parallel Haskell can be achieved.
+we will explain how a parallel Haskell based on parallel Arrows (PArrows) can be achieved.
 We do however not want to re-invent parallelism, though, as we only provide an
-Arrow based type class and use it as an interface to wrap around existing
+Arrow based type class hosting an Arrow combinator
+`parEvalN :: [arr a b] -> arr [a] [b]` that turns a list of Arrows into a
+singular parallel Arrow. We use this class as an interface to wrap around existing
 parallel Haskells instead of introducing yet another new low-level parallel
-backend. For this thesis we have chosen three of the most important parallel Haskells:
+backend.
+For this thesis we have chosen three of the most important parallel Haskells:
 GpH [@Trinder1996; @Trinder1998a] for its simplicity,
 the `Par` Monad [@par-monad; @Foltzer:2012:MPC:2398856.2364562]
 to represent a monadic DSL, and Eden [@eden; @Loogen2012] as a
@@ -48,18 +51,19 @@ while the latter (at least in its current form) does not comply with
 our representation of parallelism due to its heavy reliance on Template Haskell.
 
 In this thesis we use this approach to wrap around three parallel Haskells:
-Glasgow parallel Haskell or short GpH
+Glasgow parallel Haskell or for short GpH
 (its Multicore SMP implementation, in particular), the classic
 `Par` Monad, and Eden, a distributed memory parallel Haskell targeting
 clusters running MPI or PVM. These languages represent orthogonal approaches.
 Some use a Monad, even if only for the internal representation
 while others introduce additional language constructs.
 
-With such a shallow-embedded DSL for Arrows we do not only aim to define a parallel programming
+With such a shallow-embedded DSL based on Arrows we do
+not only aim to define a parallel programming
 interface in a novel manner that allows for arbitrary Arrow types to be parallelised --
 we also aim to tame the zoo of parallel Haskells.
 With our interface we furthermore want to provide a common,
-very low-penalty programming interface that is general by allowing
+low-penalty programming interface that is general by allowing
 to switch the parallel implementations at will.
 
 #### Structure

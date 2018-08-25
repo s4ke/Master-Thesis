@@ -113,7 +113,10 @@ as well [@arcs-dc; @aswad2009low].
 
 While Eden comes with a Monad `PA` for parallel evaluation, it also ships
 with a completely functional interface that includes
-a `spawnF :: (Trans a, Trans b) => [a -> b] -> [a] -> [b]`
+a `spawnF :: (Trans a, Trans b) => [a -> b] -> [a] -> [b]`^[the type class `Trans`
+stands for Transmissible.
+Eden already comes with instances for most common types and allows for easy construction
+of further instances.]
 function that allows us to define `parEvalN` directly:
 
 ~~~~ {.haskell}

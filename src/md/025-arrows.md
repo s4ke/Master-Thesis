@@ -6,13 +6,13 @@ Arrows were introduced by @HughesArrows as a general interface for computation
 and a less restrictive generalisation of Monads.
 @HughesArrows motivates the broader interface of Arrows with the example
 of a parser with added static meta-information that can not satisfy the
-monadic bind operator `(>>=) :: m a -> (a -> m b) -> m b` (with `m` being a Monad)
+monadic bind operator `(>>=) :: Monad m => m a -> (a -> m b) -> m b`
 ^[In the example a parser of the type `Parser s a` with static meta
 information `s` and result `a` is shown to not be able to use the static
 `s` without applying the monadic function `a -> m b`. With Arrows this is possible.].
 
 An Arrow `arr a b` represents a computation that converts an input `a` to an output
-`b`. This is defined in the `Arrow` type class shown in Fig. \ref{fig:ArrowDefinition}.
+`b`. The general concept is defined in the `Arrow` type class shown in Fig. \ref{fig:ArrowDefinition}.
 To lift an ordinary function to an Arrow, `arr` is used, analogous to the monadic `return`. Similarly, the composition operator `>>>` is analogous to the monadic composition `>>=` and combines two Arrows `arr a b` and `arr b c` by \enquote{wiring} the outputs of the first to the inputs to the second to get a new Arrow `arr a c`. Lastly, the `first` operator takes the input Arrow `arr a b` and converts it into an Arrow on pairs `arr (a, c) (b, c)` that leaves the second argument untouched. It allows us to to save input across Arrows. Fig. \ref{fig:arrows-viz} shows a graphical representation of these basic Arrow combinators.
 The most prominent instances of this interface (Fig. \ref{fig:ArrowDefinition}) are regular functions `(->)`
 and the Kleisli type, which wraps monadic functions,
@@ -81,11 +81,14 @@ In this thesis we will show that parallel computations can be expressed with thi
 more general interface of Arrows without requiring Monads (we will see an example of
 monadic parallelism in Chapter \ref{sec:parallelHaskells}). We also do not restrict
 the compatible Arrows to ones which have `ArrowApply` instances but instead
-only require instances for `ArrowChoice` (for if-then-else constructs)
-and `ArrowLoop` (for looping). Because of this, we have a truly more general
-interface as compared to a monadic one.
+only require instances for `ArrowChoice` (for the if-then-else construction in 
+`evalN` (Fig. \ref{fig:evalN}))
+and `ArrowLoop` (for the looping used in the topological skeletons in Chapter \ref{sec:topology-skeletons}).
+Because of this, we have a truly more general
+interface when compared to a monadic one or a purely function `(->)` based one.
 
-While we could have based our DSL on Profunctors as well,
+While we could have based our DSL on Profunctors^[see \url{http://hackage.haskell.org/package/profunctors-5.3/docs/Data-Profunctor.html}
+for more information as well as the Haskell interface] as well,
 we chose Arrows in this thesis since they allow for a more direct way of
 thinking about parallelism than general Profunctors because of their
 composability. However, they are a promising candidate for future improvements

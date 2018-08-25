@@ -33,7 +33,8 @@ of 256 cores and 512 threads for the whole cluster. The operating system was
 Ubuntu 14.04 LTS with Kernel 3.19.0-33. We found that
 hyper-threading does not provide any particular interesting insight over 
 using real 16 cores in terms of performance in our benchmarks
-(numbers here for a single machine). We therefore disregard the hyper-threading
+(numbers here for a single machine) discussed in Chapter \ref{sec:effect-hyper-thread}.
+We therefore disregard the hyper-threading
 ability in most of the cases.
 
 Apart from Eden, all benchmarks and libraries were compiled with
@@ -202,7 +203,7 @@ error margin is around $5.2\%$! Same implementation in the same setting with
 64 tasks reaches $-0.2\%$ overhead, PArrows apparently fare better than Eden --
 but the error margin of $1.9\%$ disallows this interpretation.
 We focus now on significant overhead values.
-To name a few: $0.41\%\; \pm 7\cdot 10^{-2}\%$ for Eden~CP and 64 tasks at 4 cores;
+To name a few: $0.41\%\; \pm 7\cdot 10^{-2}\%$ for Eden CP and 64 tasks at 4 cores;
 $4.7\% \; \pm 0.72\%$ for GpH, 32 tasks, 8 cores; $0.34\% \; \pm 0.31\%$ for `Par`
 Monad at 4 cores with 64 tasks. The worst significant overhead was in case of GpH 
 with $8\% \; \pm 6.9\%$ at 16 cores with 32 tasks and input value $2^{11213}-1$.

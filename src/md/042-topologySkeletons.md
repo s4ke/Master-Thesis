@@ -17,7 +17,7 @@ would produce an infinite loop with the GpH and `Par` Monad which during runtime
 would result in the program crashing.
 This materialises with the usage of `loop` of the `ArrowLoop` type class and we
 think that this is due to difference of how evaluation is done in these
-backends when compared to Eden.
+backends compared to Eden.
 An investigation of why this difference exists is beyond the scope of this work
 ^[The results of the experimental Cloud Haskell backend in Chapter \ref{sec:CloudHaskellArrowParallelLimitsMitigation}
 touch on the likely root cause of this problem, though],

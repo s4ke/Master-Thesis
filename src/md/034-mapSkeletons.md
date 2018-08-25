@@ -39,6 +39,8 @@ Because of this, it has the same restrictions as `parEvalN` as compared to
     caption="|parMapStream| definition."
     options=h
     }
+type ChunkSize = Int
+
 parMapStream :: (ArrowParallel arr a b conf, ArrowChoice arr, ArrowApply arr) =>
 	conf -> ChunkSize -> arr a b -> arr [a] [b]
 parMapStream conf chunkSize f = parEvalNLazy conf chunkSize (repeat f)
@@ -65,6 +67,8 @@ skeleton^[Available on Hackage under \url{https://hackage.haskell.org/package/ed
     caption="|farm| definition."
     options=h
     }
+type NumCores = Int
+
 farm :: (ArrowParallel arr a b conf,
 	ArrowParallel arr [a] [b] conf, ArrowChoice arr) =>
 	conf -> NumCores -> arr a b -> arr [a] [b]
@@ -87,6 +91,9 @@ It is basically the same definition as for `farm`, but with
     caption="|farmChunk| definition."
     options=h
     }
+type ChunkSize = Int
+type NumCores = Int
+
 farmChunk :: (ArrowParallel arr a b conf, ArrowParallel arr [a] [b] conf, 
              ArrowChoice arr, ArrowApply arr) =>
 	conf -> ChunkSize -> NumCores -> arr a b -> arr [a] [b]

@@ -24,8 +24,8 @@ second f = arr swap >>> first f >>> arr swap
 	where swap (x, y) = (y, x)
 ~~~~
 
-Next, we give the definition of `evalN` which also helps us to define `map`, and
-`zipWith` on Arrows. It is defined in Fig. \ref{fig:evalN} and converts a
+Next, we give the definition of `evalN` which also helps us to define a sequential
+`map` on Arrows. It is defined in Fig. \ref{fig:evalN} and converts a
 list of Arrows `[arr a b]` into an Arrow `arr [a] [b]`.
 
 ~~~~ {#fig:evalN
@@ -56,27 +56,13 @@ mapArr :: ArrowChoice arr => arr a b -> arr [a] [b]
 mapArr = evalN . repeat
 ~~~~
 
-Finally, with the help of `mapArr` (Fig. \ref{fig:mapArr}), we can define
-`zipWithArr` (Fig. \ref{fig:zipWithArr}) which lifts any Arrow
-`arr (a, b) c` to an Arrow `arr ([a], [b]) [c]`.
-
-~~~~ {#fig:zipWithArr
-    .haskell
-    .figure
-    caption="|zipWith| over Arrows."
-    options=h
-    }
-zipWithArr :: ArrowChoice arr => arr (a, b) c -> arr ([a], [b]) [c]
-zipWithArr f = (arr (\(as, bs) -> zipWith (,) as bs)) >>> mapArr f
-~~~~
-
 These combinators make use of the `ArrowChoice` type class providing
 the `pipepipepipe` combinator. This combinator takes two Arrows `arr a c` and `arr b c`
 and combines them into a new Arrow `arr (Either a b) c` which pipes all
 `Left a`'s to the first Arrow and all `Right b`'s to the second Arrow:
 
 ~~~~ {.haskell}
-(pipepipepipe) :: ArrowChoice arr a c -> arr b c -> arr (Either a b) c
+(pipepipepipe) :: ArrowChoice arr => arr a c -> arr b c -> arr (Either a b) c
 ~~~~
 
 ## Profunctor Arrows

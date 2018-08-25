@@ -18,8 +18,8 @@ A parallel computation (on functions) can be seen as execution of some functions
 (Chapter \ref{sec:parEvalNIntro}).
 Translating this into Arrow terms gives us a new operator `parEvalN` that lifts
 a list of Arrows `[arr a b]` to a parallel Arrow `arr [a] [b]`.
-This combinator is similar to the evaluation combinator `evalN` from Appendix \ref{utilfns}, but does
-parallel instead of serial evaluation.
+This combinator is similar to the evaluation combinator `evalN :: [arr a b] -> arr [a] [b]`
+from Chapter \ref{utilfns}, but does parallel instead of serial evaluation.
 
 ~~~~ {.haskell}
 parEvalN :: (Arrow arr) => [arr a b] -> arr [a] [b]
@@ -117,6 +117,9 @@ Finally, we execute the computation `Par [b]` by composing with
     caption="|Par| Monad |ArrowParallel| instance."
     options=h
     }
+type Strategy a = a -> Par (IVar a)
+data Conf a = Conf (Strategy a)
+    
 instance (ArrowChoice arr) => ArrowParallel arr a b (Conf b) where
     parEvalN (Conf strat) fs =
         evalN (map (>>> arr strat) fs) >>>
@@ -156,8 +159,8 @@ instance (Trans a, Trans b) => ArrowParallel (->) a b Conf where
     parEvalN _ = spawnF
 
 instance (ArrowParallel (->) a (m b) Conf,
-  Monad m, Trans a, Trans b, Trans (m b)) =>
-  ArrowParallel (Kleisli m) a b conf where
+  Monad m, Trans a, Trans (m b)) =>
+  ArrowParallel (Kleisli m) a b Conf where
     parEvalN conf fs = 
       arr (parEvalN conf (map (\(Kleisli f) -> f) fs)) >>>
       Kleisli sequence
