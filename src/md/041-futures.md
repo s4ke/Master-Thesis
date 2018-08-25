@@ -40,8 +40,8 @@ yellow $\hat{=}$ suspended.](src/img/withoutFutures.pdf){#fig:withoutFutures}
 This is only a problem in distributed memory (in the scope of this thesis) and we
 should allow nodes to communicate directly with each other. Eden already provides
 \enquote{remote data} that enable this [@AlGo03a; @Dieterle2010].
-But as we want code using our DSL to be implementation agnostic, we have to
-wrap this concept. We do this with the `Future` type class:
+But as we want code using our DSL to be agnostic in terms of which backend is used,
+we have to wrap this concept. We do this with the `Future` type class:
 
 ~~~~ {.haskell}
 class Future fut a conf | a conf -> fut where

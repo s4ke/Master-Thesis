@@ -27,25 +27,16 @@ will later be adapted for usage in our Arrow-based parallel Haskell.
 
 ![Schematic illustration of `parEvalN`. A list of inputs is transformed by different functions in parallel.](src/img/parEvalN.pdf){#fig:parEvalN}
 
-There exist several parallel Haskells already.
-Among the most important are probably GpH [@Trinder1996; @Trinder1998a, based on `par` and `pseq` \enquote{hints}],
-the `Par` Monad [@par-monad; @Foltzer:2012:MPC:2398856.2364562, a Monad for deterministic parallelism],
-Eden [@eden; @Loogen2012, a parallel Haskell for distributed memory],
-HdpH [@Maier:2014:HDS:2775050.2633363; @stewart_maier_trinder_2016, a Template Haskell-based parallel Haskell for distributed memory]
-and LVish [@Kuper:2014:TPE:2666356.2594312, a `Par` extension with focus on communication].
+There exist several different parallel Haskells already.
+As already stated in the Introduction
+this is the reason why we base our efforts on existing work which we wrap
+as backends behind a common interface so that we do not re-implement
+yet another parallel runtime. As stated earlier, we here focus on
+three of the most important ones -- GpH [@Trinder1996; @Trinder1998a, based on `par` and `pseq` \enquote{hints}],
+the `Par` Monad [@par-monad; @Foltzer:2012:MPC:2398856.2364562, a Monad for deterministic parallelism] and
+Eden [@eden; @Loogen2012, a parallel Haskell for distributed memory].
 
-As the goal of this thesis is not to re-implement yet another parallel runtime,
-but to represent parallelism with Arrows, we base our efforts on existing work
-which we wrap as backends behind a common interface.
-For this thesis we chose GpH for its simplicity, the `Par` Monad to represent a
-monadic DSL, and Eden as a distributed parallel Haskell.
-
-LVish and HdpH were not chosen as the former does not differ from the original
-`Par` Monad with regard to how we would have used it in this thesis,
-while the latter (at least in its current form) does not comply with
-our representation of parallelism due to its heavy reliance on Template Haskell.
-
-We will now go into some detail on GpH, the `Par` Monad and Eden, and also
+We will now go into some detail on these parallel Haskells, and also
 give their respective implementations of the non-Arrow version of `parEvalN`.
 
 ### Glasgow parallel Haskell -- GpH
@@ -134,7 +125,7 @@ parEvalN = spawnF
 
 \label{sec:edentv}
 
-To comprehend the efficiency and the lack thereof in a parallel program,
+To comprehend the efficiency or the lack thereof in a parallel program,
 an inspection of its execution is extremely helpful. While some large-scale
 solutions exist [@Geimer2010], the parallel Haskell community mainly utilises
 the tools Threadscope [@Wheeler2009] and Eden TraceViewer

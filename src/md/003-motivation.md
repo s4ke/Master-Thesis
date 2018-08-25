@@ -35,7 +35,18 @@ we will explain how an Arrow based parallel Haskell can be achieved.
 We do however not want to re-invent parallelism, though, as we only provide an
 Arrow based type class and use it as an interface to wrap around existing
 parallel Haskells instead of introducing yet another new low-level parallel
-backend.
+backend. For this thesis we have chosen three of the most important parallel Haskells:
+GpH [@Trinder1996; @Trinder1998a] for its simplicity,
+the `Par` Monad [@par-monad; @Foltzer:2012:MPC:2398856.2364562]
+to represent a monadic DSL, and Eden [@eden; @Loogen2012] as a
+distributed parallel Haskell. Other important ones
+include HdpH [@Maier:2014:HDS:2775050.2633363; @stewart_maier_trinder_2016, a Template Haskell-based parallel Haskell for distributed memory]
+and LVish [@Kuper:2014:TPE:2666356.2594312, a `Par` extension with focus on communication],
+but these were not chosen as the former does not differ from the original
+`Par` Monad with regard to how we would have used it in this thesis,
+while the latter (at least in its current form) does not comply with
+our representation of parallelism due to its heavy reliance on Template Haskell.
+
 In this thesis we use this approach to wrap around three parallel Haskells:
 Glasgow parallel Haskell or short GpH
 (its Multicore SMP implementation, in particular), the classic

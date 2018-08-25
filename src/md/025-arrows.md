@@ -86,7 +86,7 @@ and `ArrowLoop` (for looping). Because of this, we have a truly more general
 interface as compared to a monadic one.
 
 While we could have based our DSL on Profunctors as well,
-we chose Arrows in this thesis since they they allow for a more direct way of
+we chose Arrows in this thesis since they allow for a more direct way of
 thinking about parallelism than general Profunctors because of their
 composability. However, they are a promising candidate for future improvements
 of our DSL. Some Profunctors, especially ones supporting a composition operation,

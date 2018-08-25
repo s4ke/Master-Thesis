@@ -18,7 +18,9 @@ would result in the program crashing.
 This materialises with the usage of `loop` of the `ArrowLoop` type class and we
 think that this is due to difference of how evaluation is done in these
 backends when compared to Eden.
-An investigation of why this difference exists is beyond the scope of this work,
+An investigation of why this difference exists is beyond the scope of this work
+^[The results of the experimental Cloud Haskell backend in Chapter \ref{sec:CloudHaskellArrowParallelLimitsMitigation}
+touch on the likely root cause of this problem, though],
 we only provide a workaround for these types of skeletons as such they
 probably are not of much importance outside of a distributed memory environment.
 However our workaround enables users of the DSL to test their code within a
@@ -313,7 +315,7 @@ ptorus conf f =
 ~~~~
 
 As an example of using this skeleton, @Eden:SkeletonBookChapter02 showed the
-matrix multiplication using the Gentleman algorithm [@Gentleman1978].
+matrix multiplication using Gentleman's algorithm [@Gentleman1978].
 An adapted version can be found in Fig. \ref{fig:torusMatMult}.
 
 ~~~~ {#fig:torusMatMult

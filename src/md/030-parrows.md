@@ -178,7 +178,7 @@ test-suite. First tests suggest correct behaviour, though.*
 
 ### Default configuration instances
 
-While the configurability in the instances of the `ArrowParallel`
+While the configurability of the `ArrowParallel`
 instances above is nice, users probably would like to have proper
 default configurations for many parallel programs as well.
 These can also easily be defined as we can see by the example

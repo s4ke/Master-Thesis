@@ -109,10 +109,10 @@ Although this work is centered on Haskell implementation of Arrows,
 it is applicable to any functional programming language where parallel
 evaluation and Arrows can be defined. Basic definitions of PArrows are
 possible in the Frege language^[GitHub project page at \url{https://github.com/Frege/frege}]
-(which is basically Haskell on the JVM).
+-- which is basically Haskell that compiles to Java code to then be compiled natively on the Java Virtual Machine (JVM).
 However, they are beyond the scope of this work,
 as are similar experiments with the Eta language^[Eta project page at \url{http://eta-lang.org}], 
-a new approach to Haskell on the JVM.
+a new approach to Haskell on the JVM that compiles directly to JVM bytecode.
 
 Arrows have also been shown to be useful for better handling of typical
  GUI tasks in Clean [@achten2004arrows; @achten2007arrow].

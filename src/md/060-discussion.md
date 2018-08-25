@@ -95,7 +95,7 @@ and is general by allowing to switch implementations at will.
 
 By proving these properties,
 we have shown that for a generic and extensible
-parallel Haskell, we do not have to restrict ourselves to a monadic interface.
+parallel Haskell we do not have to restrict ourselves to a monadic interface.
 
 We believe that 
 Arrows are a better fit to parallelise pure code than a monadic solution as

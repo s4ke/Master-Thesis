@@ -30,9 +30,10 @@ setting using the Glasgow GPG Beowulf cluster, consisting of
 Each processor has 8 cores and 16 (hyper-threaded) threads with a base
 frequency of 2 GHz and a turbo frequency of 2.50 GHz. This results in a total
 of 256 cores and 512 threads for the whole cluster. The operating system was
-Ubuntu 14.04 LTS with Kernel 3.19.0-33. Non-surprisingly, we found that
-hyper-threaded 32 cores do not behave in the same manner as real 16 cores
-(numbers here for a single machine). We disregarded the hyper-threading
+Ubuntu 14.04 LTS with Kernel 3.19.0-33. We found that
+hyper-threading does not provide any particular interesting insight over 
+using real 16 cores in terms of performance in our benchmarks
+(numbers here for a single machine). We therefore disregard the hyper-threading
 ability in most of the cases.
 
 Apart from Eden, all benchmarks and libraries were compiled with
@@ -110,6 +111,27 @@ that merely copies the memory blocks between disjoint heaps. In
 this mode, Eden still operates in the \enquote{nothing shared} setting, but
 is adapted better to multicore machines. We call this version of Eden
 \enquote{Eden CP}.
+
+### Effect of hyper-threading
+
+\label{sec:effect-hyper-thread}
+
+In preliminary tests, the PArrows version of the Rabin-Miller test
+on a single node of the Glasgow cluster
+showed almost linear speedup on up to 16 shared-memory cores (as supplementary materials show). The speedup
+of 64-task PArrows/Eden at 16 real cores version was 13.65 giving a parallel
+efficiency of 85.3%. However, if we increased the number of
+requested cores to 32 -- i.e. if we use hyper-threading on 16 real
+cores -- the speedup did not increase that well. It was merely 15.99
+for 32 tasks with PArrows/Eden. This was worse for other implementations.  As
+for 64 tasks, we obtained a speedup of 16.12 with PArrows/Eden at 32
+hyper-threaded cores and only 13.55 with PArrows/GpH. 
+
+While this shows that hyper-threading can be of benefit in real-world scenarios
+running similar workloads to the ones presented in the benchmarks,
+we only use real cores for the performance measurements in Chapter \ref{sec:benchmarkResults} as the
+purpose of this paper is to show the performance of PArrows and not to
+investigate parallel behaviour with hyper-threading.
 
 ## Benchmark results
 
