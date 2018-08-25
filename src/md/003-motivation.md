@@ -2,22 +2,22 @@
 \label{sec:introduction}
 
 In recent years, functional programming has been on the rise as functional
-languages like Haskell, Scala or Lisp (or their derivates) have seen an increase in popularity.
+languages like Haskell, Scala, Lisp or their derivatives have seen an increase in popularity.
 Furthermore, imperative languages are adopting features
 originally coming from functional languages. So, even Java, which is
-generally not associated with adopting new features quickly, has officially
+generally not associated with introducing new features quickly, has officially
 embraced at least some functional concepts such as Lambdas and the functional
-interfaces in the standard library. Many new concepts concepts such as
-the streaming API rely heavily on these new-to-Java concepts.
+interfaces in the standard library. Many new concepts such as
+the streaming API rely heavily on these new-to-Java ideas.
 Other languages such as C++, C# or Python show an even greater influence of functional
-paradigms as they all improve support for a functional style of programming, even
-though they can not be considered pure functional languages by any means.
+paradigms as they all have been seen improving their support for a functional style of programming,
+even though they can not be considered pure functional languages by any means.
 
 This rise in popularity does not come from nowhere. The core benefit
 of functional programming, its modularity, allows programmers
 to write concise programs in a clear and structured way.
 
-Functional languages coming from an academic environment,
+Functional languages, coming from an academic environment,
 historically also have a long history of being used for 
 experimenting with novel programming paradigms. Among these is
 the use of functional languages for parallel programming.
@@ -38,31 +38,30 @@ Arrow based type class hosting an Arrow combinator
 singular parallel Arrow. We use this class as an interface to wrap around existing
 parallel Haskells instead of introducing yet another new low-level parallel
 backend.
-For this thesis we have chosen three of the most important parallel Haskells:
-GpH [@Trinder1996; @Trinder1998a] for its simplicity,
-the `Par` Monad [@par-monad; @Foltzer:2012:MPC:2398856.2364562]
-to represent a monadic DSL, and Eden [@eden; @Loogen2012] as a
-distributed parallel Haskell. Other important ones
-include HdpH [@Maier:2014:HDS:2775050.2633363; @stewart_maier_trinder_2016, a Template Haskell-based parallel Haskell for distributed memory]
-and LVish [@Kuper:2014:TPE:2666356.2594312, a `Par` extension with focus on communication],
-but these were not chosen as the former does not differ from the original
-`Par` Monad with regard to how we would have used it in this thesis,
-while the latter (at least in its current form) does not comply with
-our representation of parallelism due to its heavy reliance on Template Haskell.
 
-In this thesis we use this approach to wrap around three parallel Haskells:
-Glasgow parallel Haskell or for short GpH
-(its Multicore SMP implementation, in particular), the classic
-`Par` Monad, and Eden, a distributed memory parallel Haskell targeting
-clusters running MPI or PVM. These languages represent orthogonal approaches.
+For this thesis we have chosen three of the most important parallel Haskells:
+GpH, or more specifically -- its Multicore SMP implementation, [@Trinder1996; @Trinder1998a] for its simplicity,
+the classic `Par` Monad [@par-monad; @Foltzer:2012:MPC:2398856.2364562]
+to represent a monadic DSL, and Eden [@eden; @Loogen2012] as a
+distributed memory parallel Haskell targeting clusters running MPI or PVM.
+These languages represent orthogonal approaches.
 Some use a Monad, even if only for the internal representation
 while others introduce additional language constructs.
 
-With such a shallow-embedded DSL based on Arrows we do
-not only aim to define a parallel programming
-interface in a novel manner that allows for arbitrary Arrow types to be parallelised --
+While alternatives such as HdpH [@Maier:2014:HDS:2775050.2633363; @stewart_maier_trinder_2016, a Template Haskell-based parallel Haskell for distributed memory]
+and LVish [@Kuper:2014:TPE:2666356.2594312, a `Par` extension with focus on communication] exist,
+these were not chosen as the former does not differ from the original
+`Par` Monad with regard to how we would have used it in this thesis,
+while the latter (at least in its current form) does not suit a wrapping approach
+such as the one presented here due to its heavy reliance on Template Haskell. We will
+experiment with a potential Cloud Haskell [@Epstein:2011:THC:2096148.2034690] backend
+to someday enable the DSL to work in modern cloud based clusters, though.
+
+With the shallow--embedded DSL based on Arrows we define in this thesis
+we do however not only aim to define a novel parallel programming
+interface that allows for arbitrary Arrow types to be parallelised --
 we also aim to tame the zoo of parallel Haskells.
-With our interface we furthermore want to provide a common,
+Even more so, we want to provide a common,
 low-penalty programming interface that is general by allowing
 to switch the parallel implementations at will.
 

@@ -3,8 +3,8 @@
 \label{sec:related-work}
 
 In this Chapter we will discuss related work to this thesis. We start with
-related work on parallel Haskells in Chapter \ref{sec:relWorkParallelHaskells}. Next,
-we discuss work on algorithmic skeletons in Chapter \ref{sec:relWorkAlgorithmicSkels}.
+work on parallel Haskells in Chapter \ref{sec:relWorkParallelHaskells}. Next,
+we discuss research on algorithmic skeletons in Chapter \ref{sec:relWorkAlgorithmicSkels}.
 Then, we go over previous work in the field of Arrows in Chapter \ref{sec:relWorkArrows}.
 Finally, we explain how this thesis is related to previous work done on PArrows
 during the exploration of the subject.
@@ -46,11 +46,15 @@ Monad include: HdpH [@Maier:2014:HDS:2775050.2633363; @stewart_maier_trinder_201
 of `Par` Monad to heterogeneous clusters. LVish [@Kuper:2014:TPE:2666356.2594312] is a
 communication-centred extension of the `Par` Monad and is based on monotonically growing data structures.
 
+Cloud Haskell [@Epstein:2011:THC:2096148.2034690]
+which we use for an experimental backend is a domain specific language for
+cloud computing but can also be used for parallel computation.
+
 ## Algorithmic skeletons
 
 \label{sec:relWorkAlgorithmicSkels}
 
-The idea of Algorithmic skeletons were introduced by @Cole1989.
+Algorithmic skeletons were introduced by @Cole1989.
 Early publications on this topic include @DANELUTTO1992205, @darlington1993parallel, @botorog1996efficient, @Lengauer1997
 and @Gorlatch1998. 
 @SkeletonBook consolidated early reports on high-level programming approaches.
@@ -82,7 +86,8 @@ software systems to run in parallel. @dieterle_horstmeyer_loogen_berthold_2016
 compare the composition of skeletons to stable process networks.
 
 We implement some of these algorithmic skeletons
-in Chapters \ref{sec:extending-interface} as well as \ref{sec:topology-skeletons}.
+in Chapters \ref{sec:extending-interface} as well as \ref{sec:topology-skeletons}, namely
+various parallel `map` variants as well as the topological skeletons `pipe`, `ring` and `torus`.
 
 ## Arrows
 
@@ -110,7 +115,8 @@ We, however, propose a general interface for parallel programming,
 while remaining completely in Haskell.
 
 #### Arrows in other languages
-Although this work is centered on Haskell implementation of Arrows,
+
+Although this work is centred on Haskell implementation of Arrows,
 it is applicable to any functional programming language where parallel
 evaluation and Arrows can be defined. Basic definitions of PArrows are
 possible in the Frege language^[GitHub project page at \url{https://github.com/Frege/frege}]
@@ -130,8 +136,8 @@ This thesis is based on the paper \enquote{Arrows for Parallel Computation} [@PA
 written by me, Martin Braun, together with Oleg Lobachev and Phil Trinder. The original idea for this paper
 came up during a Masters Research Project done under the supervision of Oleg Lobachev.
 
-This thesis, while based on work originally done during the Master's research project, is,
-however dramatically different from the work presented there. In this thesis, the results
+While based on the ideas of the Master's research project,
+the work presented here is dramatically different. In this thesis, the results
 are a lot more sophisticated and detailed and only Chapters \ref{sec:parallelHaskells} -- \ref{sec:map-skeletons}
 are somewhat based on work done during the original project.
 
