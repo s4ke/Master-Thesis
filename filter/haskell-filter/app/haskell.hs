@@ -16,7 +16,7 @@ transformHaskell x@(Text.Pandoc.CodeBlock attr code) =
     if isHaskell attr
     then (Text.Pandoc.RawBlock (Format "tex") $ prettyHaskellCodeBlock attr code)
     else if isC attr
-         then (Text.Pandoc.RawBlock (Format "tex") $ prettyCFig attr code)
+         then (Text.Pandoc.RawBlock (Format "tex") $ prettyCCodeBlock attr code)
          else x
 transformHaskell x = walk transformInline x
 
@@ -49,6 +49,19 @@ prettyCFig (ident, classes, kvs) input =
     caption kvs ++
     label ident ++
     "\\end{figure}"
+
+prettyCCodeBlock :: Attr -> String -> String
+prettyCCodeBlock attr@(ident, classes, kvs) input =
+    if isFigure attr
+    then prettyCFig attr input
+    else ("\\begin{center}\n" ++
+          "\\lstset{language=C}\n" ++
+          "\\centering\n" ++
+          "\\begin{lstlisting}" ++
+          "\n" ++ input ++ "\n" ++
+          "\\end{lstlisting}\n" ++
+          "\\end{center}\n" ++
+          "\\vspace{-1\\baselineskip}\n")
 
 prettyHaskellCodeBlock :: Attr -> String -> String
 prettyHaskellCodeBlock attr@(ident, classes, kvs) input =
