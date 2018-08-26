@@ -13,10 +13,17 @@ information `s` and result `a` is shown to not be able to use the static
 
 An Arrow `arr a b` represents a computation that converts an input `a` to an output
 `b`. The general concept is defined in the `Arrow` type class shown in Fig. \ref{fig:ArrowDefinition}.
-To lift an ordinary function to an Arrow, `arr` is used, analogous to the monadic `return`. Similarly, the composition operator `>>>` is analogous to the monadic composition `>>=` and combines two Arrows `arr a b` and `arr b c` by \enquote{wiring} the outputs of the first to the inputs to the second to get a new Arrow `arr a c`. Lastly, the `first` operator takes the input Arrow `arr a b` and converts it into an Arrow on pairs `arr (a, c) (b, c)` that leaves the second argument untouched. It allows us to to save input across Arrows. Fig. \ref{fig:arrows-viz} shows a graphical representation of these basic Arrow combinators.
+To lift an ordinary function to an Arrow, `arr` is used, analogous to the monadic `return`. Similarly,
+the composition operator `>>>` is analogous to the monadic composition `>>=` and combines two Arrows `arr a b`
+and `arr b c` by \enquote{wiring} the outputs of the first to the inputs to the second to get a new Arrow `arr a c`.
+Lastly, the `first` operator takes the input Arrow `arr a b` and converts it into an Arrow on pairs `arr (a, c) (b, c)`
+that leaves the second argument untouched. It allows us to to save input across Arrows. Fig. \ref{fig:arrows-viz} shows a
+graphical representation of these basic Arrow combinators.
 The most prominent instances of this interface (Fig. \ref{fig:ArrowDefinition}) are regular functions `(->)`
 and the Kleisli type, which wraps monadic functions,
-e.g. `a -> m b`.
+e.g. `a -> m b`.^[In \ref{sec:relWorkArrows} we referenced further relevant 
+Arrow types, especially ones that can be used for Arrow-based functional
+reactive programming.]
 
 ~~~~ {#fig:ArrowDefinition
     .haskell
@@ -80,7 +87,8 @@ in some cases.
 In this thesis we will show that parallel computations can be expressed with this
 more general interface of Arrows without requiring Monads (we will see an example of
 monadic parallelism in Chapter \ref{sec:parallelHaskells}). We also do not restrict
-the compatible Arrows to ones which have `ArrowApply` instances but instead
+the compatible Arrows to ones which have `ArrowApply` instances -- as every
+Arrow that has a `ArrowApply` instance gives rise to a Monad -- but instead
 only require instances for `ArrowChoice` (for the if-then-else construction in 
 `evalN` (Fig. \ref{fig:evalN}))
 and `ArrowLoop` (for the looping used in the topological skeletons in Chapter \ref{sec:topology-skeletons}).

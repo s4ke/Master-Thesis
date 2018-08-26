@@ -24,7 +24,7 @@ comp curState x = (x + 3, nextState)
 this can become unnecessarily complicated to handle by hand. A better
 alternative is the use of monads, which are the main concept
 generally used in computations involving some sort of mutable state.
-The typeclass for the `Monad` typeclass can be defined as
+The type class for a `Monad` can be defined as
 
 ~~~~ {.haskell
     }
@@ -37,31 +37,31 @@ class Monad m where
 
 Thinking of Monads as computations, we can come up with the following
 explanation: `return` is used to create a computation `m a` just returning
-some given value `a`. 
+the given value `a`. 
 Next, `(>>=)` is used to compose some monadic computation `m a`
-returning some `a` with a monadic function `a -> m b` to return
-some computation `m b` returning some `b`. Finally, `(>>)` is used to
+resulting in some `a` with a monadic function `a -> m b` to return
+some computation `m b` resulting in some `b`. Finally, `(>>)` is used to
 define the order of two monadic computations `m a` and `m b` so that
 `m a` is computed before `m b` while discarding the result of the first one as can
 also be seen in its default implementation above.
 
 Given this definition of a Monad, we can now take a look at how we would implement
 a `State` Monad.
-It is defined as [@learnyouahaskell]
+Its type is defined as [@learnyouahaskell]
 
 ~~~~ {.haskell
     }
 newtype State s a = State { runState :: s -> (a, s) }  
 ~~~~
 
-where a `State s a` encapsulates a stateful computation
+`State s a` encapsulates a stateful computation
 on some state type `s` yielding some value of type `a`. For easier understanding
-it is often useful to think of `State s a` just as a usability wrapper around a
+it is often useful to think of `State s a` as a usability wrapper around a
 function `s -> (a, s)` that returns some `a` and the final state `s`
 if we pass it some starting state `s`. The State 
-monad therefore only contains the \enquote{blueprint} of the computation that can
+monad therefore merely contains the \enquote{blueprint} of the computation that can
 only be run if we start it by passing a state.
-The instance for the Monad type class can then be defined as
+The instance for the `Monad` type class can then be defined as
 
 ~~~~ {.haskell
     }
@@ -72,9 +72,9 @@ instance Monad (State s) where
     return x = State { runState = \s -> (x, s) }   
 ~~~~
 
-where we declare the Monad deliberately on top of `State s` meaning that `State` itself
-is not a monad, but it is a monad together with some state representation `s` ^[We can't
-declare `State` a monad anyways since the Monad is a type class with just one type parameter].
+Here, we declare the instance deliberately on top of `State s` meaning that `State` itself
+is not a monad, but it is a one together with some state representation `s` ^[We can't
+declare `State` a monad anyways since `Monad` is a type class with just one type parameter].
 Note how the operations are defined here: `return` encapsulates the given value `x :: a`
 inside the internal function and therefore is equal to the identity `id :: a -> a` function on tuples
 with one parameter already applied.^[With the help of `curry :: ((a, b) -> c) -> a -> b -> c`,
@@ -85,8 +85,8 @@ a new monadic computation of type `State s b`. The internal function of the stat
 is essentially taken out of the first argument and composed with the second
 argument inside the returned Monad.
 
-Additionally, we have helper operations to use
-this construct with. The first is `put :: s -> State s ()` which overwrites the
+Additionally, we can define helper operations to use
+this construct with. The first one is `put :: s -> State s ()`. It overwrites the
 current state returning a unit `()` as result:
 
 ~~~~ {.haskell
@@ -95,7 +95,7 @@ put :: s -> State s ()
 put newState = State { runState = \s -> ((), newState) }
 ~~~~
 
-The second one is `get :: State s s` which returns the current state, but
+The second one is `get :: State s s`. It returns the current state, but
 does not change it:
 
 ~~~~ {.haskell
@@ -138,9 +138,8 @@ main = print (evalState computeStateful empty)
 
 Here, `computeStateful` first pushes some values on top of a stack represented by a list
 `[Int]` (the actual state inside of the `State` monad) and then `pop`s these values and `push`es their sum
-back on the stack to finally `peek` the actual value which
-then is the result of the computation.
-To make writing such code easier, Haskell has syntactic sugar called `do` notation.
+back on the stack. Finally, we `peek` the top of our stack. This is then the result of the computation.
+To make writing such code easier, Haskell has syntactic sugar: The `do` notation.
 With it we can write the above method `computeStateful` in a way that resembles
 imperative-style code (but with side-effects clearly encapsulated) as:
 
@@ -155,14 +154,14 @@ computeStateful = do
     peek 
 ~~~~
 
-In this example, we can also see the direct relationship between `(>>)` and simple new lines and
-the `(>>=)` operator and the special `<-` operator in do notation which facilitates the 
+Here, we can also see the duality of `(>>)` and simple new lines as well as the one
+between `(>>=)` and the special `<-` operator in `do` notation which facilitates the 
 binding to a variable.^[`(>>=)` is also often called `bind` in languages which do not support
 operator overloading.]
 
 Other often used Monads in the Haskell eco-system include the `Writer` monad, which is
-useful for e.g. logging or the `IO` monad, which is
+useful for e.g. logging, or the `IO` monad, which is
 used to encapsulate I/O computations as well as low level internal operations
-such as modifiable variables `IORef` or `MVar` among others.
+such as the usage of modifiable variables `IORef` or `MVar` among others.
 Furthermore, as one of many other applications,
 Monads are used in some parallel Haskells as we will see later in this thesis.
