@@ -7,7 +7,8 @@ In Chapter \ref{sec:fuproHaskell}, we cited @Hughes:1990:WFP:119830.119832 sayin
 programming, the order of evaluation is irrelevant. In parallel programs this is not the case,
 as at least some kind of structure of evaluation is required to have actual speedup in programs.
 In the following we will take a look at how parallelism can be achieved in Haskell programs in general.
-Now, one might think that we would want side effects (parallel evaluation is a side-effect)
+Now, one might think that we would want side effects
+(parallel evaluation is a side-effect)
 and require the need to think about order of evaluation in a pure functional program seems a bit odd.
 The fact of the matter is that functional programs
 only aim to avoid *unnecessary* side-effects and in the case of parallelism it
@@ -45,9 +46,12 @@ give their respective implementations of the non-Arrow version of `parEvalN`.
 
 GpH [@Marlow2009; @Trinder1998a] is one of the simplest ways to do parallel
 processing found in standard GHC.^[The Multicore implementation of GpH is available on Hackage under \url{https://hackage.haskell.org/package/parallel-3.2.1.0}, compiler support is integrated in the stock GHC.]
-Besides some basic primitives (`par` and `pseq`), it ships with parallel
+Besides some basic primitives
+^[`par :: a -> b -> b` to evaluate `a` and `b` in parallel and `pseq :: a -> b -> b`, a special
+variant of `seq` that allows enforcing of parallel evaluation.],
+it already ships with parallel
 evaluation strategies for several types which can be applied with
-`using :: a -> Strategy a -> a`, which is exactly what is required for an
+`using :: a -> Strategy a -> a`. This is exactly what is required for an
 implementation of `parEvalN`.
 
 ~~~~ {.haskell}
@@ -74,7 +78,20 @@ Fig. \ref{fig:parEvalNMulticoreImg} shows a visual representation of this code.
 The `Par` Monad^[The `Par` Monad can be found in the `monad-par` package on Hackage
 under \url{https://hackage.haskell.org/package/monad-par-0.3.4.8/}.]
 introduced by [@par-monad], is a Monad designed for composition of
-parallel programs. Let:
+parallel programs:
+
+~~~~{.haskell}
+myComp :: Par (a, b)
+myComp = do
+     fx <- spawn $ return (f x)  -- start evaluating (f x)
+     gx <- spawnP $ return (g x)  -- start evaluating (g x)
+     a  <- get fx        -- wait for fx
+     b  <- get gx        -- wait for gx
+     return (a,b)        -- return results
+~~~~
+
+We, however, do not need its composition features and only use
+its parallel backend in our definition of `parEvalN`:
 
 ~~~~ {.haskell}
 parEvalN :: (NFData b) => [a -> b] -> [a] -> [b]
@@ -82,7 +99,7 @@ parEvalN fs as = runPar $
 	(sequenceA (map (return . spawn) (zipWith ($) fs as))) >>= mapM get
 ~~~~
 
-The `Par` Monad version of our parallel evaluation function `parEvalN` is
+This `Par` Monad version of our parallel evaluation function `parEvalN` is
 defined by zipping the list of `[a -> b]` with the list of inputs `[a]` with the
 application operator `$` just like with GpH.
 Then, we map over this not yet evaluated lazy list of results `[b]` with
@@ -102,7 +119,7 @@ Fig. \ref{fig:parEvalNParMonadImg} shows a graphical representation.
 ### Eden
 
 Eden [@eden; @Loogen2012] is a parallel Haskell for distributed memory
-and comes with MPI and PVM as
+and allows for MPI and PVM as
 distributed backends.^[The projects homepage can be found at \url{http://www.mathematik.uni-marburg.de/~eden/}. The Hackage page is at \url{https://hackage.haskell.org/package/edenmodules-1.2.0.0/}.]
 It is targeted towards clusters, but also functions well in a shared-memory
 setting with a further simple backend. However, in contrast to many other
@@ -115,7 +132,7 @@ While Eden comes with a Monad `PA` for parallel evaluation, it also ships
 with a completely functional interface that includes
 a `spawnF :: (Trans a, Trans b) => [a -> b] -> [a] -> [b]`^[the type class `Trans`
 stands for Transmissible.
-Eden already comes with instances for most common types and allows for easy construction
+The Eden library already has instances for most common types and allows for easy construction
 of further instances.]
 function that allows us to define `parEvalN` directly:
 
