@@ -11,10 +11,10 @@ later in this thesis.
 
 ![`parEvalNLazy` depiction.](src/img/parEvalNLazy.pdf){#fig:parEvalNLazyImg}
 
-The function `parEvalN` fully traverses the list of passed Arrows as
+The resulting Arrow of `parEvalN` fully traverses the list of input Arrows as
 well as their inputs. Sometimes this might not be feasible, as
-it will not work on infinite lists of functions like e.g. `map (arr . (+)) [1..]`
-or just because we need the Arrows evaluated in chunks. `parEvalNLazy`
+it will not work on infinite lists of Arrows/functions like e.g. `map (arr . (+)) [1..]`
+or just because in case we need the Arrows evaluated in chunks. `parEvalNLazy`
 (Figs. \ref{fig:parEvalNLazyImg}, \ref{fig:parEvalNLazy}) fixes this.
 It works by first chunking the input from `[a]` to `[[a]]` with the given
 `chunkSize` in `arr (chunksOf chunkSize)`.
@@ -45,8 +45,8 @@ parEvalNLazy conf chunkSize fs =
 ![`parEval2` depiction.](src/img/parEval2Img.pdf){#fig:parEval2Img}
 
 We have only talked about the parallelization of Arrows of the
-same set of input and output types until now. But sometimes we
-want to parallelize heterogeneous types as well.
+same input and output types until now. But sometimes we
+want to parallelise heterogeneous types as well.
 We can implement such a `parEval2` combinator
 (Figs. \ref{fig:parEval2Img}, \ref{fig:parEval2}) which combines two Arrows
 `arr a b` and `arr c d` into a new parallel Arrow `arr (a, c) (b, d)`
