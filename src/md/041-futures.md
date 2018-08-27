@@ -5,11 +5,11 @@
 Consider the following outline parallel Arrow combinator:
 
 ~~~~ {.haskell}
-someCombinator :: (ArrowChoice arr,
-	ArrowParallel arr a b (),
+outlineCombinator :: (
+    ArrowParallel arr a b (),
 	ArrowParallel arr b c ()) =>
 	[arr a b] -> [arr b c] -> arr [a] [c]
-someCombinator fs1 fs2 =
+outlineCombinator fs1 fs2 =
 	parEvalN () fs1 >>>
 	rightRotate >>>
 	parEvalN () fs2
@@ -17,7 +17,7 @@ someCombinator fs1 fs2 =
 
 In a distributed environment this first evaluates all `[arr a b]` in parallel,
 sends the results back to the master node, rotates the input once
-(in the example we require `ArrowChoice` for this) and then evaluates the
+and then evaluates the
 `[arr b c]` in parallel to then gather the input once again on the master node.
 Such situations arise, e.g. in scientific computations when data
 distributed across the nodes needs to be transposed.
@@ -37,8 +37,8 @@ Each bar represents one process. Black lines represent communication.
 Colours: blue $\hat{=}$ idle, green $\hat{=}$ running, red  $\hat{=}$ blocked,
 yellow $\hat{=}$ suspended.](src/img/withoutFutures.pdf){#fig:withoutFutures}
 
-This is only a problem in distributed memory (in the scope of this thesis) and we
-should allow nodes to communicate directly with each other. Eden already provides
+This is usually only a problem in distributed memory
+and we should allow nodes to communicate directly with each other. Eden already provides
 \enquote{remote data} that enable this [@AlGo03a; @Dieterle2010].
 But as we want code using our DSL to be agnostic in terms of which backend is used,
 we have to wrap this concept. We do this with the `Future` type class to abstract
@@ -53,15 +53,26 @@ class Future fut a conf | a conf -> fut where
 A `conf` parameter is required here as well, but only
 so that Haskells type system allows us to have multiple Future implementations
 imported at once without breaking any dependencies similar to what we did with
-the `ArrowParallel` type class earlier. Note that we can also define default
+the `ArrowParallel` type class earlier. However, we
+can obviously yet again define default
 utility instances `Future fut a ()`
 for each backend similar to how `ArrowParallel arr a b ()` was defined
 in Chapter \ref{sec:parallel-arrows} as we will shortly see in the implementations
 for the backends.
 
-Since `RD` is only a type synonym for a communication type that Eden uses
-internally, we have to use some wrapper classes to fit that definition, though,
-as the following code showcases:
+Maybe even more interestingly, we use a functional dependency
+`a conf -> fut` in the definition. This means that the type of `fut`
+can always fully be determined from the actual types of `a` and `conf`. We need this
+because we do not want users of our DSL to have to rely on a
+specific type of Future in their code.
+They only have to declare that they require a compatible Future type and do not
+need to worry about any specifics. This can be seen in the Future version of
+`outlineCombinator` we will define soon.
+
+In order to implement this type class for Eden and since `RD` is only a
+type synonym for a communication type that is used
+internally in their library, we have to use some wrapper classes to fit the type class,
+as the following code showcases^[instances of type classes can not be declared on type synonyms]:
 
 ~~~~ {.haskell}
 data RemoteData a = RD { rd :: RD a }
@@ -117,12 +128,12 @@ Now, we can use this `Future` concept in our communication example for direct
 communication between nodes:
 
 ~~~~ {.haskell}
-someCombinator :: (ArrowChoice arr,
-	ArrowParallel arr a (fut b) (), 
+outlineCombinator :: (
+    ArrowParallel arr a (fut b) (), 
 	ArrowParallel arr (fut b) c (),
 	Future fut b ()) =>
 	[arr a b] -> [arr b c] -> arr [a] [c]
-someCombinator fs1 fs2 =
+outlineCombinator fs1 fs2 =
 	parEvalN () (map (>>> put ()) fs1) >>>
 	rightRotate >>>
 	parEvalN () (map (get () >>>) fs2)
@@ -133,13 +144,7 @@ messages going through the master node only if it is needed -- similar to what
 is shown in the trace visualisation in Fig. \ref{fig:withFutures}. This is
 because only the handles to the data that are passed through the master
 node, while all communication of actual data can happen between the actual nodes.
-
-One especially elegant aspect of the definition of our Future type class is that
-we can specify the type of `Future` to be used per backend with full
-interoperability between code using different backends, without even
-requiring to know about the actual type used for communication.
-We only specify that there has to be a compatible Future and do not care
-about any specifics as can be seen in the future version of `someCombinator`.
+We will build upon this concept in more complicated combinators in the next chapter.
 
 ![Communication between 4 Eden processes with Futures.
 Unlike in Fig. \ref{fig:withoutFutures}, processes communicate directly

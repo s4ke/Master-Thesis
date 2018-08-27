@@ -5,9 +5,9 @@
 
 Now we have developed Parallel Arrows far enough to define some useful
 algorithmic skeletons that abstract typical parallel computations.
-We start here with some basic `map`-based skeletons.
-The essential differences between these skeletons presented
-here are in terms of order of evaluation and work distribution but
+We start with some basic `map`-based skeletons.
+The essential differences between these skeletons presented here 
+are in terms of order of evaluation and work distribution. They nevertheless
 still provide the same semantics as a sequential `map`.
 
 ### Parallel `map` and laziness
@@ -82,7 +82,7 @@ Since a `farm` is basically just `parMap` with a different work distribution,
 it has the same restrictions as `parEvalN` and `parMap`.
 We can, however, define `farmChunk` (Figs. \ref{fig:farmChunk}, \ref{fig:farmChunkImg})
 which uses `parEvalNLazy` instead of `parEvalN`.
-It is basically the same definition as for `farm`, but with
+Its definition is identical to the one for `farm` apart from the use of
 `parEvalNLazy` instead of `parEvalN`.
 
 ~~~~ {#fig:farmChunk

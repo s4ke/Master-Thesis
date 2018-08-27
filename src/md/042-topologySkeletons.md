@@ -4,12 +4,12 @@
 
 Even though many algorithms can be expressed by `parMap`s,
 some problems require more sophisticated skeletons.
-The Eden library leverages this problem and already comes with
+The Eden library resolves this problem and already comes with
 more predefined skeletons^[Available on Hackage:
 \url{https://hackage.haskell.org/package/edenskel-2.1.0.0/docs/Control-Parallel-Eden-Topology.html}.],
 among them a `pipe`, a `ring`, and a `torus` implementation
 [@Eden:SkeletonBookChapter02]. These seem like reasonable candidates to be
-ported to our Arrow-based parallel Haskell. While doing so, we aim to showcase that we
+ported to our Arrow-based parallel Haskell. By doing so, we aim to showcase that we
 can express more sophisticated skeletons with parallel Arrows as well.
 
 If we were to use the original definition of `parEvalN`, however, these skeletons
@@ -19,15 +19,15 @@ This materialises with the usage of `loop` of the `ArrowLoop` type class and we
 think that this is due to difference of how evaluation is done in these
 backends compared to Eden.
 An investigation of why this difference exists is beyond the scope of this work
-^[The results of the experimental Cloud Haskell backend in Chapter \ref{sec:CloudHaskellArrowParallelLimitsMitigation}
-touch on the likely root cause of this problem, though],
-we only provide a workaround for these types of skeletons as such they
+-- the results of the experimental Cloud Haskell backend in Chapter \ref{sec:CloudHaskellArrowParallelLimitsMitigation}
+touch on the likely root cause of this problem, though.
+We only provide a workaround for these types of skeletons as such they
 probably are not of much importance outside of a distributed memory environment.
-However our workaround enables users of the DSL to test their code within a
+Nevertheless, our workaround enables users of the DSL to test their code within a
 shared memory setting.
 
 The idea of the fix is to provide a `ArrowLoopParallel` type class that has two
-functions -- `loopParEvalN` and `postLoopParEvalN`, where the first is to be
+functions -- `loopParEvalN` and `postLoopParEvalN`. The first is to be
 used inside an `loop` construct while the latter will be used right outside of
 the `loop`. This way we can delegate to the actual `parEvalN` in the spot where
 the backend supports it.
@@ -39,7 +39,7 @@ class ArrowParallel arr a b conf =>
     postLoopParEvalN :: conf -> [arr a b] -> arr [a] [b]
 ~~~~
 
-As Eden has no problems with the looping skeletons, we use this instance:
+Because Eden has no problems with the looping skeletons, we use this instance:
 
 ~~~~ {.haskell}
 instance (ArrowChoice arr, ArrowParallel arr a b Conf) =>
@@ -48,8 +48,8 @@ instance (ArrowChoice arr, ArrowParallel arr a b Conf) =>
     postLoopParEvalN _ = evalN
 ~~~~
 
-As the `Par` Monad and GpH have problems with `parEvalN` inside of `loop`
-their respective instances for `ArrowLoopParallel` look like this:
+`Par` Monad and GpH have problems with `parEvalN` inside of `loop`.
+Their respective instances for `ArrowLoopParallel` look like this:
 
 ~~~~ {.haskell}
 instance (ArrowChoice arr, ArrowParallel arr a b (Conf b)) =>
@@ -201,7 +201,7 @@ Next, we zip the resulting `([i], [fut r])` to `[(i, fut r)]` with
 `arr [(i, fut r)] [(o, fut r)]` obtained by transforming our input Arrow
 `f :: arr (i, r) (o, r)` into `arr (i, fut r) (o, fut r)` before `repeat`ing and
 lifting it with `loopParEvalN`. Finally we unzip the output list
-`[(o, fut r)]` list into `([o], [fut r])`.
+`[(o, fut r)]` into `([o], [fut r])`.
 
 Plugging this Arrow `arr ([i], [fut r]) ([o], fut r)` into the definition of
 `loop` from earlier gives us `arr [i] [o]`, our ring Arrow (Fig. \ref{fig:ringFinal}).
@@ -238,10 +238,11 @@ ring conf f =
 
 If we take the concept of a `ring` from Chapter \ref{sec:ring} one dimension
 further, we obtain a `torus` skeleton (Fig. \ref{fig:ringTorusImg}, \ref{fig:torus}).
-Every node sends and receives data from horizontal and vertical neighbours
-in each communication round. With our Parallel Arrows we re-implement the
-`torus` combinator^[Available on Hackage: \url{https://hackage.haskell.org/package/edenskel-2.1.0.0/docs/Control-Parallel-Eden-Topology.html}.]
-from Eden -- yet again with the help of the `ArrowLoop` type class.
+In a `torus`, every node sends and receives data from horizontal and vertical neighbours
+in each communication round. With our Parallel Arrows we re-implement this
+combinator
+from Eden^[Available on Hackage: \url{https://hackage.haskell.org/package/edenskel-2.1.0.0/docs/Control-Parallel-Eden-Topology.html}.] --
+yet again with the help of the `ArrowLoop` type class.
 
 Similar to the `ring`, we start by rotating the input
 (Fig. \ref{fig:edenlazyrightrotate}), but this time not only in one direction,
@@ -272,7 +273,7 @@ evaluate in parallel.
 This, however, is more complicated than in the `ring` case as we have one more
 dimension of inputs that needs to be transformed. We first have to `shuffle` all
 the inputs to then pass them into `loopParEvalN conf (repeat (ptorus conf f))` to
-get an output of  `[(d, fut a, fut b)]`. We then unshuffle this list back to
+get an output of  `[(d, fut a, fut b)]`. We then `unshuffle` this list back to
 its original ordering by feeding it into `arr (uncurry unshuffle)` which
 takes the input length we saved one step earlier as additional input to get a
 result matrix `[[[(d, fut a, fut b)]]`. Finally, we unpack this matrix
@@ -350,7 +351,8 @@ mult size ((sm1,sm2),sm1s,sm2s) = (result,toRight,toBottom)
 If we compare the trace from a call using our Arrow definition of the
 `torus` (Fig. \ref{fig:torus_parrows_trace}) with the Eden version
 (Fig. \ref{fig:torus_eden_trace}) we can see that the behaviour of the Arrow version
-and execution times are comparable. We discuss further benchmarks on larger
+and execution times are comparable -- our port was successful.
+We discuss further benchmarks on larger
 clusters in more detail in Chapter \ref{sec:benchmarks}.
 
 ![Matrix multiplication with `torus` (PArrows).](src/img/torus_matrix_parrows_trace.pdf){#fig:torus_parrows_trace}
