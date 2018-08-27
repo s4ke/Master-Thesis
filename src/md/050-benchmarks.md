@@ -75,7 +75,7 @@ implemented in Eden. Table @tbl:benches summarises.
 | Gentleman          | Mathematics | `torus`               | Eden        | @Eden:SkeletonBookChapter02 |
 | Sudoku             | Puzzle      | `parMap`              | `Par` Monad | @par-monad[^tblnote1]       |
 
-Table: The benchmarks we use in this paper. {#tbl:benches}
+Table: The benchmarks we use in this thesis. {#tbl:benches}
 
 [^tblnote1]: actual code from: \url{http://community.haskell.org/\~simonmar/par-tutorial.pdf} and \url{https://github.com/simonmar/parconc-examples}
 
@@ -131,7 +131,7 @@ hyper-threaded cores and only 13.55 with PArrows/GpH.
 While this shows that hyper-threading can be of benefit in real-world scenarios
 running similar workloads to the ones presented in the benchmarks,
 we only use real cores for the performance measurements in Chapter \ref{sec:benchmarkResults} as the
-purpose of this paper is to show the performance of PArrows and not to
+purpose of this chapter is to show the performance of PArrows and not to
 investigate parallel behaviour with hyper-threading.
 
 ## Benchmark results

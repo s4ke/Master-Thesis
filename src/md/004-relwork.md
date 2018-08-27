@@ -54,7 +54,8 @@ cloud computing but can also be used for parallel computation.
 
 \label{sec:relWorkAlgorithmicSkels}
 
-Algorithmic skeletons were introduced by @Cole1989.
+Algorithmic skeletons as a concept to abstract the general idea of different classes of
+algorithms were introduced by @Cole1989.
 Early publications on this topic include @DANELUTTO1992205, @darlington1993parallel, @botorog1996efficient, @Lengauer1997
 and @Gorlatch1998. 
 @SkeletonBook consolidated early reports on high-level programming approaches.

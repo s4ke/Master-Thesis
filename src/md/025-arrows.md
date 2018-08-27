@@ -55,7 +55,14 @@ instance Monad m => Arrow (Kleisli m) where
 ![Visual depiction of syntactic sugar for Arrows.](src/img/syntacticSugarArrows.pdf){#fig:syntacticSugarArrows}
 
 Hughes also defined some syntactic sugar (Fig.\ref{fig:syntacticSugarArrows}): `second`, `***` and `&&&`. 
-`second` is the mirrored version of `first` (Appendix \ref{utilfns}).
+`second` is the mirrored version of `first`:
+
+~~~~ {.haskell}
+second :: Arrow arr => arr a b -> arr (c, a) (c, b)
+second f = arr swap >>> first f >>> arr swap
+	where swap (x, y) = (y, x)
+~~~~
+
 The `***` function combines `first` and `second` to handle two inputs in one arrow, and is defined as follows:
 
 ~~~~ {.haskell}
@@ -70,7 +77,9 @@ The `&&&` combinator, which constructs an Arrow that outputs two different value
 f &&& g = arr (\a -> (a, a)) >>> f *** g
 ~~~~
 
-A first short example given by Hughes on how to use Arrows is addition with Arrows:
+A first short example given by Hughes on how to use the Arrow
+interface is the addition of results of two generic Arrows to get a new
+Arrow:
 
 ~~~~ {.haskell}
 add :: Arrow arr => arr a Int -> arr a Int -> arr a Int
@@ -83,6 +92,61 @@ we can intuitively get an idea of why Arrows must be a generalisation of Monads.
 While this also means that a general Arrow can not express everything a Monad can,
 @HughesArrows shows in his parser example that this trade-off is worth it
 in some cases.
+
+#### Utility Combinators
+
+\label{utilfns}
+
+In order to ease the use of Arrows, we will now define some utility Arrow combinators, namely
+`evalN` as well as `mapArr`. `evalN`, which turns a list of Arrows `[arr a b]` 
+into a new Arrow `arr [a] [b]` evaluating a list of inputs `[a]`
+against these Arrows is defined in Fig. \ref{fig:evalN}
+
+~~~~ {#fig:evalN
+    .haskell
+    .figure
+    caption="The definition of |evalN|."
+    options=h
+    }
+evalN :: (ArrowChoice arr) => [arr a b] -> arr [a] [b]
+evalN (f:fs) = arr listcase >>>
+         arr (const []) ||| (f *** evalN fs >>> arr (uncurry (:)))
+         where listcase []     = Left ()
+               listcase (x:xs) = Right (x,xs)
+evalN [] = arr (const [])
+~~~~
+
+Next, we have the `mapArr` combinator (Fig. \ref{fig:mapArr}). It
+lifts any Arrow `arr a b` to
+an Arrow `arr [a] [b]`. The original inspiration was from @Hughes2005,
+but the definition was then unified with `evalN`. 
+
+~~~~ {#fig:mapArr
+    .haskell
+    .figure
+    caption="The definition of |map| over Arrows."
+    options=h
+    }
+mapArr :: ArrowChoice arr => arr a b -> arr [a] [b]
+mapArr = evalN . repeat
+~~~~
+
+These combinators make use of the `ArrowChoice` type class providing
+the `pipepipepipe` combinator. This combinator takes two Arrows `arr a c` and `arr b c`
+and combines them into a new Arrow `arr (Either a b) c` which pipes all
+`Left a`'s to the first Arrow and all `Right b`'s to the second Arrow:
+
+~~~~ {.haskell}
+(pipepipepipe) :: ArrowChoice arr => arr a c -> arr b c -> arr (Either a b) c
+~~~~
+
+One thing we can see from these utility Arrows is how easily we can define
+generic Arrow code that will work on any sufficient specific Arrow. This
+is exactly why we aim to allow for parallelisation of programs via Arrows.
+We want to empower such generic code to be easily parallelised so these generic
+types of APIs are better to use.
+
+#### Notes
 
 In this thesis we will show that parallel computations can be expressed with this
 more general interface of Arrows without requiring Monads (we will see an example of

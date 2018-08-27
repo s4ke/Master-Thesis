@@ -4,7 +4,8 @@
 
 With the `ArrowParallel` type class in place and implemented, we
 can now define other parallel interface functions. These are basic
-algorithmic skeletons that are used to define more sophisticated skeletons.
+algorithmic skeletons that are used to define more sophisticated ones
+later in this thesis.
 
 ### Lazy `parEvalN`
 
@@ -60,7 +61,7 @@ Starting off, we transform the `(a, c)` input into a two-element list
 `[Either a c]` by first tagging the two inputs with `Left` and `Right` and wrapping
 the right element in a singleton list with `return` so that we can combine them
 with `arr (uncurry (:))`. Next, we feed this list into a parallel Arrow running
-on two instances of `f +++ g` as described in the paper. After the calculation
+on two instances of `f +++ g`. After the calculation
 is finished, we convert the resulting `[Either b d]` into `([b], [d])` with
 `arr partitionEithers`. The two lists in this tuple contain only one element
 each by construction, so we can finally just convert the tuple to `(b, d)` in

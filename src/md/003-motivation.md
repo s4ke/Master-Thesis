@@ -50,10 +50,10 @@ while others introduce additional language constructs.
 
 While alternatives such as HdpH [@Maier:2014:HDS:2775050.2633363; @stewart_maier_trinder_2016, a Template Haskell-based parallel Haskell for distributed memory]
 and LVish [@Kuper:2014:TPE:2666356.2594312, a `Par` extension with focus on communication] exist,
-these were not chosen as the former does not differ from the original
+these were not chosen. The former does not differ from the original
 `Par` Monad with regard to how we would have used it in this thesis,
 while the latter (at least in its current form) does not suit a wrapping approach
-such as the one presented here due to its heavy reliance on Template Haskell. We will
+such as the one presented here due to its heavy reliance on Template Haskell^[a Haskell extension that allows to generate code]. We will
 experiment with a potential Cloud Haskell [@Epstein:2011:THC:2096148.2034690] backend
 to someday enable the DSL to work in modern cloud based clusters, though.
 

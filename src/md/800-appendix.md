@@ -1,69 +1,12 @@
 # Appendix
 
-Following are additional chapters with supplementary information for this thesis.
-In Chapter \ref{utilfns}, we define utility Arrows. Next, Chapter \ref{app:profunctorArrows}
+Following are additional chapters with supplementary information for this thesis. Next, Chapter \ref{app:profunctorArrows}
 explains how specific Profunctors fit the Arrow type class. Chapter \ref{app:omitted}
 covers omitted function definitions. Then, Chapter \ref{syntacticSugar} explains syntactic
 sugar for PArrows. We give additional definitions for the experimental Cloud Haskell
 backend in Chapter \ref{sec:appendixCloudHaskell} and end with the plots
 for the shared memory backends and distributed memory backends in Chapters \ref{sec:benchmarkSharedPlots}
 and \ref{sec:benchmarkDistPlots}, respectively.
-
-## Utility Arrows
-
-\label{utilfns}
-
-Following are definitions of some utility Arrows used in this paper that have been
-left out for brevity. We start with the `second` combinator from
-@HughesArrows, which is a mirrored version of `first` used for example
-in the definition of `***`:
-
-~~~~ {.haskell}
-second :: Arrow arr => arr a b -> arr (c, a) (c, b)
-second f = arr swap >>> first f >>> arr swap
-	where swap (x, y) = (y, x)
-~~~~
-
-Next, we give the definition of `evalN` which also helps us to define a sequential
-`map` on Arrows. It is defined in Fig. \ref{fig:evalN} and converts a
-list of Arrows `[arr a b]` into an Arrow `arr [a] [b]`.
-
-~~~~ {#fig:evalN
-    .haskell
-    .figure
-    caption="The definition of |evalN|."
-    options=h
-    }
-evalN :: (ArrowChoice arr) => [arr a b] -> arr [a] [b]
-evalN (f:fs) = arr listcase >>>
-         arr (const []) ||| (f *** evalN fs >>> arr (uncurry (:)))
-         where listcase []     = Left ()
-               listcase (x:xs) = Right (x,xs)
-evalN [] = arr (const [])
-~~~~
-
-The `mapArr` combinator (Fig. \ref{fig:mapArr}) lifts any Arrow `arr a b` to
-an Arrow `arr [a] [b]`. The original inspiration was from @Hughes2005,
-but the definition was then unified with `evalN`. 
-
-~~~~ {#fig:mapArr
-    .haskell
-    .figure
-    caption="The definition of |map| over Arrows."
-    options=h
-    }
-mapArr :: ArrowChoice arr => arr a b -> arr [a] [b]
-mapArr = evalN . repeat
-~~~~
-
-These combinators make use of the `ArrowChoice` type class providing
-the `pipepipepipe` combinator. This combinator takes two Arrows `arr a c` and `arr b c`
-and combines them into a new Arrow `arr (Either a b) c` which pipes all
-`Left a`'s to the first Arrow and all `Right b`'s to the second Arrow:
-
-~~~~ {.haskell}
-(pipepipepipe) :: ArrowChoice arr => arr a c -> arr b c -> arr (Either a b) c
-~~~~
 
 ## Profunctor Arrows
 

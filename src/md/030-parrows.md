@@ -2,18 +2,21 @@
 
 \label{sec:parallel-arrows}
 
-While Arrows are a general interface to computation, we introduce here specialised
-Arrows as a general interface to *parallel computations*.
+Having discussed the idea of Arrows as well as the basics of the APIs we wish to use
+ as backends, we can now discuss the design and implementation of the actual
+PArrows DSL.
 We present the `ArrowParallel` type class
 and explain the reasoning behind it in Chapter \ref{sec:parallel-arrows-type-class}
-before discussing some parallel Haskell implementations and basic extensions in Chapter 
+before discussing its implementations in GpH, the `Par` Monad and Eden in Chapter
+\ref{sec:arrowparallelimpl}.
+Finally, we give first basic extensions in Chapter 
 \ref{sec:extending-interface}.
 
 ## The `ArrowParallel` type class
 
 \label{sec:parallel-arrows-type-class}
 
-A parallel computation (on functions) can be seen as execution of some functions
+A parallel computation (on functions) can be seen as the execution of some functions
 `a -> b` in parallel, as our `parEvalN` prototype shows
 (Chapter \ref{sec:parEvalNIntro}).
 Translating this into Arrow terms gives us a new operator `parEvalN` that lifts
@@ -25,8 +28,8 @@ from Chapter \ref{utilfns}, but does parallel instead of serial evaluation.
 parEvalN :: (Arrow arr) => [arr a b] -> arr [a] [b]
 ~~~~
 
-With this definition of `parEvalN`, parallel execution is yet another Arrow
-combinator. But as the implementation may differ depending on the actual
+With such a definition of `parEvalN`, parallel execution is yet another Arrow
+combinator. But since the implementation may differ depending on the actual
 type of the Arrow `arr` -- or even the input `a` and output `b` -- and we
 want this to be an interface for different backends that we want to be able to 
 switch between, we introduce a new type class `ArrowParallel arr a b`:
@@ -36,8 +39,8 @@ class Arrow arr => ArrowParallel arr a b where
 	parEvalN :: [arr a b] -> arr [a] [b]
 ~~~~
 
-Sometimes parallel Haskells require or allow for additional configuration
-parameters, e.g. an information about the execution environment or the level
+Sometimes parallel Haskells require or allow additional configuration
+parameters, e.g. information about the execution environment or the level
 of evaluation (weak head normal form vs. normal form). For this reason we
 introduce an additional `conf` parameter as we do not want `conf` to be a fixed type,
 as the configuration parameters can differ for different instances of
@@ -50,20 +53,22 @@ class Arrow arr => ArrowParallel arr a b conf where
 
 By restricting the implementations of our backends to a specific `conf` type,
 we also get interoperability between backends for free as it serves as a discriminator
-for which backend has to be used. We can therefore parallelize one
-part of a program using one backend, and parallelize the next with another one by
-just passing different configuration types that are required anyways.
+for which backend has to be used. We can therefore parallelise one
+part of a program using one backend, and parallelise the next with another one by
+just passing a different configuration type.
 
 ## `ArrowParallel` instances
 
-With the type class defined, we will now give implementations of it with GpH,
+\label{sec:arrowparallelimpl}
+
+With the `ArrowParallel` type class defined, we will now give implementations of it with GpH,
 the `Par` Monad and Eden.
 
 ### Glasgow parallel Haskell 
 
 \label{sec:parrows:multicore}
 
-The GpH implementation of `ArrowParallel` is implemented in a straightforward
+The GpH instance of `ArrowParallel` is implemented in a straightforward
 manner in Fig. \ref{fig:ArrowParallelMulticore}, but a bit different compared
 to the variant from Chapter \ref{sec:GpHIntro}.
 We use `evalN :: [arr a b] -> arr [a] [b]`
@@ -167,7 +172,7 @@ instance (ArrowParallel (->) a (m b) Conf,
 ~~~~
 
 *Note that while writing this thesis, we found
-another solutions that could be feasible: We could write the
+another solution that could be feasible: We could write the
 instance `parEvalN` as*
 
 ~~~~{.haskell}
@@ -202,10 +207,10 @@ stratToConf _ strat = Conf strat
 The other backends have similarly structured implementations which we
 do not discuss here for the sake of brevity. We can, however, only have one
 instance of `ArrowParallel arr a b ()` present at a time,
-which should not be a problem, though.
+which should not be a problem, anyways.
 
 Up until now we discussed Arrow operations more in detail,
 but in the following sections we focus more on the data-flow
 between the Arrows, now that we have seen that Arrows are capable
-of expressing parallelism. We do explain new concepts in greater detail
-if required for better understanding, though.
+of expressing parallelism. We nevertheless do explain new concepts in greater detail
+if required for better understanding.

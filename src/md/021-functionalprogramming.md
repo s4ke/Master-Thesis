@@ -843,8 +843,8 @@ In Haskell they look like this:
 \(a, b) -> a + b
 ~~~~
 
-Lambdas can easily be passed into functions, like zipWith^
-[While `(\(a, b) -> a + b)` is obviously the same as (+), we just write it as a lambda 
+Lambdas can easily be passed into functions, like `zipWith`^[
+While `(\(a, b) -> a + b)` is obviously the same as (+), we just write it as a lambda 
 here for demonstration purposes]:
 
 ~~~~{.haskell
