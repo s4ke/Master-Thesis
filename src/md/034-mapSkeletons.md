@@ -23,7 +23,8 @@ then passing it into `parEvalN` to obtain an Arrow `arr [a] [b]`.
     caption="|parMap| definition."
     options=h
     }
-parMap :: (ArrowParallel arr a b conf) => conf -> (arr a b) -> (arr [a] [b])
+parMap :: (ArrowParallel arr a b conf) =>
+    conf -> (arr a b) -> (arr [a] [b])
 parMap conf f = parEvalN conf (repeat f)
 ~~~~
 
@@ -41,7 +42,9 @@ Because of this, it has the same restrictions as `parEvalN` as compared to
     }
 type ChunkSize = Int
 
-parMapStream :: (ArrowParallel arr a b conf, ArrowChoice arr, ArrowApply arr) =>
+parMapStream :: (ArrowParallel arr a b conf,
+    ArrowChoice arr,
+    ArrowApply arr) =>
 	conf -> ChunkSize -> arr a b -> arr [a] [b]
 parMapStream conf chunkSize f = parEvalNLazy conf chunkSize (repeat f)
 ~~~~
@@ -70,7 +73,8 @@ skeleton^[Available on Hackage under \url{https://hackage.haskell.org/package/ed
 type NumCores = Int
 
 farm :: (ArrowParallel arr a b conf,
-	ArrowParallel arr [a] [b] conf, ArrowChoice arr) =>
+	ArrowParallel arr [a] [b] conf,
+	ArrowChoice arr) =>
 	conf -> NumCores -> arr a b -> arr [a] [b]
 farm conf numCores f =
 	unshuffle numCores >>>
@@ -94,8 +98,10 @@ Its definition is identical to the one for `farm` apart from the use of
 type ChunkSize = Int
 type NumCores = Int
 
-farmChunk :: (ArrowParallel arr a b conf, ArrowParallel arr [a] [b] conf, 
-             ArrowChoice arr, ArrowApply arr) =>
+farmChunk :: (ArrowParallel arr a b conf,
+    ArrowParallel arr [a] [b] conf, 
+    ArrowChoice arr,
+    ArrowApply arr) =>
 	conf -> ChunkSize -> NumCores -> arr a b -> arr [a] [b]
 farmChunk conf chunkSize numCores f =
 	unshuffle numCores >>>

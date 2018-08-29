@@ -22,7 +22,7 @@ A parallel computation (on functions) can be seen as the execution of some funct
 Translating this into Arrow terms gives us a new operator `parEvalN` that lifts
 a list of Arrows `[arr a b]` to a parallel Arrow `arr [a] [b]`.
 This combinator is similar to the evaluation combinator `evalN :: [arr a b] -> arr [a] [b]`
-from Chapter \ref{utilfns}, but does parallel instead of serial evaluation.
+from Chapter \ref{utilfns}, but does parallel instead of serial evaluation:
 
 ~~~~ {.haskell}
 parEvalN :: (Arrow arr) => [arr a b] -> arr [a] [b]
@@ -31,8 +31,8 @@ parEvalN :: (Arrow arr) => [arr a b] -> arr [a] [b]
 With such a definition of `parEvalN`, parallel execution is yet another Arrow
 combinator. But since the implementation may differ depending on the actual
 type of the Arrow `arr` -- or even the input `a` and output `b` -- and we
-want this to be an interface for different backends that we want to be able to 
-switch between, we introduce a new type class `ArrowParallel arr a b`:
+want this to be an interface for different backends that we should be able to 
+switch between, we introduce a new type class `ArrowParallel arr a b`.
 
 ~~~~ {.haskell}
 class Arrow arr => ArrowParallel arr a b where
@@ -41,7 +41,8 @@ class Arrow arr => ArrowParallel arr a b where
 
 Sometimes parallel Haskells require or allow additional configuration
 parameters, e.g. information about the execution environment or the level
-of evaluation (weak head normal form vs. normal form). For this reason we
+of evaluation (WHNF vs. NF, see the section on laziness in Chapter \ref{\label{sec:shortIntroHaskell}).
+For this reason we
 introduce an additional `conf` parameter as we do not want `conf` to be a fixed type,
 as the configuration parameters can differ for different instances of
 `ArrowParallel`.
@@ -54,7 +55,7 @@ class Arrow arr => ArrowParallel arr a b conf where
 By restricting the implementations of our backends to a specific `conf` type,
 we also get interoperability between backends for free as it serves as a discriminator
 for which backend has to be used. We can therefore parallelise one
-part of a program using one backend, and parallelise the next with another one by
+part of a program using one backend, and do the same for the next but with another one by
 just passing a different configuration type.
 
 ## `ArrowParallel` instances

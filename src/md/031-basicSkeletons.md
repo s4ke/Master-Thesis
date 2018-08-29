@@ -2,7 +2,7 @@
 
 \label{sec:extending-interface}
 
-With the `ArrowParallel` type class in place and implemented, we
+With the `ArrowParallel` type class in place, we
 can now define other parallel interface functions. These are basic
 algorithmic skeletons that are used to define more sophisticated ones
 later in this thesis.

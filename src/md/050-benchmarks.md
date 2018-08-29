@@ -9,7 +9,7 @@ in comparison to GpH and the `Par` Monad on shared memory architectures and Eden
 a distributed memory cluster.^[We do not include the Cloud Haskell backend here,
 as it is still a work-in-progress.]
 We describe our measurement platform (Chapter \ref{sec:benchmarksMeasurementPlatform}),
-the benchmark results (Chapter \ref{sec:benchmarksBenchmarks}) -- the shared-memory
+the benchmark results (Chapter \ref{sec:benchmarkResults}) -- the shared-memory
 variants (GpH, `Par` Monad and Eden CP) followed by Eden in a distributed-memory
 setting, and conclude that PArrows hold up in terms of performance when compared
 to the original parallel Haskells (Chapter \ref{sec:benchmarksEvaluation}).
@@ -41,11 +41,11 @@ Apart from Eden, all benchmarks and libraries were compiled with
 Stack's^[see \url{https://www.haskellstack.org/}]
 lts-7.1 GHC compiler which is equivalent to a standard GHC 8.0.1 with
 the base package in version 4.9.0.0. Stack itself was used in version 1.3.2.
-For GpH in its Multicore variant we used the parallel package in version
+For GpH in its Multicore variant we used the _parallel_ package in version
 3.2.1.0^[see \url{https://hackage.haskell.org/package/parallel-3.2.1.0}],
-while for the `Par` Monad we used monad-par in version
+while for the `Par` Monad we used _monad-par_ in version
 0.3.4.8^[see \url{https://hackage.haskell.org/package/monad-par-0.3.4.8}].
-For all Eden tests, we used its GHC-Eden compiler in version
+For all Eden tests, we used a manually built GHC-Eden compiler in version
 7.8.2^[see \url{http://www.mathematik.uni-marburg.de/~eden/?content=build_eden_7_&navi=build}]
 together with OpenMPI 1.6.5^[see \url{https://www.open-mpi.org/software/ompi/v1.6/}].
 
@@ -94,14 +94,15 @@ implementations of Rabin--Miller test and APRCL were presented in @Lobachev2012.
 \enquote{Gentleman} is a standard Eden test program, developed
 for their `torus` skeleton. It implements a Gentleman's algorithm for parallel matrix
 multiplication [@Gentleman1978]. We ported an Eden-based version
-[@Eden:SkeletonBookChapter02] to PArrows.
+[@Eden:SkeletonBookChapter02] to PArrows and completed the necessary implementations
+for all sequential parts that were left out.
 
 A parallel Sudoku solver was used by @par-monad to compare `Par` Monad
 to GpH, we ported it to PArrows.
 
 ### Which parallel Haskells run where
 
-The `Par` monad and GpH -- in its multicore version [@Marlow2009] -- 
+The `Par` Monad and GpH -- in its multicore version [@Marlow2009] -- 
 can be executed on shared memory machines only.
 Although GpH is available on distributed memory
 clusters, and newer distributed memory Haskells such as HdpH exist,
@@ -157,7 +158,7 @@ S = \frac{T_1}{T_p}
 $$
 
 where $T_1$ denotes the sequential and $T_p$ the parallel
-runtime of the program. Note that here we do not use a separate sequential program, though,
+runtime of the program. Note that we do not use a separate sequential program, though,
 instead we simply use the same binary with only 1 computation thread enabled.
 
 ### Defining overhead
@@ -174,7 +175,7 @@ This means that even though we have measured some difference
 (against or even in favour of PArrows), it could be merely the error margin
 of the measurement and the difference might not be existent. We are mostly
 interested in the cases where above issue does not persist, we call
-them *significant*. We often denote the error margin with $\pm$ after
+them *significant*. We usually denote the error margin with $\pm$ after
 the mean overhead value.
 
 ### Shared memory
@@ -202,6 +203,7 @@ with input value $2^{11213}-1$, 32 tasks, and 16 cores is $1.5\%$, but the
 error margin is around $5.2\%$! Same implementation in the same setting with
 64 tasks reaches $-0.2\%$ overhead, PArrows apparently fare better than Eden --
 but the error margin of $1.9\%$ disallows this interpretation.
+
 We focus now on significant overhead values.
 To name a few: $0.41\%\; \pm 7\cdot 10^{-2}\%$ for Eden CP and 64 tasks at 4 cores;
 $4.7\% \; \pm 0.72\%$ for GpH, 32 tasks, 8 cores; $0.34\% \; \pm 0.31\%$ for `Par`
@@ -212,7 +214,7 @@ In other words, we notice no major slow-down through PArrows here.
 For Sudoku the situation is slightly different.
 There is a minimal significant ($-1.4\% \; \pm 1.2\%$ at 8 cores) speed
 *improvement* with PArrows Eden CP version when compared with the base Eden CP
-benchmark. However, with increasing number of cores the error margin reaches
+benchmark. However, with increasing number of cores the error margin contains
 zero again: $-1.6\% \; \pm 5.0\%$ at 16 cores. The `Par` Monad shows a similar
 development, e.g. with $-1.95\% \; \pm 0.64\%$ at 8 cores. The GpH version shows
 both a significant speed improvement of $-4.2\% \; \pm 0.26\%$ (for 16 cores) with
@@ -220,6 +222,7 @@ PArrows and a minor overhead of $0.87\% \; \pm 0.70\%$ (4 cores).
 
 The Gentleman multiplication with Eden CP shows a minor significant overhead of
 $2.6\% \; \pm 1.0\%$ at 8 cores and an insignificant improvement at 16 cores.
+
 Summarising, we observe a low (if significant at all) overhead,
 induced by PArrows in the shared memory setting.
 
@@ -247,8 +250,8 @@ of 129.
 #### Overhead
 
 We use our mean overhead quality measure and the notion of significance
-also for distributed memory benchmarks. The mean overhead of Rabin--Miller test
-in the distributed memory setting ranges from $0.29\%$ to $-2.8\%$
+also for distributed memory benchmarks. The mean overhead of the Rabin--Miller test
+in here ranges from $0.29\%$ to $-2.8\%$
 (last value in favour of PArrows), but these values are not
 significant with error margins $\pm 0.8\%$ and $\pm 2.9\%$ correspondingly.
 A sole significant (by a very low margin) overhead is $0.35\% \; \pm 0.33\%$ at 64 cores.
@@ -280,7 +283,7 @@ Table: Overhead in the distributed memory benchmarks. Bold marks values in favou
 PArrows performed in our benchmarks with little to no overhead.
 Tables \ref{tbl:meanOverheadSharedMemory} and \ref{tbl:meanOverHeadDistributedMemory}
 clarify this once more: The PArrows-enabled versions trade blows with their vanilla
-counterparts when comparing the means over all cores of the mean overheads.
-If we combine these findings with the usability of our DSL,
+counterparts when comparing the means of the mean overheads over all different core counts.
+If we combine these findings with the benefits of our DSL,
 the minor overhead induced by PArrows is outweighed by their convenience and
 usefulness to the user.

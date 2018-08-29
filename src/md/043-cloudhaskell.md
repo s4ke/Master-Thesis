@@ -7,7 +7,7 @@ replaced with virtual ones positioned all around the globe.
 These can easily be brought up when required and shut down
 when not in use. This trend in computing has also been embraced by the Haskell
 community, and therefore libraries such as Cloud Haskell were born. Cloud Haskell
-is described on the project's website^[see \url{http://haskell-distributed.github.io/}] as:
+is described on the project's website^[See \url{http://haskell-distributed.github.io/}.] as:
 
 > Cloud Haskell: Erlang-style concurrent and distributed programming in Haskell.
 The Cloud Haskell Platform consists of a generic network transport API,
@@ -34,7 +34,7 @@ parts of Cloud Haskell's API. For easier testing and as this
 is only meant as a proof of concept, we only work with a local-net Cloud Haskell
 backend in this thesis. The results of this experiment, however, are transferable
 to other architectures as well when building upon the results presented here.
-^[With the help of virtual private networks one could even use this local-net variant]
+^[With the help of virtual private networks one could even use this local-net variant.]
 
 The following is structured as follows.
 We start by explaining how to discover nodes with a master-slave
@@ -51,7 +51,7 @@ knowledge in Chapter \ref{sec:CloudHaskellArrowParallel}.
 
 In cloud services it is more common that the architecture of the running network
 changes than in ordinary computing clusters where the participating
-nodes are usually known at startup. In the SimpleLocalNet^[see \url{http://hackage.haskell.org/package/distributed-process-simplelocalnet}]
+nodes are usually known at startup. In the SimpleLocalNet^[See \url{http://hackage.haskell.org/package/distributed-process-simplelocalnet}.]
 Cloud Haskell backend we are using for this experiment, this is reflected in the fact that
 there already exists a pre-implemented master-slave structure.
 The master node -- the node that starts the computation is considered the master
@@ -112,7 +112,7 @@ parameter and the `LocalNode` specified by the second parameter. Additionally,
 the list of workers `workers :: MVar [NodeId]` is initialized with an empty list,
 `shutdown :: MVar Bool` is set to `False` and `started :: MVar ()` is created
 as an empty `MVar` so that it can be populated with the signalling `()` when
-the startup is finished.
+the startup is finished. The complete code for `initialConf` is the following:
 
 ~~~~{.haskell}
 initialConf :: Int -> LocalNode -> IO Conf
@@ -147,7 +147,7 @@ defaultInitConf = initialConf defaultBufSize
 With the `State`/`Conf` data structure we can now implement our node-discovery scheme.
 Starting with the slave nodes, we can just use the basic 
 utilities for a slave backend in the SimpleLocalNet library. The code
-to start a node for the `Slave` backend is therefore:
+to start a node for the `Slave` backend is then:
 
 ~~~~{.haskell}
 type Host = String
@@ -323,14 +323,15 @@ As we have seen in the previous chapter, we can not send arbitrary
 functions or Arrows to the slave nodes. Thankfully, there is an alternative:
 Eden's serialization mechanism
 has been made available separately in a package called \enquote{packman}
-^[see \url{https://hackage.haskell.org/package/packman}].
+^[See \url{https://hackage.haskell.org/package/packman}.].
 This allows values to be serialized
 in the exact evaluation state they are currently in.
 
 We can use this to our advantage. Instead of sending inputs and functions/Arrows
 to the slave nodes and sending the result back (which does not work with the current Cloud Haskell
 API), we can instead apply the function, serialize this unevaluated thunk,
-send it to the evaluating slave, and send the fully evaluated value back.
+send it to the evaluating slave, and communicate the fully evaluated value back
+to the master.
 
 With this idea in mind we will now explain how to achieve parallel evaluation
 of Arrows with Cloud Haskell. We start by explaining the communication basics
@@ -353,7 +354,7 @@ we use to send unevaluated data between nodes.
 
 \label{sec:sendRecCloud}
 
-In order to send and receive data between nodes, Cloud Haskell uses typed channels.
+Cloud Haskell uses typed channels to send and receive data between nodes.
 A typed channel consists of a `SendPort a` and a `ReceivePort a`.
 We can create a new typed cannel with the help of
 `newChan :: Serializable a => Process (SendPort a, ReceivePort a)`:
@@ -384,7 +385,7 @@ One thing to keep in mind is that only `SendPort` are serializable.
 So in order to have a two way communication where process A
 sends some input to process B and awaits its result, like we require
 in our use case,
-we have to first receive a `SendPort a` in process A via some 
+we have to first receive a `SendPort a` in process A via the 
 `ReceivePort (SendPort a))` of some channel
 `(SendPort (SendPort a), ReceivePort (SendPort a))`.
 This `SendPort a` is sent by B and belongs to the channel `(SendPort a, ReceivePort a)`
@@ -480,8 +481,8 @@ evalTask :: (SendPort (SendPort (Thunk a)), SendPort a) -> Process ()
 ~~~~
 
 with the necessary `SendPort`s for input communication (`SendPort (SendPort (Thunk a))`)
-and result communication (`SendPort a`^[here the type is `a` instead of
-some potentially other `b` because we only evaluate some `a`]) on the given
+and result communication (`SendPort a`^[Here the type is `a` instead of
+some potentially other `b` because we only evaluate some `a`.]) on the given
 node via
  
 ~~~~{.haskell}
@@ -506,7 +507,7 @@ to finally put it inside the passed `MVar a` with `liftIO $ putMVar out forcedA`
 forceSingle :: (Evaluatable a) => NodeId -> MVar a -> a -> Process ()
 forceSingle node out a = do
   -- create the Channel that we use to send the 
-  -- Sender of the input from the slave node from
+  -- sender of the input from the slave node from
   (inputSenderSender, inputSenderReceiver) <- newChan
 
   -- create the channel to receive the output from
@@ -561,7 +562,7 @@ fixed type like for example for `Int`s:
 ~~~~
 
 This function can be made remotable with `$(remotable [`'`evalTaskInt])`.
-With this we can now write
+We can now write
 a valid Cloud Haskell compatible instance `Evaluatable Int` simply as
 
 ~~~~{.haskell}
@@ -666,7 +667,7 @@ that builds an `IO` action containing a parallel `Computation [a]`
 from an input list `[a]`. This `IO` action starts by retrieving the current list of
 workers with `workers <- readMVar $ workers conf`. It then continues
 by shuffling this list of workers with `shuffledWorkers <- randomShuffle workers`
-^[`randomShuffle :: [a] -> IO [a]` from \url{https://wiki.haskell.org/Random_shuffle}]
+^[`randomShuffle :: [a] -> IO [a]` is from \url{https://wiki.haskell.org/Random_shuffle}.]
 to ensure at least some level of equal work distribution between multiple calls
 to `evalParallel`. Then, the input values `a` are assigned to their 
 corresponding workers to finally build the list of parallel computations `[Computation a]`
@@ -679,7 +680,7 @@ evalParallel :: Evaluatable a => Conf -> [a] -> IO (Computation [a])
 evalParallel conf as = do
   workers <- readMVar $ workers conf
 
-  -- shuffle the list of workers, so we don't end up spawning
+  -- shuffle the list of workers, so we don not end up spawning
   -- all tasks in the same order everytime
   shuffledWorkers <- randomShuffle workers
 
@@ -796,7 +797,7 @@ instance (ArrowChoice arr, ArrowParallel arr a b Conf) =>
     postLoopParEvalN = parEvalN
 ~~~~
 
-a similar solution would not be feasible here because we are
+A similar solution would not be feasible here because we are
 in a distributed-memory setting.
 The topology skeletons would become meaningless as all benefits of
 using a sophisticated distributed evaluation scheme would be lost.
@@ -826,7 +827,8 @@ ring conf f =
         -- convert the current input into a form we can process in this round
         arr (uncurry zip) >>>
         -- here, we evaluate the current round
-        loopParEvalN conf (repeat (second (get conf) >>> f >>> second (put conf))) >>>
+        loopParEvalN conf
+            (repeat (second (get conf) >>> f >>> second (put conf))) >>>
         -- put the current result back into the original input form
         arr unzip) >>>
     postLoopParEvalN conf (repeat (arr id))
@@ -851,7 +853,7 @@ type PipeOut a = ReceivePort (SendPort (Maybe (SendPort (Maybe a))))
 ~~~~
 
 where `PipeIn a` would be the port where the evaluating process on the slave node
-would send its result through to the corresponding `PipeOut a` on the master node.
+send its result through to the corresponding `PipeOut a` on the master node.
 Note that we here encode a \enquote{stream} of some `a` with `SendPort (Maybe a)`:
 For types with singular values, we just request one value. And on types like e.g.
 a list `[a]` we expect multiple singleton lists `Just [a]`,

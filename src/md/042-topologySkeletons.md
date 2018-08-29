@@ -272,8 +272,8 @@ evaluate in parallel.
 
 This, however, is more complicated than in the `ring` case as we have one more
 dimension of inputs that needs to be transformed. We first have to `shuffle` all
-the inputs to then pass them into `loopParEvalN conf (repeat (ptorus conf f))` to
-get an output of  `[(d, fut a, fut b)]`. We then `unshuffle` this list back to
+the inputs and then pass them into `loopParEvalN conf (repeat (ptorus conf f))` to
+get an output of `[(d, fut a, fut b)]`. We then `unshuffle` this list back to
 its original ordering by feeding it into `arr (uncurry unshuffle)` which
 takes the input length we saved one step earlier as additional input to get a
 result matrix `[[[(d, fut a, fut b)]]`. Finally, we unpack this matrix
@@ -281,8 +281,8 @@ result matrix `[[[(d, fut a, fut b)]]`. Finally, we unpack this matrix
  `([[d]], ([[fut a]], [[fut b]]))`.
 
 This internal looping computation is once again fed into `loop` and we
-also compose a final `postLoopParEvalN conf (repeat (arr id))` for the same reasons
-as explained for the `ring` skeleton. 
+also compose a final `postLoopParEvalN conf (repeat (arr id))` due to the same
+problem with `loop` as explained for the `ring` skeleton. 
 
 ~~~~ {#fig:torus
     .haskell
@@ -322,7 +322,7 @@ An adapted version can be found in Fig. \ref{fig:torusMatMult}.
 ~~~~ {#fig:torusMatMult
     .haskell
     .figure
-    caption="Adapted matrix multiplication in Eden using a the |torus| skeleton. |prMM_torus| is the parallel matrix multiplication. |mult| is the function performed by each worker. |prMM| is the sequential matrix multiplication in the chunks. |splitMatrix| splits the Matrix into chunks. |staggerHorizontally| and |staggerVertically| pre-rotate the matrices. |matAdd| calculates $A + B$. Omitted definitions can be found in \ref{fig:torus_example_rest}."
+    caption="Adapted matrix multiplication in Eden using the |torus| skeleton. |prMM_torus| is the parallel matrix multiplication. |mult| is the function performed by each worker. |prMM| is the sequential matrix multiplication in the chunks. |splitMatrix| splits the Matrix into chunks. |staggerHorizontally| and |staggerVertically| pre-rotate the matrices. |matAdd| calculates $A + B$. Omitted definitions can be found in \ref{fig:torus_example_rest}."
     options=t
     }
 type Matrix = [[Int]]
@@ -355,6 +355,6 @@ and execution times are comparable -- our port was successful.
 We discuss further benchmarks on larger
 clusters in more detail in Chapter \ref{sec:benchmarks}.
 
-![Matrix multiplication with `torus` (PArrows).](src/img/torus_matrix_parrows_trace.pdf){#fig:torus_parrows_trace}
+![Communication trace of a matrix multiplication with `torus` (PArrows).](src/img/torus_matrix_parrows_trace.pdf){#fig:torus_parrows_trace}
 
-![Matrix multiplication with `torus` (Eden).](src/img/torus_matrix_parrows_trace.pdf){#fig:torus_eden_trace}
+![Communication trace of a matrix multiplication with `torus` (Eden).](src/img/torus_matrix_parrows_trace.pdf){#fig:torus_eden_trace}
