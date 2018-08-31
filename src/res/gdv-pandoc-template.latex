@@ -1,4 +1,4 @@
-\documentclass[$if(fontsize)$$fontsize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}%
+\documentclass[$if(fontsize)$$fontsize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$,british]{$documentclass$}%
 
 % **************************************************
 % Debug LaTeX Information
@@ -45,18 +45,6 @@ $endif$
 \usepackage{booktabs}
 \usepackage{listings}
 
-\usepackage{textcomp}
-
-\usepackage[
-    activate={true,nocompatibility},
-    final,
-    tracking=true,
-    kerning=true,
-    spacing=true,
-    factor=1100,
-    stretch=10,
-    shrink=10
-]{microtype}
 \usepackage[					% clean thesis style
 	figuresep=colon,%
 	sansserif=false,%
@@ -102,6 +90,9 @@ $endif$
 	bookmarksnumbered=true,		%
 	bookmarksopen=true			%
 }
+
+%fuck it. quotations did not work properly. do it manually now.
+\renewcommand{\enquote}[1]{{``}#1{''}}
 
 % BEGIN
 \usepackage{xparse}

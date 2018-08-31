@@ -459,7 +459,7 @@ be used in conjunction with guards.
 Haskell is a statically typed functional language. This means that during compilation
 all types are checked for compatibility and type declarations are not just treated as optional
 \enquote{hints} to the type-checker. Pairing this with the pure aspect of the language
-means that Haskell programs seem to be correct more often if the program compiles
+means that Haskell programs seem to be correct more often in practice if the program compiles
 than in imperative languages. The compiler essentially helps the programmer
 to write *semantically correct* instead of just syntactically correct code.
 It should be noted that this does not mean that testing
@@ -764,7 +764,7 @@ this is usually a desired property.
 
 While we have seen pattern matching as an alternative to 
 `if ... then ... else` and guard statements, it can do more things.
-For example, if we have a datatype `MyType a` type defined as
+For example, if we have a datatype `MyType a` defined as
 
 ~~~~{.haskell
     }
@@ -829,7 +829,7 @@ isJust (Just _) = True
 isJust _ = False
 ~~~~
 
-Additionally, if we want to preserve laziness and we are 100% sure that a match will
+Additionally, if we want to preserve laziness and we are sure that a match will
 work (e.g. if we have called `isJust`), we can use irrefutable patterns like
 `~(Just a) = someMaybe`.
 

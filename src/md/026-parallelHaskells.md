@@ -32,7 +32,7 @@ There exist several different parallel Haskells already.
 As already stated in the Introduction
 this is the reason why we base our efforts on existing work which we wrap
 as backends behind a common interface so that we do not re-implement
-yet another parallel runtime. As stated earlier, we here focus on
+yet another parallel runtime. As described earlier, we here focus on
 three of the most important ones -- GpH [@Trinder1996; @Trinder1998a, based on `par` and `pseq` \enquote{hints}],
 the `Par` Monad [@par-monad; @Foltzer:2012:MPC:2398856.2364562, a Monad for deterministic parallelism] and
 Eden [@eden; @Loogen2012, a parallel Haskell for distributed memory].
@@ -159,7 +159,7 @@ In such a visualisation (Figure \ref{fig:withoutFutures}),
 the `x` axis shows the time, the `y` axis enumerates the machines and processes.
 The visualisation shows a running process in green, a blocked process is red.
 If the process is \enquote{runnable}, i.e. it may run, but does not,
-it is yellow. The typical reason for this is GC.
+it is yellow. The typical reason for this is garbage collection (GC).
 An inactive machine, where no processes are started yet,
 or all are already terminated, shows as a blue bar.
 A communication from one process to another is represented with a black arrow.

@@ -27,6 +27,7 @@ first-reviser: Dr. Oleg Lobachev
 second-reviser: Prof. Dr. Thomas Rauber
 
 language: english
+lang: en-GB
 papersize: a4
 documentclass: scrreprt
 classoption:

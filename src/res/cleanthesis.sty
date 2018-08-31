@@ -234,7 +234,16 @@
 y
 
 \RequirePackage{fixltx2e}			% packages provides fixes to LaTeX2e
-\RequirePackage{microtype}			% typographic tuning
+\usepackage[
+    activate={true,nocompatibility},
+    final,
+    tracking=true,
+    kerning=true,
+    spacing=true,
+    factor=1100,
+    stretch=10,
+    shrink=10
+]{microtype}
 \RequirePackage{setspace}			% for line spacing, e.g. \onehalfspacing
 \RequirePackage[]{graphicx}			% graphics import features
 \RequirePackage{fancyhdr}			% for header and footer modifications
@@ -275,9 +284,10 @@ y
 	footskip=2cm,					% 	- footer skip size
 ]{geometry}
 %
-\RequirePackage[					% advanced quotes
+\usepackage[					% advanced quotes
 	strict=true,					% 	- warning are errors now
-	style=british					% 	- english quotes
+	style=british,					% 	- english quotes
+	english=british
 ]{csquotes}
 %
 
