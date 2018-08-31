@@ -5,9 +5,13 @@
 With the `ArrowParallel` type class in place, we
 can now define other parallel interface functions. These are basic
 algorithmic skeletons that are used to define more sophisticated ones
-later in this thesis.
+later in this thesis. Namely, these are a lazy variant of `parEvalN`
+(Chapter \ref{sec:lazyParEvalN}) as well
+as a method to spawn heterogeneous tasks (Chapter \ref{sec:hetereogeneoustasks}).
 
 ### Lazy `parEvalN`
+
+\label{sec:lazyParEvalN}
 
 ![`parEvalNLazy` depiction.](src/img/parEvalNLazy.pdf){#fig:parEvalNLazyImg}
 
@@ -41,6 +45,8 @@ parEvalNLazy conf chunkSize fs =
 ~~~~
 
 ### Heterogeneous tasks
+
+\label{sec:hetereogeneoustasks}
 
 ![`parEval2` depiction.](src/img/parEval2Img.pdf){#fig:parEval2Img}
 

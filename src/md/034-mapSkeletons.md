@@ -3,14 +3,18 @@
 \label{sec:skeletons}
 \label{sec:map-skeletons}
 
-Now we have developed Parallel Arrows far enough to define some useful
-algorithmic skeletons that abstract typical parallel computations.
-We start with some basic `map`-based skeletons.
-The essential differences between these skeletons presented here 
+Now we have developed Parallel Arrows far enough to define some basic, yet useful,
+algorithmic skeletons that abstract typical parallel computations -- parallel `map`s.
+The essential differences between the skeletons presented here 
 are in terms of order of evaluation and work distribution. They nevertheless
-still provide the same semantics as a sequential `map`.
+still provide the same semantics as a sequential `map`. We discuss a 
+basic parallel `map` and a lazy variant thereof
+(Chapter \ref{sec:parMapAndLaziness}) as well as a statically load balancing
+parallel `map` (Chapter \ref{sec:staticallyloadbalancing}).
 
 ### Parallel `map` and laziness
+
+\label{sec:parMapAndLaziness}
 
 The `parMap` skeleton (Figs. \ref{fig:parMap}, \ref{fig:parMapImg})
 is probably the most common skeleton for parallel programs.
@@ -54,6 +58,8 @@ parMapStream conf chunkSize f = parEvalNLazy conf chunkSize (repeat f)
 ![`parMapStream` depiction.](src/img/parMapStream.pdf){#fig:parMapStreamImg}
 
 ### Statically load-balancing parallel `map`
+
+\label{sec:staticallyloadbalancing}
 
 Our `parMap` spawns every single computation in a new thread
 (at least for the instances of `ArrowParallel` we presented in this thesis).

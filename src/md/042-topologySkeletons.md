@@ -58,6 +58,10 @@ instance (ArrowChoice arr, ArrowParallel arr a b (Conf b)) =>
     postLoopParEvalN = parEvalN
 ~~~~
 
+Chapter \ref{sec:pipe} explains how to achieve a parallel `pipe` with our DSL. Then,
+Chapter \ref{sec:ring} goes into detail on how to achieve a `ring` skeleton, which
+we then build upon to achieve a `torus` in Chapter \ref{sec:torus}.
+
 ### Parallel pipe
 
 \label{sec:pipe}

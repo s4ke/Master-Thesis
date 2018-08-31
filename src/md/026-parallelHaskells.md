@@ -39,6 +39,8 @@ Eden [@eden; @Loogen2012, a parallel Haskell for distributed memory].
 
 We will now go into some detail on these parallel Haskells, and also
 give their respective implementations of the non-Arrow version of `parEvalN`.
+Chapter \ref{sec:GpHIntro} covers GpH, while Chapters \ref{sec:ParIntro}
+and Chapter \ref{sec:EdenIntro} explain the `Par` Monad and Eden, respectively. 
 
 ### Glasgow parallel Haskell -- GpH
 
@@ -74,6 +76,8 @@ Figure \ref{fig:parEvalNMulticoreImg} shows a visual representation of this code
 ![`parEvalN` (GpH).](src/img/parEvalNMulticoreImg.pdf){#fig:parEvalNMulticoreImg}
 
 ### `Par` Monad
+
+\label{sec:ParIntro}
 
 The `Par` Monad^[The `Par` Monad can be found in the `monad-par` package on Hackage
 under \url{https://hackage.haskell.org/package/monad-par-0.3.4.8/}.]
@@ -117,6 +121,8 @@ Figure \ref{fig:parEvalNParMonadImg} shows a graphical representation.
 ![`parEvalN` (`Par` Monad).](src/img/parEvalNParMonadImg.pdf){#fig:parEvalNParMonadImg}
 
 ### Eden
+
+\label{sec:EdenIntro}
 
 Eden [@eden; @Loogen2012] is a parallel Haskell for distributed memory
 and allows for MPI and PVM as

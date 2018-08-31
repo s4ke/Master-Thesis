@@ -18,11 +18,19 @@ to the original parallel Haskells (Chapter \ref{sec:benchmarksEvaluation}).
 
 \label{sec:benchmarksMeasurementPlatform}
 
-We start by explaining the hardware and software stack and outline the
-benchmark programs and motivation for choosing them. We also shortly address
-hyper-threading and why we do not use it in our benchmarks.
+We will now explain our measurement platform.
+We start by explaining the hardware and software stack in
+Chapter \ref{sec:hardwareSoftware} and outline the
+benchmark programs and motivation for choosing them in Chapter \ref{sec:benchmarksBenchmarks}.
+Chapter \ref{sec:whichHaskellWhere} explains the specifics of where
+each benchmark was run.
+We also shortly address
+hyper-threading and why we do not use it in our benchmarks in
+Chapter \ref{sec:effect-hyper-thread}.
 
 ### Hardware and software
+
+\label{sec:hardwareSoftware}
 
 The benchmarks are executed  both in a shared and in a distributed memory
 setting using the Glasgow GPG Beowulf cluster, consisting of
@@ -102,6 +110,8 @@ to GpH, we ported it to PArrows.
 
 ### Which parallel Haskells run where
 
+\label{sec:whichHaskellWhere}
+
 The `Par` Monad and GpH -- in its multicore version [@Marlow2009] -- 
 can be executed on shared memory machines only.
 Although GpH is available on distributed memory
@@ -141,15 +151,20 @@ investigate parallel behaviour with hyper-threading.
 
 We compare the PArrow performance with direct implementations of the
 benchmarks in Eden, GpH and the `Par` Monad.
-We start with the definition of speedup and mean overhead to compare both
-PArrows-enabled and standard benchmark implementations. We continue comparing
-speedups and overheads for the shared memory implementations and then study
+We start with the definition of speedup (Chapter \ref{sec:defSpeedup})
+and mean overhead (Chapter \ref{defOverhead}) to evaluate
+PArrows-enabled and standard benchmark implementations. We continue by comparing
+speedups and overheads for the shared memory implementations in Chapter \ref{sec:benchmarksSharedMem}
+and then study
 OpenMPI variants of the Eden-enabled PArrows as a representative of a
-distributed memory backend. We plot all speedup curves and all overhead values
+distributed memory backend in Chapter \ref{sec:benchmarksDistMem}.
+We plot all speedup curves and all overhead values
 in the Appendix in \ref{sec:benchmarkSharedPlots} and \ref{sec:benchmarkDistPlots}
 for the shared memory and distributed memory benchmarks, respectively.
 
 ### Defining speedup
+
+\label{sec:defSpeedup}
 
 In the following, when we talk about speedup, we use the common definition
 
@@ -162,6 +177,8 @@ runtime of the program. Note that we do not use a separate sequential program, t
 instead we simply use the same binary with only 1 computation thread enabled.
 
 ### Defining overhead
+
+\label{sec:defOverhead}
 
 We compare the mean overhead, i.e. the difference of mean relative wall-clock run time
 between the PArrow and direct benchmark implementations executed
@@ -179,6 +196,8 @@ them *significant*. We usually denote the error margin with $\pm$ after
 the mean overhead value.
 
 ### Shared memory
+
+\label{sec:benchmarksSharedMem}
 
 #### Speedup
 
@@ -227,6 +246,8 @@ Summarising, we observe a low (if significant at all) overhead,
 induced by PArrows in the shared memory setting.
 
 ### Distributed memory
+
+\label{sec:benchmarksDistMem}
 
 #### Speedup
 

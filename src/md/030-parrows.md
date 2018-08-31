@@ -9,8 +9,9 @@ We present the `ArrowParallel` type class
 and explain the reasoning behind it in Chapter \ref{sec:parallel-arrows-type-class}
 before discussing its implementations in GpH, the `Par` Monad and Eden in Chapter
 \ref{sec:arrowparallelimpl}.
-Finally, we give first basic extensions in Chapter 
+Then, we give first basic extensions in Chapter 
 \ref{sec:extending-interface}.
+Finally, we explain basic `map`-based skeletons in Chapter \ref{sec:skeletons}.
 
 ## The `ArrowParallel` type class
 
@@ -62,8 +63,10 @@ just passing a different configuration type.
 
 \label{sec:arrowparallelimpl}
 
-With the `ArrowParallel` type class defined, we will now give implementations of it with GpH,
-the `Par` Monad and Eden.
+With the `ArrowParallel` type class defined, we will now give implementations of it with GpH
+(Chapter \ref{sec:parrows:multicore}),
+the `Par` Monad (Chapter \ref{sec:parrows:parmonad}) and Eden (Chapter \ref{sec:parrows-Eden}).
+Finally, we explain default configuration instances in Chapter \ref{sec:defaultConfigInstances}.
 
 ### Glasgow parallel Haskell 
 
@@ -95,6 +98,8 @@ instance (ArrowChoice arr) =>
 ~~~~
 
 ### `Par` Monad
+
+\label{sec:parrows:parmonad}
 
 As for GpH we can easily lift the definition of `parEvalN` for the
 `Par` Monad to Arrows in Figure \ref{fig:ArrowParallelParMonad}.
@@ -186,6 +191,8 @@ the variant presented above as this would have required re-running the whole
 test-suite. First tests suggest correct behaviour, though.*
 
 ### Default configuration instances
+
+\label{sec:defaultConfigInstances}
 
 While the configurability of the `ArrowParallel`
 instances above is nice, users probably would like to have proper
