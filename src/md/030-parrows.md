@@ -41,7 +41,7 @@ class Arrow arr => ArrowParallel arr a b where
 
 Sometimes parallel Haskells require or allow additional configuration
 parameters, e.g. information about the execution environment or the level
-of evaluation (WHNF vs. NF, see the section on laziness in Chapter \ref{\label{sec:shortIntroHaskell}).
+of evaluation (WHNF vs. NF, see the section on laziness in Chapter \ref{sec:shortIntroHaskell}).
 For this reason we
 introduce an additional `conf` parameter as we do not want `conf` to be a fixed type,
 as the configuration parameters can differ for different instances of
@@ -70,7 +70,7 @@ the `Par` Monad and Eden.
 \label{sec:parrows:multicore}
 
 The GpH instance of `ArrowParallel` is implemented in a straightforward
-manner in Fig. \ref{fig:ArrowParallelMulticore}, but a bit different compared
+manner in Figure \ref{fig:ArrowParallelMulticore}, but a bit different compared
 to the variant from Chapter \ref{sec:GpHIntro}.
 We use `evalN :: [arr a b] -> arr [a] [b]`
 (definition in Appendix \ref{utilfns}, think `zipWith ($)` on Arrows) combined
@@ -97,7 +97,7 @@ instance (ArrowChoice arr) =>
 ### `Par` Monad
 
 As for GpH we can easily lift the definition of `parEvalN` for the
-`Par` Monad to Arrows in Fig. \ref{fig:ArrowParallelParMonad}.
+`Par` Monad to Arrows in Figure \ref{fig:ArrowParallelParMonad}.
 To start off, we define the `Strategy a` and `Conf a` type so we can have a
 configurable instance of ArrowParallel:
 
@@ -109,7 +109,7 @@ data Conf a = Conf (Strategy a)
 Now we can once again define our `ArrowParallel` instance as follows:
 First, we convert our Arrows `[arr a b]` with `evalN (map (>>> arr strat) fs)`
 into an Arrow `arr [a] [(Par (IVar b))]` that yields composable
-computations in the `Par` monad. By combining the result of this Arrow with
+computations in the `Par` Monad. By combining the result of this Arrow with
 `arr sequenceA`, we get an Arrow `arr [a] (Par [IVar b])`.
 Then, in order to fetch the results of the different threads,
 we map over the `IVar`s inside the `Par` Monad with `arr (>>= mapM get)` -- our
@@ -151,7 +151,7 @@ class (Arrow arr) => ArrowUnwrap arr where
 
 we avoid doing so for aesthetic reasons.
 For now, we just implement `ArrowParallel` for normal functions and the
-Kleisli type in Fig. \ref{fig:ArrowParallelEden}, where
+Kleisli type in Figure \ref{fig:ArrowParallelEden}, where
 `Conf` is simply defined as `data Conf = Nil` since Eden does not
 have a configurable `spawnF` variant.
 

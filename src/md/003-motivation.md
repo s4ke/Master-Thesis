@@ -32,7 +32,7 @@ restrictive as Monads [@HughesArrows].
 
 This is why in this thesis
 we will explain how a parallel Haskell based on parallel Arrows (PArrows) can be achieved.
-We do however not want to re-invent parallelism, though, as we only provide an
+We do not want to re-invent parallelism, though, as we only provide an
 Arrow based type class hosting an Arrow combinator
 `parEvalN :: [arr a b] -> arr [a] [b]` that turns a list of Arrows into a
 singular parallel Arrow. We use this class as an interface to wrap around existing
@@ -53,9 +53,10 @@ and LVish [@Kuper:2014:TPE:2666356.2594312, a `Par` extension with focus on comm
 these were not chosen. The former does not differ from the original
 `Par` Monad with regard to how we would have used it in this thesis,
 while the latter (at least in its current form) does not suit a wrapping approach
-such as the one presented here due to its heavy reliance on Template Haskell^[a Haskell extension that allows to generate code]. We will
+such as the one presented here due to its heavy reliance on Template Haskell^[a Haskell extension that allows to generate code.].
+We will nonetheless
 experiment with a potential Cloud Haskell [@Epstein:2011:THC:2096148.2034690] backend
-to someday enable the DSL to work in modern cloud based clusters, though.
+to someday enable the DSL to work in modern cloud based clusters.
 
 With the shallow--embedded DSL based on Arrows we define in this thesis
 we do however not only aim to define a novel parallel programming
@@ -69,7 +70,7 @@ to switch the parallel implementations at will.
 
 This thesis is structured as follows. In Chapter \ref{sec:related-work}, we discuss
 related work. Chapter \ref{sec:background} covers the background of this thesis
-including an introduction to functional programming, a monad tutorial to finally
+including an introduction to functional programming, a Monad tutorial to finally
 introduce the concepts of Arrows.
 In Chapter \ref{sec:parallel-arrows} we define the shallow-embedded DSL based on Arrows (PArrows)
 together with some first basic extensions and `map`-based skeletons.

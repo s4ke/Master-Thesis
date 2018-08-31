@@ -12,14 +12,14 @@ information `s` and result `a` is shown to not be able to use the static
 `s` without applying the monadic function `a -> m b`. With Arrows this is possible.].
 
 An Arrow `arr a b` represents a computation that converts an input `a` to an output
-`b`. The general concept is defined in the `Arrow` type class shown in Fig. \ref{fig:ArrowDefinition}.
+`b`. The general concept is defined in the `Arrow` type class shown in Figure \ref{fig:ArrowDefinition}.
 To lift an ordinary function to an Arrow, `arr` is used, analogous to the monadic `return`. Similarly,
 the composition operator `>>>` is analogous to the monadic composition `>>=` and combines two Arrows `arr a b`
 and `arr b c` by \enquote{wiring} the outputs of the first to the inputs to the second to get a new Arrow `arr a c`.
 Lastly, the `first` operator takes the input Arrow `arr a b` and converts it into an Arrow on pairs `arr (a, c) (b, c)`
-that leaves the second argument untouched. It allows us to to save input across Arrows. Fig. \ref{fig:arrows-viz} shows a
+that leaves the second argument untouched. It allows us to to save input across Arrows. Figure \ref{fig:arrows-viz} shows a
 graphical representation of these basic Arrow combinators.
-The most prominent instances of this interface (Fig. \ref{fig:ArrowDefinition}) are regular functions `(->)`
+The most prominent instances of this interface (Figure \ref{fig:ArrowDefinition}) are regular functions `(->)`
 and the Kleisli type, which wraps monadic functions,
 e.g. `a -> m b`.^[In \ref{sec:relWorkArrows} we referenced further relevant 
 Arrow types, especially ones that can be used for Arrow-based functional
@@ -54,7 +54,7 @@ instance Monad m => Arrow (Kleisli m) where
   
 ![Visual depiction of syntactic sugar for Arrows.](src/img/syntacticSugarArrows.pdf){#fig:syntacticSugarArrows}
 
-Hughes also defined some syntactic sugar (Fig.\ref{fig:syntacticSugarArrows}): `second`, `***` and `&&&`. 
+Hughes also defined some syntactic sugar (Figure \ref{fig:syntacticSugarArrows}): `second`, `***` and `&&&`. 
 `second` is the mirrored version of `first`:
 
 ~~~~ {.haskell}
@@ -63,7 +63,7 @@ second f = arr swap >>> first f >>> arr swap
 	where swap (x, y) = (y, x)
 ~~~~
 
-The `***` function combines `first` and `second` to handle two inputs in one arrow, and is defined as follows:
+The `***` function combines `first` and `second` to handle two inputs in one Arrow, and is defined as follows:
 
 ~~~~ {.haskell}
 (***) :: Arrow arr => arr a b -> arr c d -> arr (a, c) (b, d)
@@ -100,7 +100,7 @@ in some cases.
 In order to ease the use of Arrows, we will now define some utility Arrow combinators, namely
 `evalN` as well as `mapArr`. `evalN`, which turns a list of Arrows `[arr a b]` 
 into a new Arrow `arr [a] [b]` evaluating a list of inputs `[a]`
-against these Arrows is defined in Fig. \ref{fig:evalN}
+against these Arrows is defined in Figure \ref{fig:evalN}
 
 ~~~~ {#fig:evalN
     .haskell
@@ -116,7 +116,7 @@ evalN (f:fs) = arr listcase >>>
 evalN [] = arr (const [])
 ~~~~
 
-Next, we have the `mapArr` combinator (Fig. \ref{fig:mapArr}). It
+Next, we have the `mapArr` combinator (Figure \ref{fig:mapArr}). It
 lifts any Arrow `arr a b` to
 an Arrow `arr [a] [b]`. The original inspiration was from @Hughes2005,
 but the definition was then unified with `evalN`. 
@@ -154,13 +154,13 @@ monadic parallelism in Chapter \ref{sec:parallelHaskells}). We also do not restr
 the compatible Arrows to ones which have `ArrowApply` instances -- as every
 Arrow that has a `ArrowApply` instance gives rise to a Monad -- but instead
 only require instances for `ArrowChoice` (for the if-then-else construction in 
-`evalN` (Fig. \ref{fig:evalN}))
+`evalN` (Figure \ref{fig:evalN}))
 and `ArrowLoop` (for the looping used in the topological skeletons in Chapter \ref{sec:topology-skeletons}).
 Because of this, we have a truly more general
 interface when compared to a monadic one or a purely function `(->)` based one.
 
-While we could have based our DSL on Profunctors^[see \url{http://hackage.haskell.org/package/profunctors-5.3/docs/Data-Profunctor.html}
-for more information as well as the Haskell interface] as well,
+While we could have based our DSL on Profunctors^[See \url{http://hackage.haskell.org/package/profunctors-5.3/docs/Data-Profunctor.html}
+for more information as well as the Haskell interface.] as well,
 we chose Arrows in this thesis since they allow for a more direct way of
 thinking about parallelism than general Profunctors because of their
 composability. However, they are a promising candidate for future improvements

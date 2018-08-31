@@ -1,0 +1,211 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {english}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Structure}{2}{section*.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Related Work}{3}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Parallel Haskells}{3}{section*.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Algorithmic skeletons}{4}{section*.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Arrows}{5}{section*.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Arrows in other languages}{5}{section*.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Earlier work}{6}{section*.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Background}{7}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Functional Programming}{7}{section*.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.1}Why Functional Programming?}{7}{section*.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.2}A Short introduction to Haskell}{9}{section*.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{From Imperative Programming to Functional Programming}{9}{section*.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Functions}{11}{figure.caption.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Type inference}{12}{figure.caption.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Function composition, higher-order functions, and function application}{12}{figure.caption.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Conditional Computation}{14}{figure.caption.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\ensuremath {\mathbf {where}}, \ensuremath {\mathbf {let}}}{15}{figure.caption.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Type safety}{16}{figure.caption.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Type classes}{16}{figure.caption.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Custom types}{17}{figure.caption.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Lazy Evaluation}{18}{figure.caption.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Pattern Matching}{21}{figure.caption.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Lambdas and Partial application}{22}{figure.caption.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.3}Monads}{23}{section*.13}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.4}Arrows}{26}{section*.14}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Utility Combinators}{28}{figure.caption.17}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Notes}{29}{figure.caption.19}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Short introduction to parallel Haskells}{30}{section*.20}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.1}Glasgow parallel Haskell -- GpH}{31}{section*.22}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.2}\ensuremath {\mathit {Par}} Monad}{32}{section*.24}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.3}Eden}{33}{section*.26}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Eden TraceViewer}{34}{section*.26}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Parallel Arrows}{35}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}The \ensuremath {\mathit {ArrowParallel}} type class}{35}{section*.28}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}\ensuremath {\mathit {ArrowParallel}} instances}{36}{section*.29}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.1}Glasgow parallel Haskell}{36}{section*.30}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.2}\ensuremath {\mathit {Par}} Monad}{36}{section*.32}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.3}Eden}{37}{section*.34}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.4}Default configuration instances}{38}{section*.36}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}Extending the interface}{38}{section*.37}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.1}Lazy \ensuremath {\mathit {parEvalN}}}{39}{section*.38}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.2}Heterogeneous tasks}{39}{section*.41}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.4}Basic \ensuremath {\mathit {map}}-based skeletons}{40}{section*.44}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.4.1}Parallel \ensuremath {\mathit {map}} and laziness}{40}{section*.45}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.4.2}Statically load-balancing parallel \ensuremath {\mathit {map}}}{42}{section*.50}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Further development of Parallel Arrows}{45}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}Futures}{45}{section*.56}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.2}Advanced topological skeletons}{48}{section*.59}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2.1}Parallel pipe}{49}{section*.60}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2.2}Ring skeleton}{52}{section*.64}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2.3}Torus skeleton}{53}{section*.67}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Experiment: Cloud Haskell Backend}{59}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.1}Node discovery and program harness}{60}{section*.74}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1.1}The \ensuremath {\mathit {State}} data-structure}{60}{section*.75}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1.2}Starting Slave nodes}{62}{section*.76}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1.3}Starting Master nodes}{62}{section*.77}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1.4}Startup harness}{64}{section*.78}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.2}Parallel Evaluation with Cloud Haskell}{65}{section*.79}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.2.1}Communication basics}{65}{section*.80}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Sending and Receiving data}{66}{section*.80}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Serialized data type}{67}{figure.caption.81}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.2.2}Evaluation of values on slave nodes}{68}{section*.82}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Master node}{68}{section*.82}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Slave node}{69}{section*.82}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.2.3}Parallel Evaluation Scheme}{71}{section*.83}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.3}Implementing the PArrows API}{73}{section*.84}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.3.1}\ensuremath {\mathit {ArrowParallel}} instance}{73}{section*.85}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.3.2}Limits of the current implementation}{74}{section*.86}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.3.3}Possible mitigation of the limits}{74}{section*.87}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}Experimental performance results}{77}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.1}Measurement platform}{77}{section*.89}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1.1}Hardware and software}{77}{section*.90}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1.2}Benchmarks}{78}{section*.91}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1.3}Which parallel Haskells run where}{79}{section*.92}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1.4}Effect of hyper-threading}{79}{section*.93}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}Benchmark results}{80}{section*.94}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2.1}Defining speedup}{80}{section*.95}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2.2}Defining overhead}{80}{section*.96}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2.3}Shared memory}{81}{section*.97}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Speedup}{81}{section*.97}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Overhead}{81}{section*.97}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2.4}Distributed memory}{82}{section*.98}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Speedup}{82}{section*.98}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Overhead}{82}{figure.caption.99}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.3}Evaluation of results}{83}{section*.100}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {8}Discussion}{85}{chapter.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Parallelizing arbitrary Arrow Types}{85}{section*.101}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Taming the zoo of parallel Haskells}{86}{section*.101}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Low Penalty interface}{86}{section*.101}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Generality -- Switching Implementations at will}{86}{section*.101}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Summary}{87}{section*.101}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {9}Conclusion}{89}{chapter.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.1}Future work}{90}{section*.103}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {10}Appendix}{91}{chapter.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.1}Profunctor Arrows}{91}{section*.105}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.2}Additional function definitions}{91}{section*.107}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.3}Syntactic sugar}{94}{section*.113}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.4}Experimental Cloud Haskell backend code}{94}{section*.114}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.5}Plots for the shared memory benchmarks}{98}{section*.117}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.6}Plots for the distributed memory benchmarks}{106}{section*.132}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{References}{111}{section*.140}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{List of Figures}{123}{section*.142}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{List of Tables}{127}{section*.142}

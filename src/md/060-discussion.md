@@ -29,11 +29,11 @@ specifically, but more of a restriction on what type of Arrow can be parallelize
 Furthermore, both type classes are an integral part in the code that uses them.
 For example, without `ArrowChoice` we could not express the recursion with Arrows as
 without it we can not express the recursion anchor in e.g. the definition
-of `evalN` (Fig. \ref{fig:evalN}). The same goes for `ArrowLoop` as it
+of `evalN` (Figure \ref{fig:evalN}). The same goes for `ArrowLoop` as it
 is required in order to have the know-tying fix-point semantics we require for
 our topology skeletons. In fact, @Hughes2005 mentions this as well in writing
 \enquote{there is little interesting that can be done without
-more operations on arrows than just composition}.
+more operations on Arrows than just composition}.
 
 - The Eden backend currently has no general implementation for `ArrowParallel`.
 As explained earlier in Chapter \ref{sec:parrows-Eden}, the reason for this is that Eden's spawn function `spawnF`
@@ -51,7 +51,7 @@ In this thesis, we at least showed how we can tame at least the three parallel H
 we used as backends -- GpH, the `Par` Monad and Eden. We even included
 the blue print for a new backend based upon Cloud Haskell. Therefore, we are confident that
 other parallel Haskells can be used as backends in our DSL even if they require
-some special care.^[like we have talked about in the case of HdpH, which heavily relied
+some special care.^[Like we have talked about in the case of HdpH, which heavily relied
 on Template Haskell to work. This Template Haskell code was however incompatible
 with PArrows and would need replacing were HdpH used as a backend] With the PArrows DSL we are therefore able to
 tame the zoo of parallel Haskells.

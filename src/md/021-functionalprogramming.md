@@ -2,7 +2,7 @@
 
 \label{sec:fuproHaskell}
 
-This Chapter covers the basics of functional programming. We start
+This chapter covers the basics of functional programming. We start
 by citing @Hughes:1990:WFP:119830.119832 on why functional programming matters
 including a characterisation of the concept in general (Chapter \ref{sec:whyfupro}).
 Then, we give a short introduction to functional programming with Haskell
@@ -68,7 +68,7 @@ write manual interweaving code. We will explain both concepts in greater details
 later in this Chapter.
 
 The focus on modularity through the level of composability functional languages
-have, can be seen in all the definitions of Haskell functions in the following Chapters of 
+have, can be seen in all the definitions of Haskell functions in the following chapters of 
 this thesis. Also, the main functional concept this thesis uses, Arrows,
 are by nature a result of the desire to generalize modularity. We will show how to
 enable programs based on this concept to benefit from parallelism by using
@@ -82,7 +82,7 @@ Even though this thesis is called \enquote{Concepts in Parallel Programming} and
 on Arrows for parallel (functional) computation, we have to first define the basic building blocks
 of our programming language and show how to use them in regular programs before
 we can explore *parallel* programming.
-Therefore, in the following Chapter, we will give a short introduction to functional programming
+Therefore, in the following chapter, we will give a short introduction to functional programming
 with Haskell. While this will give a good idea of how programming in Haskell works,
 this is not supposed to be a complete tutorial on Haskell, but merely a quick
 overview over the most relevant features of the language which are used in this thesis.
@@ -93,7 +93,7 @@ The following is loosely based on the book \enquote{Learn you a haskell for grea
 
 In order to ease the introduction to functional programming,
 we will give a short introduction
-to functional programming in Haskell in this Chapter
+to functional programming in Haskell in this chapter
 by comparing the general style of imperative
 C code to functional Haskell using the example of the Fibonacci sequence.
 
@@ -132,11 +132,11 @@ int fib( int n ) {
 }
 ~~~~
 
-This resembles the Haskell variant in Fig. \ref{fig:fibonacciHaskell}.
+This resembles the Haskell variant in Figure \ref{fig:fibonacciHaskell}.
 We can see how the flow of the programming works even without requiring any modifiable state.
 Furthermore, the Haskell implementation uses guards (e.g. `n <= 0 = 0`) which 
 are equivalent to the conditional statements in the C variant. They will be explained
-in more detail later in this Chapter.
+in more detail later in this chapter.
 
 ~~~~ {#fig:fibonacciHaskell
     .haskell
@@ -162,7 +162,7 @@ to resolve the recursive formula.
 In general, we can say that in functional programming we primarily focus on what
 information is required and by which transformations to compute it 
 instead of how we perform them and how we track the changes in state
-^[from \url{https://docs.microsoft.com/en-us/dotnet/visual-basic/programming-guide/concepts/linq/functional-programming-vs-imperative-programming}].
+^[From \url{https://docs.microsoft.com/en-us/dotnet/visual-basic/programming-guide/concepts/linq/functional-programming-vs-imperative-programming}].
 
 Haskell being a functional language does not mean, that we do not have
 the usual problem of a too small call-stack size encountered when programming with recursion.
@@ -182,7 +182,7 @@ r = ...
 
 is equivalent to the class of all recursive programs (which is in turn equivalent to
 all imperative programs), this is no big problem. We can just translate our `fib` definition
-into a tail-recursive variant (Fig. \ref{fig:fibonacciHaskellTailRecursive})
+into a tail-recursive variant (Figure \ref{fig:fibonacciHaskellTailRecursive})
 which Haskell's compiler is capable of automatically translating into looping
 machine code.
 
@@ -246,7 +246,7 @@ g = zipWith f
 
 where `zipWith` would be of type `(Int -> Int -> Int) -> [Int] -> [Int] -> [Int]`.
 It is common to express calculations in such a way using higher-order functions.
-We will see more of this later in this Chapter.
+We will see more of this later in this chapter.
 
 #### Type inference
 
@@ -285,7 +285,7 @@ toThePowerOfFour = toThePowerOfTwo . toThePowerOfTwo
 
 with `.` being the functional composition operator with type
 `(.) :: (b -> c) -> (a -> b) -> (a -> c)`
-^[note the order of the arguments, `g . f` means to first apply `f` and then `g` and not
+^[Note the order of the arguments, `g . f` means to first apply `f` and then `g` and not
 the other way around]
 and where `toThePowerOfTwo` is defined simply as 
 
@@ -342,7 +342,7 @@ listApp = zipWith ($)
 ~~~~
 
 Here, if we had not used the `($)` operator, we would have to write
-`zipWith (\f a -> f a)` which obviously seems a bit redundant.
+`zipWith (\f a -> f a)` which certainly seems a bit redundant.
 
 Something the `($)` operator is also used quite often is to write shorter code.
 For example, code snippets like
@@ -379,7 +379,7 @@ myFunc x = if x < 10 then x * 2 else x * 4
 While having the same well-known semantics of any `if ... then ... else` like
 they could be found in imperative languages like e.g. C, in Haskell, being a functional
 language, the `else` is non-optional as expressions are required to be total
-^[total in terms of computation, unsuccessful calculations can still be expressed
+^[Total in terms of computation, unsuccessful calculations can still be expressed
 with constructs like `Maybe a`.].
 
 An alternative to this are guards, which make expressions easier to read
@@ -407,7 +407,8 @@ myFunc x ATSIGN 10 = x * 10
 myFunc x = x * 2
 ~~~~
 
-where the first matching definition is chosen during computation.
+where the first matching definition is chosen during computation.^[Here, the `ATSIGN` allows
+us to bind the value to a variable while also pattern matching it.]
 Alternatively, we can do pattern matching with the help of `case` expressions:
 
 ~~~~{.haskell
@@ -423,7 +424,7 @@ These can be used just like ordinary expressions.
 
 We can not, however, express boolean statements in this way. This is because
 pattern matching is done on the structure of the value that is being pattern matched.
-Later in this Chapter we will see what other powerful things we can do with
+Later in this chapter we will see what other powerful things we can do with
 this technique.
 
 #### `where`, `let`
@@ -596,7 +597,7 @@ Types declared this way are similar to `data` types, but can only contain a sing
 a single field. Also, unlike `data`, constructors declared with `newtype` are
 strict instead of lazy, meaning the compiler can optimize away the surrounding declaration. Everything
 else is handled exactly like with `data` types. The specifics of what
-laziness or strictness means will be explained in the next section of this Chapter.
+laziness or strictness means will be explained in the next section of this chapter.
 `newtype` types are also a useful
 tool if we were to write a wrapper for a type while not wanting
 to inherit all instances of type classes, but are also often used when declaring
@@ -727,7 +728,7 @@ let tup = f (g (h (i x))) in y `seq` y
 But as `seq` and `$!` both only evaluate to WHNF, `y` and `z` might still not be completely
 evaluated, since they could be of some more complex type than just `Int` or any other primitive.
 This is the reason why in the Haskell eco system, there exists the
-library `deepseq`^[see \url{haskell.org/package/deepseq-1.4.3.0/docs/Control-DeepSeq.html}.]
+library `deepseq`^[See \url{haskell.org/package/deepseq-1.4.3.0/docs/Control-DeepSeq.html}.]
 which comes with the typeclass `NFData` defined as
 
 ~~~~{.haskell}

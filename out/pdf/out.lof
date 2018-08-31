@@ -1,0 +1,157 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {english}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Standard Fibonacci in Haskell.\relax }}{10}{figure.caption.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Tail Recursive Fibonacci in Haskell.\relax }}{11}{figure.caption.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.3}{\ignorespaces The \ensuremath {\mathit {Arrow}} type class and its two most typical instances.\relax }}{27}{figure.caption.15}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Schematic depiction of an Arrow (left) and its basic combinators \ensuremath {\mathit {arr}}, \ensuremath {\mathbin {>\tmspace -\thinmuskip {.1667em}\tmspace -\thinmuskip {.1667em}>\tmspace -\thinmuskip {.1667em}\tmspace -\thinmuskip {.1667em}>}} and \ensuremath {\mathit {first}} (right).\relax }}{27}{figure.caption.16}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Visual depiction of syntactic sugar for Arrows.\relax }}{28}{figure.caption.17}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.6}{\ignorespaces The definition of \ensuremath {\mathit {evalN}}.\relax }}{29}{figure.caption.18}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.7}{\ignorespaces The definition of \ensuremath {\mathit {map}} over Arrows.\relax }}{29}{figure.caption.19}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Schematic illustration of \ensuremath {\mathit {parEvalN}}. A list of inputs is transformed by different functions in parallel.\relax }}{31}{figure.caption.21}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.9}{\ignorespaces \ensuremath {\mathit {parEvalN}} (GpH).\relax }}{32}{figure.caption.23}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.10}{\ignorespaces \ensuremath {\mathit {parEvalN}} (\ensuremath {\mathit {Par}} Monad).\relax }}{33}{figure.caption.25}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.1}{\ignorespaces GpH \ensuremath {\mathit {ArrowParallel}} instance.\relax }}{36}{figure.caption.31}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.2}{\ignorespaces \ensuremath {\mathit {Par}} Monad \ensuremath {\mathit {ArrowParallel}} instance.\relax }}{37}{figure.caption.33}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Eden \ensuremath {\mathit {ArrowParallel}} instance.\relax }}{38}{figure.caption.35}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.4}{\ignorespaces \ensuremath {\mathit {parEvalNLazy}} depiction.\relax }}{39}{figure.caption.39}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Definition of \ensuremath {\mathit {parEvalNLazy}}.\relax }}{39}{figure.caption.40}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.6}{\ignorespaces \ensuremath {\mathit {parEval2}} depiction.\relax }}{39}{figure.caption.42}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.7}{\ignorespaces \ensuremath {\mathit {parEval2}} definition.\relax }}{40}{figure.caption.43}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.8}{\ignorespaces \ensuremath {\mathit {parMap}} definition.\relax }}{41}{figure.caption.46}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.9}{\ignorespaces \ensuremath {\mathit {parMapStream}} definition.\relax }}{41}{figure.caption.47}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.10}{\ignorespaces \ensuremath {\mathit {parMap}} depiction.\relax }}{41}{figure.caption.48}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.11}{\ignorespaces \ensuremath {\mathit {parMapStream}} depiction.\relax }}{42}{figure.caption.49}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.12}{\ignorespaces \ensuremath {\mathit {farm}} definition.\relax }}{42}{figure.caption.51}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.13}{\ignorespaces \ensuremath {\mathit {farmChunk}} definition.\relax }}{43}{figure.caption.52}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.14}{\ignorespaces \ensuremath {\mathit {farm}} depiction.\relax }}{43}{figure.caption.53}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.15}{\ignorespaces \ensuremath {\mathit {farmChunk}} depiction.\relax }}{43}{figure.caption.54}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Communication between 4 Eden processes without Futures. All communication goes through the master node. Each bar represents one process. Black lines represent communication. Colours: blue \(\mathaccentV {hat}05E{=}\) idle, green \(\mathaccentV {hat}05E{=}\) running, red \(\mathaccentV {hat}05E{=}\) blocked, yellow \(\mathaccentV {hat}05E{=}\) suspended.\relax }}{46}{figure.caption.57}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Communication between 4 Eden processes with Futures. Unlike in Figure \ref {fig:withoutFutures}, processes communicate directly (one example message is highlighted) instead of always going through the master node (bottom bar).\relax }}{48}{figure.caption.58}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Simple \ensuremath {\mathit {pipe}} skeleton. The use of \ensuremath {\mathit {lazy}} (Figure \ref {fig:edenlazyrightrotate}) is essential as without it programs using this definition would never halt. We need to ensure that the evaluation of the input \ensuremath {[\mskip 1.5mu \mathit {a}\mskip 1.5mu]} is not forced fully before passing it into \ensuremath {\mathit {loopParEvalN}}.\relax }}{50}{figure.caption.61}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.4}{\ignorespaces \ensuremath {\mathit {pipe}} skeleton definition with Futures.\relax }}{51}{figure.caption.62}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Definition of \ensuremath {\mathit {pipe2}} and \ensuremath {(\mathbin {|\tmspace -\thinmuskip {.1667em}>\tmspace -\thinmuskip {.1667em}\tmspace -\thinmuskip {.1667em}>\tmspace -\thinmuskip {.1667em}\tmspace -\thinmuskip {.1667em}>\tmspace -\thinmuskip {.1667em}|})}, a parallel \ensuremath {\mathbin {>\tmspace -\thinmuskip {.1667em}\tmspace -\thinmuskip {.1667em}>\tmspace -\thinmuskip {.1667em}\tmspace -\thinmuskip {.1667em}>}}.\relax }}{51}{figure.caption.63}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.6}{\ignorespaces \ensuremath {\mathit {ring}} skeleton depiction.\relax }}{52}{figure.caption.65}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.7}{\ignorespaces \ensuremath {\mathit {ring}} skeleton definition.\relax }}{53}{figure.caption.66}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.8}{\ignorespaces \ensuremath {\mathit {torus}} skeleton depiction.\relax }}{53}{figure.caption.68}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.9}{\ignorespaces \ensuremath {\mathit {torus}} skeleton definition. \ensuremath {\mathit {lazyzip3}}, \ensuremath {\mathit {uncurry3}} and \ensuremath {\mathit {threetotwo}} definitions are in Figure \ref {fig:lazyzip3etc}.\relax }}{55}{figure.caption.69}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Adapted matrix multiplication in Eden using the \ensuremath {\mathit {torus}} skeleton. \ensuremath {\mathit {prMM\char 95 torus}} is the parallel matrix multiplication. \ensuremath {\mathit {mult}} is the function performed by each worker. \ensuremath {\mathit {prMM}} is the sequential matrix multiplication in the chunks. \ensuremath {\mathit {splitMatrix}} splits the Matrix into chunks. \ensuremath {\mathit {staggerHorizontally}} and \ensuremath {\mathit {staggerVertically}} pre-rotate the matrices. \ensuremath {\mathit {matAdd}} calculates $A + B$. Omitted definitions can be found in \ref {fig:torus_example_rest}.\relax }}{56}{figure.caption.70}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Communication trace of a matrix multiplication with \ensuremath {\mathit {torus}} (PArrows).\relax }}{56}{figure.caption.71}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Communication trace of a matrix multiplication with \ensuremath {\mathit {torus}} (Eden).\relax }}{57}{figure.caption.72}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Required communication scheme for our Cloud Haskell backend. Actions corresponding to specific channels are marked with their respective colour.\relax }}{67}{figure.caption.81}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Speedup of the distributed Rabin--Miller benchmark using PArrows with Eden.\relax }}{83}{figure.caption.99}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.1}{\ignorespaces Profunctors as Arrows.\relax }}{91}{figure.caption.106}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.2}{\ignorespaces \ensuremath {\mathit {shuffle}}, \ensuremath {\mathit {unshuffle}}, \ensuremath {\mathit {takeEach}} definition.\relax }}{92}{figure.caption.108}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.3}{\ignorespaces \ensuremath {\mathit {lazy}} and \ensuremath {\mathit {rightRotate}} definitions.\relax }}{92}{figure.caption.109}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.4}{\ignorespaces \ensuremath {\mathit {lazyzip3}}, \ensuremath {\mathit {uncurry3}} and \ensuremath {\mathit {threetotwo}} definitions.\relax }}{93}{figure.caption.110}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.5}{\ignorespaces Eden's definition of the \ensuremath {\mathit {ring}} skeleton.\relax }}{93}{figure.caption.111}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.6}{\ignorespaces \ensuremath {\mathit {prMMTr}}, \ensuremath {\mathit {splitMatrix}}, \ensuremath {\mathit {staggerHorizontally}}, \ensuremath {\mathit {staggerVertically}} and \ensuremath {\mathit {matAdd}} definition.\relax }}{93}{figure.caption.112}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.7}{\ignorespaces The Template Haskell code generator for the Cloud Haskell backend.\relax }}{96}{figure.caption.115}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.8}{\ignorespaces The Template Haskell version of the Sudoku benchmark program.\relax }}{97}{figure.caption.116}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.9}{\ignorespaces Parallel speedup of shared-memory Rabin--Miller test \enquote {11213 32}.\relax }}{99}{figure.caption.118}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.10}{\ignorespaces Parallel speedup of shared-memory Rabin--Miller test \enquote {11213 64}.\relax }}{99}{figure.caption.119}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.11}{\ignorespaces Mean overhead for shared-memory Rabin---Miller test \enquote {11213 32} vs Eden CP.\relax }}{100}{figure.caption.120}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.12}{\ignorespaces Mean overhead for shared-memory Rabin---Miller test \enquote {11213 32} vs GpH.\relax }}{100}{figure.caption.121}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.13}{\ignorespaces Mean overhead for shared-memory Rabin---Miller test \enquote {11213 32} vs \ensuremath {\mathit {Par}} monad.\relax }}{101}{figure.caption.122}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.14}{\ignorespaces Mean overhead for shared-memory Rabin---Miller test \enquote {11213 64} vs Eden CP.\relax }}{101}{figure.caption.123}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.15}{\ignorespaces Mean overhead for shared-memory Rabin---Miller test \enquote {11213 64} vs GpH.\relax }}{102}{figure.caption.124}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.16}{\ignorespaces Mean overhead for shared-memory Rabin---Miller test \enquote {11213 64} vs \ensuremath {\mathit {Par}} Monad.\relax }}{102}{figure.caption.125}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.17}{\ignorespaces Parallel speedup of shared-memory Sudoku \enquote {1000}.\relax }}{103}{figure.caption.126}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.18}{\ignorespaces Mean overhead for shared-memory Sudoku \enquote {1000} vs Eden CP.\relax }}{103}{figure.caption.127}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.19}{\ignorespaces Mean overhead for shared-memory Sudoku \enquote {1000} vs GpH.\relax }}{104}{figure.caption.128}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.20}{\ignorespaces Mean overhead for shared-memory Sudoku \enquote {1000} vs \ensuremath {\mathit {Par}} Monad.\relax }}{104}{figure.caption.129}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.21}{\ignorespaces Parallel speedup of shared-memory Gentleman \enquote {512}.\relax }}{105}{figure.caption.130}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.22}{\ignorespaces Mean overhead for shared-memory speedup of Gentleman \enquote {512} vs Eden CP.\relax }}{105}{figure.caption.131}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.23}{\ignorespaces Parallel speedup of distributed-memory Rabin---Miller test \enquote {44497 256}.\relax }}{107}{figure.caption.133}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.24}{\ignorespaces Mean overhead for distributed-memory Rabin---Miller test \enquote {44497 256} vs Eden.\relax }}{107}{figure.caption.134}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.25}{\ignorespaces Parallel speedup of distributed-memory Jacobi sum test \enquote {3217}.\relax }}{108}{figure.caption.135}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.26}{\ignorespaces Mean overhead for distributed-memory Jacobi sum test \enquote {3217} vs Eden.\relax }}{108}{figure.caption.136}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.27}{\ignorespaces Parallel speedup of distributed-memory Gentleman \enquote {4096}.\relax }}{109}{figure.caption.137}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10.28}{\ignorespaces Mean overhead for distributed-memory Gentleman \enquote {4096} vs Eden.\relax }}{109}{figure.caption.138}

@@ -174,7 +174,7 @@ later see how we can automatically generate such a table.
 For master nodes, the implementation is a bit more involved. The actual
 `startMaster :: Backend -> Process -> IO ()` supplied by SimpleLocalNet
 is meant to start a computation represented by a `Process` Monad and then return.
-In our use-case we want to be able to spawn functions outside of the `Process` monad,
+In our use-case we want to be able to spawn functions outside of the `Process` Monad,
 though. We therefore use the following `Process`
 passed into this startup function only for slave-node
 discovery and management:
@@ -382,22 +382,26 @@ receiveVal receivePort = receivechan receivePort
 ~~~~
 
 One thing to keep in mind is that only `SendPort` are serializable.
-So in order to have a two way communication where process A
-sends some input to process B and awaits its result, like we require
+So in order to have a two way communication where the master
+sends some input to the slave and awaits its result, like we require
 in our use case,
-we have to first receive a `SendPort a` in process A via the 
+we have to first receive a `SendPort a` in the master via the 
 `ReceivePort (SendPort a))` of some channel
 `(SendPort (SendPort a), ReceivePort (SendPort a))`.
-This `SendPort a` is sent by B and belongs to the channel `(SendPort a, ReceivePort a)`
-where B expects its input to come through the corresponding `ReceivePort a`.
+This `SendPort a` is sent the slave and belongs to the channel `(SendPort a, ReceivePort a)`
+where it expects its input to come through the corresponding `ReceivePort a`.
 Additionally, we also require a channel `(SendPort b, ReceivePort b)` on which
-B sends its result through the `SendPort b` and A awaits its result
-on the `ReceivePort b`. This idea is executed in the following code example.
-Process A looks like
+the slave sends its result through the `SendPort b` and the master awaits its result
+on the `ReceivePort b`. We depict this process with schematically in Figure \ref{fig:cloudHaskellGeneralComm}.
+
+![Required communication scheme for our Cloud Haskell backend. Actions corresponding to specific channels are marked with their respective colour.](src/img/CloudHaskellCommunication.pdf){#fig:cloudHaskellGeneralComm}
+
+This idea is executed in the following code example.
+The master looks like
 
 ~~~~{.haskell}
-procA :: ReceivePort (SendPort a) -> ReceivePort b -> Process ()
-procA aSenderReceiver bReceiver = do
+master :: ReceivePort (SendPort a) -> ReceivePort b -> Process ()
+master aSenderReceiver bReceiver = do
     aSender <- receiveChan aSenderReceiver
     
     let someA = ...
@@ -409,11 +413,11 @@ procA aSenderReceiver bReceiver = do
     return ()
 ~~~~
 
-while process B is schematically defined as
+while the slave is schematically defined as
 
 ~~~~{.haskell}    
-procB :: SendPort (SendPort a) -> SendPort b -> Process ()
-procB aSenderSender bSender = do
+slave :: SendPort (SendPort a) -> SendPort b -> Process ()
+slave aSenderSender bSender = do
     (aSender, aReceiver) <- newChan
     
     sendChan aSenderSender aSender
@@ -472,9 +476,17 @@ The following function `forceSingle :: NodeId -> MVar a -> a -> Process ()`
 is used to evaluate a single value `a`. It returns a monadic action
  `Process ()` that evaluates a value of type `a` on the node with the given
  `NodeId` and stores the evaluated result in the given `MVar a`.
-It starts by creating the necessary communication channels 
-on the master side (the A side from Chapter \ref{sec:sendRecCloud}).
-Then, it spawns the actual evaluation task (process B from Chapter \ref{sec:sendRecCloud})
+
+Unlike the master from Chapter \ref{sec:sendRecCloud},
+it starts by creating the top level communication channels
+`(SendPort a, ReceivePort a)`^[Here we only evaluate some `a`. Therefore, 
+we intentionally do not have `(SendPort b, ReceivePort b)`.] and
+`(SendPort (SendPort (Thunk a)), ReceivePort (SendPort (Thunk a)))` as
+we have to spawn the slave node from the master. This is different from
+the schematic depiction we have seen earlier where the two main
+channels were created outside of both functions.
+The communication scheme is the same, nevertheless.
+Then, it spawns the actual evaluation task (the slave from Chapter \ref{sec:sendRecCloud})
 
 ~~~~{.haskell}
 evalTask :: (SendPort (SendPort (Thunk a)), SendPort a) -> Process ()
@@ -495,7 +507,7 @@ where `spawn` is of type
 spawn :: NodeId -> Closure (Process ()) -> Process ProcessId
 ~~~~
 
-Then, like process A in Chapter \ref{sec:sendRecCloud},
+Then, like the master from Chapter \ref{sec:sendRecCloud},
 `forceSingle` waits for the input `SendPort a` of the evaluation task with `receiveChan inputSenderReceiver`.
 It then sends the not yet evaluated, serialized version of `a`, `serialized <- liftIO $ trySerialize a`
 over that `SendPort` with `sendChan inputSender $ toThunk serialized` to the evaluating
@@ -572,7 +584,7 @@ instance Evaluatable Int where
 
 We do not have to write these manually, though, as
 as they can easily be generated with the Template Haskell code generator 
-in Fig. \ref{fig:evalGen} from the Appendix via calls to the following three
+in Figure \ref{fig:evalGen} from the Appendix via calls to the following three
 Template Haskell functions:
 
 ~~~~{.haskell}
@@ -716,7 +728,7 @@ in order to turn the `IO a` action into `a`, we have to use
 Generally, the use of this function is discouraged, because it can introduce 
 severe bugs if not handled with utmost care.
 Here, its use is necessary and absolutely fine, though, since we only
-do evaluation inside the `IO` monad and if this were to fail,
+do evaluation inside the `IO` Monad and if this were to fail,
 the computation would be wrong anyways. Also in order to force the
 compiler to not inline the result -- which is generally okay in pure functions but
 not here as we do not want to spawn the computation multiple times --
@@ -763,7 +775,7 @@ a not fully evaluated value `a` can still have attached things like a file
 handle which may be not serializable. Then, the parallel Arrow goes on to
 feed the now fully forced input list `[a]`
 into the evaluation Arrow obtained by applying `evalN :: [arr a b] -> arr [a] [b]`
-to the list of arrows to be parallelized `[arr a b]` with `evalN fs`. This results
+to the list of Arrows to be parallelized `[arr a b]` with `evalN fs`. This results
 in a not yet evaluated list of results `[b]` which is prepared to be forked away with
 `arr (evalParallel conf) :: arr [a] (Computation [b])`. The resulting computation
 blueprint is then executed with `arr runComputation :: arr (Computation [b]) [b]`.

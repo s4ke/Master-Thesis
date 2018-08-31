@@ -72,7 +72,7 @@ need to worry about any specifics. This can be seen in the Future version of
 In order to implement this type class for Eden and since `RD` is only a
 type synonym for a communication type that is used
 internally in their library, we have to use some wrapper classes to fit the type class,
-as the following code showcases^[instances of type classes can not be declared on type synonyms]:
+as the following code showcases^[Instances of type classes can not be declared on type synonyms]:
 
 ~~~~ {.haskell}
 data RemoteData a = RD { rd :: RD a }
@@ -141,12 +141,12 @@ outlineCombinator fs1 fs2 =
 
 In a distributed environment, this gives us a communication scheme with
 messages going through the master node only if it is needed -- similar to what
-is shown in the trace visualisation in Fig. \ref{fig:withFutures}. This is
+is shown in the trace visualisation in Figure \ref{fig:withFutures}. This is
 because only the handles to the data that are passed through the master
 node, while all communication of actual data can happen between the actual nodes.
 We will build upon this concept in more complicated combinators in the next chapter.
 
 ![Communication between 4 Eden processes with Futures.
-Unlike in Fig. \ref{fig:withoutFutures}, processes communicate directly
+Unlike in Figure \ref{fig:withoutFutures}, processes communicate directly
 (one example message is highlighted) instead of always going through the
 master node (bottom bar).](src/img/withFutures.pdf){#fig:withFutures}

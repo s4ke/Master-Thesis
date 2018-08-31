@@ -12,7 +12,7 @@ and \ref{sec:benchmarkDistPlots}, respectively.
 
 \label{app:profunctorArrows}
 
-In Fig. \ref{fig:profunctorArrow} we show how specific Profunctors can it into the
+In Figure \ref{fig:profunctorArrow} we show how specific Profunctors can it into the
 Arrow type class. This works because Arrows are strong Monads in the bicategory
 `Prof` of Profunctors as shown by @Asada:2010:ASM:1863597.1863607.
 In Standard GHC `(>>>)` has the type
@@ -44,13 +44,13 @@ We have omitted some function definitions in the main text for
 brevity, and redeem this here.
 
 We begin with Arrow versions of Eden's `shuffle`, `unshuffle` and the definition of
-`takeEach` can be found in Fig. \ref{fig:edenshuffleetc}. Similarly,
-Fig. \ref{fig:edenlazyrightrotate} contains the definition of Arrow
+`takeEach` can be found in Figure \ref{fig:edenshuffleetc}. Similarly,
+Figure \ref{fig:edenlazyrightrotate} contains the definition of Arrow
 versions of Eden's `lazy` and `rightRotate` utility functions.
-Fig. \ref{fig:lazyzip3etc} contains Eden's definition of `lazyzip3` together
+Figure \ref{fig:lazyzip3etc} contains Eden's definition of `lazyzip3` together
 with the utility functions `uncurry3` and `threetotwo`.
-The full definition of `farmChunk` is in Fig. \ref{fig:farmChunk}.
-Eden definition of `ring` skeleton is in Fig. \ref{fig:ringEden}. It
+The full definition of `farmChunk` is in Figure \ref{fig:farmChunk}.
+Eden definition of `ring` skeleton is in Figure \ref{fig:ringEden}. It
 follows @Loogen2012.
 
 ~~~~ {#fig:edenshuffleetc
@@ -124,7 +124,7 @@ lazy :: [a] -> [a]
 lazy ~(x:xs) = x : lazy xs
 ~~~~
 
-Furthermore, Fig. \ref{fig:torus_example_rest} contains the omitted definitions
+Furthermore, Figure \ref{fig:torus_example_rest} contains the omitted definitions
 required for parallel matrix multiplication with the `torus` skeleton.
 They are: `prMM` (sequential matrix multiplication), `splitMatrix`
 (which splits a matrix into chunks), `staggerHorizontally` and
@@ -164,7 +164,7 @@ matAdd = chunksOf (dimX x) $ zipWith (+) (concat x) (concat y)
 
 Next, we also give the definitions for some syntactic sugar for PArrows,
 namely `parstar` and `parand`. For basic Arrows, we have the `***` combinator
-(Fig. \ref{fig:syntacticSugarArrows}) which allows us to combine two Arrows
+(Figure \ref{fig:syntacticSugarArrows}) which allows us to combine two Arrows
 `arr a b` and `arr c d` into an Arrow `arr (a, c) (b, d)` which does both
 computations at once. This can easily be translated into a parallel version
 `parstar` with the use of `parEval2`, but for this we require a backend which
@@ -178,7 +178,7 @@ has an implementation that does not require any configuration
 ~~~~
 
 We define the parallel `parand` in a similar manner to its sequential
-pendant `&&&` (Fig. \ref{fig:syntacticSugarArrows}):
+pendant `&&&` (Figure \ref{fig:syntacticSugarArrows}):
 
 ~~~~ {.haskell}
 (|&&&|) :: (ArrowChoice arr, ArrowParallel arr (Either a a) (Either b c) ()) =>

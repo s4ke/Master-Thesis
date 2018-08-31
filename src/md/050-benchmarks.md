@@ -38,21 +38,21 @@ We therefore disregard the hyper-threading
 ability in most of the cases.
 
 Apart from Eden, all benchmarks and libraries were compiled with
-Stack's^[see \url{https://www.haskellstack.org/}]
+Stack's^[See \url{https://www.haskellstack.org/}]
 lts-7.1 GHC compiler which is equivalent to a standard GHC 8.0.1 with
 the base package in version 4.9.0.0. Stack itself was used in version 1.3.2.
 For GpH in its Multicore variant we used the _parallel_ package in version
-3.2.1.0^[see \url{https://hackage.haskell.org/package/parallel-3.2.1.0}],
+3.2.1.0^[See \url{https://hackage.haskell.org/package/parallel-3.2.1.0}],
 while for the `Par` Monad we used _monad-par_ in version
-0.3.4.8^[see \url{https://hackage.haskell.org/package/monad-par-0.3.4.8}].
+0.3.4.8^[See \url{https://hackage.haskell.org/package/monad-par-0.3.4.8}].
 For all Eden tests, we used a manually built GHC-Eden compiler in version
-7.8.2^[see \url{http://www.mathematik.uni-marburg.de/~eden/?content=build_eden_7_&navi=build}]
-together with OpenMPI 1.6.5^[see \url{https://www.open-mpi.org/software/ompi/v1.6/}].
+7.8.2^[See \url{http://www.mathematik.uni-marburg.de/~eden/?content=build_eden_7_&navi=build}]
+together with OpenMPI 1.6.5^[See \url{https://www.open-mpi.org/software/ompi/v1.6/}].
 
 Furthermore, all benchmarks were done with help of the
-bench^[see \url{https://hackage.haskell.org/package/bench}] tool in version
+bench^[See \url{https://hackage.haskell.org/package/bench}] tool in version
 1.0.2 which uses criterion
-(>=1.1.1.0 \&\& < 1.2)^[see \url{https://hackage.haskell.org/package/criterion-1.1.1.0}]
+(>=1.1.1.0 \&\& < 1.2)^[See \url{https://hackage.haskell.org/package/criterion-1.1.1.0}]
 internally. All runtime data (mean runtime, max stddev, etc.) was collected with
 this tool.
 
@@ -167,7 +167,7 @@ We compare the mean overhead, i.e. the difference of mean relative wall-clock ru
 between the PArrow and direct benchmark implementations executed
 multiple times with the same settings.
 The error margins of the time measurements, supplied by criterion
-package^[\url{https://hackage.haskell.org/package/criterion-1.1.1.0}],
+package^[See \url{https://hackage.haskell.org/package/criterion-1.1.1.0}],
 yield the error margin of the mean overhead. 
 
 Quite often the zero value lies in the error margin of the mean overhead.
@@ -233,7 +233,7 @@ induced by PArrows in the shared memory setting.
 The speedup of distributed memory Rabin--Miller benchmark with PArrows and Eden
 showed an almost linear speedup excepting around 192 cores where an unfortunate
 task distribution reduces performance.
-As seen in Fig. \ref{fig:rabinMillerDistSpeedup}, we reached a speedup of 213.4
+As seen in Figure \ref{fig:rabinMillerDistSpeedup}, we reached a speedup of 213.4
 with PArrrows at 256 cores (vs. 207.7 with pure Eden). Because of memory limitations,
 the speedup of Jacobi sum test for large inputs (such as $2^{4253}-1$) could be
 measured only in a massively distributed setting. PArrows improved there

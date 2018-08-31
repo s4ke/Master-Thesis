@@ -82,7 +82,7 @@ loop (arr snd &&& arr (uncurry (:)))
 
 defines an Arrow that takes its input `a` and converts it into an infinite
 stream `[a]` of it. Using `loop` to our advantage gives us a first draft of
-a pipe implementation (Fig. \ref{fig:pipeSimple}) by plugging in the
+a pipe implementation (Figure \ref{fig:pipeSimple}) by plugging in the
 parallel evaluation call `loopParEvalN conf fs` inside the second argument of `&&&`
 and then only picking the first element of the resulting list with `arr last` outside
 of the `loop`.
@@ -90,7 +90,7 @@ of the `loop`.
 ~~~~ {#fig:pipeSimple
     .haskell
     .figure
-    caption="Simple |pipe| skeleton. The use of |lazy| (Fig.~\ref{fig:edenlazyrightrotate}) is essential as without it programs using this definition would never halt. We need to ensure that the evaluation of the input |[a]| is not forced fully before passing it into |loopParEvalN|."
+    caption="Simple |pipe| skeleton. The use of |lazy| (Figure \ref{fig:edenlazyrightrotate}) is essential as without it programs using this definition would never halt. We need to ensure that the evaluation of the input |[a]| is not forced fully before passing it into |loopParEvalN|."
     options=t
     }
 pipeSimple :: (ArrowLoop arr, ArrowLoopParallel arr a a conf) =>
@@ -105,7 +105,7 @@ However, using this definition directly will make the master node a
 potential bottleneck in distributed environments as described in
 Chapter \ref{sec:futures}. Therefore, we introduce a more sophisticated version
 that internally uses Futures and obtain the final definition of `pipe` in
-Fig. \ref{fig:pipe}.
+Figure \ref{fig:pipe}.
 
 ~~~~ {#fig:pipe
     .haskell
@@ -132,7 +132,7 @@ Sometimes, this `pipe` definition can be a bit inconvenient,
 especially if we want to pipe Arrows of mixed types together,
 i.e. `arr a b` and `arr b c`. By wrapping these two Arrows inside a bigger
 Arrow `arr (([a], [b]), [c]) (([a], [b]), [c])` suitable for `pipe`, we can define
-`pipe2` as in Fig. \ref{fig:pipe2}.
+`pipe2` as in Figure \ref{fig:pipe2}.
 
 ~~~~ {#fig:pipe2
     .haskell
@@ -177,22 +177,22 @@ a parallel piping operator `parcomp`, which is semantically equivalent to
 
 Eden comes with a ring skeleton^[Available on Hackage:
 \url{https://hackage.haskell.org/package/edenskel-2.1.0.0/docs/Control-Parallel-Eden-Topology.html}.]
-(Fig. \ref{fig:ringImg}) implementation that allows the computation of a
+(Figure \ref{fig:ringImg}) implementation that allows the computation of a
 function `[i] -> [o]` with a ring of nodes that communicate with each other.
 Its input is a node function `i -> r -> (o, r)` in which `r` serves as the
 intermediary output that is sent to the neighbour of each node.
 It uses the direct \enquote{remote data} communication channels that were already
 mentioned in Chapter \ref{sec:futures}. 
-We depict it in the Appendix, Fig. \ref{fig:ringEden}.
+We depict it in the Appendix, Figure \ref{fig:ringEden}.
 
 We can rewrite this functionality easily with the use of `loop` as the
 definition of the node function, `arr (i, r) (o, r)`, after being transformed
 into an Arrow, already fits quite neatly into `loop`'s signature: 
 `arr (a, b) (c, b) -> arr a c`. In each iteration we start by rotating the
 intermediary input from the nodes `[fut r]` with `second (rightRotate >>> lazy)`
-(Fig. \ref{fig:edenlazyrightrotate}). Similarly to the `pipe` from
-Chapter \ref{sec:pipe} (Fig. \ref{fig:pipeSimple}), we have to feed the 
-intermediary input into our `lazy` (Fig. \ref{fig:edenlazyrightrotate}) Arrow here,
+(Figure \ref{fig:edenlazyrightrotate}). Similarly to the `pipe` from
+Chapter \ref{sec:pipe} (Figure \ref{fig:pipeSimple}), we have to feed the 
+intermediary input into our `lazy` (Figure \ref{fig:edenlazyrightrotate}) Arrow here,
 or the evaluation would fail to terminate. The reasoning is explained by
 @Loogen2012 as a demand problem.
 
@@ -204,7 +204,7 @@ lifting it with `loopParEvalN`. Finally we unzip the output list
 `[(o, fut r)]` into `([o], [fut r])`.
 
 Plugging this Arrow `arr ([i], [fut r]) ([o], fut r)` into the definition of
-`loop` from earlier gives us `arr [i] [o]`, our ring Arrow (Fig. \ref{fig:ringFinal}).
+`loop` from earlier gives us `arr [i] [o]`, our ring Arrow (Figure \ref{fig:ringFinal}).
 To make sure this algorithm has speedup on shared-memory machines as well, we pass
 the result of this Arrow to `postLoopParEvalN conf (repeat (arr id))`.
 This combinator can, for example, be used to calculate the shortest paths in a
@@ -237,7 +237,7 @@ ring conf f =
 ![`torus` skeleton depiction.](src/img/ringTorusImg.pdf){#fig:ringTorusImg}
 
 If we take the concept of a `ring` from Chapter \ref{sec:ring} one dimension
-further, we obtain a `torus` skeleton (Fig. \ref{fig:ringTorusImg}, \ref{fig:torus}).
+further, we obtain a `torus` skeleton (Figure \ref{fig:ringTorusImg}, \ref{fig:torus}).
 In a `torus`, every node sends and receives data from horizontal and vertical neighbours
 in each communication round. With our Parallel Arrows we re-implement this
 combinator
@@ -245,7 +245,7 @@ from Eden^[Available on Hackage: \url{https://hackage.haskell.org/package/edensk
 yet again with the help of the `ArrowLoop` type class.
 
 Similar to the `ring`, we start by rotating the input
-(Fig. \ref{fig:edenlazyrightrotate}), but this time not only in one direction,
+(Figure \ref{fig:edenlazyrightrotate}), but this time not only in one direction,
 but in two. This means that the intermediary input from the neighbour nodes has to
 be stored in a tuple `([[fut a]], [[fut b]])` in the second argument
 (`loop` only allows for two arguments) of our looped Arrow of type
@@ -287,7 +287,7 @@ problem with `loop` as explained for the `ring` skeleton.
 ~~~~ {#fig:torus
     .haskell
     .figure
-    caption="|torus| skeleton definition. |lazyzip3|, |uncurry3| and |threetotwo| definitions are in Fig. \ref{fig:lazyzip3etc}."
+    caption="|torus| skeleton definition. |lazyzip3|, |uncurry3| and |threetotwo| definitions are in Figure \ref{fig:lazyzip3etc}."
     options=t
     }
 torus :: (Future fut a conf, Future fut b conf,
@@ -317,7 +317,7 @@ ptorus conf f =
 
 As an example of using this skeleton, @Eden:SkeletonBookChapter02 showed the
 matrix multiplication using Gentleman's algorithm [@Gentleman1978].
-An adapted version can be found in Fig. \ref{fig:torusMatMult}.
+An adapted version can be found in Figure \ref{fig:torusMatMult}.
 
 ~~~~ {#fig:torusMatMult
     .haskell
@@ -349,8 +349,8 @@ mult size ((sm1,sm2),sm1s,sm2s) = (result,toRight,toBottom)
 ~~~~
 
 If we compare the trace from a call using our Arrow definition of the
-`torus` (Fig. \ref{fig:torus_parrows_trace}) with the Eden version
-(Fig. \ref{fig:torus_eden_trace}) we can see that the behaviour of the Arrow version
+`torus` (Figure \ref{fig:torus_parrows_trace}) with the Eden version
+(Figure \ref{fig:torus_eden_trace}) we can see that the behaviour of the Arrow version
 and execution times are comparable -- our port was successful.
 We discuss further benchmarks on larger
 clusters in more detail in Chapter \ref{sec:benchmarks}.

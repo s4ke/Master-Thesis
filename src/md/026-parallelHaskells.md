@@ -22,7 +22,7 @@ can however only be achieved if the programmer actively chooses to use these kin
 
 In its purest form, parallel computation (on functions) can be looked at
 as the execution of some functions `a -> b` in parallel or 
-`parEvalN :: [a -> b] -> [a] -> [b]`, as also Fig. \ref{fig:parEvalN} 
+`parEvalN :: [a -> b] -> [a] -> [b]`, as also Figure \ref{fig:parEvalN} 
 symbolically shows. In this Chapter, we will implement this non-Arrow version which
 will later be adapted for usage in our Arrow-based parallel Haskell.
 
@@ -69,7 +69,7 @@ We construct this strategy with `parList :: Strategy a -> Strategy [a]` and
 which evaluates to normal form. Other strategies like e.g. evaluation
 to weak head normal form are available as well.
 It also allows for custom `Strategy` implementations to be used.
-Fig. \ref{fig:parEvalNMulticoreImg} shows a visual representation of this code.
+Figure \ref{fig:parEvalNMulticoreImg} shows a visual representation of this code.
 
 ![`parEvalN` (GpH).](src/img/parEvalNMulticoreImg.pdf){#fig:parEvalNMulticoreImg}
 
@@ -112,7 +112,7 @@ This results in `Par [b]`. We execute this process with `runPar` to finally get 
 evaluated list of results`[b]`.
 While we used `spawn` in the definition above, a head-strict variant
 can easily be defined by replacing `spawn` with `spawn_ :: Par a -> Par (IVar a)`.
-Fig. \ref{fig:parEvalNParMonadImg} shows a graphical representation.
+Figure \ref{fig:parEvalNParMonadImg} shows a graphical representation.
 
 ![`parEvalN` (`Par` Monad).](src/img/parEvalNParMonadImg.pdf){#fig:parEvalNParMonadImg}
 
@@ -130,7 +130,7 @@ as well [@arcs-dc; @aswad2009low].
 
 While Eden comes with a Monad `PA` for parallel evaluation, it also ships
 with a completely functional interface that includes
-a `spawnF :: (Trans a, Trans b) => [a -> b] -> [a] -> [b]`^[the type class `Trans`
+a `spawnF :: (Trans a, Trans b) => [a -> b] -> [a] -> [b]`^[The type class `Trans`
 stands for Transmissible.
 The Eden library already has instances for most common types and allows for easy construction
 of further instances.]
@@ -155,7 +155,7 @@ In the next Chapters we will present some \emph{trace visualisations},
 the post-mortem process diagrams of Eden processes and their activity.
 
 The trace visualisations are colour-coded.
-In such a visualisation (Fig. \ref{fig:withoutFutures}),
+In such a visualisation (Figure \ref{fig:withoutFutures}),
 the `x` axis shows the time, the `y` axis enumerates the machines and processes.
 The visualisation shows a running process in green, a blocked process is red.
 If the process is \enquote{runnable}, i.e. it may run, but does not,

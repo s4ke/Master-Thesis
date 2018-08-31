@@ -61,7 +61,7 @@ This can be quite wasteful and a statically load-balancing `farm`
 (Figs. \ref{fig:farm}, \ref{fig:farmImg}) that equally distributes the
 workload over `numCores` workers seems useful.
 The definitions of the helper functions `unshuffle`, `takeEach`,
-`shuffle` (Fig. \ref{fig:edenshuffleetc}) originate from an Eden
+`shuffle` (Figure \ref{fig:edenshuffleetc}) originate from an Eden
 skeleton^[Available on Hackage under \url{https://hackage.haskell.org/package/edenskel-2.1.0.0/docs/src/Control-Parallel-Eden-Map.html}.].
 
 ~~~~ {#fig:farm

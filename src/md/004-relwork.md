@@ -2,7 +2,7 @@
 
 \label{sec:related-work}
 
-In this Chapter we will discuss related work to this thesis. We start with
+In this Chapter we will discuss work related to this thesis. We start with
 work on parallel Haskells in Chapter \ref{sec:relWorkParallelHaskells}. Next,
 we discuss research on algorithmic skeletons in Chapter \ref{sec:relWorkAlgorithmicSkels}.
 Then, we go over previous work in the field of Arrows in Chapter \ref{sec:relWorkArrows}.
@@ -102,7 +102,7 @@ new notation for Arrows. Arrows have applications in information flow research
 [@1648705; @LI20101974; @Russo:2008:LLI:1411286.1411289],
 invertible programming [@Alimarine:2005:BAA:1088348.1088357],
 and quantum computer simulation [@vizzotto_altenkirch_sabry_2006].
-But probably most prominent application of Arrows is Arrow-based functional
+But the probably most prominent application of Arrows is Arrow-based functional
 reactive programming, AFRP [@Nilsson:2002:FRP:581690.581695; @Hudak2003; @Czaplicki:2013:AFR:2499370.2462161].
 [@Liu:2009:CCA:1631687.1596559] formally define a more special kind of
 Arrows that encapsulate the computation more than regular Arrows do and thus

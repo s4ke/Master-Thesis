@@ -6,7 +6,7 @@ Finally, we include the Template Haskell based code
 generator to make the experimental Cloud Haskell backend easier
 to use and a version of the main Sudoku benchmark program as an example.
 
-The code generator can be found in Fig. \ref{fig:evalGen}. Here, if we enclose
+The code generator can be found in Figure \ref{fig:evalGen}. Here, if we enclose
 this in a Haskell module, the functions `mkEvalTasks` (to generate the `evalTask`s for the
 specific types), `mkRemotables` (to mark the evaluation tasks as remotable in Cloud Haskell)
 and `mkEvaluatables` (to create the `Evaluatable` instance) are the ones exposed to the user. 
@@ -69,7 +69,7 @@ mkEvaluatables names = do
 ~~~~
 
 The Template Haskell version of the main Sudoku benchmark program can be found in
-Fig. \ref{fig:sudokuCloudHaskell}^[For the full code, see the GitHub repository at
+Figure \ref{fig:sudokuCloudHaskell}^[For the full code, see the GitHub repository at
 \url{https://github.com/s4ke/Parrows/blob/e1ab76018448d9d4ca3ed48ef1f0c5be26ae34ab/CloudHaskell/testing/Test.hs}].
 We have to write type aliases for `Maybe Grid` (`MaybeGrid`)
 and `[Maybe Grid]` (`MaybeGridList`). We can then use these to generate the code
