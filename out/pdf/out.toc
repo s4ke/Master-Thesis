@@ -176,15 +176,15 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {8}Discussion}{87}{chapter.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Parallelizing arbitrary Arrow Types}{87}{section*.101}
+\contentsline {subsubsection}{Parallelizing arbitrary Arrow Types}{88}{section*.101}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Taming the zoo of parallel Haskells}{88}{section*.101}
+\contentsline {subsubsection}{Taming the zoo of parallel Haskells}{89}{section*.101}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Low Penalty interface}{88}{section*.101}
+\contentsline {subsubsection}{Low Penalty interface}{89}{section*.101}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Generality -- Switching Implementations at will}{88}{section*.101}
+\contentsline {subsubsection}{Generality -- Switching Implementations at will}{89}{section*.101}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Summary}{89}{section*.101}
+\contentsline {subsubsection}{Summary}{90}{section*.101}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {9}Conclusion}{91}{chapter.9}
 \defcounter {refsection}{0}\relax 

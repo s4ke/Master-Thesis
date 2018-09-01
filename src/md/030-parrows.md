@@ -2,7 +2,7 @@
 
 \label{sec:parallel-arrows}
 
-Having discussed the idea of Arrows as well as the basics of the APIs we wish to use
+Having discussed the idea of Arrows as well as the basics of the APIs that we wish to use
  as backends, we can now discuss the design and implementation of the actual
 PArrows DSL.
 We present the `ArrowParallel` type class

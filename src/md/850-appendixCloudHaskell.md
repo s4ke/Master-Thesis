@@ -70,7 +70,7 @@ mkEvaluatables names = do
 
 The Template Haskell version of the main Sudoku benchmark program can be found in
 Figure \ref{fig:sudokuCloudHaskell}^[For the full code, see the GitHub repository at
-\url{https://github.com/s4ke/Parrows/blob/e1ab76018448d9d4ca3ed48ef1f0c5be26ae34ab/CloudHaskell/testing/Test.hs}].
+\url{https://github.com/s4ke/Parrows/blob/e1ab76018448d9d4ca3ed48ef1f0c5be26ae34ab/CloudHaskell/testing/Test.hs}.].
 We have to write type aliases for `Maybe Grid` (`MaybeGrid`)
 and `[Maybe Grid]` (`MaybeGridList`). We can then use these to generate the code
 required to to evaluate these types in the Cloud Haskell backend with. In the

@@ -2,11 +2,68 @@
 
 \label{sec:discussion}
 
+In this thesis we have defined and implemented a new shallow embedded DSL that allows
+to parallelise arbitrary Arrow types based on a new combinator
+`parEvalN :: Arrow => [arr a b] -> arr [a] [b]`.
+As our DSL uses existing Haskells as backends,
+we do not re-invent parallelism -- we provide a general
+interface which wraps other parallel Haskells. The DSL has
+a low performance penalty as shown by our benchmarks. It can furthermore serve
+as a general interface for parallel computation as it is possible to
+switch between implementations at will.
+
+We are first to define a DSL that allows
+for the parallelisation of arbitrary Arrows.
+In our opinion, a way to parallelise Arrows directly with a combinator was
+overdue, though. They serve
+as a general interface to computation, so why not also to *parallel* computation?
+Equally important is the fact that our DSL can serve as a general interface for parallelism
+in Haskell. For years, the maintainers of the
+different APIs
+have been developing their own brand of parallelism without caring about portability.
+This is a big concern if an application has to be ported to
+another eco-system it has been written against initially.
+This is definitely not only a theoretical argument.
+In the real world, projects can become
+deprecated or cause other incompatibilities -- the same goes for parallel APIs.
+Also, sometimes parallel programs that
+were written to be run on a single machine have to be ported
+to a distributed environment. Now, if a program that is to be ported were
+based on our *shallow* DSL, these
+problems would basically be non-existent.
+Programmers could simply change the backend and
+continue their work in other areas that matter.
+
+As already stated, the other parallel Haskells go a different route.
+For one, none allows for the parallelisation of arbitrary Arrows.
+GpH focuses on \enquote{hints} as well as evaluation strategies to
+define parallelism.
+Monadic approaches such as the `Par` Monad, HdpH or LVish,
+allow for the expression of parallel programs with their specific Monad.
+While Eden also has a monadic interface, it also allows for the parallelisation
+of arbitrary functions `(->)`.
+As stated earlier these also do not
+Our approach is quite similar to Eden when it comes to the parallelisation of
+functions `(->)`.
+Their DSL however still does not allow for Arrows to be parallelised.
+
+On the topic of portability, the fact that we used Arrows instead of, e.g. simple functions,
+to build our DSL is only helpful because the `Kleisli` type also allows for monadic code to be 
+parallelised.
+This way, we can even say that PArrows is not only a way to paralellise Arrow-based,
+but also monadic programs all while providing better portability of programs.
+
+
+Usually, existing approaches usually go a different route.
+
+None of these
+ 
+
 We will now discuss whether we have achieved the goals 
 for our Arrow based parallel Haskells that we have set ourselves in the introduction
 in Chapter \ref{sec:introduction}. We there described that we wanted
 
-- a DSL that allows us to parallelize arbitrary Arrow types
+- a DSL that allows us to parallelise arbitrary Arrow types
 - to tame the zoo of parallel Haskells.
 - low performance penalty
 - generality by being able to switch implementations at will
@@ -47,7 +104,7 @@ arbitrary Arrows as these two restrictions are no big issues at all as we have e
 
 #### Taming the zoo of parallel Haskells
 
-In this thesis, we at least showed how we can tame at least the three parallel Haskells
+In this thesis, we showed how we can tame at least the three parallel Haskells
 we used as backends -- GpH, the `Par` Monad and Eden. We even included
 the blue print for a new backend based upon Cloud Haskell. Therefore, we are confident that
 other parallel Haskells can be used as backends in our DSL even if they require

@@ -65,10 +65,10 @@ take the passed function(s) as their internal worker function. They provide the 
 of the program. Laziness here means that values are only evaluated when required.
 This allows for programs to work in a producer/consumer pattern without having to
 write manual interweaving code. We will explain both concepts in greater details
-later in this Chapter.
+later in this chapter.
 
-The focus on modularity through the level of composability functional languages
-have, can be seen in all the definitions of Haskell functions in the following chapters of 
+The focus on modularity through composability that functional languages have,
+can be seen in all the definitions of Haskell functions in the following chapters of 
 this thesis. Also, the main functional concept this thesis uses, Arrows,
 are by nature a result of the desire to generalize modularity. We will show how to
 enable programs based on this concept to benefit from parallelism by using
@@ -115,8 +115,9 @@ int fib( int n ) {
 ~~~~
 
 It contains
-assignments and a loop, which in pure^[Pure code is code without side-effects. Assignments are side-effects.] functional programming we
-we can not use^[It is however possible to introduce monadic DSLs in Haskell that mimic C style behaviour, see \url{https://hackage.haskell.org/package/ImperativeHaskell-2.0.0.1}.].
+assignments and a loop, which in pure^[Pure code is code without side-effects. Assignments are side-effects.]
+functional programming we
+can not use^[It is however possible to introduce monadic DSLs in Haskell that mimic C style behaviour, see \url{https://hackage.haskell.org/package/ImperativeHaskell-2.0.0.1}.].
 If we translate this Fibonacci example into a recursive definition,
 however, we get pure functional C code
 without any assignment statements:
@@ -164,7 +165,7 @@ information is required and by which transformations to compute it
 instead of how we perform them and how we track the changes in state
 ^[From \url{https://docs.microsoft.com/en-us/dotnet/visual-basic/programming-guide/concepts/linq/functional-programming-vs-imperative-programming}].
 
-Haskell being a functional language does not mean, that we do not have
+Haskell being a functional language does not mean that we do not have
 the usual problem of a too small call-stack size encountered when programming with recursion.
 While Haskell programs can naturally handle much bigger call-stacks without overflowing, 
 at some point the limit will be reached and the program will crash.
@@ -215,7 +216,7 @@ f x y = multiply x y
 ~~~~
 
 Here, we declared a function `f` which takes two arguments
-of type `Int` and returns yet another `Int`. In the definition
+of type `Int` and returns yet another `Int`. In the definition,
 we say that `f` is the function `multiply` applied to both its arguments
 `x` and `y`. We define `multiply` as
 
@@ -234,7 +235,7 @@ f :: Int -> Int -> Int
 f = multiply
 ~~~~
 
-We can do so because in Haskell functions can be treated just like any other type.
+We can do so, because, in Haskell, functions can be treated just like any other type.
 For example, if we wanted to have another function `g` which applied `f` on two lists of
 integers, we can write
 
@@ -252,7 +253,7 @@ We will see more of this later in this chapter.
 
 Taking the same example function `g` from above,
 it does not make sense to be so restrictive in terms of which type to allow in
-such a function since all it does is apply some function to zip two lists. Thankfully,
+such a function since all it does is to apply some function to zip two lists. Thankfully,
 in Haskell we can define functions in a completely generic way such that
 we can write the actual type of zipWith as `(a -> b -> c) -> [a] -> [b] -> [c]` as in meaning: 
 Zip a list containing some `a`s with a list containing a list of `b`s with a function
@@ -424,7 +425,7 @@ These can be used just like ordinary expressions.
 
 We can not, however, express boolean statements in this way. This is because
 pattern matching is done on the structure of the value that is being pattern matched.
-Later in this chapter we will see what other powerful things we can do with
+Later in this chapter, we will see what other powerful things we can do with
 this technique.
 
 #### `where`, `let`
@@ -481,7 +482,7 @@ class Multiplicable a where
 ~~~~
 
 With this class in place, we can then introduce instances -- implementations of the
-contract -- for specific types. For example the instance for `Int`,
+contract -- for specific types. For example, the instance for `Int`,
 `Multiplicable Int`, can be defined as
 
 ~~~~{.haskell
@@ -507,8 +508,8 @@ reused even though it is a statically typed language.
 
 In Haskell we can also write
 type classes with more than one type parameter. This allows for 
-encapsulation of contracts of arbitrary complexity. Furthermore 
-type classes can itself have constraints placed on what types are allowed.
+encapsulation of contracts of arbitrary complexity. Furthermore, 
+type classes can themselves have constraints placed on what types are allowed.
 Both can be seen here:
 
 ~~~~{.haskell
@@ -694,7 +695,7 @@ to encapsulate it. It is straightforwardly defined as:
 f $! x = x `seq` f x
 ~~~~
 
-With it we can then write our example function as
+With it, we can then write our example function as
 
 ~~~~{.haskell}
 myFun :: Int -> (Int, Int)
@@ -712,7 +713,8 @@ for full evaluation. This means that if we were
 to evaluate some calculation `f (g (h (i x)))` embedded in some lazy tuple `(y, z)` to WHNF,
 `y` and `z` would not be touched as the evaluation stops at the tuple constructor (for more
 about constructors see the chapter on custom types). All the computations
-that lead to this constructor however, are forced to be evaluated. Therefore, if we want
+that lead to this constructor however, are forced to be evaluated. Therefore, if we
+had wanted
 to make the insides of a tuple strict, we would have to write something along the lines of
 
 ~~~~ {.haskell}
@@ -739,7 +741,7 @@ class NFData a where
 Instances of this typeclass
 for some type `a` are required to provide an appropriate implementation
 of `rnf` for *full* evaluation to normal-form, where `rnf` stands for
-\enquote{reduce-to-normal-form}. With this we can then implement the
+\enquote{reduce-to-normal-form}. With this, we can then implement the
 NF equivalent to `seq`, `deepseq`, as
 
 ~~~~{.haskell}
@@ -792,7 +794,7 @@ someFunc t = case t of
     (SomeOtherConstructor a) -> ...
 ~~~~
 
-In Haskell programs we can also write unwrapping code with the help of the
+In Haskell programs, we can also write unwrapping code with the help of the
 `let` notation for single constructor types like
 `let (x, y) = vec2d in sqrt (x * x + y * y)`. Predictably, we can do this
 with `where` as well with constructs like `where (x, y) = vec2d`.
@@ -835,9 +837,9 @@ work (e.g. if we have called `isJust`), we can use irrefutable patterns like
 
 #### Lambdas and Partial application
 
-As Functions are just another type that can be passed into higher-order functions
+As Functions are just another type that can be passed into higher-order functions,
 it makes sense to have a short-hand to write anonymous functions -- lambdas.
-In Haskell they look like this:
+In Haskell, they look like this:
 
 ~~~~{.haskell
     }    
@@ -864,6 +866,6 @@ someFunc :: [Int] -> [Int] -> [Int]
 someFunc = zipWith (\(a, b) -> a + b)
 ~~~~
 
-where we this means that `someFunc` is defined as `zipWith :: (a -> b -> c) -> [a] -> [b] -> [c])` partially applied with
+where this means that `someFunc` is defined as `zipWith :: (a -> b -> c) -> [a] -> [b] -> [c])` partially applied with
 the passed lambda to get a function with type `[a] -> [b] -> [c]` which the compiler then
 automatically binds to the type of `someFunc :: [Int] -> [Int] -> [Int]`.

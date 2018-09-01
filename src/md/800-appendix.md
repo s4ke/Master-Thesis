@@ -4,7 +4,7 @@ Following are additional chapters with supplementary information for this thesis
 explains how specific Profunctors fit the Arrow type class. Chapter \ref{app:omitted}
 covers omitted function definitions. Then, Chapter \ref{syntacticSugar} explains syntactic
 sugar for PArrows. We give additional definitions for the experimental Cloud Haskell
-backend in Chapter \ref{sec:appendixCloudHaskell} and end with the plots
+backend in Chapter \ref{sec:appendixCloudHaskell} and finish with the plots
 for the shared memory backends and distributed memory backends in Chapters \ref{sec:benchmarkSharedPlots}
 and \ref{sec:benchmarkDistPlots}, respectively.
 
@@ -12,7 +12,7 @@ and \ref{sec:benchmarkDistPlots}, respectively.
 
 \label{app:profunctorArrows}
 
-In Figure \ref{fig:profunctorArrow} we show how specific Profunctors can it into the
+In Figure \ref{fig:profunctorArrow} we show how specific Profunctors can fit into the
 Arrow type class. This works because Arrows are strong Monads in the bicategory
 `Prof` of Profunctors as shown by @Asada:2010:ASM:1863597.1863607.
 In Standard GHC `(>>>)` has the type
@@ -169,7 +169,7 @@ namely `parstar` and `parand`. For basic Arrows, we have the `***` combinator
 computations at once. This can easily be translated into a parallel version
 `parstar` with the use of `parEval2`, but for this we require a backend which
 has an implementation that does not require any configuration
-(hence the `()` as the `conf` parameter:
+^[Hence the `()` as the `conf` parameter.]:
 
 ~~~~ {.haskell}
 (|***|) :: (ArrowChoice arr, ArrowParallel arr (Either a c) (Either b d) ())) =>

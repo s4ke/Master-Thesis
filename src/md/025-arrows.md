@@ -143,7 +143,7 @@ and combines them into a new Arrow `arr (Either a b) c` which pipes all
 One thing we can see from these utility Arrows is how easily we can define
 generic Arrow code that will work on any sufficient specific Arrow. This
 is exactly why we aim to allow for parallelisation of programs via Arrows.
-We want to empower such generic code to be easily parallelised so these generic
+We want to empower such generic code to be easily parallelised so that these generic
 types of APIs are better to use.
 
 #### Notes

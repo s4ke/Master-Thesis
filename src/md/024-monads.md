@@ -140,7 +140,7 @@ Here, `computeStateful` first pushes some values on top of a stack represented b
 `[Int]` (the actual state inside of the `State` Monad) and then `pop`s these values and `push`es their sum
 back on the stack. Finally, we `peek` the top of our stack. This is then the result of the computation.
 To make writing such code easier, Haskell has syntactic sugar: The `do` notation.
-With it we can write the above method `computeStateful` in a way that resembles
+With it, we can write the above method `computeStateful` in a way that resembles
 imperative-style code (but with side-effects clearly encapsulated) as:
 
 ~~~~ {.haskell}

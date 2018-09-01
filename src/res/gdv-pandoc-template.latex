@@ -227,17 +227,17 @@ Universität Bayreuth \\
 \pagestyle{plain}
 \begin{abstract}
 Arrows sind eine allgemeine funktionale Schnittstelle für die Berechnung und eine Alternative zu Monaden zum Design von APIs.
-Im Gegensatz zu auf Monaden basierender Parallelität untersuchen wir die Verwendung von Arrows zur Spezifizierung von Parallelität
-Konkret definieren wir eine Arrow-basierte Sprache und implementieren sie mit mehreren parallelen Haskells.
-Da jede parallele Berechnung ein Arrow ist, können solche parallelen Arrows (PArrows) leicht zusammengesetzt und transformiert werden.
-Um komplexere Kommunikationsschemata zwischen Berechnungsknoten in verteilten Systemen zu ermöglichen, verwenden wir das Konzept der Futures,
-um die direkte Kommunikation zu abstrahieren.
-Um den aktuellen Trends im Cloud Computing Rechnung zu tragen, untersuchen wir auch die Möglichkeit einer Cloud-basierten Implementierung dieser
-neu geschaffenen DSL.
+Im Gegensatz zu auf Monaden basierender Parallelität wird hier die Verwendung von Arrows zur Spezifizierung von Parallelität untersucht.
+Konkret wird eine Arrow-basierte Sprache definiert und mit mehreren parallelen Haskells implementiert.
+Da jede parallele Berechnung ein Arrow ist, können solche parallele Arrows (PArrows) leicht zusammengesetzt und transformiert werden.
+Damit komplexere Kommunikationsschemata zwischen Berechnungsknoten in verteilten Systemen einfacher handzuhaben sind, wird das Konzept der Futures verwendet,
+um direkte Kommunikation zu abstrahieren.
+Desweiteren wird, um den aktuellen Trends im Cloud Computing Rechnung zu tragen, die Möglichkeit einer Cloud-basierten Implementierung dieser
+neu geschaffenen DSL untersucht.
 Um zu zeigen, dass PArrows eine ähnliche Ausdruckskraft wie bestehende parallele Sprachen haben,
-implementieren wir mehrere algorithmische Skelette und vier Benchmarks.
-Die Benchmarks zeigen, dass unser Framework keinen nennenswerten Performance-Overhead verursacht.
-Wir kommen zu dem Schluss, dass Arrows ein beträchtliches Potenzial für das schreiben paralleler Programme und speziell auch solcher,
+werden mehrere algorithmische Skelette und vier Benchmarks implementiert.
+Die Benchmarks zeigen, dass PArrows keinen nennenswerten Performance-Overhead verursachen.
+Arrows haben ein beträchtliches Potenzial für das Schreiben paralleler Programme und speziell auch solcher,
 welche auf mehreren unterschiedlichen parallelen Sprachimplementierungen ausgeführt werden können sollen.
 \end{abstract}
 \cleardoublepage

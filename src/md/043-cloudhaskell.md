@@ -28,7 +28,7 @@ While users can already write concurrent applications with the help of Cloud Has
 using some of its libraries or even with the bare communication API, it seems like
 a good idea to enable writing parallel programs requiring less involvement from the user.
 This way, they can focus on parallel algorithms instead of manual communication.
-In the following Chapter we will therefore explore the possibility of a Cloud Haskell
+In the following chapter we will therefore explore the possibility of a Cloud Haskell
 based backend for the `ArrowParallel` interface given in this thesis while
 explaining all the necessary
 parts of Cloud Haskell's API. For easier testing and as this
@@ -571,7 +571,7 @@ the required serialization code, at least in our tests, we require a
 fixed type like for example for `Int`s:
 
 ~~~~{.haskell}
-`evalTaskInt :: (SendPort (SendPort (Thunk Int)), SendPort Int) -> Closure (Process ())`
+evalTaskInt :: (SendPort (SendPort (Thunk Int)), SendPort Int) -> Closure (Process ())
 ~~~~
 
 This function can be made remotable with `$(remotable [`'`evalTaskInt])`.

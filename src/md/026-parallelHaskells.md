@@ -6,10 +6,10 @@
 In Chapter \ref{sec:fuproHaskell}, we cited @Hughes:1990:WFP:119830.119832 saying that in functional
 programming, the order of evaluation is irrelevant. In parallel programs this is not the case,
 as at least some kind of structure of evaluation is required to have actual speedup in programs.
-In the following we will take a look at how parallelism can be achieved in Haskell programs in general.
-Now, one might think that we would want side effects
+In the following, we will take a look at how parallelism can be achieved in Haskell programs in general.
+Now, one might think that the idea of us wanting side effects
 (parallel evaluation is a side-effect)
-and require the need to think about order of evaluation in a pure functional program seems a bit odd.
+and having to think about order of evaluation in a pure functional program seems a bit odd.
 The fact of the matter is that functional programs
 only aim to avoid *unnecessary* side-effects and in the case of parallelism it
 is obvious that some amount of side-effects are required.
@@ -29,7 +29,7 @@ will later be adapted for usage in our Arrow-based parallel Haskell.
 ![Schematic illustration of `parEvalN`. A list of inputs is transformed by different functions in parallel.](src/img/parEvalN.pdf){#fig:parEvalN}
 
 There exist several different parallel Haskells already.
-As already stated in the Introduction
+As stated in the Introduction,
 this is the reason why we base our efforts on existing work which we wrap
 as backends behind a common interface so that we do not re-implement
 yet another parallel runtime. As described earlier, we here focus on
@@ -157,7 +157,7 @@ solutions exist [@Geimer2010], the parallel Haskell community mainly utilises
 the tools Threadscope [@Wheeler2009] and Eden TraceViewer
 ^[See \url{http://hackage.haskell.org/package/edentv} on Hackage for
 the last available version of Eden TraceViewer.] [@Berthold2007a].
-In the next Chapters we will present some \emph{trace visualisations},
+In the next chapters, we will present some \emph{trace visualisations},
 the post-mortem process diagrams of Eden processes and their activity.
 
 The trace visualisations are colour-coded.

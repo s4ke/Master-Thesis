@@ -38,7 +38,7 @@ Research on Eden includes low-level implementation
 [@JostThesis; @berthold_loidl_hammond_2016], skeleton composition
 [@dieterle_horstmeyer_loogen_berthold_2016], communication [@Dieterle2010],
 and generation of process networks [@Horstmeyer2013].
-The definitions of new Eden skeletons is a specific focus
+The definitions of new Eden skeletons are a specific focus
 [@doi:10.1142/S0129626403001380; @Eden:PARCO05; @Berthold2009-mr; @Berthold2009-fft; @dieterle2010skeleton; @delaEncina2011; @Dieterle2013; @janjic2013space].
 
 Other task parallel Haskells related to Eden, GpH, and the `Par`
@@ -67,7 +67,7 @@ The `farm` skeleton [@Hey1990185; @Eden:PPDP01; @Kuchen05] is a statically
 task-balanced parallel `map`. When tasks' durations cannot be foreseen,
 a dynamic load balancing (`workpool`) brings a lot of improvement
 [@Rudolph:1991:SLB:113379.113401; @doi:10.1142/S0129626403001380; @Hippold2006; @PADL08HMWS; Marlow2009].
-For special tasks `workpool` skeletons can be extended with dynamic task
+For special tasks, `workpool` skeletons can be extended with dynamic task
 creation [@WPEuropar06; @Dinan:2009:SWS:1654059.1654113; @brown2010ever].
 Efficient load-balancing schemes for `workpool`s are subject of research
 [@Blumofe:1999:SMC:324133.324234; @Acar:2000:DLW:341800.341801; @vanNieuwpoort:2001:ELB:568014.379563; @Chase:2005:DCW:1073970.1073974; @4625841; @Michael:2009:IWS:1594835.1504186].
@@ -87,7 +87,7 @@ software systems to run in parallel. @dieterle_horstmeyer_loogen_berthold_2016
 compare the composition of skeletons to stable process networks.
 
 We implement some of these algorithmic skeletons
-in Chapters \ref{sec:extending-interface} as well as \ref{sec:topology-skeletons}, namely
+in Chapters \ref{sec:extending-interface} and \ref{sec:topology-skeletons}, namely
 various parallel `map` variants as well as the topological skeletons `pipe`, `ring` and `torus`.
 
 ## Arrows
@@ -135,14 +135,14 @@ of a distributed system.
 
 This thesis is based on the paper \enquote{Arrows for Parallel Computation} [@PArrowsPaper]
 written by me, Martin Braun, together with Oleg Lobachev and Phil Trinder. The original idea for this paper
-came up during a Masters Research Project done under the supervision of Oleg Lobachev.
+came up during a Master's Research Project done under the supervision of Oleg Lobachev.
 
 While based on the ideas of the Master's research project,
 the work presented here is dramatically different. In this thesis, the results
 are a lot more sophisticated and detailed and only Chapters \ref{sec:parallelHaskells} -- \ref{sec:map-skeletons}
 are somewhat based on work done during the original project.
 
-Similarities to the paper however, are not
+Similarities to the paper, however, are not
 coincidental. Chapters \ref{sec:related-work}, \ref{sec:arrows} -- \ref{sec:further-development} as well as Chapter \ref{sec:benchmarks}
 were taken from the paper and embedded into the rest of the text. The introduction in Chapter
 \ref{sec:introduction} as well as the conclusion in \ref{sec:conclusion}

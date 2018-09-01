@@ -152,7 +152,7 @@ investigate parallel behaviour with hyper-threading.
 We compare the PArrow performance with direct implementations of the
 benchmarks in Eden, GpH and the `Par` Monad.
 We start with the definition of speedup (Chapter \ref{sec:defSpeedup})
-and mean overhead (Chapter \ref{defOverhead}) to evaluate
+and mean overhead (Chapter \ref{sec:defOverhead}) to evaluate
 PArrows-enabled and standard benchmark implementations. We continue by comparing
 speedups and overheads for the shared memory implementations in Chapter \ref{sec:benchmarksSharedMem}
 and then study
