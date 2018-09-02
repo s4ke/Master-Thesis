@@ -163,8 +163,10 @@ matAdd = chunksOf (dimX x) $ zipWith (+) (concat x) (concat y)
 \label{syntacticSugar}
 
 Next, we also give the definitions for some syntactic sugar for PArrows,
-namely `parstar` and `parand`. For basic Arrows, we have the `***` combinator
-(Figure \ref{fig:syntacticSugarArrows}) which allows us to combine two Arrows
+namely `parstar` and `parand`.
+
+For basic Arrows, we have the `***` combinator.
+(Figure \ref{fig:syntacticSugarArrows}) It allows us to combine two Arrows
 `arr a b` and `arr c d` into an Arrow `arr (a, c) (b, d)` which does both
 computations at once. This can easily be translated into a parallel version
 `parstar` with the use of `parEval2`, but for this we require a backend which

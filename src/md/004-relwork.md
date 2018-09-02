@@ -144,7 +144,7 @@ are somewhat based on work done during the original project.
 
 Similarities to the paper, however, are not
 coincidental. Chapters \ref{sec:related-work}, \ref{sec:arrows} -- \ref{sec:further-development} as well as Chapter \ref{sec:benchmarks}
-were taken from the paper and embedded into the rest of the text. The introduction in Chapter
+were taken from the paper and embedded into the rest of the text. The Introduction in Chapter
 \ref{sec:introduction} as well as the conclusion in \ref{sec:conclusion}
 are also inspired by the paper. But as I, Martin Braun, am the primary author of the paper,
 this still means that the following work was done independently as required by studying regulations.

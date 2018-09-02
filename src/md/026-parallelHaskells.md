@@ -23,7 +23,7 @@ can however only be achieved if the programmer actively chooses to use these kin
 In its purest form, parallel computation (on functions) can be looked at
 as the execution of some functions `a -> b` in parallel or 
 `parEvalN :: [a -> b] -> [a] -> [b]`, as also Figure \ref{fig:parEvalN} 
-symbolically shows. In this Chapter, we will implement this non-Arrow version which
+symbolically shows. In this chapter, we will implement this non-Arrow version which
 will later be adapted for usage in our Arrow-based parallel Haskell.
 
 ![Schematic illustration of `parEvalN`. A list of inputs is transformed by different functions in parallel.](src/img/parEvalN.pdf){#fig:parEvalN}

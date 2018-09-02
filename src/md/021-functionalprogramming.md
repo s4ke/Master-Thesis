@@ -712,7 +712,7 @@ is only forced until the outermost constructor in contrast to normal-form (NF) w
 for full evaluation. This means that if we were
 to evaluate some calculation `f (g (h (i x)))` embedded in some lazy tuple `(y, z)` to WHNF,
 `y` and `z` would not be touched as the evaluation stops at the tuple constructor (for more
-about constructors see the chapter on custom types). All the computations
+about constructors see the section on custom types). All the computations
 that lead to this constructor however, are forced to be evaluated. Therefore, if we
 had wanted
 to make the insides of a tuple strict, we would have to write something along the lines of

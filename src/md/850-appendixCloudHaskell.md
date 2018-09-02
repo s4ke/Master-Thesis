@@ -3,8 +3,8 @@
 \label{sec:appendixCloudHaskell}
 
 Finally, we include the Template Haskell based code
-generator to make the experimental Cloud Haskell backend easier
-to use and a version of the main Sudoku benchmark program as an example.
+generator that makes the experimental Cloud Haskell backend easier
+to use. As an example, we also give a version of the main Sudoku benchmark program.
 
 The code generator can be found in Figure \ref{fig:evalGen}. Here, if we enclose
 this in a Haskell module, the functions `mkEvalTasks` (to generate the `evalTask`s for the
@@ -68,7 +68,7 @@ mkEvaluatables names = do
   	(mapM (uncurry evaluatableInstance) (zipWith (,) names fnNames)) >>= (return . concat)
 ~~~~
 
-The Template Haskell version of the main Sudoku benchmark program can be found in
+A version of the main Sudoku benchmark program that uses this can be found in
 Figure \ref{fig:sudokuCloudHaskell}^[For the full code, see the GitHub repository at
 \url{https://github.com/s4ke/Parrows/blob/e1ab76018448d9d4ca3ed48ef1f0c5be26ae34ab/CloudHaskell/testing/Test.hs}.].
 We have to write type aliases for `Maybe Grid` (`MaybeGrid`)
@@ -80,7 +80,7 @@ requests.
 In order to launch this program and have speedup as well, we have
 to start slave nodes for each cpu core with commands like
 \enquote{<executable> slave 127.0.0.1 8000} where the last parameter determines the
-port the slave will listen to and wait for requests on. Similarly a single master node can be started with
+port the slave will listen to and wait for requests on. Similarly, a single master node can be started with
 \enquote{<executable> master 127.0.0.1 7999} where, once again, the last parameter
 determines the communication port.
 

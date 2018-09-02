@@ -749,7 +749,7 @@ runComputation x = unsafePerformIO $ do
 
 \label{sec:CloudHaskellArrowParallel}
 
-Finally, we describe in this Chapter how to implement the PArrows
+Finally, we describe in this chapter how to implement the PArrows
 API with Cloud Haskell and evaluate our results.
 
 We start by
