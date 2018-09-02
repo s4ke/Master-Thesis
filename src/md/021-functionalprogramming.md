@@ -1,4 +1,4 @@
-## Functional Programming
+## Functional programming
 
 \label{sec:fuproHaskell}
 
@@ -10,7 +10,7 @@ Then, we give a short introduction to functional programming with Haskell
 (Chapter \ref{sec:monads}) which some parallel Haskells use. Finally, we
 introduce Arrows and explain their type class in Haskell (Chapter \ref{sec:arrows}).
 
-### Why Functional Programming?
+### Why functional programming matters
 
 \label{sec:whyfupro}
 
@@ -74,7 +74,7 @@ are by nature a result of the desire to generalize modularity. We will show how 
 enable programs based on this concept to benefit from parallelism by using
 our combinator `parEvalN`.
 
-### A Short introduction to Haskell
+### A short introduction to Haskell
 
 \label{sec:shortIntroHaskell}
 

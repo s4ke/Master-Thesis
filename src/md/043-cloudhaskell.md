@@ -141,7 +141,7 @@ defaultInitConf :: LocalNode -> IO Conf
 defaultInitConf = initialConf defaultBufSize
 ~~~~
 
-### Starting Slave nodes
+### Starting slave nodes
 
 \label{sec:cloudhaskellslaves}
 
@@ -168,7 +168,7 @@ is shutdown manually from the master node. The `RemoteTable` contains all
 serialization information about static values required by Cloud Haskell. We will 
 later see how we can automatically generate such a table.
 
-### Starting Master nodes
+### Starting master nodes
 
 \label{sec:cloudhaskellmasters}
 
@@ -316,7 +316,7 @@ but not in our use case as we want to be able
 to evaluate arbitrary functions/Arrows on remote nodes.
 In Chapter \ref{sec:parEvalCloudHaskell}, we will see how to resolve this problem.
 
-## Parallel Evaluation with Cloud Haskell
+## Parallel evaluation with Cloud Haskell
 
 \label{sec:parEvalCloudHaskell}
 
@@ -351,7 +351,7 @@ we use to send unevaluated data between nodes.
 
 \label{sec:cloudhaskellCommBetweenNodes}
 
-#### Sending and Receiving data
+#### Sending and receiving data
 
 \label{sec:sendRecCloud}
 
@@ -626,7 +626,7 @@ evalTaskBase (inputPipe, output) = do
   sendChan output (seq (rnf a) a)
 ~~~~
 
-### Parallel Evaluation Scheme
+### Parallel evaluation scheme
 
 \label{sec:cloudhaskellParallelEvaluation}
 

@@ -1,4 +1,4 @@
-## Short introduction to parallel Haskells
+## Introduction to *parallel* Haskells
 
 \label{sec:parallelHaskells}
 \label{sec:parEvalNIntro}

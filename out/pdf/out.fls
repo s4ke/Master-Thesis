@@ -342,6 +342,8 @@ INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvr8t.vf
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr8r.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchb8t.vf
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchb8r.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchri8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchri8r.tfm
 OUTPUT out/pdf/out.toc
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr8t.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvr8t.vf
@@ -384,8 +386,6 @@ INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchri8t.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchbi8t.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchbi8t.vf
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchbi8r.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchri8t.vf
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchri8r.tfm
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/listings/lstmisc.sty
@@ -557,6 +557,7 @@ OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvri.tfm
 INPUT src/img/parEvalN.pdf
 INPUT ./src/img/parEvalN.pdf
 INPUT ./src/img/parEvalN.pdf
@@ -567,6 +568,7 @@ INPUT src/img/parEvalNMulticoreImg.pdf
 INPUT ./src/img/parEvalNMulticoreImg.pdf
 INPUT ./src/img/parEvalNMulticoreImg.pdf
 INPUT ./src/img/parEvalNMulticoreImg.pdf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvri.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr12.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi12.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm
@@ -936,10 +938,10 @@ INPUT out/pdf/out.run.xml
 OUTPUT out/pdf/out.run.xml
 INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc
 INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc
+INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/tex-gyre/q-ec.enc
 INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc
 INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc
-INPUT C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/tex-gyre/q-ec.enc
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchb8a.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchb8a.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchbi8a.pfb
@@ -1000,5 +1002,7 @@ INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/tex-gyre/qhvb.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/tex-gyre/qhvb.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/tex-gyre/qhvr.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/tex-gyre/qhvr.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/tex-gyre/qhvri.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/tex-gyre/qhvri.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb
