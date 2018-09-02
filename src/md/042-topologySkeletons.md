@@ -29,7 +29,7 @@ shared memory setting.
 The idea of the fix is to provide a `ArrowLoopParallel` type class that has two
 functions -- `loopParEvalN` and `postLoopParEvalN`. The first is to be
 used inside an `loop` construct while the latter will be used right outside of
-the `loop`. This way we can delegate to the actual `parEvalN` in the spot where
+the `loop`. This way, we can delegate to the actual `parEvalN` in the spot where
 the backend supports it.
 
 ~~~~ {.haskell}
@@ -204,7 +204,7 @@ Next, we zip the resulting `([i], [fut r])` to `[(i, fut r)]` with
 `arr (uncurry zip)`. We then feed this into our parallel Arrow
 `arr [(i, fut r)] [(o, fut r)]` obtained by transforming our input Arrow
 `f :: arr (i, r) (o, r)` into `arr (i, fut r) (o, fut r)` before `repeat`ing and
-lifting it with `loopParEvalN`. Finally we unzip the output list
+lifting it with `loopParEvalN`. Finally, we unzip the output list
 `[(o, fut r)]` into `([o], [fut r])`.
 
 Plugging this Arrow `arr ([i], [fut r]) ([o], fut r)` into the definition of
@@ -243,7 +243,7 @@ ring conf f =
 If we take the concept of a `ring` from Chapter \ref{sec:ring} one dimension
 further, we obtain a `torus` skeleton (Figure \ref{fig:ringTorusImg}, \ref{fig:torus}).
 In a `torus`, every node sends and receives data from horizontal and vertical neighbours
-in each communication round. With our Parallel Arrows we re-implement this
+in each communication round. With our Parallel Arrows, we re-implement this
 combinator
 from Eden^[Available on Hackage: \url{https://hackage.haskell.org/package/edenskel-2.1.0.0/docs/Control-Parallel-Eden-Topology.html}.] --
 yet again with the help of the `ArrowLoop` type class.

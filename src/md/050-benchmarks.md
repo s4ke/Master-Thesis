@@ -3,7 +3,7 @@
 \label{sec:benchmarks}
 
 The preceding chapters have shown what PArrows are and how expressive they are.
-In this Chapter we will now evaluate the performance overhead of our
+In this chapter, we will now evaluate the performance overhead of our
 compositional abstraction
 in comparison to GpH and the `Par` Monad on shared memory architectures and Eden on
 a distributed memory cluster.^[We do not include the Cloud Haskell backend here,
@@ -76,12 +76,12 @@ We measure four benchmarks from different
 sources. Most of them are parallel mathematical computations, initially
 implemented in Eden. Table @tbl:benches summarises.
 
-| Name               |     Area    |          Type         |    Origin   | Source                      |
-|--------------------|:-----------:|:---------------------:|:-----------:|-----------------------------|
-| Rabin--Miller test | Mathematics | `parMap` + `reduce`   | Eden        | @Lobachev2012               |
-| Jacobi sum test    | Mathematics | `workpool` + `reduce` | Eden        | @Lobachev2012               |
-| Gentleman          | Mathematics | `torus`               | Eden        | @Eden:SkeletonBookChapter02 |
-| Sudoku             | Puzzle      | `parMap`              | `Par` Monad | @par-monad[^tblnote1]       |
+| Name               |     Area    |          Type         |    Origin   | Source                        |
+|--------------------|:-----------:|:---------------------:|:-----------:|:-----------------------------:|
+| Rabin--Miller test | Mathematics | `parMap` + `reduce`   | Eden        | @Lobachev2012                 |
+| Jacobi sum test    | Mathematics | `workpool` + `reduce` | Eden        | @Lobachev2012                 |
+| Gentleman          | Mathematics | `torus`               | Eden        | @Eden:SkeletonBookChapter02   |
+| Sudoku             | Puzzle      | `parMap`              | `Par` Monad | @par-monad[^tblnote1]         |
 
 Table: The benchmarks we use in this thesis. {#tbl:benches}
 
@@ -99,14 +99,14 @@ of Jacobi sum test have very different durations. @lobachev-phd
 discusses some optimisations of parallel APRCL. Generic parallel
 implementations of Rabin--Miller test and APRCL were presented in @Lobachev2012.
 
-\enquote{Gentleman} is a standard Eden test program, developed
+Gentleman is a standard Eden test program, developed
 for their `torus` skeleton. It implements a Gentleman's algorithm for parallel matrix
 multiplication [@Gentleman1978]. We ported an Eden-based version
 [@Eden:SkeletonBookChapter02] to PArrows and completed the necessary implementations
 for all sequential parts that were left out.
 
 A parallel Sudoku solver was used by @par-monad to compare `Par` Monad
-to GpH, we ported it to PArrows.
+to GpH. We ported it to our PArrows DSL.
 
 ### Which parallel Haskells run where
 

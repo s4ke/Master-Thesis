@@ -217,7 +217,7 @@ do not discuss here for the sake of brevity. We can, however, only have one
 instance of `ArrowParallel arr a b ()` present at a time,
 which should not be a problem, anyways.
 
-Up until now we discussed Arrow operations more in detail,
+Up until now we have discussed Arrow operations more in detail,
 but in the following sections we focus more on the data-flow
 between the Arrows, now that we have seen that Arrows are capable
 of expressing parallelism. We nevertheless do explain new concepts in greater detail

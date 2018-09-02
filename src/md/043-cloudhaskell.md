@@ -20,7 +20,7 @@ messaging, and several other implementations are available including a
 transport for Windows Azure.[...]
     
 It is basically a set of APIs and libraries for communication between networks
-of nodes in a cloud environment. With it programmers can
+of nodes in a cloud environment. With it, programmers can
 write fully-featured Haskell based cloud solutions targeting a wide range
 of architectures.
 
@@ -28,7 +28,7 @@ While users can already write concurrent applications with the help of Cloud Has
 using some of its libraries or even with the bare communication API, it seems like
 a good idea to enable writing parallel programs requiring less involvement from the user.
 This way, they can focus on parallel algorithms instead of manual communication.
-In the following chapter we will therefore explore the possibility of a Cloud Haskell
+In the following chapter, we will therefore explore the possibility of a Cloud Haskell
 based backend for the `ArrowParallel` interface given in this thesis while
 explaining all the necessary
 parts of Cloud Haskell's API. For easier testing and as this
@@ -106,11 +106,11 @@ all Cloud Haskell internals for the master node and the buffer size for serializ
 discuss serialization system itself separately), respectively.
 
 Note that as we will later use the `State` type as the `conf` parameter in the `ArrowParallel` instance,
-we use the type synonym `type Conf = State` in the following code Chapters.
+we use the type synonym `type Conf = State` in the following code chapters.
 Furthermore, an initial config can be created with the function `initialConf :: Int -> LocalNode -> IO Conf`
 where the resulting config contains a `serializeBufferSize` as specified by the first
 parameter and the `LocalNode` specified by the second parameter. Additionally, 
-the list of workers `workers :: MVar [NodeId]` is initialized with an empty list,
+the list of workers, `workers :: MVar [NodeId]`, is initialized with an empty list,
 `shutdown :: MVar Bool` is set to `False` and `started :: MVar ()` is created
 as an empty `MVar` so that it can be populated with the signalling `()` when
 the startup is finished. The complete code for `initialConf` is the following:
@@ -175,7 +175,7 @@ later see how we can automatically generate such a table.
 For master nodes, the implementation is a bit more involved. The actual
 `startMaster :: Backend -> Process -> IO ()` supplied by SimpleLocalNet
 is meant to start a computation represented by a `Process` Monad and then return.
-In our use-case we want to be able to spawn functions outside of the `Process` Monad,
+In our use-case, we want to be able to spawn functions outside of the `Process` Monad,
 though. We therefore use the following `Process`
 passed into this startup function only for slave-node
 discovery and management:
@@ -289,7 +289,7 @@ main = do
 In order to launch a program using this harness, we have
 to start slave nodes for each cpu core with commands like
 \enquote{<executable> slave 127.0.0.1 8000} where the last parameter determines the
-port the slave will listen to and wait for requests on. Similarly a single master node can be started with
+port the slave will listen to and wait for requests on. Similarly, a single master node can be started with
 \enquote{<executable> master 127.0.0.1 7999} where, once again, the last parameter
 determines the communication port.
 
@@ -314,7 +314,7 @@ okay for basic applications where the user usually knows which
 functions/values need to be serialized statically at compile time,
 but not in our use case as we want to be able
 to evaluate arbitrary functions/Arrows on remote nodes.
-In Chapter \ref{sec:parEvalCloudHaskell} we will see how to resolve this problem.
+In Chapter \ref{sec:parEvalCloudHaskell}, we will see how to resolve this problem.
 
 ## Parallel Evaluation with Cloud Haskell
 
@@ -508,13 +508,13 @@ where `spawn` is of type
 spawn :: NodeId -> Closure (Process ()) -> Process ProcessId
 ~~~~
 
-Then, like the master from Chapter \ref{sec:sendRecCloud},
+Next, like the master from Chapter \ref{sec:sendRecCloud},
 `forceSingle` waits for the input `SendPort a` of the evaluation task with `receiveChan inputSenderReceiver`.
-It then sends the not yet evaluated, serialized version of `a`, `serialized <- liftIO $ trySerialize a`
+After that, it sends the not yet evaluated, serialized version of `a`, `serialized <- liftIO $ trySerialize a`
 over that `SendPort` with `sendChan inputSender $ toThunk serialized` to the evaluating
-slave node. Then, it awaits the
+slave node. Finally, it awaits the
 result of the evaluation with `forcedA <- receiveChan outputReceiver`
-to finally put it inside the passed `MVar a` with `liftIO $ putMVar out forcedA`.
+and puts it inside the passed `MVar a` with `liftIO $ putMVar out forcedA`.
 
 ~~~~{.haskell}
 forceSingle :: (Evaluatable a) => NodeId -> MVar a -> a -> Process ()
@@ -596,12 +596,12 @@ $(mkEvaluatables [''Int])
 
 This is possible because `evalTaskInt`, just like any other function on types that
 have instances for `Binary a`, `Typeable a`, and `NFData a`, can be just delegated to
-`evalTaskBase`, which behaves as follows: It starty by creating the channel, that
-it wants to receive its input from, with `(sendMaster, rec) <- newChan`. Then it
+`evalTaskBase`, which behaves as follows: It starts by creating the channel, that
+it wants to receive its input from, with `(sendMaster, rec) <- newChan`. Next, it
 sends the `SendPort (Thunk a)` of this channel back to the master process via 
 `sendChan inputPipe sendMaster` to then receive its actual input on the
 `ReceivePort (Thunk a)` end with
-`thunkA <- receiveChan rec`. It then deserializes this thunk with
+`thunkA <- receiveChan rec`. It finally deserializes this thunk with
 `a <- liftIO $ deserialize $ fromThunk thunkA` and sends
 the fully evaluated result back with `sendChan output (seq (rnf a) a)`.
 Its complete definition is
@@ -649,7 +649,7 @@ in order to get a result from `result :: IO a`.
 Next is the definition of
 `evalSingle :: Evaluatable => Conf -> NodeId -> a -> IO (Computation a)`.
 Its resulting `IO` action starts by creating an empty `MVar a` with
-`mvar <- newEmptyMVar`. Then it creates an `IO` action that forks
+`mvar <- newEmptyMVar`. Then, it creates an `IO` action that forks
 away the evaluation process of `forceSingle` 
 on the single passed value `a` by means of
 `forkProcess :: LocalNode -> Process () -> IO ProcessId`
@@ -678,7 +678,7 @@ With this we can easily define a function
 `evalParallel :: Evaluatable a => Conf -> [a] -> IO (Computation [a])`
 that builds an `IO` action containing a parallel `Computation [a]`
 from an input list `[a]`. This `IO` action starts by retrieving the current list of
-workers with `workers <- readMVar $ workers conf`. It then continues
+workers with `workers <- readMVar $ workers conf`. It continues
 by shuffling this list of workers with `shuffledWorkers <- randomShuffle workers`
 ^[`randomShuffle :: [a] -> IO [a]` is from \url{https://wiki.haskell.org/Random_shuffle}.]
 to ensure at least some level of equal work distribution between multiple calls
@@ -719,10 +719,10 @@ Now, in order to start the actual computation from a blueprint in `Computation a
 and get the result back as a pure value `a`, we have to use the function
 `runComputation :: IO (Computation a) -> a` defined as follows:
 
-Internally it uses an `IO a` action that 
+Internally, it uses an `IO a` action that 
 starts by unwrapping `Computation a` from the input `IO (Computation a)`
-with `comp <- x` to then launch the actual evaluation with `computation comp`.
-The `IO` action then returns the result with `result comp`. Now,
+with `comp <- x` to in order to launch the actual evaluation with `computation comp`.
+The `IO` action concludes by returning the result with `result comp`. Now,
 in order to turn the `IO a` action into `a`, we have to use
 `unsafePerformIO :: IO a -> a` which allows us to unwrap the pure values
 \enquote{contained} in `IO` actions.
