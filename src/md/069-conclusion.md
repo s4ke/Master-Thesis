@@ -2,19 +2,57 @@
 
 \label{sec:conclusion}
 
+## Contributions
+
+In this thesis, we proposed an Arrow-based encoding for parallelism based on 
+a new Arrow combinator `parEvalN :: [arr a b] -> arr [a] [b]`.
+A parallel Arrow is still an Arrow, hence the resulting parallel
+Arrow can still be used in the same way as a potential sequential version.
+We evaluated the expressive power of such a formalism
+in the context of parallel programming.
+
+One big advantage of this specific approach is that we do not
+have to introduce any new types, facilitating composability
+(Chapter \ref{sec:parallel-arrows}).
+These PArrow programs can readily exploit multiple parallel
+language implementations. We demonstrated the use of GpH,
+a `Par` Monad, and Eden. We did not re-implement all the parallel internals,
+as this functionality is hosted in the `ArrowParallel` type class,
+which abstracts all parallel implementation logic.
+The implementations can easily be swapped, so we are not bound to any specific one.
+
+Next, we extended the PArrows formalism even further
+(Chapter \ref{sec:further-development}). We used
+`Future`s to enable direct
+communication of data between nodes in a distributed memory setting
+similar to Eden's Remote Data [@Dieterle2010]. 
+Direct communication is useful in a distributed memory setting because
+it allows for inter-node communication without blocking the master-node
+(Chapter \ref{sec:futures}).
+Subsequently, we demonstrated the expressiveness of PArrows by using them to define
+common algorithmic skeletons (Chapters \ref{sec:skeletons}, \ref{sec:topology-skeletons}),
+and by using these skeletons to implement four benchmarks
+(Chapter \ref{sec:benchmarks}).
+
+We also developed an experimental Cloud Haskell backend (Chapter
+\ref{sec:cloudHaskellExperiment}) as a possible PArrows backend with support
+for the recent trends in cloud computing. This in an early proof of concept stage
+at the moment.
+
+Finally, we practically demonstrated that Arrow parallelism has a low performance
+overhead compared with existing approaches, with only some negligible performance hits
+(Chapter \ref{sec:benchmarks}).
+
 ## Evaluation of results
 
-We will now discuss whether we have achieved the goals 
-for our Arrow based parallel Haskells that we have set ourselves in the introduction
-in Chapter \ref{sec:introduction}. We there described that we wanted
+In the Introduction, we have set ourselves goals for our DSL. We wanted
 
 - a DSL that allows us to parallelise arbitrary Arrow types
 - to tame the zoo of parallel Haskells.
 - low performance penalty
 - generality by being able to switch implementations at will
 
-We will now discuss whether we have met these requirements in the results presented by
-this thesis. 
+We will now go into detail on whether we have met these requirements.
 
 #### Parallelizing arbitrary Arrow Types
 
@@ -44,7 +82,7 @@ of `ArrowParallel` for every type. As noted in the same Chapter however, this
 seems to be no real issue as a possible general implementation is possible. This
 has to be evaluated with more involved tests in the future, though.
 
-Summarizing we can say that we succeeded in our goal to provide support for parallelizing
+Summarizing we can say that we mostly succeeded in our goal to provide support for parallelizing
 arbitrary Arrows as these two restrictions are no big issues at all as we have explained here. 
 
 #### Taming the zoo of parallel Haskells
@@ -81,11 +119,22 @@ is changing the import statement.
 Implementation specifics such as different config types are well hidden
 away from the user with the help of default configuration instances, but
 can be accessed if required. The only thing that is not covered
-by our implementations is the need for specific transport logic for
+by our interface is the need for specific transport logic for
 distributed backends for non standard
-data types (like Eden or in the experimental Cloud Haskell backend). These
+data types (like Eden or in the experimental Cloud Haskell backend).
+However, these
 are easily implemented with default instances (`Trans` in Eden) or
 Template Haskell (Cloud Haskell).
+
+The only problem we currently have in terms of PArrows' generality is that the
+implementations do not behave the same when it comes to the exact behaviour 
+of `parEvalN`. The GpH, `Par` Monad and the experimental Cloud Haskell backend's
+implementations of `parEvalN` do not work as required for at least the topological
+skeletons we showed in this thesis.
+Even though we provided a work-around for the sake of compatibility 
+with the `ArrowLoopParallel` type class, this can only be seen as temporary.
+This problem has to be investigated further and fixed by standardizing
+the way `parEvalN` behaves.
 
 #### Summary
 
@@ -94,59 +143,6 @@ Introduction of this thesis. PArrows is a DSL
 that allows us to parallelize arbitrary Arrow types that allows us
 to tame the zoo of parallel Haskells while having a low performance penalty
 and is general by allowing to switch implementations at will.
-
-By proving these properties,
-we have shown that for a generic and extensible
-parallel Haskell we do not have to restrict ourselves to a monadic interface.
-
-We believe that 
-Arrows are a better fit to parallelise pure code than a monadic solution as
-regular functions are already Arrows and can be used with our DSL in a more natural
-way while retaining all the composability. The benefit of being able to parallelize
-arbitrary Arrows that have the proper functionality (`ArrowChoice`/`ArrowLoop`)
-in a similar manner is also obvious.
-Additionally, the DSL still allows for a direct parallelisation of
-monadic code via the Kleisli type.
-
-## Contributions
-
-In this thesis, we proposed an Arrow-based encoding for parallelism based on 
-a new Arrow combinator `parEvalN :: [arr a b] -> arr [a] [b]`.
-A parallel Arrow is still an Arrow, hence the resulting parallel
-Arrow can still be used in the same way as a potential sequential version.
-We evaluated the expressive power of such a formalism
-in the context of parallel programming.
-
-One big advantage of this specific approach is that we do not
-have to introduce any new types, facilitating composability
-(Chapter \ref{sec:parallel-arrows}).
-These PArrow programs can readily exploit multiple parallel
-language implementations. We demonstrated the use of GpH,
-a `Par` Monad, and Eden. We did not re-implement all the parallel internals,
-as this functionality is hosted in the `ArrowParallel` type class,
-which abstracts all parallel implementation logic.
-The implementations can easily be swapped, so we are not bound to any specific one.
-
-Next, we extended the PArrows formalism with `Future`s to enable direct
-communication of data between nodes in a distributed memory setting
-similar to Eden's Remote Data [@Dieterle2010]. 
-Direct communication is useful in a distributed memory setting because
-it allows for inter-node communication without blocking the master-node
-(Chapter \ref{sec:futures}).
-
-Subsequently, we demonstrated the expressiveness of PArrows by using them to define
-common algorithmic skeletons (Chapters \ref{sec:skeletons}, \ref{sec:topology-skeletons}),
-and by using these skeletons to implement four benchmarks
-(Chapter \ref{sec:benchmarks}).
-
-We also developed an experimental Cloud Haskell backend in Chapter
-\ref{sec:cloudHaskellExperiment} as a possible PArrows backend with support
-for the recent trends in cloud computing. This in an early proof of concept stage
-at the moment.
-
-Finally, we practically demonstrated that Arrow parallelism has a low performance
-overhead compared with existing approaches, with only some negligible performance hits
-(Chapter \ref{sec:benchmarks}).
 
 ## Conclusion
 
@@ -176,7 +172,7 @@ Programmers could simply change the backend and
 continue their work in other areas that matter.
 
 Even for programmers that do not care for 
-the portability between APIs in their programs our DSL
+the portability between APIs in their programs the PArrows DSL
 can be of benefit because of the generality of our approach.
 Because we use Arrows to build our DSL, we achieve a common ways of parallelising
 computations whether they are simple (`->`) or monadic
@@ -188,17 +184,24 @@ computations, but also a general way to parallelise *computations* in general.
 
 \label{sec:future-work}
 
-Our PArrows DSL can be expanded to other task parallel Haskells, and a
-specific target is HdpH [@Maier:2014:HDS:2775050.2633363].
-Further Future-aware versions of Arrow combinators can be defined.
+Our PArrows DSL can be expanded to other task parallel Haskells as we have seen in
+the Cloud Haskell experiment. It is a primary focus of further development as it will
+also help investigating the biggest problem of our DSL -- the difference in behaviour
+of `parEvalN` across the backends. In Chapter \ref{sec:CloudHaskellArrowParallelLimitsMitigation}
+we already proposed a possible fix for the Cloud Haskell backend. Fixing this
+specifically for Cloud Haskell will help us understand the problem and enable
+us to amend the GpH and `Par` Monad backends as well.
+
+In other future work, we see a big potential in getting HdpH [@Maier:2014:HDS:2775050.2633363]
+to work with our interface.
+Furthermore, additional Future-aware versions of Arrow combinators can be defined.
 Existing combinators could also be improved, for example more specialised
 versions of `>>>` and `***` combinators are viable.
 
-In ongoing work we are expanding 
-both our skeleton library and the number of skeleton-based parallel programs that
+Another area of interest is the expansion expanding of 
+both our skeleton library as well as the number of skeleton-based parallel
+programs that
 use our DSL. It would also be interesting to see a hybrid of PArrows and
 Accelerate [@McDonell:2015:TRC:2887747.2804313].
-Ports of our approach to other languages such as Frege, Eta, or Java directly
-are at an early development stage.
 
-TODO: Alles was in der Evaluation of Results noch aufgekommen ist.
+

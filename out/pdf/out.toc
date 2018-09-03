@@ -176,19 +176,19 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {8}Outlook}{87}{chapter.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8.1}Evaluation of results}{87}{section*.102}
+\contentsline {section}{\numberline {8.1}Contributions}{87}{section*.102}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Parallelizing arbitrary Arrow Types}{87}{section*.102}
+\contentsline {section}{\numberline {8.2}Evaluation of results}{88}{section*.103}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Taming the zoo of parallel Haskells}{88}{section*.102}
+\contentsline {subsubsection}{Parallelizing arbitrary Arrow Types}{88}{section*.103}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Low Penalty interface}{88}{section*.102}
+\contentsline {subsubsection}{Taming the zoo of parallel Haskells}{89}{section*.103}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Generality -- Switching Implementations at will}{89}{section*.102}
+\contentsline {subsubsection}{Low Penalty interface}{89}{section*.103}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Summary}{89}{section*.102}
+\contentsline {subsubsection}{Generality -- Switching Implementations at will}{89}{section*.103}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8.2}Contributions}{89}{section*.103}
+\contentsline {subsubsection}{Summary}{90}{section*.103}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {8.3}Conclusion}{90}{section*.104}
 \defcounter {refsection}{0}\relax 
