@@ -192,24 +192,24 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {8.3}Conclusion}{90}{section*.104}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8.4}Future work}{91}{section*.105}
+\contentsline {subsubsection}{Future work}{91}{section*.104}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {9}Appendix}{93}{chapter.9}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9.1}Profunctor Arrows}{93}{section*.107}
+\contentsline {section}{\numberline {9.1}Profunctor Arrows}{93}{section*.106}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9.2}Additional function definitions}{93}{section*.109}
+\contentsline {section}{\numberline {9.2}Additional function definitions}{93}{section*.108}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9.3}Syntactic sugar}{96}{section*.115}
+\contentsline {section}{\numberline {9.3}Syntactic sugar}{96}{section*.114}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9.4}Experimental Cloud Haskell backend code}{96}{section*.116}
+\contentsline {section}{\numberline {9.4}Experimental Cloud Haskell backend code}{96}{section*.115}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9.5}Plots for the shared memory benchmarks}{100}{section*.119}
+\contentsline {section}{\numberline {9.5}Plots for the shared memory benchmarks}{100}{section*.118}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9.6}Plots for the distributed memory benchmarks}{108}{section*.134}
+\contentsline {section}{\numberline {9.6}Plots for the distributed memory benchmarks}{108}{section*.133}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{References}{113}{section*.142}
+\contentsline {chapter}{References}{113}{section*.141}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Figures}{125}{section*.144}
+\contentsline {chapter}{List of Figures}{125}{section*.143}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Tables}{129}{section*.144}
+\contentsline {chapter}{List of Tables}{129}{section*.143}

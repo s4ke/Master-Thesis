@@ -78,4 +78,4 @@ Chapter \ref{sec:further-development} develops the PArrows API further
 by introducing the concept of `Future`s and by giving the definitions of some topology
 skeletons. We describe an experimental Cloud Haskell based backend in Chapter \ref{sec:cloudHaskellExperiment}.
 Chapter \ref{sec:benchmarks} evaluates the performance of the PArrows DSL.
-Chapter \ref{sec:conclusion} gives and outlook and concludes.
+Chapter \ref{sec:outlook} gives and outlook and concludes.

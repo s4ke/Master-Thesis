@@ -325,6 +325,10 @@ INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchri8t.vf
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchri8r.tfm
 INPUT src/img/ai5logo.pdf
 INPUT ./src/img/ai5logo.pdf
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tex-gyre/t1qhv.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tex-gyre/t1qhv.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvb.tfm
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/t1phv.fd
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/t1phv.fd
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr8t.tfm
@@ -334,10 +338,6 @@ INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchb8t.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmri10.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmri8.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmri7.tfm
-INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tex-gyre/t1qhv.fd
-INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tex-gyre/t1qhv.fd
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvb.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvr8t.vf
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr8r.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchb8t.vf

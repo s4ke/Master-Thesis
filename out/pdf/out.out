@@ -65,15 +65,14 @@
 \BOOKMARK [1][]{section*.102}{8.1 Contributions}{chapter.8}% 65
 \BOOKMARK [1][]{section*.103}{8.2 Evaluation of results}{chapter.8}% 66
 \BOOKMARK [1][]{section*.104}{8.3 Conclusion}{chapter.8}% 67
-\BOOKMARK [1][]{section*.105}{8.4 Future work}{chapter.8}% 68
-\BOOKMARK [0][]{chapter.9}{9 Appendix}{}% 69
-\BOOKMARK [1][]{section*.107}{9.1 Profunctor Arrows}{chapter.9}% 70
-\BOOKMARK [1][]{section*.109}{9.2 Additional function definitions}{chapter.9}% 71
-\BOOKMARK [1][]{section*.115}{9.3 Syntactic sugar}{chapter.9}% 72
-\BOOKMARK [1][]{section*.116}{9.4 Experimental Cloud Haskell backend code}{chapter.9}% 73
-\BOOKMARK [1][]{section*.119}{9.5 Plots for the shared memory benchmarks}{chapter.9}% 74
-\BOOKMARK [1][]{section*.134}{9.6 Plots for the distributed memory benchmarks}{chapter.9}% 75
-\BOOKMARK [0][]{section*.142}{References}{}% 76
-\BOOKMARK [0][]{Declaration.0}{Declaration}{}% 77
-\BOOKMARK [0][]{section*.144}{List of Figures}{}% 78
-\BOOKMARK [0][]{section*.144}{List of Tables}{}% 79
+\BOOKMARK [0][]{chapter.9}{9 Appendix}{}% 68
+\BOOKMARK [1][]{section*.106}{9.1 Profunctor Arrows}{chapter.9}% 69
+\BOOKMARK [1][]{section*.108}{9.2 Additional function definitions}{chapter.9}% 70
+\BOOKMARK [1][]{section*.114}{9.3 Syntactic sugar}{chapter.9}% 71
+\BOOKMARK [1][]{section*.115}{9.4 Experimental Cloud Haskell backend code}{chapter.9}% 72
+\BOOKMARK [1][]{section*.118}{9.5 Plots for the shared memory benchmarks}{chapter.9}% 73
+\BOOKMARK [1][]{section*.133}{9.6 Plots for the distributed memory benchmarks}{chapter.9}% 74
+\BOOKMARK [0][]{section*.141}{References}{}% 75
+\BOOKMARK [0][]{Declaration.0}{Declaration}{}% 76
+\BOOKMARK [0][]{section*.143}{List of Figures}{}% 77
+\BOOKMARK [0][]{section*.143}{List of Tables}{}% 78

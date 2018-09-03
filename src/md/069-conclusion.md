@@ -1,8 +1,17 @@
 # Outlook
 
-\label{sec:conclusion}
+\label{sec:outlook}
+
+Finally, in this chapter we finish up this work on the PArrows DSL.
+In Chapter \ref{sec:outlookContribs} we point our contributions.
+In Chapter \ref{sec:outlookEval} we evaluate these on the basis of
+the goals we have set ourselves in the Introduction. Chapter 
+\ref{sec:outlookConclusion} concludes the work and also
+points out future work.
 
 ## Contributions
+
+\label{sec:outlookContribs}
 
 In this thesis, we proposed an Arrow-based encoding for parallelism based on 
 a new Arrow combinator `parEvalN :: [arr a b] -> arr [a] [b]`.
@@ -44,6 +53,8 @@ overhead compared with existing approaches, with only some negligible performanc
 (Chapter \ref{sec:benchmarks}).
 
 ## Evaluation of results
+
+\label{sec:outlookEval}
 
 In the Introduction, we have set ourselves goals for our DSL. We wanted
 
@@ -128,7 +139,7 @@ Template Haskell (Cloud Haskell).
 
 The only problem we currently have in terms of PArrows' generality is that the
 implementations do not behave the same when it comes to the exact behaviour 
-of `parEvalN`. The GpH, `Par` Monad and the experimental Cloud Haskell backend's
+of `parEvalN`. So, the GpH, `Par` Monad and the experimental Cloud Haskell
 implementations of `parEvalN` do not work as required for at least the topological
 skeletons we showed in this thesis.
 Even though we provided a work-around for the sake of compatibility 
@@ -143,8 +154,12 @@ Introduction of this thesis. PArrows is a DSL
 that allows us to parallelize arbitrary Arrow types that allows us
 to tame the zoo of parallel Haskells while having a low performance penalty
 and is general by allowing to switch implementations at will.
+As described, there are some problems, however, these will have to
+be amended in the future.
 
 ## Conclusion
+
+\label{sec:outlookConclusion}
 
 Arrows are a generic concept that allows for powerful composition
 combinators. To our knowledge we are first to represent
@@ -180,7 +195,7 @@ functions (`a -> m b`) -- or yet another different computation type.
 We can even say that PArrows is not only a general way to paralellise Arrow-based
 computations, but also a general way to parallelise *computations* in general.
 
-## Future work
+#### Future work
 
 \label{sec:future-work}
 

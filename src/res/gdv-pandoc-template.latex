@@ -242,6 +242,16 @@ welche auf mehreren unterschiedlichen parallelen Sprachimplementierungen ausgef√
 \end{abstract}
 \cleardoublepage
 
+\pagestyle{plain}
+\begin{center}
+\topskip0pt
+\vspace*{\fill}
+To my parents and Maren.
+\vspace*{\fill}
+\end{center}
+
+\cleardoublepage
+
 $if(toc)$
 {
 $if(colorlinks)$
