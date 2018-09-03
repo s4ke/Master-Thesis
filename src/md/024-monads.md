@@ -4,13 +4,13 @@
 
 Functional programmers try to avoid mutable state at all cost, but programs
 that do not only just compute some function usually involve some sort of it.
-So, doesn't this make Haskell useless being be a
+So, doesn't this make Haskell useless being a
 pure functional language without *any* mutable state?
 No. Functional Programs generally just avoid *unnecessary* mutable state at all cost.
 The fact of the matter is that in functional programming, we can represent
 mutable state as well, but we do so in a meaningful and controlled manner.
 
-While in most computations, we could represent state
+While we could we could represent state in most computations
 by passing it into every function that can possibly change it
 and returning it alongside of the actual returned value like
 

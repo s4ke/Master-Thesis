@@ -18,11 +18,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Visual depiction of syntactic sugar for Arrows.\relax }}{28}{figure.caption.17}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.6}{\ignorespaces The definition of \ensuremath {\mathit {evalN}}.\relax }}{28}{figure.caption.18}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces The definition of \ensuremath {\mathit {evalN}}.\relax }}{29}{figure.caption.18}
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {3.7}{\ignorespaces The definition of \ensuremath {\mathit {map}} over Arrows.\relax }}{29}{figure.caption.19}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Schematic illustration of \ensuremath {\mathit {parEvalN}}. A list of inputs is transformed by different functions in parallel.\relax }}{30}{figure.caption.21}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Schematic illustration of \ensuremath {\mathit {parEvalN}}. A list of inputs is transformed by different functions in parallel.\relax }}{31}{figure.caption.21}
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {3.9}{\ignorespaces \ensuremath {\mathit {parEvalN}} (GpH).\relax }}{32}{figure.caption.23}
 \defcounter {refsection}{0}\relax 

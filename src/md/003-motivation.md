@@ -24,7 +24,7 @@ the use of functional languages for parallel programming.
 
 In Haskell, which we focus on in this thesis, there already exist several
 ways to write parallel programs.
-One approach that has not been explored in depth yet, however, is to represent
+One approach that has not been explored in depth yet, is to represent
 parallel computations with Arrows. Nonetheless, they seem a natural fit since they can be
 thought of as a more general function arrow
 (`->`) and serve as a general interface to computations while not being as
@@ -39,7 +39,7 @@ singular parallel Arrow. We use this class as an interface to wrap around existi
 parallel Haskells instead of introducing yet another new low-level parallel
 backend.
 
-For this thesis we have chosen three of the most important parallel Haskells:
+As backends, we choose three of the most important parallel Haskells:
 GpH, or more specifically -- its Multicore SMP implementation, [@Trinder1996; @Trinder1998a] for its simplicity,
 the classic `Par` Monad [@par-monad; @Foltzer:2012:MPC:2398856.2364562]
 to represent a monadic DSL, and Eden [@eden; @Loogen2012] as a
@@ -50,13 +50,14 @@ while others introduce additional language constructs.
 
 While alternatives such as HdpH [@Maier:2014:HDS:2775050.2633363; @stewart_maier_trinder_2016, a Template Haskell-based parallel Haskell for distributed memory]
 and LVish [@Kuper:2014:TPE:2666356.2594312, a `Par` extension with focus on communication] exist,
-these were not chosen. The former does not differ from the original
+these are not chosen. The former does not differ from the original
 `Par` Monad with regard to how we would have used it in this thesis,
 while the latter (at least in its current form) does not suit a wrapping approach
 such as the one presented here due to its heavy reliance on Template Haskell^[a Haskell extension that allows to generate code.].
 We will nonetheless
 experiment with a potential Cloud Haskell [@Epstein:2011:THC:2096148.2034690] backend
-to someday enable the DSL to work in modern cloud based clusters.
+to explore the possibility of someday enabling the DSL to natively work in modern cloud
+based clusters.
 
 With the shallow--embedded DSL based on Arrows we define in this thesis
 we do however not only aim to define a novel parallel programming

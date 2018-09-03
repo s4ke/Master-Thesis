@@ -236,7 +236,7 @@ f = multiply
 ~~~~
 
 We can do so, because, in Haskell, functions can be treated just like any other type.
-For example, if we wanted to have another function `g` which applied `f` on two lists of
+For example, if we want to have another function `g` which applies `f` on two lists of
 integers, we can write
 
 ~~~~{.haskell
@@ -254,9 +254,9 @@ We will see more of this later in this chapter.
 Taking the same example function `g` from above,
 it does not make sense to be so restrictive in terms of which type to allow in
 such a function since all it does is to apply some function to zip two lists. Thankfully,
-in Haskell we can define functions in a completely generic way such that
-we can write the actual type of zipWith as `(a -> b -> c) -> [a] -> [b] -> [c]` as in meaning: 
-Zip a list containing some `a`s with a list containing a list of `b`s with a function
+in Haskell we can define functions in a completely generic way so that
+we can write the actual type of zipWith as `(a -> b -> c) -> [a] -> [b] -> [c]`.
+This means that we zip a list containing some `a`s with a list containing a list of `b`s with a function
 `a -> b -> c` to get a list of `c`s. Only because we use this function in the context of
 our function `g` it is specialized to the `Int` form.
 
@@ -302,22 +302,24 @@ mapping (`map :: (a -> b) -> [a] -> [b]`, i.e. convert a list of `a`s into a lis
 of `b`s with the given function `a -> b`) and folding
 (e.g. `foldLeft :: (b -> a -> b) -> b -> [a] -> b`, i.e. reduce the list with
 the given function `b -> a -> b` into a singular value given a starting value of type `b`).
-These are often used in some sort of composition like
+These are often used in some kind of composition like
 
 ~~~~{.haskell
     }
 euclidDistance :: [Int] -> [Int] -> Int
-euclidDistance = sqrt . foldLeft (+) 0 . map (toThePowerOfTwo) . zipWith (-)
+euclidDistance = 
+    sqrt . foldLeft (+) 0 . map (toThePowerOfTwo) . zipWith (-)
 ~~~~
 
-Note that while this could have easily been written shorter as something along
-the lines of `sqrt (foldLeft (+) 0 (zipWith (\a b -> toThePowerOfTwo (a - b))))` it is easy to see
-that the above declaration is easier to understand because of the simple steps the
+Note that while this could have easily been written with fewer higher-order
+ functions as something along
+the lines of `sqrt (foldLeft (+) 0 (zipWith (\a b -> toThePowerOfTwo (a - b))))`,
+it is easy to see that the above declaration is easier to understand because of the simple steps the
 computation takes. We first zip the list of inputs with element-wise subtraction and 
 then square this difference, sum these results up and finally take the square root.
 This is something we see a lot in Haskell code: Complex computations can be expressed
 with the help of higher-order functions instead of having to write it
-manually. This is not only much shorter,
+manually. This is not only often much shorter,
 but also easier to understand for other programmers if they have to read-up on the
 implementation for some reason.
 
@@ -366,7 +368,7 @@ identical.
 #### Conditional Computation
 
 Haskell has different styles of dealing with conditional evaluation. We will
-now show the most common variants to express conditional statements.
+now show the most common variants.
 
 The most obvious one in terms of functionality is the `if ... then ... else`
 construct:
@@ -397,8 +399,8 @@ myFunc x
     | otherwise = x * 4
 ~~~~
 
-Yet another technique for conditional computation is to use pattern matching. For conditional
-statements we can use it by writing definitions of the function for specific values, like
+Yet another technique is to use pattern matching.
+For conditional statements, we can use it by writing definitions of the function for specific values, like
 
 ~~~~{.haskell
     }
@@ -450,9 +452,9 @@ whereReuse a b
 
 It is important to note that `where` is just syntactic sugar, though,
 and can not used in expressions like
-`f (a * 2 where a = 3)`. This is in turn possible with `let` which allows us to write
+`f (a * 2 where a = 3)`. This is in turn possible with `let`, which allows us to write
 expressions like `f (let a = 3 in a * 2)` or `let a = 3 in f (a * 2)`.
-`let` can in contrast, however, not
+`let` can, however, not
 be used in conjunction with guards.
 
 #### Type safety
@@ -481,9 +483,9 @@ class Multiplicable a where
     multiply :: a -> a -> a
 ~~~~
 
-With this class in place, we can then introduce instances -- implementations of the
+With this definition, we can then introduce instances -- implementations of the
 contract -- for specific types. For example, the instance for `Int`,
-`Multiplicable Int`, can be defined as
+`Multiplicable Int`, can be written as
 
 ~~~~{.haskell
     }
@@ -506,7 +508,7 @@ Such a function `f` does work with the contract of
 Using this technique allows many definitions in Haskell to be
 reused even though it is a statically typed language. 
 
-In Haskell we can also write
+We can also write
 type classes with more than one type parameter. This allows for 
 encapsulation of contracts of arbitrary complexity. Furthermore, 
 type classes can themselves have constraints placed on what types are allowed.
@@ -521,7 +523,8 @@ class (SomeClass a, SomeOtherClass b) => MyClass a b c where
 #### Custom types
 
 As in any mature programming language, Haskell programmers obviously do not have
-to represent everything with only some base-set of types. Types are usually defined
+to represent everything with only some base-set of types and allows
+to introduce custom types. They are usually defined
 in three different ways. For starters, we can give types aliases with the `type` keyword like
 
 ~~~~{.haskell
@@ -533,11 +536,11 @@ type Tuple a b = (a, b)
 type IntTuple = (Int, Int)
 ~~~~
 
-which are treated just like original `(a, b)` or `Int, Int` would. This means
+which are treated just like the original `(a, b)` or `(Int, Int)` would. This means
 that we can use such types loosely and pass e.b. a `Tuple Int Int` into a
-function `f :: (Int, Int) -> ...`. The same also holds for type classes. While
-not actually defining new types, `type` declarations are therefore often used to 
-make function types easier to read.
+function `f :: (Int, Int) -> ...`. The same also holds true for instances of
+type classes. Because aliases do not count as new types,
+`type` declarations are often used to make function types easier to read.
 
 The second way to declare types, `data`, declares new-types as in actual new
 types in the type system:
@@ -555,7 +558,8 @@ data Direction =
     | NorthWest
 ~~~~
 
-The upper case words `North` - `NorthWest` in this example are called constructors.
+The words starting with uppercase letters, e.g. `North` - `NorthWest`,
+are called constructors.
 
 `data` types are not limited to enum-style types, though. They can also hold values, like
 the `Maybe a` type from Haskell. This type, which *may* hold a value `a` internally,
@@ -620,7 +624,7 @@ the elements of the result-list as they are consumed.
 This also means that, if `consumer` only requires the first few elements of the list to compute
 the result, `producer` does not produce unneeded results.
 
-Laziness even allows us to express infinite streams, which can be helpful in some cases.
+Laziness even allows us to express infinite streams, which can be helpful.
 As an example, an infinite list of ones is defined with the help of the list
 constructor `(:) :: a -> [a] -> [a]`, which prepends a value to a list, as
 
@@ -641,7 +645,7 @@ repeat :: a -> [a]
 repeat a = a : (repeat a)
 ~~~~
 
-Another good example where Laziness simplifies things is when branching is involved:
+Another good example where laziness simplifies things is when branching is involved:
 
 ~~~~{.haskell}
 calculateStuff :: [Int] -> Int
@@ -654,8 +658,8 @@ calculateStuff = if <someCondition>
 ~~~~
 
 Here, `list2` is not required in both branches of the `if` statement.
-Thanks to laziness it is therefore only evaluated upon a successful if-check.
-While such a behaviour is obviously possible in non-lazy languages
+Thanks to laziness, it is therefore only evaluated upon a successful if-check.
+While such a behaviour is obviously possible in non-lazy languages,
 the elegance of the above definition is apparent.
 We can define as many variables in the same clear way without having
 unnecessary computations or code dealing with conditional computation
@@ -682,7 +686,7 @@ myFun x = let y = f x in y `seq` g y
         g = ...
 ~~~~
 
-we can then hint at the compiler that we want `y = f x` evaluated before
+we can then at the compiler that we want `y = f x` evaluated before
 returning the (still non-evaluated) result of `g y`. This trick is usually used
 if during profiling a big chunk of non-evaluated values are noticed to
 aggregate before or in the process of evaluation of `f x`.
@@ -695,7 +699,7 @@ to encapsulate it. It is straightforwardly defined as:
 f $! x = x `seq` f x
 ~~~~
 
-With it, we can then write our example function as
+With it, we can write our example function as
 
 ~~~~{.haskell}
 myFun :: Int -> (Int, Int)
@@ -713,7 +717,7 @@ for full evaluation. This means that if we were
 to evaluate some calculation `f (g (h (i x)))` embedded in some lazy tuple `(y, z)` to WHNF,
 `y` and `z` would not be touched as the evaluation stops at the tuple constructor (for more
 about constructors see the section on custom types). All the computations
-that lead to this constructor however, are forced to be evaluated. Therefore, if we
+that lead to this constructor however, would be forced to be evaluated. Therefore, if we
 had wanted
 to make the insides of a tuple strict, we would have to write something along the lines of
 
@@ -731,14 +735,14 @@ But as `seq` and `$!` both only evaluate to WHNF, `y` and `z` might still not be
 evaluated, since they could be of some more complex type than just `Int` or any other primitive.
 This is the reason why in the Haskell eco system, there exists the
 library `deepseq`^[See \url{haskell.org/package/deepseq-1.4.3.0/docs/Control-DeepSeq.html}.]
-which comes with the typeclass `NFData` defined as
+which comes with the type class `NFData` defined as
 
 ~~~~{.haskell}
 class NFData a where
     rnf :: a -> ()
 ~~~~
 
-Instances of this typeclass
+Instances of this type class
 for some type `a` are required to provide an appropriate implementation
 of `rnf` for *full* evaluation to normal-form, where `rnf` stands for
 \enquote{reduce-to-normal-form}. With this, we can then implement the
@@ -795,11 +799,25 @@ someFunc t = case t of
 ~~~~
 
 In Haskell programs, we can also write unwrapping code with the help of the
-`let` notation for single constructor types like
-`let (x, y) = vec2d in sqrt (x * x + y * y)`. Predictably, we can do this
-with `where` as well with constructs like `where (x, y) = vec2d`.
+`let` notation for single constructor types like^[It is possible to do this
+for types with more than one constructor as well, but this will lead
+to errors at runtime unless we can ensure that the matched constructor is the correct
+one]:
 
-Sometimes we only care about some part of the value. For example, in a definition
+~~~~{.haskell}
+f :: (Double, Double) -> Double
+f vec2d = let (x, y) = vec2d in sqrt (x * x + y * y)
+~~~~
+
+Predictably, we can do this with `where` as well:
+
+~~~~{.haskell}
+f :: (Double, Double) -> Double
+f vec2d = sqrt (x * x + y * y)
+    where (x, y) = vec2d
+~~~~
+
+Sometimes, we only care about some part of the value. For example, in a definition
 of `maybeHead :: [a] -> Maybe a`, which should return the first element of the list
 or `Nothing` if it is an empty list `[]`, we can write this with the help of wildcards (`_`) as:
 
@@ -837,7 +855,7 @@ work (e.g. if we have called `isJust`), we can use irrefutable patterns like
 
 #### Lambdas and Partial application
 
-As Functions are just another type that can be passed into higher-order functions,
+As Functions are just another type that can be passed into other (higher-order) functions,
 it makes sense to have a short-hand to write anonymous functions -- lambdas.
 In Haskell, they look like this:
 

@@ -329,6 +329,8 @@ INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tex-gyre/t1qhv.fd
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tex-gyre/t1qhv.fd
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvr.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvb.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchri8t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchri8r.tfm
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/t1phv.fd
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/t1phv.fd
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr8t.tfm
@@ -342,8 +344,6 @@ INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvr8t.vf
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr8r.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchb8t.vf
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchb8r.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/bitstrea/charter/bchri8t.vf
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/bitstrea/charter/bchri8r.tfm
 OUTPUT out/pdf/out.toc
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr8t.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvr8t.vf
@@ -442,6 +442,10 @@ OUTPUT out/pdf/out.ptb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmtt10.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmtt8.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmtt8.tfm
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb

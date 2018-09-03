@@ -226,7 +226,7 @@ Universität Bayreuth \\
 
 \pagestyle{plain}
 \begin{abstract}
-Arrows sind eine allgemeine funktionale Schnittstelle für die Berechnung und eine Alternative zu Monaden zum Design von APIs.
+Arrows sind eine allgemeine funktionale Schnittstelle für Berechnungen und eine Alternative zu Monaden zum Design von APIs.
 Im Gegensatz zu auf Monaden basierender Parallelität wird hier die Verwendung von Arrows zur Spezifizierung von Parallelität untersucht.
 Konkret wird eine Arrow-basierte Sprache definiert und mit mehreren parallelen Haskells implementiert.
 Da jede parallele Berechnung ein Arrow ist, können solche parallele Arrows (PArrows) leicht zusammengesetzt und transformiert werden.
@@ -246,7 +246,7 @@ welche auf mehreren unterschiedlichen parallelen Sprachimplementierungen ausgef�
 \begin{center}
 \topskip0pt
 \vspace*{\fill}
-To my parents and Maren.
+\textit{To my parents and Maren.}
 \vspace*{\fill}
 \end{center}
 

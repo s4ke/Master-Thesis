@@ -56,7 +56,7 @@ overhead compared with existing approaches, with only some negligible performanc
 
 \label{sec:outlookEval}
 
-In the Introduction, we have set ourselves goals for our DSL. We wanted
+In the Introduction, we have set ourselves goals for our DSL. We wanted:
 
 - a DSL that allows us to parallelise arbitrary Arrow types
 - to tame the zoo of parallel Haskells.
@@ -138,13 +138,13 @@ are easily implemented with default instances (`Trans` in Eden) or
 Template Haskell (Cloud Haskell).
 
 The only problem we currently have in terms of PArrows' generality is that the
-implementations do not behave the same when it comes to the exact behaviour 
+implementations do not behave the same when it comes to the behaviour 
 of `parEvalN`. So, the GpH, `Par` Monad and the experimental Cloud Haskell
-implementations of `parEvalN` do not work as required for at least the topological
-skeletons we showed in this thesis.
+implementations of `parEvalN` do not work in a manner that is compatible with 
+the topological skeletons we showed in this thesis.
 Even though we provided a work-around for the sake of compatibility 
 with the `ArrowLoopParallel` type class, this can only be seen as temporary.
-This problem has to be investigated further and fixed by standardizing
+This problem has to be investigated further, and fixed by standardizing
 the way `parEvalN` behaves.
 
 #### Summary

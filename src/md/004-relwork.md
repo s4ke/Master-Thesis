@@ -2,12 +2,12 @@
 
 \label{sec:related-work}
 
-In this Chapter we will discuss work related to this thesis. We start with
+In this chapter, we will discuss work related to this thesis. We start with
 work on parallel Haskells in Chapter \ref{sec:relWorkParallelHaskells}. Next,
 we discuss research on algorithmic skeletons in Chapter \ref{sec:relWorkAlgorithmicSkels}.
 Then, we go over previous work in the field of Arrows in Chapter \ref{sec:relWorkArrows}.
 Finally, we explain how this thesis is related to previous work done on PArrows
-during the exploration of the subject.
+during the exploration of the subject in Chapter \ref{sec:earlierwork}.
 
 ## Parallel Haskells
 
@@ -15,7 +15,7 @@ during the exploration of the subject.
 
 The non-strict semantics of Haskell, and the fact that reduction
 encapsulates computations as closures, makes it relatively easy to
-define alternate execution strategies. A range of approaches have been explored,
+define alternate execution strategies. A range of approaches has been explored,
 including data parallelism [@Chakravarty2007; @Keller:2010:RSP:1932681.1863582],
 GPU-based approaches [@Mainland:2010:NEC:2088456.1863533; @obsidian-phd] and
 software transactional memory
@@ -27,7 +27,7 @@ parallel execution of singular functions on \enquote{Arrays} of data instead of
 parallel execution of multiple functions with their respective inputs. 
 A good survey of parallel Haskells can be found in @marlow2013parallel.
 
-Our PArrow implementation uses three task parallel languages as backends:
+Our PArrows implementation uses three task parallel languages as backends:
 the GpH [@Trinder1996; @Trinder1998a] parallel Haskell dialect
 and its multicore version [@Marlow2009], the `Par` Monad
 [@par-monad; @Foltzer:2012:MPC:2398856.2364562], and Eden [@eden; @Loogen2012].
@@ -74,8 +74,8 @@ Efficient load-balancing schemes for `workpool`s are subject of research
 
 The `fold` (or `reduce`) skeleton was implemented in various skeleton libraries
 [@Kuchen2002; @5361825; @BUONO20102095; @Dastgeer:2011:ASM:1984693.1984697],
-as also its inverse, `scan` [@Bischof2002; @harris2007parallel].
-Google `map`--`reduce` [@Dean:2008:MSD:1327452.1327492; @Dean:2010:MFD:1629175.1629198]
+as was its inverse, `scan` [@Bischof2002; @harris2007parallel].
+Google's `map`--`reduce` [@Dean:2008:MSD:1327452.1327492; @Dean:2010:MFD:1629175.1629198]
 is more special than just a composition of the two skeletons [@LAMMEL20081; @Berthold2009-mr].
 
 The effort is ongoing, including topological skeletons [@Eden:PARCO05],
@@ -94,10 +94,10 @@ various parallel `map` variants as well as the topological skeletons `pipe`, `ri
 
 \label{sec:relWorkArrows}
 
-Arrows were introduced by @HughesArrows as a less restrictive alternative to Monads,
-in essence they are a generalised function arrow `->`. @Hughes2005 presents a
+Arrows were introduced by @HughesArrows as a less restrictive alternative to Monads.
+In essence, they are a generalised function arrow `->`. @Hughes2005 presents a
 tutorial on Arrows. @jacobs_heunen_hasuo_2009, @LINDLEY201197, @ATKEY201119 develop
-theoretical background of Arrows. [@Paterson:2001:NNA:507669.507664] introduced a
+the theoretical background of Arrows. [@Paterson:2001:NNA:507669.507664] introduced a
 new notation for Arrows. Arrows have applications in information flow research
 [@1648705; @LI20101974; @Russo:2008:LLI:1411286.1411289],
 invertible programming [@Alimarine:2005:BAA:1088348.1088357],
@@ -107,7 +107,7 @@ reactive programming, AFRP [@Nilsson:2002:FRP:581690.581695; @Hudak2003; @Czapli
 [@Liu:2009:CCA:1631687.1596559] formally define a more special kind of
 Arrows that encapsulate the computation more than regular Arrows do and thus
 enable optimisations. Their approach would allow parallel composition,
-as their special Arrows would not interfere with each other in concurrent execution.
+as their Arrows would not interfere with each other in concurrent execution.
 In contrast, we capture a whole parallel computation as a single entity: our main
 instantiation function `parEvalN` creates a single (parallel) Arrow out of a list of Arrows.
 @Huang2007 utilise Arrows for parallelism, but strikingly different from our approach.
@@ -117,7 +117,7 @@ while remaining completely in Haskell.
 
 #### Arrows in other languages
 
-Although this work is centred on Haskell implementation of Arrows,
+Although this work is centred on Haskell's implementation of Arrows,
 it is applicable to any functional programming language where parallel
 evaluation and Arrows can be defined. Basic definitions of PArrows are
 possible in the Frege language^[GitHub project page at \url{https://github.com/Frege/frege}]
@@ -133,6 +133,8 @@ of a distributed system.
 
 ## Earlier work
 
+\label{sec:earlierwork}
+
 Research on the PArrows DSL started with a Master's research project under
 the supervision of Oleg Lobachev. The results of this work included
 the basic idea of the interface as well as some early basic `map`-based skeletons.
@@ -145,7 +147,7 @@ the Future concept as well as the implementations of the topological skeletons
 as well as Chapter \ref{sec:benchmarks}
 are based on this paper.
 
-The author contributions to the paper were as follows: Conceptualisation: MB, OL. Methodology: MB.
+The author contributions to the paper are as follows: Conceptualisation: MB, OL. Methodology: MB.
 Software: MB. Validation: MB. Formal Analysis: MB.
 Investigation: MB. Resources: PT. Data Curation: MB
 Writing -- Original Draft: MB. Writing -- Review & Editing:
