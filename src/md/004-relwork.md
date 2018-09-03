@@ -133,21 +133,21 @@ of a distributed system.
 
 ## Earlier work
 
-This thesis is based on the paper \enquote{Arrows for Parallel Computation} [@PArrowsPaper]
-written by me, Martin Braun, together with Oleg Lobachev and Phil Trinder. The original idea for this paper
-came up during a Master's Research Project done under the supervision of Oleg Lobachev.
+Research on the PArrows DSL started with a Master's research project under
+the supervision of Oleg Lobachev. The results of this work included
+the basic idea of the interface as well as some early basic `map`-based skeletons.
+We greatly expand on these results in Chapters \ref{sec:parallelHaskells} -- \ref{sec:map-skeletons}.
 
-While based on the ideas of the Master's research project,
-the work presented here is dramatically different. In this thesis, the results
-are a lot more sophisticated and detailed and only Chapters \ref{sec:parallelHaskells} -- \ref{sec:map-skeletons}
-are somewhat based on work done during the original project.
+Later, the paper
+\enquote{Arrows for Parallel Computation} [@PArrowsPaper], went further by introducing
+the Future concept as well as the implementations of the topological skeletons
+`pipe`, `ring` and `torus`. Chapters \ref{sec:related-work}, \ref{sec:arrows} -- \ref{sec:further-development}
+as well as Chapter \ref{sec:benchmarks}
+are based on this paper.
 
-Similarities to the paper, however, are not
-coincidental. Chapters \ref{sec:related-work}, \ref{sec:arrows} -- \ref{sec:further-development} as well as Chapter \ref{sec:benchmarks}
-were taken from the paper and embedded into the rest of the text. The Introduction in Chapter
-\ref{sec:introduction} as well as the conclusion in \ref{sec:conclusion}
-are also inspired by the paper. But as I, Martin Braun, am the primary author of the paper,
-this still means that the following work was done independently as required by studying regulations.
-
-
-
+The author contributions to the paper were as follows: Conceptualisation: MB, OL. Methodology: MB.
+Software: MB. Validation: MB. Formal Analysis: MB.
+Investigation: MB. Resources: PT. Data Curation: MB
+Writing -- Original Draft: MB. Writing -- Review & Editing:
+MB, OL, PT. Visualization: MB. Supervision: OL.
+Corresponding author: OL
