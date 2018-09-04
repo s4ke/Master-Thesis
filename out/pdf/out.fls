@@ -568,11 +568,11 @@ INPUT ./src/img/parEvalN.pdf
 INPUT ./src/img/parEvalN.pdf
 OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvri.tfm
 INPUT src/img/parEvalNMulticoreImg.pdf
 INPUT ./src/img/parEvalNMulticoreImg.pdf
 INPUT ./src/img/parEvalNMulticoreImg.pdf
 INPUT ./src/img/parEvalNMulticoreImg.pdf
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/tex-gyre/ec-qhvri.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr12.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi12.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm

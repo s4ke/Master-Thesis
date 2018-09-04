@@ -7,7 +7,7 @@ and a less restrictive generalisation of Monads.
 @HughesArrows motivates the broader interface of Arrows with the example
 of a parser with added static meta-information that can not satisfy the
 monadic bind operator `(>>=) :: Monad m => m a -> (a -> m b) -> m b`
-^[In the example a parser of the type `Parser s a` with static meta
+^[In the example, a parser of the type `Parser s a` with static meta
 information `s` and result `a` is shown to not be able to use the static
 `s` without applying the monadic function `a -> m b`. With Arrows this is possible.].
 
@@ -78,7 +78,7 @@ f &&& g = arr (\a -> (a, a)) >>> f *** g
 ~~~~
 
 A first short example given by Hughes on how to use the Arrow
-interface is the addition of results of two generic Arrows to get a new
+interface is the addition of results of two generic Arrows in a new
 Arrow:
 
 ~~~~ {.haskell}
@@ -100,7 +100,7 @@ in some cases.
 In order to ease the use of Arrows, we will now define some utility Arrow combinators, namely
 `evalN` as well as `mapArr`. `evalN`, which turns a list of Arrows `[arr a b]` 
 into a new Arrow `arr [a] [b]` evaluating a list of inputs `[a]`
-against these Arrows is defined in Figure \ref{fig:evalN}
+against these Arrows, is defined in Figure \ref{fig:evalN}
 
 ~~~~ {#fig:evalN
     .haskell
@@ -116,10 +116,33 @@ evalN (f:fs) = arr listcase >>>
 evalN [] = arr (const [])
 ~~~~
 
+This combinator combinators makes use of the `ArrowChoice` type class providing
+the `pipepipepipe` combinator. This combinator takes two Arrows `arr a c` and `arr b c`
+and combines them into a new Arrow `arr (Either a b) c` which pipes all
+`Left a`'s to the first Arrow and all `Right b`'s to the second Arrow:
+
+~~~~ {.haskell}
+(pipepipepipe) :: ArrowChoice arr => arr a c -> arr b c -> arr (Either a b) c
+~~~~
+
+With this, we define the required recursion in `evalN` as follows.
+We start by tagging the empty list as `Left ()` and the non-empty list into `Right (a, [a])`
+with `arr listcase :: arr [a] (Either (Left ()) (Right (a, [a])))`.
+In the `Right (a, [a])` case, the first element of the tuple is the head of the list and the second one
+the tail. Now that the inputs are tagged depending on their structure,
+we can then feed these into a branching structure that uses `pipepipepipe` and
+works similar to an if-statement: If we encounter `Left ()` -- the base case of the recursion,
+we return the empty list with `arr (const [])`.
+Otherwise, in the recursive step, we evaluate the current function `f`
+and the recursive call `evalN fs` at the same time with `f *** evalN fs :: arr (a, [a]) (b, [b])`.
+Now, in order to concatenate the result of this into a list `[b]`, we concatenate
+the resulting tuple `(b, [b])` with arr `(uncurry (:))`.
+
 Next, we have the `mapArr` combinator (Figure \ref{fig:mapArr}). It
 lifts any Arrow `arr a b` to
 an Arrow `arr [a] [b]`. The original inspiration was from @Hughes2005,
-but the definition was then unified with `evalN`. 
+but the definition was then unified with `evalN` as with the help
+of `repeat :: a -> a` it can easily be defined as
 
 ~~~~ {#fig:mapArr
     .haskell
@@ -129,15 +152,6 @@ but the definition was then unified with `evalN`.
     }
 mapArr :: ArrowChoice arr => arr a b -> arr [a] [b]
 mapArr = evalN . repeat
-~~~~
-
-These combinators make use of the `ArrowChoice` type class providing
-the `pipepipepipe` combinator. This combinator takes two Arrows `arr a c` and `arr b c`
-and combines them into a new Arrow `arr (Either a b) c` which pipes all
-`Left a`'s to the first Arrow and all `Right b`'s to the second Arrow:
-
-~~~~ {.haskell}
-(pipepipepipe) :: ArrowChoice arr => arr a c -> arr b c -> arr (Either a b) c
 ~~~~
 
 One thing we can see from these utility Arrows is how easily we can define
@@ -156,7 +170,7 @@ Arrow that has a `ArrowApply` instance gives rise to a Monad -- but instead
 only require instances for `ArrowChoice` (for the if-then-else construction in 
 `evalN` (Figure \ref{fig:evalN}))
 and `ArrowLoop` (for the looping used in the topological skeletons in Chapter \ref{sec:topology-skeletons}).
-Because of this, we have a truly more general
+Because of this, we will have a truly more general
 interface when compared to a monadic one or a purely function `(->)` based one.
 
 While we could have based our DSL on Profunctors^[See \url{http://hackage.haskell.org/package/profunctors-5.3/docs/Data-Profunctor.html}

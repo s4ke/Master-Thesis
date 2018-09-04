@@ -87,8 +87,8 @@ our topology skeletons. In fact, @Hughes2005 mentions this as well in writing
 more operations on Arrows than just composition}.
 
 - The Eden backend currently has no general implementation for `ArrowParallel`.
-As explained earlier in Chapter \ref{sec:parrows-Eden}, the reason for this is that Eden's spawn function `spawnF`
-only works on function (`(->)`) and therefore resorted to having manual implementations
+As explained earlier in Chapter \ref{sec:parrows-Eden}, the reason for this is that Eden's `spawnF`
+only works on functions (`(->)`) and therefore resorted to having manual implementations
 of `ArrowParallel` for every type. As noted in the same Chapter however, this
 seems to be no real issue as a possible general implementation is possible. This
 has to be evaluated with more involved tests in the future, though.
@@ -102,9 +102,10 @@ In this thesis, we showed how we can tame at least the three parallel Haskells
 we used as backends -- GpH, the `Par` Monad and Eden. We even included
 the blue print for a new backend based upon Cloud Haskell. Therefore, we are confident that
 other parallel Haskells can be used as backends in our DSL even if they require
-some special care.^[Like we have talked about in the case of HdpH, which heavily relied
+some special care -- e.g. like we have talked about in the case of HdpH, which heavily relied
 on Template Haskell to work. This Template Haskell code was however incompatible
-with PArrows and would need replacing were HdpH used as a backend] With the PArrows DSL we are therefore able to
+with PArrows and would need replacing were HdpH used as a backend.
+With the PArrows DSL we are therefore able to
 tame the zoo of parallel Haskells.
 
 #### Low Penalty interface
@@ -137,10 +138,10 @@ However, these
 are easily implemented with default instances (`Trans` in Eden) or
 Template Haskell (Cloud Haskell).
 
-The only problem we currently have in terms of PArrows' generality is that the
-implementations do not behave the same when it comes to the behaviour 
-of `parEvalN`. So, the GpH, `Par` Monad and the experimental Cloud Haskell
-implementations of `parEvalN` do not work in a manner that is compatible with 
+The only difficulty we currently have in terms of PArrows' generality is that the
+implementations differ in their behaviour of `parEvalN`.
+Because of this, the GpH, `Par` Monad and the experimental Cloud Haskell
+versions of `parEvalN` do not work in a manner that is compatible with 
 the topological skeletons we showed in this thesis.
 Even though we provided a work-around for the sake of compatibility 
 with the `ArrowLoopParallel` type class, this can only be seen as temporary.

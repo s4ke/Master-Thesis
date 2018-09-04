@@ -56,7 +56,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Utility Combinators}{28}{figure.caption.17}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Notes}{29}{figure.caption.19}
+\contentsline {subsubsection}{Notes}{30}{figure.caption.19}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.2}Introduction to \emph {parallel} Haskells}{30}{section*.20}
 \defcounter {refsection}{0}\relax 

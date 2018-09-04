@@ -66,9 +66,10 @@ The instance for the `Monad` type class can then be defined as
 ~~~~ {.haskell
     }
 instance Monad (State s) where
-    (State h) >>= f = State $ \s -> let (a, newState) = h s  
-                                        (State g) = f a  
-                                    in  g newState
+    (State h) >>= f = State $ \s ->
+        let (a, newState) = h s  
+            (State g) = f a  
+        in  g newState
     return x = State { runState = \s -> (x, s) }   
 ~~~~
 
@@ -104,9 +105,9 @@ get :: State s s
 get = State { runState = \s -> (s, s) }
 ~~~~
 
-With these operations, we can easily write stateful programs like this one
+With these operations, we can easily write stateful programs like
 ^[Inspired and adapted from
-\url{https://gist.github.com/sdiehl/8d991a718f7a9c80f54b}.]:
+\url{https://gist.github.com/sdiehl/8d991a718f7a9c80f54b}.]
 
 ~~~~ {.haskell
     }
@@ -157,7 +158,7 @@ computeStateful = do
 Here, we can also see the duality of `(>>)` and simple new lines as well as the one
 between `(>>=)` and the special `<-` operator in `do` notation which facilitates the 
 binding to a variable.^[`(>>=)` is also often called `bind` in languages which do not support
-operator overloading.]
+custom operators.]
 
 Other often used Monads in the Haskell eco-system include the `Writer` Monad, which is
 useful for e.g. logging, or the `IO` Monad, which is
