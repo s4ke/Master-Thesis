@@ -3,7 +3,7 @@
 \label{sec:skeletons}
 \label{sec:map-skeletons}
 
-Now we have developed Parallel Arrows far enough to define some basic, yet useful,
+Now we have developed Parallel Arrows far enough to define some still basic, yet useful,
 algorithmic skeletons that abstract typical parallel computations -- parallel `map`s.
 The essential differences between the skeletons presented here 
 are in terms of order of evaluation and work distribution. They nevertheless
@@ -61,13 +61,14 @@ parMapStream conf chunkSize f = parEvalNLazy conf chunkSize (repeat f)
 
 \label{sec:staticallyloadbalancing}
 
-Our `parMap` spawns every single computation in a new thread
+Our `parMap` spawns every single computation separately
 (at least for the instances of `ArrowParallel` we presented in this thesis).
 This can be quite wasteful and a statically load-balancing `farm`
 (Figs. \ref{fig:farm}, \ref{fig:farmImg}) that equally distributes the
 workload over `numCores` workers seems useful.
-The definitions of the helper functions `unshuffle`, `takeEach`,
-`shuffle` (Figure \ref{fig:edenshuffleetc}) originate from an Eden
+The definitions of the helper functions `unshuffle` and
+`shuffle`, which are used for this distribution,
+(Figure \ref{fig:edenshuffleetc}) originate from an Eden
 skeleton^[Available on Hackage under \url{https://hackage.haskell.org/package/edenskel-2.1.0.0/docs/src/Control-Parallel-Eden-Map.html}.].
 
 ~~~~ {#fig:farm

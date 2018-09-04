@@ -48,7 +48,7 @@ instance (ArrowChoice arr, ArrowParallel arr a b Conf) =>
     postLoopParEvalN _ = evalN
 ~~~~
 
-`Par` Monad and GpH have problems with `parEvalN` inside of `loop`.
+The `Par` Monad and GpH implementations of `parEvalN` have problems inside of `loop`.
 Their respective instances for `ArrowLoopParallel` look like this:
 
 ~~~~ {.haskell}
@@ -60,7 +60,7 @@ instance (ArrowChoice arr, ArrowParallel arr a b (Conf b)) =>
 
 Chapter \ref{sec:pipe} explains how to achieve a parallel `pipe` with our DSL. Then,
 Chapter \ref{sec:ring} goes into detail on how to achieve a `ring` skeleton, which
-we then build upon to achieve a `torus` in Chapter \ref{sec:torus}.
+we then extend to achieve a `torus` in Chapter \ref{sec:torus}.
 
 ### Parallel pipe
 
@@ -85,11 +85,14 @@ loop (arr snd &&& arr (uncurry (:)))
 ~~~~
 
 defines an Arrow that takes its input `a` and converts it into an infinite
-stream `[a]` of it. Using `loop` to our advantage gives us a first draft of
-a pipe implementation (Figure \ref{fig:pipeSimple}) by plugging in the
+stream `[a]` of it. Using `loop` to our advantage and adapting it to 
+apply our list of functions in sequence gives us a first draft of
+a pipe implementation (Figure \ref{fig:pipeSimple}): We plug the
 parallel evaluation call `loopParEvalN conf fs` inside the second argument of `&&&`
-and then only picking the first element of the resulting list with `arr last` outside
-of the `loop`.
+and then only pick the first element of the resulting list with `arr last` outside
+of the `loop`. Here, the length of the input list of Arrows determines when
+the loop stops. For finite input lengths this means that the computation will
+definitely finish.
 
 ~~~~ {#fig:pipeSimple
     .haskell
@@ -106,8 +109,9 @@ pipeSimple conf fs =
 ~~~~
 
 However, using this definition directly will make the master node a
-potential bottleneck in distributed environments as described in
-Chapter \ref{sec:futures}. Therefore, we introduce a more sophisticated version
+potential bottleneck in distributed environments just like the first version
+ of the outline combinator in Chapter \ref{sec:futures}.
+Therefore, we introduce a more sophisticated version
 that internally uses Futures and obtain the final definition of `pipe` in
 Figure \ref{fig:pipe}.
 

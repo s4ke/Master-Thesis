@@ -75,8 +75,8 @@ to that, though:
 as well as the actual instances for our type class `ArrowParallel` in the
 case of GpH and the `Par` Monad require an `ArrowChoice` instance. Additionally,
 we require `ArrowLoop` for the looping skeletons. While this indeed restricts the
-set of suitable Arrows, it is not a restriction in which Arrows we can parallelize
-specifically, but more of a restriction on what type of Arrow can be parallelized.
+set of suitable Arrows, it is not a restriction in which Arrows can be parallelised
+specifically, but more of a restriction the type of Arrow.
 Furthermore, both type classes are an integral part in the code that uses them.
 For example, without `ArrowChoice` we could not express the recursion with Arrows as
 without it we can not express the recursion anchor in e.g. the definition
@@ -88,12 +88,12 @@ more operations on Arrows than just composition}.
 
 - The Eden backend currently has no general implementation for `ArrowParallel`.
 As explained earlier in Chapter \ref{sec:parrows-Eden}, the reason for this is that Eden's `spawnF`
-only works on functions (`(->)`) and therefore resorted to having manual implementations
-of `ArrowParallel` for every type. As noted in the same Chapter however, this
-seems to be no real issue as a possible general implementation is possible. This
-has to be evaluated with more involved tests in the future, though.
+only works on functions (`(->)`). Because of this, we resorted to having manual implementations
+of `ArrowParallel` for every type. As noted in the same chapter, however, this
+seems to be no real issue as a possible general implementation is possible. Nevertheless, 
+this has to be evaluated with more involved tests in the future.
 
-Summarizing we can say that we mostly succeeded in our goal to provide support for parallelizing
+Summarizing, we can say that we mostly succeeded in our goal to provide support for parallelizing
 arbitrary Arrows as these two restrictions are no big issues at all as we have explained here. 
 
 #### Taming the zoo of parallel Haskells
@@ -101,12 +101,11 @@ arbitrary Arrows as these two restrictions are no big issues at all as we have e
 In this thesis, we showed how we can tame at least the three parallel Haskells
 we used as backends -- GpH, the `Par` Monad and Eden. We even included
 the blue print for a new backend based upon Cloud Haskell. Therefore, we are confident that
-other parallel Haskells can be used as backends in our DSL even if they require
+other parallel Haskells can be used as backends in our DSL, even if they require
 some special care -- e.g. like we have talked about in the case of HdpH, which heavily relied
 on Template Haskell to work. This Template Haskell code was however incompatible
 with PArrows and would need replacing were HdpH used as a backend.
-With the PArrows DSL we are therefore able to
-tame the zoo of parallel Haskells.
+With the PArrows DSL we are able to tame the zoo of parallel Haskells.
 
 #### Low Penalty interface
 
@@ -117,14 +116,14 @@ cores of relative mean overhead was less than $3.5\%$ and less than $0.8\%$
 for all benchmarks with GpH and Eden, respectively. As for the `Par` Monad,
 the mean of mean overheads was in favour of PArrows in all benchmarks
 (Chapter \ref{sec:benchmarks}).
-The PArrows DSL is therefore a very low penalty interface when compared
+The PArrows DSL is a very low penalty interface when compared
 to the native backends.
 
 #### Generality -- Switching Implementations at will
 
 Because of the way we designed our central `ArrowParallel` type class
 in Chapter \ref{sec:parallel-arrows-type-class}, we can truly switch between
-backend implementations at will and therefore programs are portable
+backend implementations at will. Therefore programs are portable
 between parallel Haskell implementations. The only thing that has to be done
 when switching between implementations, 
 is changing the import statement.
@@ -140,7 +139,7 @@ Template Haskell (Cloud Haskell).
 
 The only difficulty we currently have in terms of PArrows' generality is that the
 implementations differ in their behaviour of `parEvalN`.
-Because of this, the GpH, `Par` Monad and the experimental Cloud Haskell
+The GpH, `Par` Monad and the experimental Cloud Haskell
 versions of `parEvalN` do not work in a manner that is compatible with 
 the topological skeletons we showed in this thesis.
 Even though we provided a work-around for the sake of compatibility 
@@ -152,9 +151,9 @@ the way `parEvalN` behaves.
 
 Summarizing we can say that we have fulfilled the requirements set in the
 Introduction of this thesis. PArrows is a DSL
-that allows us to parallelize arbitrary Arrow types that allows us
-to tame the zoo of parallel Haskells while having a low performance penalty
-and is general by allowing to switch implementations at will.
+that allows us to parallelize arbitrary Arrow types that manages to
+tame the zoo of parallel Haskells while having a low performance penalty
+and is general by permitting to switch implementations at will.
 As described, there are some problems, however, these will have to
 be amended in the future.
 
@@ -163,7 +162,7 @@ be amended in the future.
 \label{sec:outlookConclusion}
 
 Arrows are a generic concept that allows for powerful composition
-combinators. To our knowledge we are first to represent
+combinators. To our knowledge, we are first to represent
 *parallel* computation with Arrows, and hence to show their usefulness for
 composing parallel programs.
 
@@ -190,7 +189,7 @@ continue their work in other areas that matter.
 Even for programmers that do not care for 
 the portability between APIs in their programs the PArrows DSL
 can be of benefit because of the generality of our approach.
-Because we use Arrows to build our DSL, we achieve a common ways of parallelising
+Because we use Arrows to build our DSL, we achieve a common way of parallelising
 computations whether they are simple (`->`) or monadic
 functions (`a -> m b`) -- or yet another different computation type.
 We can even say that PArrows is not only a general way to paralellise Arrow-based
@@ -203,9 +202,9 @@ computations, but also a general way to parallelise *computations* in general.
 Our PArrows DSL can be expanded to other task parallel Haskells as we have seen in
 the Cloud Haskell experiment. It is a primary focus of further development as it will
 also help investigating the biggest problem of our DSL -- the difference in behaviour
-of `parEvalN` across the backends. In Chapter \ref{sec:CloudHaskellArrowParallelLimitsMitigation}
+of `parEvalN` across the backends. In Chapter \ref{sec:CloudHaskellArrowParallelLimitsMitigation},
 we already proposed a possible fix for the Cloud Haskell backend. Fixing this
-specifically for Cloud Haskell will help us understand the problem and enable
+specifically for Cloud Haskell will help us in understanding the problem and enable
 us to amend the GpH and `Par` Monad backends as well.
 
 In other future work, we see a big potential in getting HdpH [@Maier:2014:HDS:2775050.2633363]

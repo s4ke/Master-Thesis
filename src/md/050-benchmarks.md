@@ -18,11 +18,11 @@ to the original parallel Haskells (Chapter \ref{sec:benchmarksEvaluation}).
 
 \label{sec:benchmarksMeasurementPlatform}
 
-We will now explain our measurement platform.
+We will now discuss our measurement platform.
 We start by explaining the hardware and software stack in
 Chapter \ref{sec:hardwareSoftware} and outline the
 benchmark programs and motivation for choosing them in Chapter \ref{sec:benchmarksBenchmarks}.
-Chapter \ref{sec:whichHaskellWhere} explains the specifics of where
+Chapter \ref{sec:whichHaskellWhere} goes over the specifics of where
 each benchmark was run.
 We also shortly address
 hyper-threading and why we do not use it in our benchmarks in
@@ -32,7 +32,7 @@ Chapter \ref{sec:effect-hyper-thread}.
 
 \label{sec:hardwareSoftware}
 
-The benchmarks are executed  both in a shared and in a distributed memory
+The benchmarks are executed both in a shared and in a distributed memory
 setting using the Glasgow GPG Beowulf cluster, consisting of
 16 machines with 2 Intel® Xeon® E5-2640 v2 and 64 GB of DDR3 RAM each.
 Each processor has 8 cores and 16 (hyper-threaded) threads with a base
@@ -41,7 +41,8 @@ of 256 cores and 512 threads for the whole cluster. The operating system was
 Ubuntu 14.04 LTS with Kernel 3.19.0-33. We found that
 hyper-threading does not provide any particular interesting insight over 
 using real 16 cores in terms of performance in our benchmarks
-(numbers here for a single machine) discussed in Chapter \ref{sec:effect-hyper-thread}.
+(numbers here for a single machine) as will be
+discussed in Chapter \ref{sec:effect-hyper-thread}.
 We therefore disregard the hyper-threading
 ability in most of the cases.
 
@@ -61,7 +62,7 @@ Furthermore, all benchmarks were done with help of the
 bench^[See \url{https://hackage.haskell.org/package/bench}] tool in version
 1.0.2 which uses criterion
 (>=1.1.1.0 \&\& < 1.2)^[See \url{https://hackage.haskell.org/package/criterion-1.1.1.0}]
-internally. All runtime data (mean runtime, max stddev, etc.) was collected with
+internally. All runtime data (mean runtime, max stddev, etc.) was collected by
 this tool.
 
 We used a single node with 16 real cores as a shared memory test-bed
@@ -87,12 +88,12 @@ Table: The benchmarks we use in this thesis. {#tbl:benches}
 
 [^tblnote1]: actual code from: \url{http://community.haskell.org/\~simonmar/par-tutorial.pdf} and \url{https://github.com/simonmar/parconc-examples}
 
-Rabin--Miller test is a probabilistic primality test that iterates multiple
+The Rabin--Miller test is a probabilistic primality test that iterates multiple
 (here: 32--256) \enquote{subtests}. Should a subtest fail, the input is
 definitely not a prime. If all $n$ subtest pass, the input is composite with the
 probability of $1/4^{n}$.
 
-Jacobi sum test or APRCL is also a primality test, that however,
+The Jacobi sum test or APRCL is also a primality test, that however,
 guarantees the correctness of the result. It is probabilistic in the
 sense that its run time is not certain. Unlike Rabin--Miller test, the subtests
 of Jacobi sum test have very different durations. @lobachev-phd
@@ -115,10 +116,9 @@ to GpH. We ported it to our PArrows DSL.
 The `Par` Monad and GpH -- in its multicore version [@Marlow2009] -- 
 can be executed on shared memory machines only.
 Although GpH is available on distributed memory
-clusters, and newer distributed memory Haskells such as HdpH exist,
-current support of distributed memory in PArrows is limited to
+clusters, current support of distributed memory in PArrows is limited to
 Eden. We used the MPI backend of Eden in a distributed memory
-setting. However, for shared memory Eden features a \enquote{CP} backend
+setting. However, Eden features a \enquote{CP} backend for shared memory
 that merely copies the memory blocks between disjoint heaps. In
 this mode, Eden still operates in the \enquote{nothing shared} setting, but
 is adapted better to multicore machines. We call this version of Eden
@@ -173,8 +173,8 @@ S = \frac{T_1}{T_p}
 $$
 
 where $T_1$ denotes the sequential and $T_p$ the parallel
-runtime of the program. Note that we do not use a separate sequential program, though,
-instead we simply use the same binary with only 1 computation thread enabled.
+runtime of the program. Note that we do not use a separate sequential program, though.
+Instead we simply use the same binary with only 1 computation thread enabled.
 
 ### Defining overhead
 

@@ -16,7 +16,7 @@ as a method to spawn heterogeneous tasks (Chapter \ref{sec:hetereogeneoustasks})
 ![`parEvalNLazy` depiction.](src/img/parEvalNLazy.pdf){#fig:parEvalNLazyImg}
 
 The resulting Arrow of `parEvalN` fully traverses the list of input Arrows as
-well as their inputs. Sometimes this might not be feasible, as
+well as their inputs. Sometimes, this might not be feasible, as
 it will not work on infinite lists of Arrows/functions like e.g. `map (arr . (+)) [1..]`
 or just because in case we need the Arrows evaluated in chunks. `parEvalNLazy`
 (Figs. \ref{fig:parEvalNLazyImg}, \ref{fig:parEvalNLazy}) fixes this.
@@ -57,7 +57,7 @@ We can implement such a `parEval2` combinator
 (Figs. \ref{fig:parEval2Img}, \ref{fig:parEval2}) which combines two Arrows
 `arr a b` and `arr c d` into a new parallel Arrow `arr (a, c) (b, d)`
 quite easily with the help of the `ArrowChoice` type class.
-Here, the general idea is to use the `+++` combinator which combines
+Here, the general idea is to use the `+++` combinator which takes
 two Arrows `arr a b` and `arr c d` and transforms them into
 `arr (Either a c) (Either b d)` to get a common Arrow type that we can
 then feed into `parEvalN`.
@@ -69,9 +69,9 @@ the right element in a singleton list with `return` so that we can combine them
 with `arr (uncurry (:))`. Next, we feed this list into a parallel Arrow running
 on two instances of `f +++ g`. After the calculation
 is finished, we convert the resulting `[Either b d]` into `([b], [d])` with
-`arr partitionEithers`. The two lists in this tuple contain only one element
-each by construction, so we can finally just convert the tuple to `(b, d)` in
-the last step.
+`arr partitionEithers`. The two lists in this tuple each contain only one element
+by construction, so we can finally just convert the tuple to `(b, d)` with
+`arr head *** arr head` in the last step.
 
 ~~~~ {#fig:parEval2
     .haskell

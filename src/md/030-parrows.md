@@ -2,23 +2,23 @@
 
 \label{sec:parallel-arrows}
 
-Having discussed the idea of Arrows as well as the basics of the APIs that we wish to use
+Having explained the idea of Arrows as well as the basics of the APIs that we wish to use
  as backends, we can now discuss the design and implementation of the actual
 PArrows DSL.
-We present the `ArrowParallel` type class
-and explain the reasoning behind it in Chapter \ref{sec:parallel-arrows-type-class}
+We present the `ArrowParallel` type class and the reasoning behind it in
+Chapter \ref{sec:parallel-arrows-type-class}
 before discussing its implementations in GpH, the `Par` Monad and Eden in Chapter
 \ref{sec:arrowparallelimpl}.
 Then, we give first basic extensions in Chapter 
 \ref{sec:extending-interface}.
-Finally, we explain basic `map`-based skeletons in Chapter \ref{sec:skeletons}.
+Finally, we present basic `map`-based skeletons in Chapter \ref{sec:skeletons}.
 
 ## The `ArrowParallel` type class
 
 \label{sec:parallel-arrows-type-class}
 
 A parallel computation (on functions) can be seen as the execution of some functions
-`a -> b` in parallel, as our `parEvalN` prototype shows
+`[a -> b]` in parallel, as our `parEvalN` prototype shows
 (Chapter \ref{sec:parEvalNIntro}).
 Translating this into Arrow terms gives us a new operator `parEvalN` that lifts
 a list of Arrows `[arr a b]` to a parallel Arrow `arr [a] [b]`.
@@ -44,8 +44,8 @@ Sometimes parallel Haskells require or allow additional configuration
 parameters, e.g. information about the execution environment or the level
 of evaluation (WHNF vs. NF, see the section on laziness in Chapter \ref{sec:shortIntroHaskell}).
 For this reason we
-introduce an additional `conf` parameter as we do not want `conf` to be a fixed type,
-as the configuration parameters can differ for different instances of
+introduce an additional `conf` parameter as we do not want `conf` to be a fixed type
+and the configuration parameters can differ for different instances of
 `ArrowParallel`.
 
 ~~~~ {.haskell}
@@ -54,7 +54,7 @@ class Arrow arr => ArrowParallel arr a b conf where
 ~~~~
 
 By restricting the implementations of our backends to a specific `conf` type,
-we also get interoperability between backends for free as it serves as a discriminator
+we also get interoperability between backends for free because it serves as a discriminator
 for which backend has to be used. We can therefore parallelise one
 part of a program using one backend, and do the same for the next but with another one by
 just passing a different configuration type.
@@ -135,7 +135,7 @@ instance (ArrowChoice arr) => ArrowParallel arr a b (Conf b) where
     parEvalN (Conf strat) fs =
         evalN (map (>>> arr strat) fs) >>>
         arr sequenceA >>>
-        arr (>>= mapM Control.Monad.Par.get) >>>
+        arr (>>= mapM get) >>>
         arr runPar
 ~~~~
 
@@ -145,7 +145,7 @@ instance (ArrowChoice arr) => ArrowParallel arr a b (Conf b) where
 
 For both the GpH Haskell and `Par` Monad implementations we could use
 general instances of `ArrowParallel` that just require the `ArrowChoice` type class.
-With Eden this is not the case as we can only spawn a list of functions, which
+With Eden this is not the case as we can only spawn a list of functions which
 we cannot extract from general Arrows. While we could still manage to
 have only one instance in the module by introducing a type class
 
@@ -187,7 +187,7 @@ instance (Trans b, ArrowChoice arr) => ArrowParallel arr a b Conf where
 ~~~~
 
 *We were however, not able to prove that this behaves exactly the same as
-the variant presented above as this would have required re-running the whole
+the variant presented above since this would have required re-running the whole
 test-suite. First tests suggest correct behaviour, though.*
 
 ### Default configuration instances
@@ -217,8 +217,8 @@ do not discuss here for the sake of brevity. We can, however, only have one
 instance of `ArrowParallel arr a b ()` present at a time,
 which should not be a problem, anyways.
 
-Up until now we have discussed Arrow operations more in detail,
+Up until now we have discussed Arrow operations in greater detail,
 but in the following sections we focus more on the data-flow
 between the Arrows, now that we have seen that Arrows are capable
-of expressing parallelism. We nevertheless do explain new concepts in greater detail
+of expressing parallelism. We nevertheless do explain new concepts in more depth
 if required for better understanding.

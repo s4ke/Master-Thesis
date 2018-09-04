@@ -5,7 +5,7 @@
 Cloud Computing has become more and more prevalent in the recent years. Servers are
 replaced with virtual ones positioned all around the globe.
 These can easily be brought up when required and shut down
-when not in use. This trend in computing has also been embraced by the Haskell
+when they are not in use. This trend in computing has also been embraced by the Haskell
 community, and therefore libraries such as Cloud Haskell were born. Cloud Haskell
 is described on the project's website^[See \url{http://haskell-distributed.github.io/}.] as:
 
@@ -21,7 +21,7 @@ transport for Windows Azure.[...]
     
 It is basically a set of APIs and libraries for communication between networks
 of nodes in a cloud environment. With it, programmers can
-write fully-featured Haskell based cloud solutions targeting a wide range
+write fully-featured, Haskell based cloud solutions targeting a wide range
 of architectures.
 
 While users can already write concurrent applications with the help of Cloud Haskell
@@ -29,7 +29,7 @@ using some of its libraries or even with the bare communication API, it seems li
 a good idea to enable writing parallel programs requiring less involvement from the user.
 This way, they can focus on parallel algorithms instead of manual communication.
 In the following chapter, we will therefore explore the possibility of a Cloud Haskell
-based backend for the `ArrowParallel` interface given in this thesis while
+based backend for the PArrows DSL, while
 explaining all the necessary
 parts of Cloud Haskell's API. For easier testing and as this
 is only meant as a proof of concept, we only work with a local-net Cloud Haskell
@@ -50,10 +50,10 @@ knowledge in Chapter \ref{sec:CloudHaskellArrowParallel}.
 
 \label{sec:nodeDiscAndHarness}
 
-In cloud services it is more common that the architecture of the running network
-changes than in ordinary computing clusters where the participating
+In cloud services, changes of the architecture in the running network
+are more common than in ordinary computing clusters where the participating
 nodes are usually known at startup. In the SimpleLocalNet^[See \url{http://hackage.haskell.org/package/distributed-process-simplelocalnet}.]
-Cloud Haskell backend we are using for this experiment, this is reflected in the fact that
+Cloud Haskell variant we are using for this experiment, this is reflected in the fact that
 there already exists a pre-implemented master-slave structure.
 The master node -- the node that starts the computation is considered the master
 node here -- has to keep track of all the available slave nodes. The slave
@@ -86,7 +86,7 @@ data State = State {
 ~~~~
 
 Notice that `workers :: MVar [NodeId]`, `shutdown :: MVar Bool` and `started :: MVar ()`
-are all low level mutable locations instead of regular fields.
+are all low level mutable variables instead of regular fields.
 This is because we pass this `State` around between functions,
 but want to update it with new information on-the-fly.
 These modifiable variables can be created empty with `newEmptyMVar :: IO (MVar a)` or
@@ -145,8 +145,9 @@ defaultInitConf = initialConf defaultBufSize
 
 \label{sec:cloudhaskellslaves}
 
-With the `State`/`Conf` data structure we can now implement our node-discovery scheme.
-Starting with the slave nodes, we can just use the basic 
+With the `State`/`Conf` data structure, we can now implement our node-discovery scheme.
+
+For the slave nodes, we can just use the basic 
 utilities for a slave backend in the SimpleLocalNet library. The code
 to start a node for the `Slave` backend is then:
 
@@ -172,12 +173,13 @@ later see how we can automatically generate such a table.
 
 \label{sec:cloudhaskellmasters}
 
-For master nodes, the implementation is a bit more involved. The actual
+For master nodes, the implementation of the node-discovery scheme
+is a bit more involved. The actual
 `startMaster :: Backend -> Process -> IO ()` supplied by SimpleLocalNet
 is meant to start a computation represented by a `Process` Monad and then return.
 In our use-case, we want to be able to spawn functions outside of the `Process` Monad,
-though. We therefore use the following `Process`
-passed into this startup function only for slave-node
+though. We therefore use the following function to build a process `Process ()`
+which will be passed into `startMaster` only for the sake of slave-node
 discovery and management:
 
 ~~~~{.haskell}
@@ -205,9 +207,9 @@ master conf backend slaves = do
 Basically, this continuously updates
 the list of slaves inside the configuration by first querying for all slave processes with
 `findSlaves backend` and redirecting the log output to the master node with
-`redirectLogsHere backend slaveProcesses` to then finally update `workers :: MVar [NodeId]`
+`redirectLogsHere backend slaveProcesses`, to then finally update `workers :: MVar [NodeId]`
 inside the configuration. Additionally, as soon as one slave is found, `started :: MVar ()`
-is supplied with the signalling `()` so that any thread waiting for node discovery can start 
+is supplied with the signalling `()`, so that any thread waiting for node discovery can start 
 its actual computation.^[Notice that while we could add an additional sleep here
 to not generate too much network noise in this function, we leave it out for
 the sake of simplicity.] All of this is embedded in a check whether a shutdown is requested
@@ -253,7 +255,7 @@ waitForStartup conf = readMVar (started conf)
 ~~~~
 
 because of the blocking behaviour of empty `MVar`s and the fact that we are signalling
-the startup with a simple dummy value `()` as described earlier.
+the startup with a simple dummy value `()`, as described earlier.
 
 ### Startup harness
 
@@ -310,9 +312,9 @@ with a call to `remotable` inside a Template-Haskell splice as
 
 As can be seen from this, any function passed to `remotable` must have a top-level
 declaration. Furthermore, we must also add any function manually. This is usually
-okay for basic applications where the user usually knows which
+okay for basic applications where the user knows which
 functions/values need to be serialized statically at compile time,
-but not in our use case as we want to be able
+but not in our use case, as we want to be able
 to evaluate arbitrary functions/Arrows on remote nodes.
 In Chapter \ref{sec:parEvalCloudHaskell}, we will see how to resolve this problem.
 
@@ -325,7 +327,7 @@ functions or Arrows to the slave nodes. Thankfully, there is an alternative:
 Eden's serialization mechanism
 has been made available separately in a package called \enquote{packman}
 ^[See \url{https://hackage.haskell.org/package/packman}.].
-This allows values to be serialized
+This allows for values to be serialized
 in the exact evaluation state they are currently in.
 
 We can use this to our advantage. Instead of sending inputs and functions/Arrows
@@ -334,7 +336,7 @@ API), we can instead apply the function, serialize this unevaluated thunk,
 send it to the evaluating slave, and communicate the fully evaluated value back
 to the master.
 
-With this idea in mind we will now explain how to achieve parallel evaluation
+With this idea in mind, we will now explain how to achieve parallel evaluation
 of Arrows with Cloud Haskell. We start by explaining the communication basics
 in Chapter \ref{sec:cloudhaskellCommBetweenNodes}.
 Next, we describe how to achieve evaluation of single values on slave nodes in
@@ -379,7 +381,7 @@ Values are received in a blocking manner with `receiveChan :: Serializable a => 
 
 ~~~~{.haskell}
 receiveVal :: ReceivePort Int -> Process Int
-receiveVal receivePort = receivechan receivePort
+receiveVal receivePort = receiveChan receivePort
 ~~~~
 
 One thing to keep in mind is that only `SendPort` are serializable.
@@ -473,28 +475,39 @@ the slave nodes' code.
 
 \label{sec:cloudhaskellparEvalMasterNode}
 
-The following function `forceSingle :: NodeId -> MVar a -> a -> Process ()`
+On the master node, the function `forceSingle :: NodeId -> MVar a -> a -> Process ()`
 is used to evaluate a single value `a`. It returns a monadic action
  `Process ()` that evaluates a value of type `a` on the node with the given
  `NodeId` and stores the evaluated result in the given `MVar a`.
 
 Unlike the master from Chapter \ref{sec:sendRecCloud},
 it starts by creating the top level communication channels
-`(SendPort a, ReceivePort a)`^[Here we only evaluate some `a`. Therefore, 
-we intentionally do not have `(SendPort b, ReceivePort b)`.] and
-`(SendPort (SendPort (Thunk a)), ReceivePort (SendPort (Thunk a)))` as
-we have to spawn the slave node from the master. This is different from
+
+~~~~{.haskell}
+(SendPort a, ReceivePort a)
+~~~~
+
+and
+
+~~~~{.haskell}
+(SendPort (SendPort (Thunk a)), ReceivePort (SendPort (Thunk a)))
+~~~~ 
+ 
+as we have to spawn the slave node from the master. This is different from
 the schematic depiction we have seen earlier where the two main
 channels were created outside of both functions.
 The communication scheme is the same, nevertheless.
-Then, it spawns the actual evaluation task (the slave from Chapter \ref{sec:sendRecCloud})
+Furthermore, we intentionally do not have some `(SendPort b, ReceivePort b)`
+as we only evaluate some `a` and not transform it.
+Then, the master spawns the actual evaluation task
+(the slave from Chapter \ref{sec:sendRecCloud})
 
 ~~~~{.haskell}
 evalTask :: (SendPort (SendPort (Thunk a)), SendPort a) -> Process ()
 ~~~~
 
 with the necessary `SendPort`s for input communication (`SendPort (SendPort (Thunk a))`)
-and result communication (`SendPort a`^[Here the type is `a` instead of
+and result communication (`SendPort a`^[Again, the type is `a` instead of
 some potentially other `b` because we only evaluate some `a`.]) on the given
 node via
  
@@ -515,6 +528,7 @@ over that `SendPort` with `sendChan inputSender $ toThunk serialized` to the eva
 slave node. Finally, it awaits the
 result of the evaluation with `forcedA <- receiveChan outputReceiver`
 and puts it inside the passed `MVar a` with `liftIO $ putMVar out forcedA`.
+The complete definition is:
 
 ~~~~{.haskell}
 forceSingle :: (Evaluatable a) => NodeId -> MVar a -> a -> Process ()
@@ -549,7 +563,7 @@ forceSingle node out a = do
 
 \label{sec:cloudhaskellparEvalSlaveNode}
 
-In the definition of `forceSingle` we use a function
+In the definition of `forceSingle`, we use a function
 
 ~~~~{.haskell}
 evalTask :: (SendPort (SendPort (Thunk a)), SendPort a) -> Closure (Process ())
@@ -568,7 +582,7 @@ This abstraction is required because of the way Cloud Haskell does serialization
 We can not write a single definition `evalTask` and expect it to work even though
 it would be a valid definition. This is because for Cloud Haskell to be able to create
 the required serialization code, at least in our tests, we require a
-fixed type like for example for `Int`s:
+fixed type, e.g. for `Int`s:
 
 ~~~~{.haskell}
 evalTaskInt :: (SendPort (SendPort (Thunk Int)), SendPort Int) -> Closure (Process ())
@@ -596,8 +610,8 @@ $(mkEvaluatables [''Int])
 
 This is possible because `evalTaskInt`, just like any other function on types that
 have instances for `Binary a`, `Typeable a`, and `NFData a`, can be just delegated to
-`evalTaskBase`, which behaves as follows: It starts by creating the channel, that
-it wants to receive its input from, with `(sendMaster, rec) <- newChan`. Next, it
+`evalTaskBase`, which behaves as follows: It starts by creating the channel that
+it wants to receive its input from with `(sendMaster, rec) <- newChan`. Next, it
 sends the `SendPort (Thunk a)` of this channel back to the master process via 
 `sendChan inputPipe sendMaster` to then receive its actual input on the
 `ReceivePort (Thunk a)` end with
@@ -633,7 +647,7 @@ evalTaskBase (inputPipe, output) = do
 Since we now know how to evaluate a value on slave nodes via
 `forceSingle :: (Evaluatable a) => NodeId -> MVar a -> a -> Process ()`, we can
 use this to build up an internal parallel evaluation scheme.
-For this we start by defining an abstraction of a
+For this, we start by defining an abstraction of a
 computation as
 
 ~~~~{.haskell}
@@ -674,7 +688,7 @@ evalSingle conf node a = do
     }
 ~~~~
 
-With this we can easily define a function
+With this, we can easily define a function
 `evalParallel :: Evaluatable a => Conf -> [a] -> IO (Computation [a])`
 that builds an `IO` action containing a parallel `Computation [a]`
 from an input list `[a]`. This `IO` action starts by retrieving the current list of
@@ -682,7 +696,7 @@ workers with `workers <- readMVar $ workers conf`. It continues
 by shuffling this list of workers with `shuffledWorkers <- randomShuffle workers`
 ^[`randomShuffle :: [a] -> IO [a]` is from \url{https://wiki.haskell.org/Random_shuffle}.]
 to ensure at least some level of equal work distribution between multiple calls
-to `evalParallel`. Then, the input values `a` are assigned to their 
+to `evalParallel`. Then, the input values `[a]` are assigned to their 
 corresponding workers to finally build the list of parallel computations `[Computation a]`
 with `comps <- sequence $ map (uncurry $ evalSingle conf) workAssignment`. 
 The action concludes by turning this list `[Computation a]` into a computation of a list
@@ -721,7 +735,7 @@ and get the result back as a pure value `a`, we have to use the function
 
 Internally, it uses an `IO a` action that 
 starts by unwrapping `Computation a` from the input `IO (Computation a)`
-with `comp <- x` to in order to launch the actual evaluation with `computation comp`.
+with `comp <- x` in order to launch the actual evaluation with `computation comp`.
 The `IO` action concludes by returning the result with `result comp`. Now,
 in order to turn the `IO a` action into `a`, we have to use
 `unsafePerformIO :: IO a -> a` which allows us to unwrap the pure values
@@ -731,9 +745,8 @@ severe bugs if not handled with utmost care.
 Here, its use is necessary and absolutely fine, though, since we only
 do evaluation inside the `IO` Monad and if this were to fail,
 the computation would be wrong anyways. Also in order to force the
-compiler to not inline the result -- which is generally okay in pure functions but
-not here as we do not want to spawn the computation multiple times --
-we protect the definition of `runComputation`
+compiler to not inline the result as we do not want to spawn the
+computation multiple times, we protect the definition of `runComputation`
 with a `NOINLINE` pragma:
 
 ~~~~{.haskell}
@@ -768,9 +781,9 @@ We will now give an experimental implementation of the `ArrowParallel` type clas
 with Cloud Haskell. Obviously, as already mentioned earlier, here 
 the additional conf parameter is the `State/Conf` type.
 
-We implement `parEvalN` of our `ArrowParallel arr a b Conf` instance
+We implement `parEvalN` for our `ArrowParallel arr a b Conf` instance
 as follows: We start off by forcing the input
-`[a]` into normal form with `arr force` as during testing this was 
+`[a]` into normal form with `arr force`, as during testing this was 
 found necessary because
 a not fully evaluated value `a` can still have attached things like a file
 handle which may be not serializable. Then, the parallel Arrow goes on to
@@ -779,7 +792,7 @@ into the evaluation Arrow obtained by applying `evalN :: [arr a b] -> arr [a] [b
 to the list of Arrows to be parallelized `[arr a b]` with `evalN fs`. This results
 in a not yet evaluated list of results `[b]` which is prepared to be forked away with
 `arr (evalParallel conf) :: arr [a] (Computation [b])`. The resulting computation
-blueprint is then executed with `arr runComputation :: arr (Computation [b]) [b]`.
+blueprint is finally executed with `arr runComputation :: arr (Computation [b]) [b]`.
 
 ~~~~{.haskell}
 instance (NFData a, Evaluatable b, ArrowChoice arr) =>
@@ -797,8 +810,8 @@ instance (NFData a, Evaluatable b, ArrowChoice arr) =>
 
 Similar to the GpH and `Par` Monad backends, our experimental Cloud Haskell backend suffers
 from the problem that
-it does not work in conjunction with the looping skeletons `pipe`/`ring`/`torus`
-described in this thesis. All testing programs would refuse to compute anything
+it does not work in conjunction with the looping skeletons `pipe`, `ring` and `torus`.
+All testing programs would refuse to compute anything
 and hang indefinitely.
 While this is no big problem for the shared-memory backends where we could just 
 implement a workaround with the help of an `ArrowLoopParallel` instance
@@ -810,7 +823,7 @@ instance (ArrowChoice arr, ArrowParallel arr a b Conf) =>
     postLoopParEvalN = parEvalN
 ~~~~
 
-A similar solution would not be feasible here because we are
+a similar solution would not be feasible here because we are
 in a distributed-memory setting.
 The topology skeletons would become meaningless as all benefits of
 using a sophisticated distributed evaluation scheme would be lost.
@@ -851,7 +864,7 @@ Here, anything other than the exact same behaviour as Eden will result in a dead
 when using `loopParEvalN = parEvalN`.
 We therefore believe that it is crucial for a proper Cloud Haskell backend to have the same
 streaming behaviour as Eden does. While we are confident that this is definitely possible
-to achieve with Cloud Haskell as early experiments on this suggest. We have to date
+to achieve with Cloud Haskell, as early experiments on this suggest, we have to date
 not been able to achieve proper streaming behaviour, though.
 We stopped further development here,
 as this would have bursted the scope of this thesis.
@@ -866,7 +879,7 @@ type PipeOut a = ReceivePort (SendPort (Maybe (SendPort (Maybe a))))
 ~~~~
 
 where `PipeIn a` would be the port where the evaluating process on the slave node
-send its result through to the corresponding `PipeOut a` on the master node.
+sends its result through to the corresponding `PipeOut a` on the master node.
 Note that we here encode a \enquote{stream} of some `a` with `SendPort (Maybe a)`:
 For types with singular values, we just request one value. And on types like e.g.
 a list `[a]` we expect multiple singleton lists `Just [a]`,
@@ -874,7 +887,7 @@ on the `SendPort` and the end of the input with `Nothing`.
 For other multi-valued types,
 this would work similar even if some hacks would be required.
 
-Then in order to communicate the result from the slave node, we would
+Then, in order to communicate the result from the slave node, we would
 first send `SendPort (Maybe (SendPort (Maybe a)))` on which the slave-node
 would want to receive the stream of `SendPort (Maybe a)`. This stream
 of `SendPort`s is required instead of a singular `SendPort`

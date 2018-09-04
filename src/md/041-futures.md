@@ -15,7 +15,7 @@ outlineCombinator fs1 fs2 =
 	parEvalN () fs2
 ~~~~
 
-In a distributed environment this first evaluates all `[arr a b]` in parallel,
+In a distributed environment, this evaluates all `[arr a b]` in parallel,
 sends the results back to the master node, rotates the input once
 and then evaluates the
 `[arr b c]` in parallel to then gather the input once again on the master node.
@@ -28,7 +28,7 @@ directly wiring the Arrows together before spawning, it illustrates an
 important problem. When using a `ArrowParallel` backend that resides on
 multiple computers, all communication between the nodes is done via
 the master node, as shown in the Eden trace in Figure \ref{fig:withoutFutures}.
-This can become a serious bottleneck for a larger amount of data and
+This can become a serious bottleneck for larger amounts of data and
 number of processes as e.g. @Berthold2009-fft showcases.
 
 ![Communication between 4 Eden processes without Futures.
@@ -38,7 +38,8 @@ Colours: blue $\hat{=}$ idle, green $\hat{=}$ running, red  $\hat{=}$ blocked,
 yellow $\hat{=}$ suspended.](src/img/withoutFutures.pdf){#fig:withoutFutures}
 
 This is usually only a problem in distributed memory
-and we should allow nodes to communicate directly with each other. Eden already provides
+where we should allow nodes to communicate directly with each other.
+Eden already provides
 \enquote{remote data} that enable this [@AlGo03a; @Dieterle2010].
 But as we want code using our DSL to be agnostic in terms of which backend is used,
 we have to wrap this concept. We do this with the `Future` type class to abstract
@@ -62,7 +63,7 @@ for the backends.
 
 Maybe even more interestingly, we use a functional dependency
 `a conf -> fut` in the definition. This means that the type of `fut`
-can always fully be determined from the actual types of `a` and `conf`. We need this
+can always be fully determined from the actual types of `a` and `conf`. We need this
 because we do not want users of our DSL to have to rely on a
 specific type of Future in their code.
 They only have to declare that they require a compatible Future type and do not
@@ -142,7 +143,7 @@ outlineCombinator fs1 fs2 =
 In a distributed environment, this gives us a communication scheme with
 messages going through the master node only if it is needed -- similar to what
 is shown in the trace visualisation in Figure \ref{fig:withFutures}. This is
-because only the handles to the data that are passed through the master
+because only the handles to the data are passed through the master
 node, while all communication of actual data can happen between the actual nodes.
 We will build upon this concept in more complicated combinators in the next chapter.
 

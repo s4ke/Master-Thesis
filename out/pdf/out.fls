@@ -776,6 +776,10 @@ INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
 INPUT out/pdf/out.ptb
 OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
+INPUT out/pdf/out.ptb
+OUTPUT out/pdf/out.ptb
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/ot1lmtt.fd
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/ot1lmtt.fd
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmtt10.tfm
