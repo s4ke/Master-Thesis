@@ -1,6 +1,6 @@
 @ECHO OFF
 SETLOCAL ENABLEDELAYEDEXPANSION
-SET customTeXFile=out/tex/finalCustom.tex
+SET customTeXFile=finalCustom.tex
 SET outfile=out/pdf/customOut.pdf
 SET outjobname=out/pdf/customOut
 
