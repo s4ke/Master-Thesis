@@ -387,7 +387,7 @@ chosen. The former does not differ from the original \ensuremath{\Conid{Par}} Mo
 regard to how we would have used it in this thesis, while the latter (at
 least in its current form) does not suit a wrapping approach such as the
 one presented here due to its heavy reliance on Template
-Haskell\footnote{a Haskell extension that allows to generate code.}. We
+Haskell\footnote{A Haskell extension that allows to generate code.}. We
 will nonetheless experiment with a potential Cloud Haskell (Epstein et
 al., \protect\hyperlink{ref-Epstein:2011:THC:2096148.2034690}{2011})
 backend to explore the possibility of someday enabling the DSL to
@@ -1189,10 +1189,10 @@ from the input list \ensuremath{[\mskip1.5mu \Varid{a}\mskip1.5mu]} to generate 
 \end{hscode}\resethooks
 \vspace{-2\baselineskip}
 
-Here, if we had not used the \ensuremath{(\mathbin{\$})} operator, we would have to write
+Here, if we had not used the \ensuremath{\mathbin{\$}} operator, we would have to write
 \ensuremath{\Varid{zipWith}\;(\lambda \Varid{f}\;\Varid{a}\to \Varid{f}\;\Varid{a})} which certainly seems a bit redundant.
 
-Something the \ensuremath{(\mathbin{\$})} operator is also used quite often is to write
+Something the \ensuremath{\mathbin{\$}} operator is also used quite often is to write
 shorter code. For example, code snippets like
 
 
@@ -5302,7 +5302,6 @@ node. Finally, it awaits the result of the evaluation with
 \ensuremath{\Conid{MVar}\;\Varid{a}} with \ensuremath{\Varid{liftIO}\mathbin{\$}\Varid{putMVar}\;\Varid{out}\;\Varid{forcedA}}. The complete definition
 is:
 
-
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{3}{@{}>{\hspre}l<{\hspost}@{}}%
@@ -5363,7 +5362,6 @@ is:
 \>[3]{}\Varid{liftIO}\mathbin{\$}\Varid{putMVar}\;\Varid{out}\;\Varid{forcedA}{}\<[E]%
 \ColumnHook
 \end{hscode}\resethooks
-\vspace{-2\baselineskip}
 
 \hypertarget{slave-node}{%
 \subsubsection{Slave node}\label{slave-node}}
@@ -7135,98 +7133,102 @@ benchmarks}\label{plots-for-the-shared-memory-benchmarks}}
 Following are all remaining plots for the shared memory benchmarks we
 conducted for this thesis.
 
-\begin{figure}
+\vfill
+
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/perfSMRM32.pdf}
 \caption{Parallel speedup of shared-memory Rabin--Miller test
 \enquote{11213 32}.\label{fig:perfSMRM32}}
 \end{figure}
 
-\begin{figure}
+\vfill
+
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/perfSMRM64.pdf}
 \caption{Parallel speedup of shared-memory Rabin--Miller test
 \enquote{11213 64}.\label{fig:perfSMRM64}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/overSMRM32Eden.pdf}
 \caption{Mean overhead for shared-memory Rabin---Miller test
 \enquote{11213 32} vs Eden CP.\label{fig:overSMRM32Eden}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/overSMRM32GpH.pdf}
 \caption{Mean overhead for shared-memory Rabin---Miller test
 \enquote{11213 32} vs GpH.\label{fig:overSMRM32GpH}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/overSMRM32Par.pdf}
 \caption{Mean overhead for shared-memory Rabin---Miller test
 \enquote{11213 32} vs \ensuremath{\Conid{Par}} monad.\label{fig:overSMRM32Par}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/overSMRM64Eden.pdf}
 \caption{Mean overhead for shared-memory Rabin---Miller test
 \enquote{11213 64} vs Eden CP.\label{fig:overSMRM64Eden}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/overSMRM64GpH.pdf}
 \caption{Mean overhead for shared-memory Rabin---Miller test
 \enquote{11213 64} vs GpH.\label{fig:overSMRM64GpH}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/overSMRM64Par.pdf}
 \caption{Mean overhead for shared-memory Rabin---Miller test
 \enquote{11213 64} vs \ensuremath{\Conid{Par}} Monad.\label{fig:overSMRM64Par}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/perfSMSudoku.pdf}
 \caption{Parallel speedup of shared-memory Sudoku
 \enquote{1000}.\label{fig:perfSMSudoku}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/overSMSudokuEden.pdf}
 \caption{Mean overhead for shared-memory Sudoku \enquote{1000} vs Eden
 CP.\label{fig:overSMSudokuEden}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/overSMSudokuGpH.pdf}
 \caption{Mean overhead for shared-memory Sudoku \enquote{1000} vs
 GpH.\label{fig:overSMSudokuGpH}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/overSMSudokuPar.pdf}
 \caption{Mean overhead for shared-memory Sudoku \enquote{1000} vs \ensuremath{\Conid{Par}}
 Monad.\label{fig:overSMSudokuPar}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/perfSMTorus.pdf}
 \caption{Parallel speedup of shared-memory Gentleman
 \enquote{512}.\label{fig:perfSMTorus}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/overSMTorusEden.pdf}
 \caption{Mean overhead for shared-memory speedup of Gentleman
@@ -7242,42 +7244,46 @@ benchmarks}\label{plots-for-the-distributed-memory-benchmarks}}
 Just like for the shared memory benchmarks, we here depict all the
 remaining plots for the distributed memory benchmarks.
 
-\begin{figure}
+\vfill
+
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/perfDistRM256.pdf}
 \caption{Parallel speedup of distributed-memory Rabin---Miller test
 \enquote{44497 256}.\label{fig:perfDistRM256}}
 \end{figure}
 
-\begin{figure}
+\vfill
+
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/overDistRM256Eden.pdf}
 \caption{Mean overhead for distributed-memory Rabin---Miller test
 \enquote{44497 256} vs Eden.\label{fig:overDistRM256Eden}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/perfDistJacobi.pdf}
 \caption{Parallel speedup of distributed-memory Jacobi sum test
 \enquote{3217}.\label{fig:perfDistJacobi}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/overDistJacobiEden.pdf}
 \caption{Mean overhead for distributed-memory Jacobi sum test
 \enquote{3217} vs Eden.\label{fig:overDistJacobiEden}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/perfDistTorus.pdf}
 \caption{Parallel speedup of distributed-memory Gentleman
 \enquote{4096}.\label{fig:perfDistTorus}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics{src/img/overDistTorusEden.pdf}
 \caption{Mean overhead for distributed-memory Gentleman \enquote{4096}
