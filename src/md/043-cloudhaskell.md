@@ -214,7 +214,7 @@ its actual computation.^[Notice that while we could add an additional sleep here
 to not generate too much network noise in this function, we leave it out for
 the sake of simplicity.] All of this is embedded in a check whether a shutdown is requested
 with `liftIO $ readMVar $ shutdown conf`. If instructed to do so, the program 
-does the necessary cleanup -
+does the necessary cleanup --
 terminating all slaves with `terminateAllSlaves backend` and shutting itself down with `die "terminated"` -
 otherwise continuing with the updating process.
 
@@ -444,7 +444,8 @@ of type class instances, we define a wrapper type `Thunk a` around `Serialized a
 
 ~~~~{.haskell}
 -- Wrapper for the packman type Serialized
-newtype Thunk a = Thunk { fromThunk :: Serialized a } deriving (Typeable)
+newtype Thunk a = Thunk { fromThunk :: Serialized a }
+    deriving (Typeable)
 
 toThunk a = Thunk { fromThunk = a }
 ~~~~
@@ -503,7 +504,8 @@ Then, the master spawns the actual evaluation task
 (the slave from Chapter \ref{sec:sendRecCloud})
 
 ~~~~{.haskell}
-evalTask :: (SendPort (SendPort (Thunk a)), SendPort a) -> Process ()
+evalTask ::
+    (SendPort (SendPort (Thunk a)), SendPort a) -> Process ()
 ~~~~
 
 with the necessary `SendPort`s for input communication (`SendPort (SendPort (Thunk a))`)
@@ -566,7 +568,8 @@ forceSingle node out a = do
 In the definition of `forceSingle`, we use a function
 
 ~~~~{.haskell}
-evalTask :: (SendPort (SendPort (Thunk a)), SendPort a) -> Closure (Process ())
+evalTask ::
+    (SendPort (SendPort (Thunk a)), SendPort a) -> Closure (Process ())
 ~~~~
 
 As indicated by the `Evaluatable a` in the type signature,
@@ -585,7 +588,8 @@ the required serialization code, at least in our tests, we require a
 fixed type, e.g. for `Int`s:
 
 ~~~~{.haskell}
-evalTaskInt :: (SendPort (SendPort (Thunk Int)), SendPort Int) -> Closure (Process ())
+evalTaskInt ::
+    (SendPort (SendPort (Thunk Int)), SendPort Int) ->Closure (Process ())
 ~~~~
 
 This function can be made remotable with `$(remotable [`'`evalTaskInt])`.

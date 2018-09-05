@@ -635,12 +635,12 @@ languages}\label{arrows-in-other-languages}}
 Although this work is centred on Haskell's implementation of Arrows, it
 is applicable to any functional programming language where parallel
 evaluation and Arrows can be defined. Basic definitions of PArrows are
-possible in the Frege language\footnote{GitHub project page at
-  \url{https://github.com/Frege/frege}} -- a Haskell-like language that
+possible in the Frege language\footnote{See the GitHub project page at
+  \url{https://github.com/Frege/frege}.} -- a Haskell-like language that
 compiles to Java code to then be compiled natively on the Java Virtual
 Machine (JVM). However, they are beyond the scope of this work, as are
-similar experiments with the Eta language\footnote{Eta project page at
-  \url{http://eta-lang.org}}, a new approach to Haskell on the JVM that
+similar experiments with the Eta language\footnote{See the Eta project page at
+  \url{http://eta-lang.org}.}, a new approach to Haskell on the JVM that
 compiles directly to JVM bytecode.
 
 Arrows have also been shown to be useful for better handling of typical
@@ -909,7 +909,7 @@ general, we can say that in functional programming we primarily focus on
 what information is required and by which transformations to compute it
 instead of how we perform them and how we track the changes in
 state.\footnote{From
-  \url{https://docs.microsoft.com/en-us/dotnet/visual-basic/programming-guide/concepts/linq/functional-programming-vs-imperative-programming}}
+  \url{https://docs.microsoft.com/en-us/dotnet/visual-basic/programming-guide/concepts/linq/functional-programming-vs-imperative-programming}.}
 
 Haskell being a functional language does not mean that we do not have
 the usual problem of a too small call-stack size encountered when
@@ -1104,7 +1104,7 @@ number to the power of four as
 with \ensuremath{\mathbin{\circ}} being the functional composition operator with type
 \ensuremath{(\mathbin{\circ})\mathbin{::}(\Varid{b}\to \Varid{c})\to (\Varid{a}\to \Varid{b})\to (\Varid{a}\to \Varid{c})}\footnote{Note the order of the
   arguments, \ensuremath{\Varid{g}\mathbin{\circ}\Varid{f}} means to first apply \ensuremath{\Varid{f}} and then \ensuremath{\Varid{g}} and not the
-  other way around} and where \ensuremath{\Varid{toThePowerOfTwo}} is defined simply as
+  other way around.} and where \ensuremath{\Varid{toThePowerOfTwo}} is defined simply as
 
 
 \begin{hscode}\SaveRestoreHook
@@ -1614,7 +1614,7 @@ chapter is that Haskell is a lazy language\footnote{Haskell is actually
   non-strict evaluation mechanism. But as Haskell's main compilers all
   implement non-strictness via lazy evaluation, it is okay to call
   Haskell a lazy language here. See
-  \url{https://wiki.haskell.org/Lazy_vs._non-strict}}. This means that
+  \url{https://wiki.haskell.org/Lazy_vs._non-strict}.}. This means that
 values are only evaluated when required. This has one major benefit: We
 get a Producer/Consumer pattern for free. For example if we have the
 lazy function \ensuremath{\Varid{producer}\mathbin{::}\Conid{Int}\to [\mskip1.5mu \Conid{Int}\mskip1.5mu]} producing some list of integers
@@ -1922,7 +1922,7 @@ In Haskell programs, we can also write unwrapping code with the help of
 the \ensuremath{\mathbf{let}} notation for single constructor types like\footnote{It is
   possible to do this for types with more than one constructor as well,
   but this will lead to errors at runtime unless we can ensure that the
-  matched constructor is the correct one}:
+  matched constructor is the correct one.}:
 
 
 \begin{hscode}\SaveRestoreHook
@@ -2027,7 +2027,7 @@ anonymous functions -- lambdas. In Haskell, they look like this:
 
 Lambdas can easily be passed into functions, like \ensuremath{\Varid{zipWith}}\footnote{While
   \ensuremath{(\lambda (\Varid{a},\Varid{b})\to \Varid{a}\mathbin{+}\Varid{b})} is obviously the same as (+), we just write it as
-  a lambda here for demonstration purposes}:
+  a lambda here for demonstration purposes.}:
 
 
 \begin{hscode}\SaveRestoreHook
@@ -2183,14 +2183,14 @@ then be defined as
 
 Here, we declare the instance deliberately on top of \ensuremath{\Conid{State}\;\Varid{s}} meaning
 that \ensuremath{\Conid{State}} itself is not a Monad, but it is a one together with some
-state representation \ensuremath{\Varid{s}}.\footnote{We can't declare \ensuremath{\Conid{State}} a Monad
-  anyways since \ensuremath{\Conid{Monad}} is a type class with just one type parameter}
+state representation \ensuremath{\Varid{s}}.\footnote{We can not declare \ensuremath{\Conid{State}} a Monad
+  anyways since \ensuremath{\Conid{Monad}} is a type class with just one type parameter.}
 Note how the operations are defined here: \ensuremath{\Varid{return}} encapsulates the
 given value \ensuremath{\Varid{x}\mathbin{::}\Varid{a}} inside the internal function and therefore is equal
 to the identity \ensuremath{\Varid{id}\mathbin{::}\Varid{a}\to \Varid{a}} function on tuples with one parameter
 already applied.\footnote{With the help of
   \ensuremath{\Varid{curry}\mathbin{::}((\Varid{a},\Varid{b})\to \Varid{c})\to \Varid{a}\to \Varid{b}\to \Varid{c}}, we could have therefore also
-  written \ensuremath{\Varid{return}\;\Varid{x}\mathrel{=}\Conid{State}\;\{\mskip1.5mu \Varid{runState}\mathrel{=}(\Varid{curry}\;\Varid{id})\;\Varid{x}\mskip1.5mu\}}} In the
+  written \ensuremath{\Varid{return}\;\Varid{x}\mathrel{=}\Conid{State}\;\{\mskip1.5mu \Varid{runState}\mathrel{=}(\Varid{curry}\;\Varid{id})\;\Varid{x}\mskip1.5mu\}}.} In the
 composition operator \ensuremath{\bind }, the monadic computation
 \ensuremath{\Conid{State}\;\Varid{h}\mathbin{::}\Conid{State}\;\Varid{s}\;\Varid{a}} is composed with the function
 \ensuremath{\Varid{f}\mathbin{::}\Varid{a}\to \Conid{State}\;\Varid{s}\;\Varid{b}} into a new monadic computation of type
@@ -3682,7 +3682,7 @@ In order to implement this type class for Eden and since \ensuremath{\Conid{RD}}
 type synonym for a communication type that is used internally in their
 library, we have to use some wrapper classes to fit the type class, as
 the following code showcases\footnote{Instances of type classes can not
-  be declared on type synonyms}:
+  be declared on type synonyms.}:
 
 
 \begin{hscode}\SaveRestoreHook
@@ -4598,7 +4598,7 @@ and the buffer size for serialization (we will discuss serialization
 system itself separately), respectively.
 
 Note that as we will later use the \ensuremath{\Conid{State}} type as the \ensuremath{\Varid{conf}} parameter
-in the \ensuremath{\Conid{ArrowParallel}} instance, we use the type synonym
+in the \linebreak \ensuremath{\Conid{ArrowParallel}} instance, we use the type synonym
 \ensuremath{\mathbf{type}\;\Conid{Conf}\mathrel{=}\Conid{State}} in the following code chapters. Furthermore, an
 initial config can be created with the function
 \ensuremath{\Varid{initialConf}\mathbin{::}\Conid{Int}\to \Conid{LocalNode}\to \Conid{IO}\;\Conid{Conf}} where the resulting config
@@ -4810,12 +4810,12 @@ its actual computation.\footnote{Notice that while we could add an
   function, we leave it out for the sake of simplicity.} All of this is
 embedded in a check whether a shutdown is requested with
 \ensuremath{\Varid{liftIO}\mathbin{\$}\Varid{readMVar}\mathbin{\$}\Varid{shutdown}\;\Varid{conf}}. If instructed to do so, the program
-does the necessary cleanup - terminating all slaves with
+does the necessary cleanup -- terminating all slaves with
 \ensuremath{\Varid{terminateAllSlaves}\;\Varid{backend}} and shutting itself down with
 \ensuremath{\Varid{die}\;\text{\tt \char34 terminated\char34}} - otherwise continuing with the updating process.
 
 With this \ensuremath{\Varid{master}} function, we can now define our initialization
-function \ensuremath{\Varid{initializeMaster}\mathbin{::}\Conid{RemoteTable}\to \Conid{Host}\to \Conid{Port}\to \Conid{IO}\;\Conid{Conf}}:
+function \linebreak \ensuremath{\Varid{initializeMaster}\mathbin{::}\Conid{RemoteTable}\to \Conid{Host}\to \Conid{Port}\to \Conid{IO}\;\Conid{Conf}}:
 
 
 \begin{hscode}\SaveRestoreHook
@@ -5011,7 +5011,7 @@ data}\label{sending-and-receiving-data}}
 Cloud Haskell uses typed channels to send and receive data between
 nodes. A typed channel consists of a \ensuremath{\Conid{SendPort}\;\Varid{a}} and a \ensuremath{\Conid{ReceivePort}\;\Varid{a}}.
 We can create a new typed cannel with the help of
-\ensuremath{\Varid{newChan}\mathbin{::}\Conid{Serializable}\;\Varid{a}\Rightarrow \Conid{Process}\;(\Conid{SendPort}\;\Varid{a},\Conid{ReceivePort}\;\Varid{a})}:
+\ensuremath{\Varid{newChan}\mathbin{::}\Conid{Serializable}\;\Varid{a}\Rightarrow \Conid{Process}\;(\Conid{SendPort}\;\Varid{a}, \linebreak \Conid{ReceivePort}\;\Varid{a})}:
 
 
 \begin{hscode}\SaveRestoreHook
@@ -5158,10 +5158,14 @@ define a wrapper type \ensuremath{\Conid{Thunk}\;\Varid{a}} around \ensuremath{\
 
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{5}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{E}{@{}>{\hspre}l<{\hspost}@{}}%
 \>[B]{}\mbox{\onelinecomment  Wrapper for the packman type Serialized}{}\<[E]%
 \\
-\>[B]{}\mathbf{newtype}\;\Conid{Thunk}\;\Varid{a}\mathrel{=}\Conid{Thunk}\;\{\mskip1.5mu \Varid{fromThunk}\mathbin{::}\Conid{Serialized}\;\Varid{a}\mskip1.5mu\}\;\mathbf{deriving}\;(\Conid{Typeable}){}\<[E]%
+\>[B]{}\mathbf{newtype}\;\Conid{Thunk}\;\Varid{a}\mathrel{=}\Conid{Thunk}\;\{\mskip1.5mu \Varid{fromThunk}\mathbin{::}\Conid{Serialized}\;\Varid{a}\mskip1.5mu\}{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}\mathbf{deriving}\;(\Conid{Typeable}){}\<[E]%
 \\[\blanklineskip]%
 \>[B]{}\Varid{toThunk}\;\Varid{a}\mathrel{=}\Conid{Thunk}\;\{\mskip1.5mu \Varid{fromThunk}\mathrel{=}\Varid{a}\mskip1.5mu\}{}\<[E]%
 \ColumnHook
@@ -5251,13 +5255,17 @@ not transform it. Then, the master spawns the actual evaluation task
 
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{5}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{E}{@{}>{\hspre}l<{\hspost}@{}}%
-\>[B]{}\Varid{evalTask}\mathbin{::}(\Conid{SendPort}\;(\Conid{SendPort}\;(\Conid{Thunk}\;\Varid{a})),\Conid{SendPort}\;\Varid{a})\to \Conid{Process}\;(){}\<[E]%
+\>[B]{}\Varid{evalTask}\mathbin{::}{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}(\Conid{SendPort}\;(\Conid{SendPort}\;(\Conid{Thunk}\;\Varid{a})),\Conid{SendPort}\;\Varid{a})\to \Conid{Process}\;(){}\<[E]%
 \ColumnHook
 \end{hscode}\resethooks
 \vspace{-2\baselineskip}
 
-with the necessary \ensuremath{\Conid{SendPort}}s for input communication
+with the necessary \ensuremath{\Conid{SendPort}}s for input communication \linebreak
 (\ensuremath{\Conid{SendPort}\;(\Conid{SendPort}\;(\Conid{Thunk}\;\Varid{a}))}) and result communication
 (\ensuremath{\Conid{SendPort}\;\Varid{a}}\footnote{Again, the type is \ensuremath{\Varid{a}} instead of some
   potentially other \ensuremath{\Varid{b}} because we only evaluate some \ensuremath{\Varid{a}}.}) on the
@@ -5367,8 +5375,12 @@ In the definition of \ensuremath{\Varid{forceSingle}}, we use a function
 
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{5}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{E}{@{}>{\hspre}l<{\hspost}@{}}%
-\>[B]{}\Varid{evalTask}\mathbin{::}(\Conid{SendPort}\;(\Conid{SendPort}\;(\Conid{Thunk}\;\Varid{a})),\Conid{SendPort}\;\Varid{a})\to \Conid{Closure}\;(\Conid{Process}\;()){}\<[E]%
+\>[B]{}\Varid{evalTask}\mathbin{::}{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}(\Conid{SendPort}\;(\Conid{SendPort}\;(\Conid{Thunk}\;\Varid{a})),\Conid{SendPort}\;\Varid{a})\to \Conid{Closure}\;(\Conid{Process}\;()){}\<[E]%
 \ColumnHook
 \end{hscode}\resethooks
 \vspace{-2\baselineskip}
@@ -5403,8 +5415,12 @@ e.g.~for \ensuremath{\Conid{Int}}s:
 
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
+\column{5}{@{}>{\hspre}l<{\hspost}@{}}%
 \column{E}{@{}>{\hspre}l<{\hspost}@{}}%
-\>[B]{}\Varid{evalTaskInt}\mathbin{::}(\Conid{SendPort}\;(\Conid{SendPort}\;(\Conid{Thunk}\;\Conid{Int})),\Conid{SendPort}\;\Conid{Int})\to \Conid{Closure}\;(\Conid{Process}\;()){}\<[E]%
+\>[B]{}\Varid{evalTaskInt}\mathbin{::}{}\<[E]%
+\\
+\>[B]{}\hsindent{5}{}\<[5]%
+\>[5]{}(\Conid{SendPort}\;(\Conid{SendPort}\;(\Conid{Thunk}\;\Conid{Int})),\Conid{SendPort}\;\Conid{Int})\to \Conid{Closure}\;(\Conid{Process}\;()){}\<[E]%
 \ColumnHook
 \end{hscode}\resethooks
 \vspace{-2\baselineskip}
@@ -5450,7 +5466,7 @@ can be just delegated to \ensuremath{\Varid{evalTaskBase}}, which behaves as fol
 starts by creating the channel that it wants to receive its input from
 with \ensuremath{(\Varid{sendMaster},\Varid{rec})\leftarrow \Varid{newChan}}. Next, it sends the
 \ensuremath{\Conid{SendPort}\;(\Conid{Thunk}\;\Varid{a})} of this channel back to the master process via
-\ensuremath{\Varid{sendChan}\;\Varid{inputPipe}\;\Varid{sendMaster}} to then receive its actual input on the
+\ensuremath{\Varid{sendChan}\;\Varid{inputPipe}\;\Varid{sendMaster}} to then receive its actual input on the \linebreak
 \ensuremath{\Conid{ReceivePort}\;(\Conid{Thunk}\;\Varid{a})} end with \ensuremath{\Varid{thunkA}\leftarrow \Varid{receiveChan}\;\Varid{rec}}. It finally
 deserializes this thunk with
 \ensuremath{\Varid{a}\leftarrow \Varid{liftIO}\mathbin{\$}\Varid{deserialize}\mathbin{\$}\Varid{fromThunk}\;\Varid{thunkA}} and sends the fully
@@ -5590,7 +5606,7 @@ evaluation \ensuremath{\Conid{IO}\;()} and the result communication action
 
 With this, we can easily define a function
 \ensuremath{\Varid{evalParallel}\mathbin{::}\Conid{Evaluatable}\;\Varid{a}\Rightarrow \Conid{Conf}\to [\mskip1.5mu \Varid{a}\mskip1.5mu]\to \Conid{IO}\;(\Conid{Computation}\;[\mskip1.5mu \Varid{a}\mskip1.5mu])}
-that builds an \ensuremath{\Conid{IO}} action containing a parallel \ensuremath{\Conid{Computation}\;[\mskip1.5mu \Varid{a}\mskip1.5mu]} from
+that builds an \ensuremath{\Conid{IO}} action containing a parallel \linebreak \ensuremath{\Conid{Computation}\;[\mskip1.5mu \Varid{a}\mskip1.5mu]} from
 an input list \ensuremath{[\mskip1.5mu \Varid{a}\mskip1.5mu]}. This \ensuremath{\Conid{IO}} action starts by retrieving the current
 list of workers with \ensuremath{\Varid{workers}\leftarrow \Varid{readMVar}\mathbin{\$}\Varid{workers}\;\Varid{conf}}. It continues
 by shuffling this list of workers with
@@ -5976,25 +5992,25 @@ here for a single machine) as will be discussed in Chapter
 hyper-threading ability in most of the cases.
 
 Apart from Eden, all benchmarks and libraries were compiled with
-Stack's\footnote{See \url{https://www.haskellstack.org/}} lts-7.1 GHC
+Stack's\footnote{See \url{https://www.haskellstack.org/}.} lts-7.1 GHC
 compiler which is equivalent to a standard GHC 8.0.1 with the base
 package in version 4.9.0.0. Stack itself was used in version 1.3.2. For
 GpH in its Multicore variant we used the \emph{parallel} package in
 version 3.2.1.0\footnote{See
-  \url{https://hackage.haskell.org/package/parallel-3.2.1.0}}, while for
+  \url{https://hackage.haskell.org/package/parallel-3.2.1.0}.}, while for
 the \ensuremath{\Conid{Par}} Monad we used \emph{monad-par} in version 0.3.4.8\footnote{See
-  \url{https://hackage.haskell.org/package/monad-par-0.3.4.8}}. For all
+  \url{https://hackage.haskell.org/package/monad-par-0.3.4.8}.}. For all
 Eden tests, we used a manually built GHC-Eden compiler in version
 7.8.2\footnote{See
-  \url{http://www.mathematik.uni-marburg.de/~eden/?content=build_eden_7_&navi=build}}
+  \url{http://www.mathematik.uni-marburg.de/~eden/?content=build_eden_7_&navi=build}.}
 together with OpenMPI 1.6.5\footnote{See
-  \url{https://www.open-mpi.org/software/ompi/v1.6/}}.
+  \url{https://www.open-mpi.org/software/ompi/v1.6/}.}.
 
 Furthermore, all benchmarks were done with help of the bench\footnote{See
-  \url{https://hackage.haskell.org/package/bench}} tool in version 1.0.2
+  \url{https://hackage.haskell.org/package/bench}.} tool in version 1.0.2
 which uses criterion (\textgreater{}=1.1.1.0 \&\& \textless{}
 1.2)\footnote{See
-  \url{https://hackage.haskell.org/package/criterion-1.1.1.0}}
+  \url{https://hackage.haskell.org/package/criterion-1.1.1.0}.}
 internally. All runtime data (mean runtime, max stddev, etc.) was
 collected by this tool.
 
@@ -6031,7 +6047,7 @@ Gentleman & Mathematics & \ensuremath{\Varid{torus}} & Eden & Loogen et al.
 Sudoku & Puzzle & \ensuremath{\Varid{parMap}} & \ensuremath{\Conid{Par}} Monad & Marlow et al.
 (\protect\hyperlink{ref-par-monad}{2011})\footnote{actual code from:
   \url{http://community.haskell.org/\~simonmar/par-tutorial.pdf} and
-  \url{https://github.com/simonmar/parconc-examples}}\tabularnewline
+  \url{https://github.com/simonmar/parconc-examples}.}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -6146,7 +6162,7 @@ wall-clock run time between the PArrow and direct benchmark
 implementations executed multiple times with the same settings. The
 error margins of the time measurements, supplied by criterion
 package\footnote{See
-  \url{https://hackage.haskell.org/package/criterion-1.1.1.0}}, yield
+  \url{https://hackage.haskell.org/package/criterion-1.1.1.0}.}, yield
 the error margin of the mean overhead.
 
 Quite often the zero value lies in the error margin of the mean
