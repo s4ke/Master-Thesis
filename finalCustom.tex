@@ -18,7 +18,7 @@
 \newcommand{\thesisSubtitleGerman}{}
 \newcommand{\thesisName}{Martin Braun (1249080)}
 \newcommand{\thesisSubject}{Master Thesis}
-\newcommand{\thesisDate}{07.09.2018}
+\newcommand{\thesisDate}{06.09.2018}
 \newcommand{\thesisUniversity}{\protect{University of Bayreuth}}
 \newcommand{\thesisUniversityDepartment}{AI5 -- Visual Computing}
 \newcommand{\thesisUniversityDepartmentGerman}{AI5 - Graphische Datenverarbeitung}
@@ -193,8 +193,8 @@ concept of Futures to wrap direct communication. Addressing the recent
 trends in cloud computing, we also explore the possibility for a cloud
 based implementation of this newly created DSL. To show that PArrows
 have similar expressive power as existing parallel languages, we
-implement several algorithmic skeletons and four benchmarks. The
-Benchmarks show that our framework does not induce any notable
+implement several algorithmic skeletons and four benchmarks. These
+show that our framework does not induce any notable
 performance overhead. We conclude that Arrows have considerable
 potential for composing parallel programs and more specifically for
 programs that have to be executed with multiple different parallel
@@ -250,7 +250,7 @@ Des Weiteren wird, um den aktuellen Trends im Cloud Computing Rechnung zu tragen
 neu geschaffenen DSL untersucht.
 Um zu zeigen, dass PArrows eine ähnliche Ausdruckskraft wie bestehende parallele Sprachen haben,
 werden mehrere algorithmische Skelette und vier Benchmarks implementiert.
-Die Benchmarks zeigen, dass PArrows keinen nennenswerten Performance-Overhead verursachen.
+Diese zeigen, dass PArrows keinen nennenswerten Performance-Overhead verursachen.
 Arrows haben ein beträchtliches Potenzial für das Schreiben paralleler Programme und speziell auch für solche,
 welche auf mehreren unterschiedlichen parallelen Sprachimplementierungen ausgeführt werden sollen.
 \end{abstract}
@@ -415,7 +415,7 @@ introducing the concept of \ensuremath{\Conid{Future}}s and by giving the defini
 some topology skeletons. We describe an experimental Cloud Haskell based
 backend in Chapter \ref{sec:cloudHaskellExperiment}. Chapter
 \ref{sec:benchmarks} evaluates the performance of the PArrows DSL.
-Chapter \ref{sec:outlook} gives and outlook and concludes.
+Chapter \ref{sec:outlook} gives an outlook and concludes.
 
 \hypertarget{related-work}{%
 \chapter{Related Work}\label{related-work}}
@@ -2319,9 +2319,9 @@ method \ensuremath{\Varid{computeStateful}} in a way that resembles imperative-s
 \end{hscode}\resethooks
 \vspace{-2\baselineskip}
 
-Here, we can also see the duality of \ensuremath{(\sequ )} and simple new lines as well
-as the one between \ensuremath{(\bind )} and the special \ensuremath{\leftarrow } operator in \ensuremath{\mathbf{do}}
-notation which facilitates the binding to a variable.\footnote{\ensuremath{(\bind )}
+Here, we can also see the duality of \ensuremath{\sequ } and simple new lines as well
+as the one between \ensuremath{\bind } and the special \ensuremath{\leftarrow } operator in \ensuremath{\mathbf{do}}
+notation which facilitates the binding to a variable.\footnote{\ensuremath{\bind }
   is also often called \ensuremath{\Varid{bind}} in languages which do not support custom
   operators.}
 
@@ -2488,7 +2488,7 @@ is the addition of results of two generic Arrows in a new Arrow:
 \end{hscode}\resethooks
 \vspace{-2\baselineskip}
 
-As we can rewrite the monadic bind operation \ensuremath{(\bind )} with only the
+As we can rewrite the monadic bind operation \ensuremath{\bind } with only the
 Kleisli type into \ensuremath{\Varid{m}\;\Varid{a}\to \Conid{Kleisli}\;\Varid{m}\;\Varid{a}\;\Varid{b}\to \Varid{m}\;\Varid{b}}, but not with a general
 Arrow \ensuremath{\Varid{arr}\;\Varid{a}\;\Varid{b}}, we can intuitively get an idea of why Arrows must be a
 generalisation of Monads. While this also means that a general Arrow can
@@ -6300,13 +6300,13 @@ minor overhead induced by PArrows is outweighed by their convenience and
 usefulness to the user.
 
 \begin{longtable}[]{@{}l@{}}
-\caption{Overhead in the shared memory benchmarks. Bold marks values in
+\caption[Overhead in the shared memory benchmarks.]{Overhead in the shared memory benchmarks. Bold marks values in
 favour of PArrows. \label{tbl:meanOverheadSharedMemory}}\tabularnewline
 \includegraphics{src/img/bestAndWorstBenchmarks1.pdf}\tabularnewline
 \end{longtable}
 
 \begin{longtable}[]{@{}l@{}}
-\caption{Overhead in the distributed memory benchmarks. Bold marks
+\caption[Overhead in the distributed memory benchmarks.]{Overhead in the distributed memory benchmarks. Bold marks
 values in favour of PArrows.
 \label{tbl:meanOverHeadDistributedMemory}}\tabularnewline
 \includegraphics{src/img/bestAndWorstBenchmarks2.pdf}\tabularnewline
@@ -7356,7 +7356,7 @@ doi:\href{https://doi.org/10.1016/j.entcs.2011.02.014}{10.1016/j.entcs.2011.02.0
 \leavevmode\hypertarget{ref-berthold_loidl_hammond_2016}{}%
 Berthold, H.-W. A. H., Jost And Loidl: PAEAN: Portable and scalable
 runtime support for parallel Haskell dialects, Journal of Functional
-Programming, 26,\\
+Programming, 26,\linebreak
 doi:\href{https://doi.org/10.1017/S0956796816000010}{10.1017/S0956796816000010},
 2016.
 
@@ -7429,7 +7429,7 @@ parallel orbit calculations in Eden, 2010.
 
 \leavevmode\hypertarget{ref-BUONO20102095}{}%
 Buono, D., Danelutto, M. and Lametti, S.: Map, reduce and mapreduce, the
-skeleton way, Procedia Computer Science, 1(1), 2095--2103,\\
+skeleton way, Procedia Computer Science, 1(1), 2095--2103,\linebreak
 doi:\href{https://doi.org/https://doi.org/10.1016/j.procs.2010.04.234}{https://doi.org/10.1016/j.procs.2010.04.234},
 2010.
 
@@ -7491,7 +7491,7 @@ engineering, pp. 25--32, ACM., 2011.
 
 \leavevmode\hypertarget{ref-Dean:2008:MSD:1327452.1327492}{}%
 Dean, J. and Ghemawat, S.: MapReduce: Simplified data processing on
-large clusters, Communications of the ACM, 51(1), 107--113,\\
+large clusters, Communications of the ACM, 51(1), 107--113,\linebreak
 doi:\href{https://doi.org/http://doi.acm.org/10.1145/1327452.1327492}{http://doi.acm.org/10.1145/1327452.1327492},
 2008.
 
@@ -7674,7 +7674,7 @@ doi:\href{https://doi.org/10.1016/j.scico.2007.07.001}{10.1016/j.scico.2007.07.0
 
 \leavevmode\hypertarget{ref-Lengauer1997}{}%
 Lengauer, C., Gorlatch, S. and Herrmann, C.: The static parallelization
-of loops and recursions, The Journal of Supercomputing, 11(4), 333--353,\\
+of loops and recursions, The Journal of Supercomputing, 11(4), 333--353,\linebreak
 doi:\href{https://doi.org/10.1023/A:1007904422322}{10.1023/A:1007904422322},
 1997.
 
@@ -7704,7 +7704,7 @@ computation, pp. 339--346, ACM Press., 2010.
 
 \leavevmode\hypertarget{ref-Liu:2009:CCA:1631687.1596559}{}%
 Liu, H., Cheng, E. and Hudak, P.: Causal commutative arrows and their
-optimization, SIGPLAN Not., 44(9), 35--46,\\
+optimization, SIGPLAN Not., 44(9), 35--46,\linebreak
 doi:\href{https://doi.org/10.1145/1631687.1596559}{10.1145/1631687.1596559},
 2009.
 
@@ -7785,7 +7785,7 @@ isbn-13: 978-1593272838, 376 pp., 23, 351--352, 2013.
 \leavevmode\hypertarget{ref-vanNieuwpoort:2001:ELB:568014.379563}{}%
 Nieuwpoort, R. V. van, Kielmann, T. and Bal, H. E.: Efficient load
 balancing for wide-area divide-and-conquer applications, SIGPLAN Not.,
-36(7), 34--43,\\
+36(7), 34--43,\linebreak
 doi:\href{https://doi.org/10.1145/568014.379563}{10.1145/568014.379563},
 2001.
 
@@ -7799,7 +7799,7 @@ Olivier, S. and Prins, J.: Scalable dynamic load balancing using UPC, in
 37International conference on parallel processing, pp. 123--131., 2008.
 
 \leavevmode\hypertarget{ref-Paterson:2001:NNA:507669.507664}{}%
-Paterson, R.: A new notation for arrows, SIGPLAN Not., 36(10), 229--240,\\
+Paterson, R.: A new notation for arrows, SIGPLAN Not., 36(10), 229--240,\linebreak
 doi:\href{https://doi.org/10.1145/507546.507664}{10.1145/507546.507664},
 2001.
 
@@ -7843,7 +7843,7 @@ symposium on Haskell, pp. 13--24, ACM., 2008.
 
 \leavevmode\hypertarget{ref-stewart_maier_trinder_2016}{}%
 Stewart, P. A. T., Robert And Maier: Transparent fault tolerance for
-scalable functional computation, Journal of Functional Programming, 26,\\
+scalable functional computation, Journal of Functional Programming, 26,\linebreak
 doi:\href{https://doi.org/10.1017/S095679681600006X}{10.1017/S095679681600006X},
 2016.
 
