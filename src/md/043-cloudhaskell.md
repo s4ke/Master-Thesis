@@ -459,7 +459,7 @@ instance (Typeable a) => Binary (Thunk a) where
   put = Data.Binary.put . fromThunk
   get = do
     (ser :: Serialized a) <- Data.Binary.get
-return $ Thunk { fromThunk = ser }
+    return $ Thunk { fromThunk = ser }
 ~~~~
 
 ### Evaluation of values on slave nodes
