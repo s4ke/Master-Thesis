@@ -242,7 +242,7 @@ welche auf mehreren unterschiedlichen parallelen Sprachimplementierungen ausgef√
 \end{abstract}
 \cleardoublepage
 
-\pagestyle{plain}
+\pagestyle{empty}
 \begin{center}
 \topskip0pt
 \vspace*{\fill}
@@ -252,12 +252,35 @@ welche auf mehreren unterschiedlichen parallelen Sprachimplementierungen ausgef√
 
 \cleardoublepage
 
+\chapter*{Acknowledgements}
+\thispagestyle{empty}
+
+First of all, I would like to thank Oleg Lobachev for encouraging me
+to work on this thesis in the first place.
+Without his initial idea and guidance I would
+not have been able to complete this work or the underlying paper,
+which he also co-authored.
+
+Secondly, I would like to thank the my other co-author
+Phil Trinder for his contributions to the paper as well as providing me access to the
+Glasgow Beowulf cluster.
+
+Furthermore, I would like to thank Andreas Braun, Monika Braun, Julian Neuberger and
+Maren Gruber for proof-reading and giving me their invaluable input.
+
+Last but not least, I thank my family for their support and especially my parents
+for helping me become the person I am today.
+
+\cleardoublepage
+
 $if(toc)$
 {
 $if(colorlinks)$
 \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$$endif$}
 $endif$
 \setcounter{tocdepth}{$toc-depth$}
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\pagenumbering{gobble}
 \tableofcontents
 }
 $endif$

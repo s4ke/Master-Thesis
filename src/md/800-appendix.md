@@ -1,3 +1,5 @@
+\appendix
+
 # Appendix
 
 Following are additional chapters with supplementary information for this thesis. Next, Chapter \ref{app:profunctorArrows}
