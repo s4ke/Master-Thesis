@@ -136,7 +136,7 @@ of a distributed system.
 \label{sec:earlierwork}
 
 Research on the PArrows DSL started with a Master's research project under
-the supervision of Oleg Lobachev. The results of this work included
+the supervision of Oleg Lobachev. The results of this work^[Available at \url{https://github.com/s4ke/Parrows/tree/projekt}.] included
 the basic idea of the interface as well as some early basic `map`-based skeletons.
 We greatly expand on these results in Chapters \ref{sec:parallelHaskells} -- \ref{sec:map-skeletons}.
 
