@@ -17,7 +17,7 @@ introduce Arrows and explain their type class in Haskell (Chapter \ref{sec:arrow
 @Hughes:1990:WFP:119830.119832 describes the fundamental idea of 
 functional programming like this:
 
-> Functional programming is so called because its fundamental operation is
+>Functional programming is so called because its fundamental operation is
 the application of functions to arguments. A main program itself is written as
 a function that receives the program’s input as its argument and delivers the
 program’s output as its result. Typically the main function is defined in terms of
@@ -28,7 +28,7 @@ Basically, functional programs only contain logic described in terms of
 functions and their compositions. Additionally, functional programming is also often characterized
 as follows [@Hughes:1990:WFP:119830.119832]:
 
-> Functional programs contain no
+>Functional programs contain no
 assignment statements, so variables, once given a value, never change. More
 generally, functional programs contain no side-effects at all. A function call
 can have no effect other than to compute its result. This eliminates a major
@@ -38,7 +38,7 @@ relieves the programmer of the burden of prescribing the flow of control. Since
 expressions can be evaluated at any time, one can freely replace variables by
 their values and vice versa — that is, programs are “referentially transparent”.
 This freedom helps make functional programs more tractable mathematically
-than their conventional counterparts. 
+than their conventional counterparts.
 
 While all these are all good arguments in favour of functional programming -- because
 of the elimination of programming bottlenecks -- these arguments only
@@ -46,7 +46,7 @@ describe functional programming by means of what it can not do.
 @Hughes:1990:WFP:119830.119832 describes his dissatisfaction with this
 argument as follows:
 
-> Even a functional programmer should be dissatisfied with these so-called
+>Even a functional programmer should be dissatisfied with these so-called
 advantages, because they give no help in exploiting the power of functional languages.
 One cannot write a program that is particularly lacking in assignment
 statements, or particularly referentially transparent. There is no yardstick of

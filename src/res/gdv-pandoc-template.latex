@@ -104,12 +104,16 @@ $endif$
     \itshape
     \setlength{\rightmargin}{\leftmargin}
     {\Large\textbf{``}}
+	{\hspace{-0.7em}}
 }
 {%
+	{\hspace{-0.7em}}
 	{\Large\textbf{''}}
     \endoldquote
 }
 % END
+
+\usepackage{float}
 
 % BEGIN
 % fix for Figures below footnotes

@@ -9,13 +9,13 @@ when they are not in use. This trend in computing has also been embraced by the 
 community, and therefore libraries such as Cloud Haskell were born. Cloud Haskell
 is described on the project's website^[See \url{http://haskell-distributed.github.io/}.] as:
 
-> Cloud Haskell: Erlang-style concurrent and distributed programming in Haskell.
+>Cloud Haskell: Erlang-style concurrent and distributed programming in Haskell.
 The Cloud Haskell Platform consists of a generic network transport API,
 libraries for sending static closures to remote nodes, a rich API for
 distributed programming and a set of platform libraries modelled after
 Erlang's Open Telecom Platform.
 >
-> Generic network transport backends have been developed for TCP and in-memory
+>Generic network transport backends have been developed for TCP and in-memory
 messaging, and several other implementations are available including a
 transport for Windows Azure.[...]
     

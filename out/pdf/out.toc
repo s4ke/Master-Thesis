@@ -200,15 +200,15 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {A.1}Profunctor Arrows}{93}{section*.108}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}Additional function definitions}{93}{section*.110}
+\contentsline {section}{\numberline {A.2}Additional function definitions}{94}{section*.110}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.3}Syntactic sugar}{96}{section*.116}
+\contentsline {section}{\numberline {A.3}Syntactic sugar}{97}{section*.116}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.4}Experimental Cloud Haskell backend code}{96}{section*.117}
+\contentsline {section}{\numberline {A.4}Experimental Cloud Haskell backend code}{97}{section*.117}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.5}Plots for the shared memory benchmarks}{100}{section*.120}
+\contentsline {section}{\numberline {A.5}Plots for the shared memory benchmarks}{101}{section*.120}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.6}Plots for the distributed memory benchmarks}{108}{section*.135}
+\contentsline {section}{\numberline {A.6}Plots for the distributed memory benchmarks}{109}{section*.135}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{References}{113}{section*.143}
 \defcounter {refsection}{0}\relax 

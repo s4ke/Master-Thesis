@@ -27,14 +27,22 @@ part of the `Arrow` type class like presented in this thesis.^[For additional in
     caption="Profunctors as Arrows."
     options=h
     }
-instance (Category p, Strong p) => Arrow p where
+instance (Category p,
+    Strong p) =>
+    Arrow p where
   arr f = dimap id f id
   first = first'
 
-instance (Category p, Strong p, Costrong p) => ArrowLoop p where
+instance (Category p,
+    Strong p,
+    Costrong p) =>
+    ArrowLoop p where
   loop = loop'
 
-instance (Category p, Strong p, Choice p) => ArrowChoice p where
+instance (Category p,
+    Strong p,
+    Choice p) =>
+    ArrowChoice p where
   left = left'
 ~~~~
 
@@ -109,12 +117,15 @@ threetotwo = arr $ \ ~(a, b, c) -> (a, (b, c))
     caption="Eden's definition of the |ring| skeleton."
     options=t
     }
-ringSimple :: (Trans i, Trans o, Trans r) => (i -> r -> (o,r)) -> [i] -> [o]
+ringSimple :: (Trans i, Trans o, Trans r) => 
+    (i -> r -> (o,r)) -> [i] -> [o]
 ringSimple f is =  os
-  where (os,ringOuts) = unzip (parMap (toRD $ uncurry f) (zip is $ lazy ringIns))
+  where (os,ringOuts) = unzip (parMap 
+            (toRD $ uncurry f) (zip is $ lazy ringIns))
         ringIns = rightRotate ringOuts
 
-toRD :: (Trans i, Trans o, Trans r) => ((i,r) -> (o,r)) -> ((i, RD r) -> (o, RD r))
+toRD :: (Trans i, Trans o, Trans r) => 
+    ((i,r) -> (o,r)) -> ((i, RD r) -> (o, RD r))
 toRD  f (i, ringIn)  = (o, release ringOut)
   where (o, ringOut) = f (i, fetch ringIn)
 
@@ -142,16 +153,19 @@ which calculates $A + B$ for two matrices $A$ and $B$.
 prMM :: Matrix -> Matrix -> Matrix
 prMM m1 m2 = prMMTr m1 (transpose m2)
   where
-    prMMTr m1' m2' = [[sum (zipWith (*) row col) | col <- m2' ] | row <- m1']
+    prMMTr m1' m2' = 
+        [[sum (zipWith (*) row col) | col <- m2' ] | row <- m1']
 
 splitMatrix :: Int -> Matrix -> [[Matrix]]
-splitMatrix size matrix = map (transpose . map (chunksOf size)) $ chunksOf size $ matrix
+splitMatrix size matrix = 
+    map (transpose . map (chunksOf size)) $ chunksOf size $ matrix
 
 staggerHorizontally :: [[a]] -> [[a]]
 staggerHorizontally matrix = zipWith leftRotate [0..] matrix
 
 staggerVertically :: [[a]] -> [[a]]
-staggerVertically matrix = transpose $ zipWith leftRotate [0..] (transpose matrix)
+staggerVertically matrix = 
+    transpose $ zipWith leftRotate [0..] (transpose matrix)
 
 leftRotate :: Int -> [a] -> [a]
 leftRotate i xs = xs2 ++ xs1 where

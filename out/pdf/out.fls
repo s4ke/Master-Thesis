@@ -224,6 +224,8 @@ INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/CaseFolding.txt
 INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/SpecialCasing.txt
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/l3kernel/l3pdfmode.def
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/l3kernel/l3pdfmode.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/float/float.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/float/float.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/footmisc/footmisc.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/footmisc/footmisc.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/biblatex/lbx/english.lbx
