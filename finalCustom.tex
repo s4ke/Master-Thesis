@@ -1477,7 +1477,7 @@ keyword like
 \\
 \>[B]{}\mathbf{type}\;\Conid{Tuple}\;\Varid{a}\;\Varid{b}\mathrel{=}(\Varid{a},\Varid{b}){}\<[E]%
 \\[\blanklineskip]%
-\>[B]{}\mbox{\onelinecomment  Tuple of ints}{}\<[E]%
+\>[B]{}\mbox{\onelinecomment  Tuple of Ints}{}\<[E]%
 \\
 \>[B]{}\mathbf{type}\;\Conid{IntTuple}\mathrel{=}(\Conid{Int},\Conid{Int}){}\<[E]%
 \ColumnHook
@@ -2075,7 +2075,7 @@ cost. The fact of the matter is that in functional programming, we can
 represent mutable state as well, but we do so in a meaningful and
 controlled manner.
 
-While we could we could represent state in most computations by passing
+While we could represent state in most computations by passing
 it into every function that can possibly change it and returning it
 alongside of the actual returned value like
 
@@ -2228,7 +2228,7 @@ does not change it:
 \vspace{-2\baselineskip}
 
 With these operations, we can easily write stateful programs
-like\footnote{Inspired and adapted from
+such as\footnote{Inspired and adapted from
   \url{https://gist.github.com/sdiehl/8d991a718f7a9c80f54b}.}
 
 
@@ -2363,7 +2363,7 @@ us to to save input across Arrows. Figure \ref{fig:arrows-viz} shows a
 graphical representation of these basic Arrow combinators. The most
 prominent instances of this interface (Figure \ref{fig:ArrowDefinition})
 are regular functions \ensuremath{(\to )} and the Kleisli type, which wraps monadic
-functions, e.g. \ensuremath{\Varid{a}\to \Varid{m}\;\Varid{b}}.\footnote{In \ref{sec:relWorkArrows} we
+functions, e.g. \ensuremath{\Varid{a}\to \Varid{m}\;\Varid{b}}.\footnote{In Chapter \ref{sec:relWorkArrows}, we
   referenced further relevant Arrow types, especially ones that can be
   used for Arrow-based functional reactive programming.}
 
@@ -6889,7 +6889,7 @@ configuration:\footnote{Hence the \ensuremath{()} as the \ensuremath{\Varid{conf
 \end{hscode}\resethooks
 \vspace{-2\baselineskip}
 
-We define the parallel \ensuremath{\mathbin{\mid\!\!\&\!\&\!\&\!\!\mid}} in a similar manner to its sequential
+We define the parallel \ensuremath{\mathbin{\mid\!\!\&\!\&\!\&\!\!\mid}} similarly to its sequential
 pendant \ensuremath{\mathbin{\&\!\&\!\&}} (Figure \ref{fig:syntacticSugarArrows}):
 
 
