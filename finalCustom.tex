@@ -3510,13 +3510,13 @@ which uses \ensuremath{\Varid{parEvalNLazy}} instead of \ensuremath{\Varid{parEv
 Its definition is identical to the one for \ensuremath{\Varid{farm}} apart from the use of
 \ensuremath{\Varid{parEvalNLazy}} instead of \ensuremath{\Varid{parEvalN}}.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics{src/img/farmChunkImg.pdf}
 \caption{\ensuremath{\Varid{farmChunk}} depiction.\label{fig:farmChunkImg}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
@@ -3553,6 +3553,8 @@ Its definition is identical to the one for \ensuremath{\Varid{farm}} apart from 
 \ColumnHook
 \end{hscode}\resethooks
 \caption{\ensuremath{\Varid{farmChunk}} definition.}\label{fig:farmChunk}\end{figure}
+
+\vfill
 
 \hypertarget{further-development-of-parallel-arrows}{%
 \chapter{Further development of Parallel
@@ -4123,7 +4125,7 @@ Extensive use of \ensuremath{\Varid{pipe2}} over \ensuremath{\Varid{pipe}} with 
 data type will probably result in worse performance because of more
 communication overhead from the many calls to \ensuremath{\Varid{parEvalN}} inside of
 \ensuremath{\Varid{evalN}}. Nonetheless, we can define a parallel piping operator
-\ensuremath{\mathbin{|\!>\!\!>\!\!>\!|}}, which is semantically equivalent to \ensuremath{\mathbin{>\!\!>\!\!>}} similarly to other
+\ensuremath{\mathbin{|\!>\!\!>\!\!>\!|}}, which is semantically equivalent to \ensuremath{\mathbin{>\!\!>\!\!>}}, similarly to other
 parallel syntactic sugar from Appendix \ref{syntacticSugar}.
 
 \hypertarget{ring-skeleton}{%
@@ -4379,7 +4381,16 @@ matrix multiplication using Gentleman's algorithm (Gentleman,
 \protect\hyperlink{ref-Gentleman1978}{1978}). An adapted version can be
 found in Figure \ref{fig:torusMatMult}.
 
-\begin{figure}[t]
+If we compare the trace from a call using our Arrow definition of the
+\ensuremath{\Varid{torus}} (Figure \ref{fig:torus_parrows_trace}) with the Eden version
+(Figure \ref{fig:torus_eden_trace}), we can see that the behaviour of the
+Arrow version and execution times are comparable -- our port was
+successful. We discuss further benchmarks on larger clusters in more
+detail in Chapter \ref{sec:benchmarks}.
+
+\newpage
+
+\begin{figure}[H]
 \centering
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
@@ -4437,21 +4448,14 @@ found in Figure \ref{fig:torusMatMult}.
 \end{hscode}\resethooks
 \caption[Adapted matrix multiplication in Eden using the \ensuremath{\Varid{torus}} skeleton.]{Adapted matrix multiplication in Eden using the \ensuremath{\Varid{torus}} skeleton. \ensuremath{\Varid{prMM\char95 torus}} is the parallel matrix multiplication. \ensuremath{\Varid{mult}} is the function performed by each worker. \ensuremath{\Varid{prMM}} is the sequential matrix multiplication in the chunks. \ensuremath{\Varid{splitMatrix}} splits the Matrix into chunks. \ensuremath{\Varid{staggerHorizontally}} and \ensuremath{\Varid{staggerVertically}} pre-rotate the matrices. \ensuremath{\Varid{matAdd}} calculates $A + B$. Omitted definitions can be found in \ref{fig:torus_example_rest}.}\label{fig:torusMatMult}\end{figure}
 
-If we compare the trace from a call using our Arrow definition of the
-\ensuremath{\Varid{torus}} (Figure \ref{fig:torus_parrows_trace}) with the Eden version
-(Figure \ref{fig:torus_eden_trace}) we can see that the behaviour of the
-Arrow version and execution times are comparable -- our port was
-successful. We discuss further benchmarks on larger clusters in more
-detail in Chapter \ref{sec:benchmarks}.
-
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics{src/img/torus_matrix_parrows_trace.pdf}
 \caption{Communication trace of a matrix multiplication with \ensuremath{\Varid{torus}}
 (PArrows).\label{fig:torus_parrows_trace}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics{src/img/torus_matrix_parrows_trace.pdf}
 \caption{Communication trace of a matrix multiplication with \ensuremath{\Varid{torus}}
@@ -6645,6 +6649,8 @@ thesis.\footnote{For additional information on the type classes used,
 \end{hscode}\resethooks
 \caption{Profunctors as Arrows.}\label{fig:profunctorArrow}\end{figure}
 
+\newpage
+
 \hypertarget{additional-function-definitions}{%
 \section{Additional function
 definitions}\label{additional-function-definitions}}
@@ -6653,7 +6659,6 @@ definitions}\label{additional-function-definitions}}
 
 We have omitted some function definitions in the main text for brevity,
 and redeem this here.
-
 We begin with Arrow versions of Eden's \ensuremath{\Varid{shuffle}}, \ensuremath{\Varid{unshuffle}} and the
 definition of \ensuremath{\Varid{takeEach}} can be found in Figure
 \ref{fig:edenshuffleetc}. Similarly, Figure
@@ -6665,7 +6670,7 @@ definition of \ensuremath{\Varid{farmChunk}} is in Figure \ref{fig:farmChunk}. E
 definition of \ensuremath{\Varid{ring}} skeleton is in Figure \ref{fig:ringEden}. It
 follows Loogen (\protect\hyperlink{ref-Loogen2012}{2012}).
 
-\begin{figure}[t]
+\begin{figure}[H]
 \centering
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
@@ -6687,7 +6692,7 @@ follows Loogen (\protect\hyperlink{ref-Loogen2012}{2012}).
 \end{hscode}\resethooks
 \caption{\ensuremath{\Varid{shuffle}}, \ensuremath{\Varid{unshuffle}}, \ensuremath{\Varid{takeEach}} definition.}\label{fig:edenshuffleetc}\end{figure}
 
-\begin{figure}[t]
+\begin{figure}[H]
 \centering
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
@@ -6710,7 +6715,7 @@ follows Loogen (\protect\hyperlink{ref-Loogen2012}{2012}).
 \end{hscode}\resethooks
 \caption{\ensuremath{\Varid{lazy}} and \ensuremath{\Varid{rightRotate}} definitions.}\label{fig:edenlazyrightrotate}\end{figure}
 
-\begin{figure}[t]
+\begin{figure}[H]
 \centering
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
@@ -6730,7 +6735,7 @@ follows Loogen (\protect\hyperlink{ref-Loogen2012}{2012}).
 \end{hscode}\resethooks
 \caption{\ensuremath{\Varid{lazyzip3}}, \ensuremath{\Varid{uncurry3}} and \ensuremath{\Varid{threetotwo}} definitions.}\label{fig:lazyzip3etc}\end{figure}
 
-\begin{figure}[t]
+\begin{figure}[H]
 \centering
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
@@ -6796,7 +6801,7 @@ skeleton. They are: \ensuremath{\Varid{prMM}} (sequential matrix multiplication)
 and \ensuremath{\Varid{staggerVertically}} (to pre-rotate the matrices), and lastly
 \ensuremath{\Varid{matAdd}}, which calculates \(A + B\) for two matrices \(A\) and \(B\).
 
-\begin{figure}[t]
+\begin{figure}
 \centering
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
@@ -6915,7 +6920,7 @@ mark the evaluation tasks as remotable in Cloud Haskell) and
 \ensuremath{\Varid{mkEvaluatables}} (to create the \ensuremath{\Conid{Evaluatable}} instance) are the ones
 exposed to the user.
 
-\begin{figure}[th]
+\begin{figure}
 \centering
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
@@ -7064,7 +7069,9 @@ and wait for requests on. Similarly, a single master node can be started
 with \enquote{<executable> master 127.0.0.1 7999} where, once again, the
 last parameter determines the communication port.
 
-\begin{figure}[th]
+\vfill
+
+\begin{figure}[H]
 \centering
 \begin{hscode}\SaveRestoreHook
 \column{B}{@{}>{\hspre}l<{\hspost}@{}}%
@@ -7124,6 +7131,10 @@ last parameter determines the communication port.
 \ColumnHook
 \end{hscode}\resethooks
 \caption{The Template Haskell version of the Sudoku benchmark program.}\label{fig:sudokuCloudHaskell}\end{figure}
+
+\vfill
+
+\newpage
 
 \hypertarget{plots-for-the-shared-memory-benchmarks}{%
 \section{Plots for the shared memory
