@@ -3389,11 +3389,15 @@ probably the most common skeleton for parallel programs. We can
 implement it with \ensuremath{\Conid{ArrowParallel}} by repeating an Arrow \ensuremath{\Varid{arr}\;\Varid{a}\;\Varid{b}} and
 then passing it into \ensuremath{\Varid{parEvalN}} to obtain an Arrow \ensuremath{\Varid{arr}\;[\mskip1.5mu \Varid{a}\mskip1.5mu]\;[\mskip1.5mu \Varid{b}\mskip1.5mu]}.
 
+\vfill
+
 \begin{figure}[h]
 \centering
 \includegraphics{src/img/parMap.pdf}
 \caption{\ensuremath{\Varid{parMap}} depiction.\label{fig:parMapImg}}
 \end{figure}
+
+\vfill
 
 \begin{figure}[h]
 \centering
@@ -3417,6 +3421,8 @@ compared to \ensuremath{\Varid{parEvalNLazy}}. So it makes sense to also have a
 \ensuremath{\Varid{parMapStream}} (Figs. \ref{fig:parMapStreamImg}, \ref{fig:parMapStream})
 which behaves like \ensuremath{\Varid{parMap}}, but uses \ensuremath{\Varid{parEvalNLazy}} instead of
 \ensuremath{\Varid{parEvalN}}.
+
+\vfill
 
 \begin{figure}[h]
 \centering
@@ -6430,7 +6436,7 @@ classes. There are two restrictions to that, though:
   to be evaluated with more involved tests in the future.
 \end{itemize}
 
-Summarizing, we can say that we mostly succeeded in our goal to provide
+Summarising, we can say that we mostly succeeded in our goal to provide
 support for parallelizing arbitrary Arrows as these two restrictions are
 no big issues at all as we have explained here.
 
@@ -6493,7 +6499,7 @@ behaves.
 \hypertarget{summary}{%
 \subsubsection{Summary}\label{summary}}
 
-Summarizing we can say that we have fulfilled the requirements set in
+Summarising, we can say that we have fulfilled the requirements set in
 the Introduction of this thesis. PArrows is a DSL that allows us to
 parallelize arbitrary Arrow types that manages to tame the zoo of
 parallel Haskells while having a low performance penalty and is general
